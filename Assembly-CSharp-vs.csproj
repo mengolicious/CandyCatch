@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\QuestionManagerScript.cs" />
      <Compile Include="Assets\Scripts\SVM_Script.cs" />
      <Compile Include="Assets\Scripts\ScoreManagerScript.cs" />
+     <Compile Include="Assets\Scripts\ScoreModifierSprite.cs" />
      <Compile Include="Assets\Scripts\TimeManagerScript.cs" />
      <Compile Include="Assets\Scripts\WrongAnswerParticleScript.cs" />
  <Reference Include="UnityEngine.UI">

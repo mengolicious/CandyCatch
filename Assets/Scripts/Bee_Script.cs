@@ -8,6 +8,7 @@ public class Bee_Script : MonoBehaviour {
 	private GameObject answerBall;
 	[SerializeField]
 	public Object particlePrefab;
+	public Object ScoreNumberPrefab;
 //	[SerializeField]
 //	private Vector3 answerBallPos;
 	public int value;
@@ -107,6 +108,8 @@ public class Bee_Script : MonoBehaviour {
 		if(Input.GetMouseButtonDown(0))
 		{
 			GameObject.Instantiate(particlePrefab, this.transform.position, this.transform.rotation);
+			GameObject tempScoreParticle = GameObject.Instantiate(ScoreNumberPrefab, this.transform.position, Quaternion.identity) as GameObject;
+			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, true);
 			Kill();
 		}
 	}
