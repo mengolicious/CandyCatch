@@ -8,7 +8,7 @@ public class BeeBurstParticle : MonoBehaviour {
 		float zRot = Random.Range(-90f, 90f);
 		//float yRot = Random.Range(-90f, 90f);
 		this.transform.eulerAngles = new Vector3(0f, 0f, zRot);
-		StartCoroutine(CheckState());
+		Destroy(gameObject, 0.3f);
 	}
 	
 	// Update is called once per frame
@@ -16,13 +16,15 @@ public class BeeBurstParticle : MonoBehaviour {
 
 	}
 
-	IEnumerator CheckState()
+	/*IEnumerator Animate()
 	{
 		while(true)
 		{
-			if(this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("END"))
-				DestroyImmediate(gameObject);
+			if(GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("IDLE"))
+			{
+				Destroy(gameObject);
+			}
 			yield return new WaitForSeconds(0.3f);
 		}
-	}
+	}*/
 }
