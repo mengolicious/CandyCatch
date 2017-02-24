@@ -4,7 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GunScript : MonoBehaviour {
-	
+
+	public SoundManagerScript SoundManager_Script;
 	public GameObject claw;
 	public GameObject fishingRod;
 	public bool isShooting; 
@@ -37,6 +38,7 @@ public class GunScript : MonoBehaviour {
 	void Start(){
 		//panelInstructionsOff = false;
 
+		SoundManager_Script = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript>();
 		castSpriteRenderer = castImageObject.GetComponent<Image> ();
 
 		line = this.GetComponent<LineRenderer> ();
@@ -84,7 +86,9 @@ public class GunScript : MonoBehaviour {
 			if(!isShooting && panelInstructionsOff && canShoot) 
 			{
 				if(!GM1_Script.gameIsPaused){
+					SoundManager_Script.Play_SFX("cast");
 					Debug.Log ("ttttt");
+
 					//panelInstructionsOff=true;
 					isRotatingRod=true;
 					isShooting = true;

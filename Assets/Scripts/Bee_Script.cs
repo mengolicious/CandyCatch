@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Bee_Script : MonoBehaviour {
 
+	public SoundManagerScript SM_Script;
 	//public bool isCollected;
 	[SerializeField]
 	private GameObject answerBall;
@@ -26,13 +27,13 @@ public class Bee_Script : MonoBehaviour {
 		//Debug.Log ("Bee Awake");
 	}
 	// Use this for initialization
-	/*void Start () {
+	void Start () {
 		//isCollected = false;
 		//answerBall = null;
-		Debug.Log ("BeeStart");
+		SM_Script = GameObject.FindGameObjectWithTag ("SoundManager").GetComponent<SoundManagerScript>();
 		//StartCoroutine (CollectibleAnim());
 		//Invoke ("DestroyCollectible",10.0f);
-	}*/
+	}
 
 
 	/*public void InitialiseVariables(GameObject targetBall)
@@ -107,6 +108,7 @@ public class Bee_Script : MonoBehaviour {
 	{
 		if(Input.GetMouseButtonDown(0))
 		{
+			SM_Script.Play_SFX("splat");
 			GameObject.Instantiate(particlePrefab, this.transform.position, this.transform.rotation);
 			GameObject tempScoreParticle = GameObject.Instantiate(ScoreNumberPrefab, this.transform.position, Quaternion.identity) as GameObject;
 			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, true);
@@ -122,6 +124,7 @@ public class Bee_Script : MonoBehaviour {
 		if (other.gameObject == answerBall) {
 			other.gameObject.GetComponent<BallScript>().DeductPoints(value);
 			//Debug.Log ("Lose some points you scrub");
+
 			Kill();
 
 			

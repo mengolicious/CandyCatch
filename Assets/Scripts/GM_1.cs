@@ -5,7 +5,8 @@ using System.Collections.Generic;
 
 public class GM_1 : MonoBehaviour {
 	
-	
+
+	public SoundManagerScript SoundManager_Script;
 	public int numBalls =5;
 	public Object balls;
 	public GunScript gunScript;
@@ -66,6 +67,7 @@ public class GM_1 : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		SoundManager_Script = GameObject.FindGameObjectWithTag ("SoundManager").GetComponent<SoundManagerScript> ();
 		Time.timeScale = 0;	//Pause time at the start
 		GetBG ();			// Get the appropriate BG for the Game
 
@@ -154,6 +156,10 @@ public class GM_1 : MonoBehaviour {
 			stageSpriteRendererBG.sprite = equationEasy;
 			targetScoreImage.sprite = easyTargetScore;
 			SM_Script.targetScore = SVM_Script.targetScore;
+
+			//Play BG Music
+			SoundManager_Script.Play_BG_loop("bg2");
+
 		}
 		else if(SVM_Script.gameDifficulty == "advance"){
 			stageSpriteRendererBG.sprite = equationAdvance;

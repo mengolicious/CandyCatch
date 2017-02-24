@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ClawScript : MonoBehaviour {
 	
-	
+	public SoundManagerScript SoundManager_Script;
 	public Transform origin; 
 	public Vector3 retractOrigin;
 	public Vector3 originalClawPos;
@@ -39,6 +39,8 @@ public class ClawScript : MonoBehaviour {
 	}
 
 	void Start(){
+	
+		SoundManager_Script = GameObject.FindGameObjectWithTag ("SoundManager").GetComponent<SoundManagerScript> ();
 
 	if (SVM_Script.gameDifficulty == "easy") {
 		retractingSpeed = 2.5f;
@@ -88,10 +90,12 @@ public class ClawScript : MonoBehaviour {
 		//if (transform.position == retractrigin && retracting) 
 		if (transform.position == origin.position && retracting) 
 		{
+			SoundManager_Script.BG_FX_Player.Stop ();	//stop the reeling back sound
 			gunScript.CollectedObject ();
 
 			if (hitBall) // this if is for when the claw hits a ball that needs to be destroyed
 			{
+
 				Debug.Log ("collectedOBJ");
 				//	scoreManager.AddPoints (ballValue);
 				hitBall = false;
@@ -173,7 +177,9 @@ public class ClawScript : MonoBehaviour {
 	void OnTriggerEnter (Collider other)
 	{
 		if(!retracting){
+
 			retracting = true;
+			SoundManager_Script.Play_BG_SFX("reelbackheavy");	//this is the sound for reeling back the rod
 			
 			GetOrigin ();
 			//target = origin.position;
@@ -181,6 +187,7 @@ public class ClawScript : MonoBehaviour {
 			gunScript.CallRotateBackRod ();
 			
 			if (other.gameObject.CompareTag ("balls")) {
+				SoundManager_Script.Play_SFX("hit"); // this plays when the claw hits a ball
 				Debug.Log ("Hit");
 				
 				hitBall = true;
@@ -188,11 +195,13 @@ public class ClawScript : MonoBehaviour {
 				SM_Script.playerAnswerInSM = childObject.GetComponent<BallScript> ().points;
 				if(SM_Script.VerifyAnswer())
 				{
+					//SoundManager_Script.Play_SFX("correct");
 					BeeM_Script.SpawnBees(other.gameObject);
 				}
 			
 				other.transform.SetParent (this.transform);
 			} else if (other.gameObject.CompareTag ("collectibles")) {
+				SoundManager_Script.Play_SFX("hit"); // this plays when the claw hits a ball
 				hitCollectibles = true;
 				childObject = other.gameObject;
 				other.gameObject.GetComponent<CollectiblesScript>().isCollected = true;
