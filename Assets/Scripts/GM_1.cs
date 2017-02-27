@@ -193,10 +193,14 @@ public class GM_1 : MonoBehaviour {
 
 
 	public void BackToMenu() {
+
+		SoundManager_Script.Play_SFX("MenuNavPop");
 		Application.LoadLevel ("MainScene");
 	}
 
 	public void Restart() {
+
+		SoundManager_Script.Play_SFX("MenuNavPop");
 		Application.LoadLevel ("ShapesLV1");
 	}
 
@@ -221,6 +225,7 @@ public class GM_1 : MonoBehaviour {
 	}
 	public void StartGame () {
 
+		SoundManager_Script.Play_SFX("MenuNavPop");
 
 		panelInstructions.SetActive (false);
 		gunScript.panelInstructionsOff=true; 
@@ -311,6 +316,8 @@ public class GM_1 : MonoBehaviour {
 
 
 	public void PauseGame(){
+
+		SoundManager_Script.Play_SFX("MenuNavPop");
 		//gunScript.canShoot = false;
 		gameIsPaused = true;
 		Time.timeScale = 0;
@@ -318,6 +325,8 @@ public class GM_1 : MonoBehaviour {
 	}
 
 	public void ResumeGame(){
+
+		SoundManager_Script.Play_SFX("MenuNavPop");
 		//gunScript.canShoot = true;
 		gameIsPaused = false;
 		Time.timeScale = 1;

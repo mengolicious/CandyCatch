@@ -7,10 +7,13 @@ public class SoundManagerScript : MonoBehaviour {
 	public AudioSource FX_Player;
 	public AudioSource BG_FX_Player;
 	public AudioSource BG_FX_Loop_Player;
+
 	
 
 	public float lowPitchRange;              //The lowest a sound effect will be randomly pitched.
 	public float highPitchRange;            //The highest a sound effect will be randomly pitched.
+
+
 
 
 	public static SoundManagerScript Instance {
@@ -39,6 +42,7 @@ public class SoundManagerScript : MonoBehaviour {
 		
 	
 	}
+	
 	public void Play_SFX (string tempStringName)
 	{
 		FX_Player.clip = Resources.Load<AudioClip> ("SFX/"+ tempStringName);

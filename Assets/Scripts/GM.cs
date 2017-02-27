@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
+
 
 public class GM : MonoBehaviour {
 
 	public HighScoreDisplayManagerScript HSDM_Script;
+
+	public SoundManagerScript SoundManager_Script;
+	
+
 
 	public GameObject playGamePanel;
 	public GameObject topScorePanel;
@@ -18,20 +24,35 @@ public class GM : MonoBehaviour {
 
 	
 	public GameObject buttonSound;
-	new AudioSource audio;
+
+//	public Sprite audioOn;
+//	public Sprite audioMute;
+//	public Image audioSpriteRenderer;
+//	public bool isSound;
+
+	public AudioSource audio;
+
+
 	
 	
 	
 	
 	// Use this for initialization
 	void Start () {
+
+		audio = GetComponent<AudioSource>();
+
+		SoundManager_Script = GameObject.FindGameObjectWithTag ("SoundManager").GetComponent<SoundManagerScript> ();
+
+		//isSound = false;
+
 		//Original sprite before click
 		playGamePanel.SetActive (false);
 		topScorePanel.SetActive (false);
 		creditsPanel.SetActive (false);
 		
 
-		audio = buttonSound.GetComponent<AudioSource> ();
+	
 		Time.timeScale = 1.0f;
 		CheckDifficultyLock ();
 		
@@ -40,6 +61,18 @@ public class GM : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+
+//			if(isSound == true)
+//			{
+//				
+//				audioSpriteRenderer.sprite = audioOn;
+//			}
+//			else
+//			{
+//				audioSpriteRenderer.sprite = audioMute;
+//			}
+
 
 
 
@@ -79,27 +112,44 @@ public class GM : MonoBehaviour {
 
 
 	public void DisablePanel(GameObject parentPanel){
+
+		SoundManager_Script.Play_SFX("MenuNav2");
+
 		parentPanel.SetActive (false);
 	}
 	public void EnablePanel(GameObject targetPanel){
+
+
 		targetPanel.SetActive (true);
 	}
 
 
 	//when level 1 button pressed change scene to Level 1 shape
 	public void LevelOne_Easy (){ 
+
+		SoundManager_Script.Play_SFX("MenuNav2");
+
+
+
 		SVM_Script.targetScore=50;
 		Application.LoadLevel ("ShapesLV1"); 
 		SVM_Script.gameDifficulty = "easy";
 	}
 
 	public void LevelOne_Advance (){ 
+
+
+		SoundManager_Script.Play_SFX("MenuNav2");
+
 		SVM_Script.targetScore=75;
 		Application.LoadLevel ("ShapesLV1"); 
 		SVM_Script.gameDifficulty = "advance";
 	}
 
 	public void LevelOne_Expert (){ 
+
+		SoundManager_Script.Play_SFX("MenuNav2");
+
 		SVM_Script.targetScore=95;
 		Application.LoadLevel ("ShapesLV1"); 
 		SVM_Script.gameDifficulty = "expert";
@@ -122,12 +172,23 @@ public class GM : MonoBehaviour {
 	
 	//Back Button when pressed, loads main menu
 	public void BackButton () {
+
+		SoundManager_Script.Play_SFX("MenuNavPop");
+
 		Application.LoadLevel ("MainScene");
 	}
 	
 	//Play audio source when button is pressed
 	public void ButtonAudio () {
-		audio.Play();
+
+		if(audio.mute)
+			audio.mute = false;
+
+		else
+			audio.mute = true;
+
+		//AudioListener.volume=0f;
+
 		
 	} 
 	
