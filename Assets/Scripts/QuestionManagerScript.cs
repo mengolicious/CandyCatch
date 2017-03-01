@@ -187,7 +187,7 @@ public class QuestionManagerScript : MonoBehaviour {
 		listQuestionsDiv.Add (Q68);
 		listQuestionsDiv.Add (Q69);
 		listQuestionsDiv.Add (Q70);
-		listQuestionsDiv.Add (Q51);
+		listQuestionsDiv.Add (Q71);
 		listQuestionsDiv.Add (Q72);
 		listQuestionsDiv.Add (Q73);
 		listQuestionsDiv.Add (Q74);
@@ -255,11 +255,11 @@ public class QuestionManagerScript : MonoBehaviour {
 
 		listAnswersDiv.Add (9);
 		listAnswersDiv.Add (5);
-		listAnswersDiv.Add (5);
+		listAnswersDiv.Add (4);
 		listAnswersDiv.Add (9);
 		listAnswersDiv.Add (9);
 
-		listAnswersDiv.Add (2);
+		listAnswersDiv.Add (8);
 		listAnswersDiv.Add (2);
 		listAnswersDiv.Add (3);
 		listAnswersDiv.Add (4);
@@ -268,8 +268,8 @@ public class QuestionManagerScript : MonoBehaviour {
 		listAnswersDiv.Add (8);
 		listAnswersDiv.Add (6);
 		listAnswersDiv.Add (9);
-		listAnswersDiv.Add (4);
 		listAnswersDiv.Add (3);
+		listAnswersDiv.Add (4);
 
 		listAnswers = new List<int> ();
 		//Start of answer for Addition

@@ -7,6 +7,7 @@ public class BallScript : MonoBehaviour {
 	public GameObject tempParticle;
 	public Object winParticle;
 	public Object loseParticle;
+	public Object scoreUpParticle;
 	public int points;
 	public int scoreValue;
 
@@ -32,6 +33,8 @@ public class BallScript : MonoBehaviour {
 	public void InstantiateParticleWin(){
 		SoundManager_Script.Play_SFX("correct");
 		tempParticle = Instantiate (winParticle, this.transform.position, Quaternion.identity) as GameObject;
+		tempParticle = Instantiate(scoreUpParticle, this.transform.position, Quaternion.identity) as GameObject;
+		tempParticle.GetComponent<ScoreModifierSprite>().SetNumber(scoreValue, true);
 		Invoke ("DestroyInstantiate",0.1f);
 	}
 

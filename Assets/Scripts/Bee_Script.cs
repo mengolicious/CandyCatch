@@ -58,6 +58,33 @@ public class Bee_Script : MonoBehaviour {
 		isAttacking = true;
 		speed = beeSpeed;
 		value = beeValue;
+		switch(value)
+		{
+		case 1:
+		{
+			break;
+		}
+		case 2:
+		{
+			GetComponent<SpriteRenderer>().color = Color.cyan;
+			break;
+		}
+		case 3:
+		{
+			GetComponent<SpriteRenderer>().color = Color.blue;
+			break;
+		}
+		case 4:
+		{
+			GetComponent<SpriteRenderer>().color = Color.magenta;
+			break;
+		}
+		case 5:
+		{
+			GetComponent<SpriteRenderer>().color = Color.black;
+			break;
+		}
+		}
 		StartCoroutine (ATTACK_ON_TITAN());
 	}
 	// Update is called once per frame

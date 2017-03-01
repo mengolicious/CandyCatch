@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class SoundManagerScript : MonoBehaviour {
@@ -19,8 +20,8 @@ public class SoundManagerScript : MonoBehaviour {
 	
 	public Sprite audioSprite;
 	public Sprite audioMuteSprite;
-	public GameObject audioImageObject;
-	public SpriteRenderer audioSpriteRenderer;
+	public GameObject audioButton;
+	public Image audioButtonImage;
 
 	public static SoundManagerScript Instance {
 		get;
@@ -42,8 +43,8 @@ public class SoundManagerScript : MonoBehaviour {
 	}
 
 	void Start () {
-	
-		audioSpriteRenderer = gameObject.GetComponent<SpriteRenderer> ();
+		audioButton = GameObject.FindGameObjectWithTag("MuteButton");
+		audioButtonImage = audioButton.GetComponent<Image> ();
 
 		lowPitchRange = .95f;              //The lowest a sound effect will be randomly pitched.
 		highPitchRange = 1.05f;            //The highest a sound effect will be randomly pitched.
@@ -100,11 +101,11 @@ public class SoundManagerScript : MonoBehaviour {
 		if (isMute == true) {
 			AudioListener.volume = 0.0f;
 			//audioSpriteRenderer.sprite = audioMuteSprite;
-			audioSpriteRenderer.sprite = audioMuteSprite;
+			audioButtonImage.sprite = audioMuteSprite;
 			
 		} else {
 			AudioListener.volume = 1.0f;
-			audioSpriteRenderer.sprite = audioSprite;
+			audioButtonImage.sprite = audioSprite;
 			
 		}
 		
