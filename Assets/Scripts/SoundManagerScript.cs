@@ -83,11 +83,11 @@ public class SoundManagerScript : MonoBehaviour {
 
 
 	
-		public void ChangeBGMusic(string tempBGMusic){
-		FX_Player.clip = Resources.Load<AudioClip> ("Voices/BGM/"+tempBGMusic);
-		FX_Player.loop = true;
-		FX_Player.Play ();
-		
+	public void ChangeBGMusic(string tempBGMusic){
+	FX_Player.clip = Resources.Load<AudioClip> ("Voices/BGM/"+tempBGMusic);
+	FX_Player.loop = true;
+	FX_Player.Play ();
+	
 	}
 	// Update is called once per frame
 	void Update () {
