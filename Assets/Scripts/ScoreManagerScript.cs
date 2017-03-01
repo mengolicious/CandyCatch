@@ -156,6 +156,11 @@ public class ScoreManagerScript : MonoBehaviour {
 	}
 
 
+	public void EditScore(int changeScore){
+		score += changeScore;
+		DisplayScore(scoreNum1, scoreNum2, score);
+	}
+
 	public void DisplayScore(GameObject num1, GameObject num2, int tempChangeValue){
 		scoreString = tempChangeValue.ToString ();
 

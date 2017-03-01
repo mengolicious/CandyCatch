@@ -58,9 +58,10 @@ public class BeeMScript : MonoBehaviour {
 		Debug.Log ("Spawning " + numberOfBEES + " Bees");
 		for(int x = 0; x < numberOfBEES; x++)
 		{
+			beeValue = Random.Range(1, 6);
 			Vector3 shiftPos = new Vector3(0f, Random.Range (-2.5f,2.5f), 0f);
 			GameObject tempBee = GameObject.Instantiate(BeePrefab, this.gameObject.transform.position + shiftPos, Quaternion.identity) as GameObject;
-			tempBee.GetComponent<Bee_Script>().InitialiseVariables(tempBall, beeSpeed);
+			tempBee.GetComponent<Bee_Script>().InitialiseVariables(tempBall, beeSpeed, beeValue);
 			//tempBee.GetComponent<Bee_Script>().value = tempValue;
 			beeList.Add(tempBee);
 			yield return new WaitForSeconds(0.03f);

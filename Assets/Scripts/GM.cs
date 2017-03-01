@@ -25,26 +25,21 @@ public class GM : MonoBehaviour {
 	
 	public GameObject buttonSound;
 
-//	public Sprite audioOn;
-//	public Sprite audioMute;
-//	public Image audioSpriteRenderer;
-//	public bool isSound;
-
-	public AudioSource audio;
 
 
-	
-	
+
 	
 	
 	// Use this for initialization
 	void Start () {
 
-		audio = GetComponent<AudioSource>();
+
+	
+
 
 		SoundManager_Script = GameObject.FindGameObjectWithTag ("SoundManager").GetComponent<SoundManagerScript> ();
 
-		//isSound = false;
+
 
 		//Original sprite before click
 		playGamePanel.SetActive (false);
@@ -61,18 +56,6 @@ public class GM : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-
-//			if(isSound == true)
-//			{
-//				
-//				audioSpriteRenderer.sprite = audioOn;
-//			}
-//			else
-//			{
-//				audioSpriteRenderer.sprite = audioMute;
-//			}
-
 
 
 
@@ -179,17 +162,6 @@ public class GM : MonoBehaviour {
 	}
 	
 	//Play audio source when button is pressed
-	public void ButtonAudio () {
 
-		if(audio.mute)
-			audio.mute = false;
-
-		else
-			audio.mute = true;
-
-		//AudioListener.volume=0f;
-
-		
-	} 
 	
 }

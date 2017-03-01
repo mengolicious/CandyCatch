@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Bee_Script : MonoBehaviour {
 
+	public ScoreManagerScript ScoreManager_Script;
 	public SoundManagerScript SM_Script;
 	//public bool isCollected;
 	[SerializeField]
@@ -30,6 +31,7 @@ public class Bee_Script : MonoBehaviour {
 	void Start () {
 		//isCollected = false;
 		//answerBall = null;
+		ScoreManager_Script = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManagerScript>();
 		SM_Script = GameObject.FindGameObjectWithTag ("SoundManager").GetComponent<SoundManagerScript>();
 		//StartCoroutine (CollectibleAnim());
 		//Invoke ("DestroyCollectible",10.0f);
@@ -50,11 +52,12 @@ public class Bee_Script : MonoBehaviour {
 	/// </summary>
 	/// <param name="targetBall">Target ball.</param>
 	/// <param name="beeSpeed">Bee speed.</param>
-	public void InitialiseVariables(GameObject targetBall, float beeSpeed)
+	public void InitialiseVariables(GameObject targetBall, float beeSpeed, int beeValue)
 	{
 		answerBall = targetBall;
 		isAttacking = true;
 		speed = beeSpeed;
+		value = beeValue;
 		StartCoroutine (ATTACK_ON_TITAN());
 	}
 	// Update is called once per frame
@@ -112,6 +115,7 @@ public class Bee_Script : MonoBehaviour {
 			GameObject.Instantiate(particlePrefab, this.transform.position, this.transform.rotation);
 			GameObject tempScoreParticle = GameObject.Instantiate(ScoreNumberPrefab, this.transform.position, Quaternion.identity) as GameObject;
 			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, true);
+			ScoreManager_Script.EditScore(value);
 			Kill();
 		}
 	}
@@ -124,6 +128,8 @@ public class Bee_Script : MonoBehaviour {
 		if (other.gameObject == answerBall) {
 			other.gameObject.GetComponent<BallScript>().DeductPoints(value);
 			//Debug.Log ("Lose some points you scrub");
+
+
 
 			Kill();
 

@@ -15,6 +15,12 @@ public class SoundManagerScript : MonoBehaviour {
 
 
 
+	public bool isMute;
+	
+	public Sprite audioSprite;
+	public Sprite audioMuteSprite;
+	public GameObject audioImageObject;
+	public SpriteRenderer audioSpriteRenderer;
 
 	public static SoundManagerScript Instance {
 		get;
@@ -37,6 +43,8 @@ public class SoundManagerScript : MonoBehaviour {
 
 	void Start () {
 	
+		audioSpriteRenderer = gameObject.GetComponent<SpriteRenderer> ();
+
 		lowPitchRange = .95f;              //The lowest a sound effect will be randomly pitched.
 		highPitchRange = 1.05f;            //The highest a sound effect will be randomly pitched.
 		
@@ -83,6 +91,24 @@ public class SoundManagerScript : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
+		
+	}
+
+	public void ButtonAudio () {
+		
+		isMute = !isMute;
+		if (isMute == true) {
+			AudioListener.volume = 0.0f;
+			//audioSpriteRenderer.sprite = audioMuteSprite;
+			audioSpriteRenderer.sprite = audioMuteSprite;
+			
+		} else {
+			AudioListener.volume = 1.0f;
+			audioSpriteRenderer.sprite = audioSprite;
+			
+		}
+		
+		
 		
 	}
 }
