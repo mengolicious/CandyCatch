@@ -76,6 +76,9 @@ public class ScoreManagerScript : MonoBehaviour {
 
 	public List<GameObject> marshMLives;
 
+	public GameObject insertScore;
+
+
 
 
 	//public SpriteRenderer spriteRenderer;
@@ -94,6 +97,8 @@ public class ScoreManagerScript : MonoBehaviour {
 
 		score = 0;
 		totalScore = 0;
+
+		insertScore.SetActive(false);
 
 
 		//DisplayScore ();
@@ -185,7 +190,11 @@ public class ScoreManagerScript : MonoBehaviour {
 
 			
 		}
-
+	//	public void DisplayTotalScore()
+	//	{
+		//
+		//
+		//	}
 
 
 
@@ -201,11 +210,12 @@ public class ScoreManagerScript : MonoBehaviour {
 		//when answer is right
 		if (currentAnswerInSM == playerAnswerInSM) {
 			score += ballScoreValue;
-			DisplayScore(scoreNum1, scoreNum2, score);
+			DisplayScore(scoreNum1, scoreNum2, score); 
 
 			if(score>=targetScore){
 				winScreen.SetActive(true);
-				winScreen.GetComponent<Image> ().sprite = winScreenImg;
+				//winScreen.GetComponent<Image> ().sprite = winScreenImg;
+
 				gM_1.PauseGame();
 				pauseButton.SetActive (false);
 
@@ -227,9 +237,11 @@ public class ScoreManagerScript : MonoBehaviour {
 				}
 
 				ComputeTotalScore(); //this is for saving highscores
-
-
-
+				//print (totalScore);
+				Debug.Log ("itsGoingHere");
+				
+				
+				//show score on winScreen
 			}
 		
 			Debug.Log ("Correct Answer");
@@ -245,23 +257,30 @@ public class ScoreManagerScript : MonoBehaviour {
 
 	public void ComputeTotalScore(){
 		totalScore = (float)((float)score / (float)TM_Script.elapsedTime)*100*lives;
-	
-		if(totalScore >= PlayerPrefs.GetInt("EE_Top1_Score_"+tempString)){
+		if(totalScore >= PlayerPrefs.GetInt("EE_Top1_Score_"+tempString))
+		{
+			insertScore.SetActive(true);
+
 			PlayerPrefs.SetInt ("EE_Top3_Score_"+tempString,PlayerPrefs.GetInt("EE_Top2_Score_"+tempString));
 			PlayerPrefs.SetInt ("EE_Top2_Score_"+tempString,PlayerPrefs.GetInt("EE_Top1_Score_"+tempString));
 			PlayerPrefs.SetInt("EE_Top1_Score_"+tempString, (int)totalScore);
 			
-			}
-		else if(totalScore >= PlayerPrefs.GetInt("EE_Top2_Score_"+tempString)){
+		}
+		else if(totalScore >= PlayerPrefs.GetInt("EE_Top2_Score_"+tempString))
+		{
+
+			insertScore.SetActive(true);
+
 			PlayerPrefs.SetInt ("EE_Top3_Score_"+tempString,PlayerPrefs.GetInt("EE_Top2_Score_"+tempString));
 			PlayerPrefs.SetInt("EE_Top2_Score_"+tempString, (int)totalScore);
 			
-			}
-		else if(totalScore >= PlayerPrefs.GetInt("EE_Top3_Score_"+tempString)){
+		}
+			else if(totalScore >= PlayerPrefs.GetInt("EE_Top3_Score_"+tempString)){
+
+			insertScore.SetActive(true);
+
 			PlayerPrefs.SetInt("EE_Top3_Score_"+tempString, (int)totalScore);
-
-			}
-
+		}
 	}
 
 
@@ -292,9 +311,6 @@ public class ScoreManagerScript : MonoBehaviour {
 			gM_1.PauseGame();
 			pauseButton.SetActive (false);
 
-
-
-
 		}
 
 	
@@ -308,4 +324,7 @@ public class ScoreManagerScript : MonoBehaviour {
 		else
 			return false;
 	}
+
+
+	
 }

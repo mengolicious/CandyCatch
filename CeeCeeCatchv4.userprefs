@@ -1,16 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\QuestionManagerScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ScoreManagerScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\SoundManagerScript.cs" Line="79" Column="3" />
-      <File FileName="Assets\Scripts\GM.cs" Line="24" Column="2" />
-      <File FileName="Assets\Scripts\ClawScript.cs" Line="112" Column="29" />
-      <File FileName="Assets\Scripts\GunScript.cs" Line="90" Column="26" />
-      <File FileName="Assets\Scripts\ScoreModifierSprite.cs" Line="35" Column="19" />
-      <File FileName="Assets\Scripts\BeeMScript.cs" Line="12" Column="32" />
-      <File FileName="Assets\Scripts\Bee_Script.cs" Line="145" Column="41" />
-      <File FileName="Assets\Scripts\BallScript.cs" Line="37" Column="3" />
-      <File FileName="Assets\Scripts\QuestionManagerScript.cs" Line="262" Column="26" />
+      <File FileName="Assets\Scripts\ScoreManagerScript.cs" Line="232" Column="30" />
+      <File FileName="Assets\Scripts\GM_1.cs" Line="171" Column="48" />
+      <File FileName="Assets\Scripts\HighScoreDisplayManagerScript.cs" Line="37" Column="3" />
+      <File FileName="Assets\Scripts\HighScoreManagerScript.cs" Line="69" Column="30" />
+      <File FileName="Assets\Scripts\GM.cs" Line="165" Column="1" />
+      <File FileName="Assets\Scripts\QuestionManagerScript.cs" Line="359" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
