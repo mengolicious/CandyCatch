@@ -160,8 +160,7 @@ public class ClawScript : MonoBehaviour {
 	//}
 	//End reposition fishingRod
 
-	public void ClawTarget (Vector3 pos)
-		
+	public void ClawTarget (Vector3 pos)	
 	{
 		target = pos;
 	}
