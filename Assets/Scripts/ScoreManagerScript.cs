@@ -169,6 +169,8 @@ public class ScoreManagerScript : MonoBehaviour {
 	}
 
 	public void DisplayScore(GameObject num1, GameObject num2, int tempChangeValue){
+		if(tempChangeValue > 99)
+			tempChangeValue = 99;
 		scoreString = tempChangeValue.ToString ();
 
 		Debug.Log (scoreString.Length);
