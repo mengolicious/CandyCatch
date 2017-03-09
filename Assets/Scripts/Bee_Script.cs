@@ -141,7 +141,7 @@ public class Bee_Script : MonoBehaviour {
 			SM_Script.Play_SFX("splat");
 			GameObject.Instantiate(particlePrefab, this.transform.position, this.transform.rotation);
 			GameObject tempScoreParticle = GameObject.Instantiate(ScoreNumberPrefab, this.transform.position, Quaternion.identity) as GameObject;
-			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, true);
+			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, true, true);
 			ScoreManager_Script.EditScore(value);
 			Kill();
 		}

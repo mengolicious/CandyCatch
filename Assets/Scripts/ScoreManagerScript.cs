@@ -65,6 +65,7 @@ public class ScoreManagerScript : MonoBehaviour {
 
 	public GameObject loseScreen;
 	public GameObject winScreen;
+	public GameObject textInputField;
 	public Sprite loseScreenImg;
 	public Sprite winScreenImg;
 
@@ -77,6 +78,7 @@ public class ScoreManagerScript : MonoBehaviour {
 	public List<GameObject> marshMLives;
 
 	public GameObject insertScore;
+	public int tempHighScoreIndex;
 
 
 
@@ -93,12 +95,12 @@ public class ScoreManagerScript : MonoBehaviour {
 		//testing
 		targetScore = SVM_Script.targetScore;
 
-
+		tempHighScoreIndex = 0;
 
 		score = 0;
 		totalScore = 0;
 
-		insertScore.SetActive(false);
+		//insertScore.SetActive(false);
 
 
 		//DisplayScore ();
@@ -131,7 +133,7 @@ public class ScoreManagerScript : MonoBehaviour {
 
 		StartCoroutine (CollectibleSpawn ());
 
-		loseScreen.SetActive (false);
+		//loseScreen.SetActive (false);
 
 
 	
@@ -238,7 +240,7 @@ public class ScoreManagerScript : MonoBehaviour {
 
 				ComputeTotalScore(); //this is for saving highscores
 				//print (totalScore);
-				Debug.Log ("itsGoingHere");
+				//Debug.Log ("itsGoingHere");
 				
 				
 				//show score on winScreen
@@ -261,10 +263,13 @@ public class ScoreManagerScript : MonoBehaviour {
 		{
 			insertScore.SetActive(true);
 
-			PlayerPrefs.SetInt ("EE_Top3_Score_"+tempString,PlayerPrefs.GetInt("EE_Top2_Score_"+tempString));
-			PlayerPrefs.SetInt ("EE_Top2_Score_"+tempString,PlayerPrefs.GetInt("EE_Top1_Score_"+tempString));
+			PlayerPrefs.SetInt("EE_Top3_Score_"+tempString,PlayerPrefs.GetInt("EE_Top2_Score_"+tempString));
+			PlayerPrefs.SetString("EE_Top3_Name_"+tempString,PlayerPrefs.GetString("EE_Top2_Name_"+tempString));
+			PlayerPrefs.SetInt("EE_Top2_Score_"+tempString,PlayerPrefs.GetInt("EE_Top1_Score_"+tempString));
+			PlayerPrefs.SetString("EE_Top2_Name_"+tempString,PlayerPrefs.GetString("EE_Top1_Name_"+tempString));
+
 			PlayerPrefs.SetInt("EE_Top1_Score_"+tempString, (int)totalScore);
-			
+			tempHighScoreIndex = 1;
 		}
 		else if(totalScore >= PlayerPrefs.GetInt("EE_Top2_Score_"+tempString))
 		{
@@ -273,17 +278,23 @@ public class ScoreManagerScript : MonoBehaviour {
 
 			PlayerPrefs.SetInt ("EE_Top3_Score_"+tempString,PlayerPrefs.GetInt("EE_Top2_Score_"+tempString));
 			PlayerPrefs.SetInt("EE_Top2_Score_"+tempString, (int)totalScore);
-			
+			tempHighScoreIndex = 2;
 		}
-			else if(totalScore >= PlayerPrefs.GetInt("EE_Top3_Score_"+tempString)){
+		else if(totalScore >= PlayerPrefs.GetInt("EE_Top3_Score_"+tempString)){
 
 			insertScore.SetActive(true);
 
 			PlayerPrefs.SetInt("EE_Top3_Score_"+tempString, (int)totalScore);
+			tempHighScoreIndex = 3;
 		}
 	}
 
-
+	public void SetTopScoreName()
+	{
+		string inputText = insertScore.GetComponent<InputField>().text;
+		//Debug.Log(inputText);
+		PlayerPrefs.SetString("EE_Top" + tempHighScoreIndex + "_Name_" + tempString, inputText);
+	}
 
 	public void LoseLife(){
 		lives -= 1;

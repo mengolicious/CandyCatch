@@ -133,7 +133,7 @@ public class GM : MonoBehaviour {
 
 		SoundManager_Script.Play_SFX("MenuNav2");
 
-		SVM_Script.targetScore=95;
+		SVM_Script.targetScore=90;
 		Application.LoadLevel ("ShapesLV1"); 
 		SVM_Script.gameDifficulty = "expert";
 	}

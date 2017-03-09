@@ -10,11 +10,11 @@ public class BallScript : MonoBehaviour {
 	public Object scoreUpParticle;
 	public int points;
 	public int scoreValue;
-
+	private Vector3 scoreChangeSpritePos;
 	// Use this for initialization
 	void Start () {
 		SoundManager_Script = GameObject.FindGameObjectWithTag ("SoundManager").GetComponent<SoundManagerScript> ();
-	
+		scoreChangeSpritePos = GameObject.FindGameObjectWithTag("BeeM").GetComponent<Transform>().position;
 	}
 	
 	// Update is called once per frame
@@ -33,8 +33,8 @@ public class BallScript : MonoBehaviour {
 	public void InstantiateParticleWin(){
 		SoundManager_Script.Play_SFX("correct");
 		tempParticle = Instantiate (winParticle, this.transform.position, Quaternion.identity) as GameObject;
-		tempParticle = Instantiate(scoreUpParticle, this.transform.position, Quaternion.identity) as GameObject;
-		tempParticle.GetComponent<ScoreModifierSprite>().SetNumber(scoreValue, true);
+		tempParticle = Instantiate(scoreUpParticle, scoreChangeSpritePos, Quaternion.identity) as GameObject;
+		tempParticle.GetComponent<ScoreModifierSprite>().SetNumber(scoreValue, true, false);
 		Invoke ("DestroyInstantiate",0.1f);
 	}
 

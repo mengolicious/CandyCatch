@@ -5,13 +5,14 @@ public class ScoreModifierSprite : MonoBehaviour {
 
 	private float speed;
 	private SpriteRenderer spriteRend;
+	private bool isMooving;
 	void Awake()
 	{
 		spriteRend = GetComponent<SpriteRenderer>();
 		speed = 10f;
 	}
 
-	public void SetNumber(int aValue, bool positiveVal)
+	public void SetNumber(int aValue, bool positiveVal, bool isMoving)
 	{
 		if(positiveVal)
 		{
@@ -21,6 +22,7 @@ public class ScoreModifierSprite : MonoBehaviour {
 		{
 			spriteRend.sprite = Resources.Load("Sprites/GamePlayNum/" + aValue + "minus") as Sprite;
 		}
+		isMooving = isMoving;
 		Destroy(gameObject, 5f);
 		StartCoroutine(Animate());
 	}
@@ -30,9 +32,12 @@ public class ScoreModifierSprite : MonoBehaviour {
 
 		while(true)
 		{
-			transform.position += Vector3.up * (speed * Time.deltaTime);
+			if(isMooving)
+			{
+				transform.position += Vector3.up * (speed * Time.deltaTime);
+			}
 			Color temp = spriteRend.color;
-			temp.a *= 0.9f;
+			temp.a -= 0.05f;
 			spriteRend.color = temp;
 			yield return new WaitForSeconds(0.05f);
 		}
