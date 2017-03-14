@@ -69,7 +69,7 @@ public class SoundManagerScript : MonoBehaviour {
 
 	public void Play_BG_loop (string tempStringName)
 	{
-		BG_FX_Loop_Player.clip = Resources.Load<AudioClip> ("SFX/"+ tempStringName);
+		BG_FX_Loop_Player.clip = Resources.Load<AudioClip>("SFX/"+ tempStringName);
 		BG_FX_Loop_Player.loop = true;
 		BG_FX_Loop_Player.Play ();
 		//FX_Player.PlayOneShot (Resources.Load<AudioClip> ("Voices/Set" + setNum + "/" + fileName + ballNum));
@@ -85,7 +85,7 @@ public class SoundManagerScript : MonoBehaviour {
 
 	
 	public void ChangeBGMusic(string tempBGMusic){
-	FX_Player.clip = Resources.Load<AudioClip> ("Voices/BGM/"+tempBGMusic);
+	FX_Player.clip = Resources.Load<AudioClip> ("BGM/"+tempBGMusic);
 	FX_Player.loop = true;
 	FX_Player.Play ();
 	

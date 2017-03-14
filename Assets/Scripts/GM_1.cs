@@ -165,12 +165,17 @@ public class GM_1 : MonoBehaviour {
 			stageSpriteRendererBG.sprite = equationAdvance;
 			targetScoreImage.sprite = advanceTargetScore;
 			SM_Script.targetScore = SVM_Script.targetScore;
+
+			//Play BG Music
+			SoundManager_Script.Play_BG_loop("bg2");
 		}
 		else if(SVM_Script.gameDifficulty == "expert"){
 			stageSpriteRendererBG.sprite = equationExpert;
 			targetScoreImage.sprite = expertTargetScore;
 			SM_Script.targetScore = SVM_Script.targetScore;
 
+			//Play BG Music
+			SoundManager_Script.Play_BG_loop("bg2");
 		}
 	}
 

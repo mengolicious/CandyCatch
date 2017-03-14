@@ -53,12 +53,15 @@ public class GunScript : MonoBehaviour {
 
 		claw.SetActive (false);
 
-	
 
+		//isRenderFrame = false;
+		line.sortingLayerName = "OnTop";
+		line.sortingOrder = 5;
+		line.useWorldSpace = true;
 	}
 
 	void Update () {
-
+		//isRenderFrame = false;
 		{
 			if(isShooting == true)
 			{
@@ -78,6 +81,26 @@ public class GunScript : MonoBehaviour {
 			line.SetVertexCount (0);
 		}
 	}
+	/*private bool isRenderFrame;
+	public void WillRenderObject()
+	{
+		
+
+		if(!isShooting)
+		{
+			line.SetVertexCount(2);
+			line.SetPosition(0, this.gameObject.transform.position);
+			//line.SetPosition(1,  rayHit.point);
+			line.SetPosition(1,  lineEndPos.transform.position);
+			//line.SetPosition(2, transform.localPosition);
+			line.SetWidth(0.01f, 0.01f);
+		}
+		else
+		{
+			line.SetVertexCount(0);
+		}
+		
+	}*/
 
 	public void CastClaw ()
 	{
@@ -106,21 +129,13 @@ public class GunScript : MonoBehaviour {
 	
 	void SetupLine()
 	{
-		line.sortingLayerName = "OnTop";
-		line.sortingOrder = 5;
 		line.SetVertexCount(2);
 		line.SetPosition(0, this.gameObject.transform.position);
 		//line.SetPosition(1,  rayHit.point);
 		line.SetPosition(1,  lineEndPos.transform.position);
 		//line.SetPosition(2, transform.localPosition);
 		line.SetWidth(0.01f, 0.01f);
-		line.useWorldSpace = true;
-		
 	}
-
-		
-
-
 
 	IEnumerator RotateFishingRod(){ 
 
@@ -174,8 +189,7 @@ public class GunScript : MonoBehaviour {
 			}
 			yield return new WaitForSeconds(0.01f);
 		}
-		
-		
+
 		isRotatingRodBack=true;
 		
 		while(isRotatingRodBack){
@@ -190,8 +204,6 @@ public class GunScript : MonoBehaviour {
 			}
 			yield return new WaitForSeconds(0.01f);
 		}
-		
-
 	}
 	
 	void LaunchClaw()
