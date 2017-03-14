@@ -45,6 +45,8 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
-Temp/UnityLockfile
-*.bakert
-Temp/__EditModeScene
+Temp/
+obj/
+.vs/
+Library/
+
