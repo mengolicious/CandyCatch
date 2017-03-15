@@ -3,11 +3,11 @@ using System.Collections;
 
 public class BallScript : MonoBehaviour {
 
-	public SoundManagerScript SoundManager_Script;
-	public GameObject tempParticle;
+	private SoundManagerScript SoundManager_Script;
+	private GameObject tempParticle;
 	public Object winParticle;
 	public Object loseParticle;
-	public Object scoreUpParticle;
+	private Object scoreUpParticle;
 	public int points;
 	public int scoreValue;
 	private Vector3 scoreChangeSpritePos;
@@ -15,6 +15,7 @@ public class BallScript : MonoBehaviour {
 	void Start () {
 		SoundManager_Script = GameObject.FindGameObjectWithTag ("SoundManager").GetComponent<SoundManagerScript> ();
 		scoreChangeSpritePos = GameObject.FindGameObjectWithTag("BeeM").GetComponent<Transform>().position;
+		scoreUpParticle = Resources.Load("Prefabs/ScoreChangeSprite");
 	}
 	
 	// Update is called once per frame

@@ -11,17 +11,17 @@ public class SoundManagerScript : MonoBehaviour {
 
 	
 
-	public float lowPitchRange;              //The lowest a sound effect will be randomly pitched.
-	public float highPitchRange;            //The highest a sound effect will be randomly pitched.
+	private float lowPitchRange;              //The lowest a sound effect will be randomly pitched.
+	private float highPitchRange;            //The highest a sound effect will be randomly pitched.
 
 
 
-	public bool isMute;
+	private bool isMute;
 	
 	public Sprite audioSprite;
 	public Sprite audioMuteSprite;
-	public GameObject audioButton;
-	public Image audioButtonImage;
+	private GameObject audioButton;
+	private Image audioButtonImage;
 
 	public static SoundManagerScript Instance {
 		get;

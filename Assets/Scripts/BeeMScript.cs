@@ -10,13 +10,18 @@ public class BeeMScript : MonoBehaviour {
 	private int beeValue;
 	private List<Vector3> SpawnPoints;
 	private List<Vector3> UsedSpawnPoints;
-	public Object BeePrefab;
+	private Object BeePrefab;
+	private Object BeeBurstPrefab;
+	private Object ScoreChangeSpritePrefab;
 	private int maxBeeValue;
 	// Use this for initialization
 	void Start () {
 		beeList = new List<GameObject>();
 		SpawnPoints = new List<Vector3>();
 		UsedSpawnPoints = new List<Vector3>();
+		BeePrefab = Resources.Load("Prefabs/BeeEnemy");
+		BeeBurstPrefab = Resources.Load("Prefabs/BeeBurst");
+		ScoreChangeSpritePrefab = Resources.Load("Prefabs/ScoreChangeSprite");
 		for( int x = 0; x < 5; ++x)
 		{
 			SpawnPoints.Add(transform.GetChild(x).position);
@@ -73,7 +78,7 @@ public class BeeMScript : MonoBehaviour {
 			int tI = Random.Range(0,SpawnPoints.Count);
 			//Vector3 shiftPos = new Vector3(0f, Random.Range (-2.5f,2.5f), 0f);
 			GameObject tempBee = GameObject.Instantiate(BeePrefab, SpawnPoints[tI], Quaternion.identity) as GameObject;
-			tempBee.GetComponent<Bee_Script>().InitialiseVariables(tempBall, beeSpeed, beeValue);
+			tempBee.GetComponent<Bee_Script>().InitialiseVariables(tempBall, beeSpeed, beeValue,BeeBurstPrefab,ScoreChangeSpritePrefab);
 			//tempBee.GetComponent<Bee_Script>().value = tempValue;
 			beeList.Add(tempBee);
 			UsedSpawnPoints.Add(SpawnPoints[tI]);

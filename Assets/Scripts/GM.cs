@@ -6,9 +6,9 @@ using System.Collections.Generic;
 
 public class GM : MonoBehaviour {
 
-	public HighScoreDisplayManagerScript HSDM_Script;
+	private HighScoreDisplayManagerScript HSDM_Script;
 
-	public SoundManagerScript SoundManager_Script;
+	private SoundManagerScript SoundManager_Script;
 	
 
 
@@ -31,26 +31,18 @@ public class GM : MonoBehaviour {
 	
 	
 	// Use this for initialization
-	void Start () {
-
-
-	
-
-
+	void Start ()
+	{
+		HSDM_Script = GameObject.FindGameObjectWithTag("High Score Display Manager").GetComponent<HighScoreDisplayManagerScript>();
 		SoundManager_Script = GameObject.FindGameObjectWithTag ("SoundManager").GetComponent<SoundManagerScript> ();
-
-
-
+		
 		//Original sprite before click
 		playGamePanel.SetActive (false);
 		topScorePanel.SetActive (false);
 		creditsPanel.SetActive (false);
 		
-
-	
 		Time.timeScale = 1.0f;
 		CheckDifficultyLock ();
-		
 		
 	}
 	

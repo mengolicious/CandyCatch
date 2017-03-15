@@ -3,17 +3,17 @@ using System.Collections;
 
 public class Bee_Script : MonoBehaviour {
 
-	public ScoreManagerScript ScoreManager_Script;
-	public SoundManagerScript SM_Script;
+	private ScoreManagerScript ScoreManager_Script;
+	private SoundManagerScript SM_Script;
 	//public bool isCollected;
-	[SerializeField]
+
 	private GameObject answerBall;
-	[SerializeField]
-	public Object particlePrefab;
-	public Object ScoreNumberPrefab;
+
+	private Object particlePrefab;
+	private Object ScoreNumberPrefab;
 //	[SerializeField]
 //	private Vector3 answerBallPos;
-	public int value;
+	private int value;
 	private bool isAttacking;
 //	private Vector3 startPos;
 //	private Vector3 startDir;
@@ -22,80 +22,37 @@ public class Bee_Script : MonoBehaviour {
 
 	void Awake()
 	{
-		value = 1;
-//		startPos = transform.position;
-//		startDir = new Vector3(Random.Range (-1.0f,1.0f),Random.Range (-1.0f,1.0f),0);
-		//Debug.Log ("Bee Awake");
-	}
-	// Use this for initialization
-	void Start () {
-		//isCollected = false;
-		//answerBall = null;
 		ScoreManager_Script = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManagerScript>();
 		SM_Script = GameObject.FindGameObjectWithTag ("SoundManager").GetComponent<SoundManagerScript>();
-		//StartCoroutine (CollectibleAnim());
-		//Invoke ("DestroyCollectible",10.0f);
 	}
-
-
-	/*public void InitialiseVariables(GameObject targetBall)
+	// Use this for initialization
+	void Start ()
 	{
-		answerBall = targetBall;
 
-		isAttacking = true;
-		speed = 10f;
-		StartCoroutine (ATTACK_ON_TITAN());
-	}*/
-
+	}
 	/// <summary>
 	/// Initialises the variables.
 	/// </summary>
 	/// <param name="targetBall">Target ball.</param>
 	/// <param name="beeSpeed">Bee speed.</param>
-	public void InitialiseVariables(GameObject targetBall, float beeSpeed, int beeValue)
+	public void InitialiseVariables(GameObject targetBall, float beeSpeed, int beeValue,Object particleResource, Object ScoreNumResource)
 	{
 		answerBall = targetBall;
 		isAttacking = true;
 		speed = beeSpeed;
 		value = beeValue;
-		switch(value)
-		{
-		case 1:
-		{
-			break;
-		}
-		case 2:
+		if(value == 2)
 		{
 			GetComponent<SpriteRenderer>().color = Color.cyan;
-			break;
 		}
-		case 3:
-		{
-			GetComponent<SpriteRenderer>().color = Color.blue;
-			break;
-		}
-		case 4:
+		else if(value == 3)
 		{
 			GetComponent<SpriteRenderer>().color = Color.magenta;
-			break;
 		}
-		case 5:
-		{
-			GetComponent<SpriteRenderer>().color = Color.black;
-			break;
-		}
-		}
+		particlePrefab = particleResource;
+		ScoreNumberPrefab = ScoreNumResource;
 		StartCoroutine (ATTACK_ON_TITAN());
 	}
-	// Update is called once per frame
-	/*void Update () {
-		if(firstFrame)
-		{
-			Debug.Log("First Update Call");
-			firstFrame = false;
-		}
-	}*/
-
 	/// <summary>
 	/// Updates the bees every half second.
 	/// </summary>
@@ -120,17 +77,6 @@ public class Bee_Script : MonoBehaviour {
 		}
 
 	}
-
-	/*IEnumerator CollectibleAnim(){
-		
-		while(!isCollected){
-			transform.localPosition -= new Vector3(0.1f,0,0);
-			
-			yield return new WaitForSeconds(0.03f);
-		}
-		
-	}*/
-
 	/// <summary>
 	/// Raises the mouse over event.
 	/// </summary>
@@ -155,12 +101,7 @@ public class Bee_Script : MonoBehaviour {
 		if (other.gameObject == answerBall) {
 			other.gameObject.GetComponent<BallScript>().DeductPoints(value);
 			//Debug.Log ("Lose some points you scrub");
-
-
-
 			Kill();
-
-			
 		}
 	}
 
@@ -170,14 +111,4 @@ public class Bee_Script : MonoBehaviour {
 		Destroy(gameObject);
 	}
 
-//	public void OnCollision(Collider other)
-//	{
-//		Debug.Log ("YOU HIT ME");
-//	}
-	/*public void DestroyCollectible(){
-		Destroy (this.gameObject);
-		
-	}*/
-	
-	
 }
