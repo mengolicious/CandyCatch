@@ -100,17 +100,12 @@ public class GM_1 : MonoBehaviour {
 		
 		--*/
 
-
-
-
-		
 		panelInstructions.SetActive (true);
 		bigQuestionBG.SetActive (false);
 		smokeSprite.SetActive (false);
 		smallQuestionDisplay.SetActive (false);
 		if (SVM_Script.gameDifficulty == "expert")
 			nextDifficultyButton.SetActive (false);
-		
 		SpawnBalls ();
 	}
 
@@ -125,16 +120,9 @@ public class GM_1 : MonoBehaviour {
 
 	public void SpawnBalls ()
 	{
-		listPosition.Clear();
-		tempX = -8.2f;
-		for (int x=0; x<10; x++) {
+		//listPosition.Clear();
 
-
-			tempX += 1.5f;
-			listPosition.Add(new Vector3(tempX, -(float)(Mathf.Sqrt(64-(tempX*tempX)))*0.65f, 259));
-			//listPosition.Add(new Vector3(x, x, x));
-		}
-
+		/*
 		for(int x=0; x<numberOfBalls; x++){
 			tempNum = Random.Range (0, listPosition.Count);
 			ballPrefabs = Instantiate (balls, listPosition[tempNum],Quaternion.Euler(-90, 18, 0)) as GameObject;
@@ -146,9 +134,32 @@ public class GM_1 : MonoBehaviour {
 			ballPrefabs.GetComponent<Renderer>().material = matBallList[x];
 
 			//renderer.material = newMaterialRef;
+		}*/
+
+		StartCoroutine(BallSpawner());
+	}
+
+	IEnumerator BallSpawner()
+	{
+		tempX = -8.2f;
+		for (int x=0; x<10; x++) {
+			
+			
+			tempX += 1.5f;
+			listPosition.Add(new Vector3(tempX, -(float)(Mathf.Sqrt(64-(tempX*tempX)))*0.65f, 259));
+			//listPosition.Add(new Vector3(x, x, x));
 		}
-	
-		
+		for(int x=0; x<numberOfBalls; x++){
+			tempNum = Random.Range (0, listPosition.Count);
+			ballPrefabs = Instantiate (balls, listPosition[tempNum],Quaternion.Euler(-90, 18, 0)) as GameObject;
+			listPosition.RemoveAt(tempNum);
+			
+			ballPrefabs.GetComponent<BallScript>().points = x;
+			ballPrefabs.GetComponent<BallScript>().scoreValue = 5;
+			ballPrefabs.transform.localEulerAngles = new Vector3(270,196,0);
+			ballPrefabs.GetComponent<Renderer>().material = matBallList[x];
+			yield return null;
+		}
 	}
 
 	public void GetBG(){
