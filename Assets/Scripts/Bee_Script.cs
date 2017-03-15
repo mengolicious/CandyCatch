@@ -22,13 +22,13 @@ public class Bee_Script : MonoBehaviour {
 
 	void Awake()
 	{
-		ScoreManager_Script = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManagerScript>();
-		SM_Script = GameObject.FindGameObjectWithTag ("SoundManager").GetComponent<SoundManagerScript>();
+
 	}
 	// Use this for initialization
 	void Start ()
 	{
-
+		ScoreManager_Script = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManagerScript>();
+		SM_Script = GameObject.FindGameObjectWithTag ("SoundManager").GetComponent<SoundManagerScript>();
 	}
 	/// <summary>
 	/// Initialises the variables.

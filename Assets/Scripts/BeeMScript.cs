@@ -83,7 +83,7 @@ public class BeeMScript : MonoBehaviour {
 			beeList.Add(tempBee);
 			UsedSpawnPoints.Add(SpawnPoints[tI]);
 			SpawnPoints.RemoveAt(tI);
-			yield return new WaitForSeconds(0.03f);
+			yield return null;
 		}
 	}
 

@@ -43,7 +43,7 @@ public class GM : MonoBehaviour {
 		
 		Time.timeScale = 1.0f;
 		CheckDifficultyLock ();
-		
+		SoundManager_Script.Play_BG_loop("bg1");
 	}
 	
 	// Update is called once per frame
