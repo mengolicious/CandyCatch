@@ -12,26 +12,28 @@ public class BallScript : MonoBehaviour {
 	public int scoreValue;
 	private Vector3 scoreChangeSpritePos;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		SoundManager_Script = GameObject.FindGameObjectWithTag ("SoundManager").GetComponent<SoundManagerScript> ();
 		scoreChangeSpritePos = GameObject.FindGameObjectWithTag("BeeM").GetComponent<Transform>().position;
 		scoreUpParticle = Resources.Load("Prefabs/ScoreChangeSprite");
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 
 	}
 
 	public void DestroyBallRuss ()
 	{
 		//StartCoroutine (DestroyInstantiate());
-		InstantiateParticleWin ();
-	
+		InstantiateParticleWin ();	
 	}
 
 
-	public void InstantiateParticleWin(){
+	public void InstantiateParticleWin()
+	{
 		SoundManager_Script.Play_SFX("correct");
 		tempParticle = Instantiate (winParticle, this.transform.position, Quaternion.identity) as GameObject;
 		tempParticle = Instantiate(scoreUpParticle, scoreChangeSpritePos, Quaternion.identity) as GameObject;
@@ -39,7 +41,8 @@ public class BallScript : MonoBehaviour {
 		Invoke ("DestroyInstantiate",0.1f);
 	}
 
-	public void InstantiateParticleLose(){
+	public void InstantiateParticleLose()
+	{
 		SoundManager_Script.Play_SFX("wrong");
 		tempParticle = Instantiate (loseParticle, this.transform.position+ new Vector3(0,-1.8f,0), Quaternion.identity) as GameObject;
 		Invoke ("DestroyInstantiate",0.1f);
@@ -50,10 +53,10 @@ public class BallScript : MonoBehaviour {
 		scoreValue = pointValue > scoreValue ? 0 : scoreValue - pointValue;
 	}
 
-	public void DestroyInstantiate(){
+	public void DestroyInstantiate()
+	{
 		//yield return new WaitForSeconds(1.0f);
 		Destroy(this.gameObject);
 	}
-
 
 }

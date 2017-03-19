@@ -79,18 +79,12 @@ public class ScoreManagerScript : MonoBehaviour {
 
 	public GameObject insertScore;
 	public int tempHighScoreIndex;
-
-
-
-
-	//public SpriteRenderer spriteRenderer;
-
-
+	
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		lives = 5;
 		pointToAdd = 5;
-
 
 		//testing
 		targetScore = SVM_Script.targetScore;
@@ -101,11 +95,8 @@ public class ScoreManagerScript : MonoBehaviour {
 		totalScore = 0;
 
 		//insertScore.SetActive(false);
-
-
 		//DisplayScore ();
 		//END testing
-
 		listNumImage = new List<Sprite> ();
 		listNumImage.Add (num0);
 		listNumImage.Add (num1);
@@ -134,54 +125,47 @@ public class ScoreManagerScript : MonoBehaviour {
 		StartCoroutine (CollectibleSpawn ());
 
 		//loseScreen.SetActive (false);
-
-
-	
 	}
 	
 	// Update is called once per frame
-	void Update () {
-
-
-
-
+	void Update ()
+	{
 
 	}
 
 	IEnumerator CollectibleSpawn(){
 
 		while(true){
-			if(lives <2){
+			if(lives <2)
+			{
 				tempCollectible = Instantiate(collectiblePrefab, this.gameObject.transform.localPosition, Quaternion.identity) as GameObject;
 
 			}
-//			else{
-//				beeTemp = Instantiate(beePrefab,gameObject.transform.localPosition,Quaternion.identity) as GameObject;
-//			}
 			yield return new WaitForSeconds(10f);
 		}
 	}
-
 
 	public void EditScore(int changeScore){
 		score += changeScore;
 		DisplayScore(scoreNum1, scoreNum2, score);
 	}
 
-	public void DisplayScore(GameObject num1, GameObject num2, int tempChangeValue){
+	public void DisplayScore(GameObject num1, GameObject num2, int tempChangeValue)
+	{
 		if(tempChangeValue > 99)
 			tempChangeValue = 99;
 		scoreString = tempChangeValue.ToString ();
 
 		Debug.Log (scoreString.Length);
 
-		if (scoreString.Length == 1) {
+		if (scoreString.Length == 1)
+		{
 			tempChar = scoreString[0];
 			tempNum = (int)char.GetNumericValue(tempChar);
 			num1.GetComponent<Image> ().sprite = listNumImage [tempNum];
 			num2.GetComponent<Image> ().sprite = listNumImage [0];
-
-		} else {
+		} else
+		{
 
 			tempChar = scoreString[1];
 			tempNum = (int)char.GetNumericValue(tempChar);
@@ -194,14 +178,6 @@ public class ScoreManagerScript : MonoBehaviour {
 
 			
 		}
-	//	public void DisplayTotalScore()
-	//	{
-		//
-		//
-		//	}
-
-
-
 	}
 
 	/// <summary>
@@ -223,43 +199,46 @@ public class ScoreManagerScript : MonoBehaviour {
 				gM_1.PauseGame();
 				pauseButton.SetActive (false);
 
-				if (SVM_Script.gameDifficulty=="easy") {
+				if (SVM_Script.gameDifficulty=="easy")
+				{
 					tempString="Easy";
 					if(SVM_Script.advanceIsLocked){
 						SVM_Script.advanceIsLocked=false;
 						PlayerPrefs.SetInt("EE_advance",1);
 					}
-				}else if(SVM_Script.gameDifficulty=="advance"){
+				}else if(SVM_Script.gameDifficulty=="advance")
+				{
 					tempString="Advance";
 					if(SVM_Script.expertIsLocked){
 						SVM_Script.expertIsLocked=false;
 						PlayerPrefs.SetInt("EE_expert",1);
 					}
 				}
-				else if(SVM_Script.gameDifficulty=="expert"){
+				else if(SVM_Script.gameDifficulty=="expert")
+				{
 					tempString="Expert";
 				}
 
 				ComputeTotalScore(); //this is for saving highscores
 				//print (totalScore);
 				//Debug.Log ("itsGoingHere");
-				
-				
+
 				//show score on winScreen
 			}
-		
 			Debug.Log ("Correct Answer");
 			return true;
 		} 
 		//when answer is wrong
-		else { 
+		else
+		{ 
 			LoseLife (); 
 			CheckLives ();
 			return false;
 		}
 	}
 
-	public void ComputeTotalScore(){
+	public void ComputeTotalScore()
+	{
 		totalScore = (float)((float)score / (float)TM_Script.elapsedTime)*100*lives;
 		if(totalScore >= PlayerPrefs.GetInt("EE_Top1_Score_"+tempString))
 		{
@@ -275,15 +254,14 @@ public class ScoreManagerScript : MonoBehaviour {
 		}
 		else if(totalScore >= PlayerPrefs.GetInt("EE_Top2_Score_"+tempString))
 		{
-
 			insertScore.SetActive(true);
 
 			PlayerPrefs.SetInt ("EE_Top3_Score_"+tempString,PlayerPrefs.GetInt("EE_Top2_Score_"+tempString));
 			PlayerPrefs.SetInt("EE_Top2_Score_"+tempString, (int)totalScore);
 			tempHighScoreIndex = 2;
 		}
-		else if(totalScore >= PlayerPrefs.GetInt("EE_Top3_Score_"+tempString)){
-
+		else if(totalScore >= PlayerPrefs.GetInt("EE_Top3_Score_"+tempString))
+		{
 			insertScore.SetActive(true);
 
 			PlayerPrefs.SetInt("EE_Top3_Score_"+tempString, (int)totalScore);
@@ -298,32 +276,27 @@ public class ScoreManagerScript : MonoBehaviour {
 		PlayerPrefs.SetString("EE_Top" + tempHighScoreIndex + "_Name_" + tempString, inputText);
 	}
 
-	public void LoseLife(){
+	public void LoseLife()
+	{
 		lives -= 1;
 		marshMLives[lives].GetComponent<Image>().sprite=marshNumImg2;
-
 	}
 
-	public void GainLife(){
-
+	public void GainLife()
+	{
 		marshMLives[lives].GetComponent<Image>().sprite=marshNumImg1;
 		lives += 1;
-		
-		
 	}
 
-	public void CheckLives(){
-
-
-
-		if (lives < 1) {
-
+	public void CheckLives()
+	{
+		if (lives < 1)
+		{
 			loseScreen.SetActive (true);
 
 			loseScreen.GetComponent<Image> ().sprite = loseScreenImg;
 			gM_1.PauseGame();
 			pauseButton.SetActive (false);
-
 		}
 
 	
@@ -337,7 +310,4 @@ public class ScoreManagerScript : MonoBehaviour {
 		else
 			return false;
 	}
-
-
-	
 }

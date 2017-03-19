@@ -1,32 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HighScoreManagerScript : MonoBehaviour {
+public class HighScoreManagerScript : MonoBehaviour
+{
 
 	// Use this for initialization
 
 
-	public static HighScoreManagerScript Instance {
+	public static HighScoreManagerScript Instance
+	{
 		get;
 		set;
 	}
 
-	void Awake () {
-		
+	void Awake ()
+	{
 		DontDestroyOnLoad (transform.gameObject);
-		if (Instance == null) {
+		if (Instance == null)
+		{
 			Instance=this;
 		}
-		else if(Instance != this){
+		else if(Instance != this)
+		{
 			Destroy (gameObject);
 		}
-		
-		
 	}
 
-	void Start () {
-
-		if(!PlayerPrefs.HasKey("First Initialization")){
+	void Start ()
+	{
+		if(!PlayerPrefs.HasKey("First Initialization"))
+		{
 			PlayerPrefs.SetInt("First Initialization",1);
 
 			PlayerPrefs.SetString("EE_Top1_Name_Easy", "AAA");
@@ -53,7 +56,6 @@ public class HighScoreManagerScript : MonoBehaviour {
 			PlayerPrefs.SetInt("EE_Top2_Score_Expert", 000);
 			PlayerPrefs.SetInt("EE_Top3_Score_Expert", 000);
 		}
-	
 	}
 
 	void OnApplicationQuit()
@@ -62,11 +64,13 @@ public class HighScoreManagerScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 	
 	}
 
-	public void SaveHighScore(){
+	public void SaveHighScore()
+	{
 
 	}
 }

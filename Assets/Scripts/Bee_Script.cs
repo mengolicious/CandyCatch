@@ -72,10 +72,7 @@ public class Bee_Script : MonoBehaviour {
 				isAttacking = false;
 			}
 			yield return new WaitForSeconds(0.03f);
-
-
 		}
-
 	}
 	/// <summary>
 	/// Raises the mouse over event.

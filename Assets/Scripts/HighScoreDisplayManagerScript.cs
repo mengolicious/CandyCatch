@@ -16,26 +16,22 @@ public class HighScoreDisplayManagerScript : MonoBehaviour {
 	public Text top2Expert;
 	public Text top3Expert;
 
-
-
-
-
 	// Use this for initialization
-	void Start () {
-
-
+	void Start ()
+	{
+	
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 
 	}
 
-	public void QueryHighScore(){
+	public void QueryHighScore()
+	{
 		//top1Easy.text = "test";
-		//top1Easy.text = PlayerPrefs.GetString ("EE_Top1_Name_Easy");
-
-
+		//top1Easy.text = PlayerPrefs.GetString ("EE_Top1_Name_Easy")
 
 		top1Easy.text = PlayerPrefs.GetString("EE_Top1_Name_Easy")+" - "+PlayerPrefs.GetInt("EE_Top1_Score_Easy");
 		top2Easy.text = PlayerPrefs.GetString("EE_Top2_Name_Easy")+" - "+PlayerPrefs.GetInt("EE_Top2_Score_Easy");
@@ -48,6 +44,5 @@ public class HighScoreDisplayManagerScript : MonoBehaviour {
 		top1Expert.text = PlayerPrefs.GetString("EE_Top1_Name_Expert")+" - "+PlayerPrefs.GetInt("EE_Top1_Score_Expert");
 		top2Expert.text = PlayerPrefs.GetString("EE_Top2_Name_Expert")+" - "+PlayerPrefs.GetInt("EE_Top2_Score_Expert");
 		top3Expert.text = PlayerPrefs.GetString("EE_Top3_Name_Expert")+" - "+PlayerPrefs.GetInt("EE_Top3_Score_Expert");
-	
 	}
 }

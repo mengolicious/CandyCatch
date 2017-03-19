@@ -47,7 +47,8 @@ public class GM : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 
 
 
@@ -86,34 +87,32 @@ public class GM : MonoBehaviour {
 	//Toggle campaign sprite when clicked
 
 
-	public void DisablePanel(GameObject parentPanel){
+	public void DisablePanel(GameObject parentPanel)
+	{
 
 		SoundManager_Script.Play_SFX("MenuNav2");
 
 		parentPanel.SetActive (false);
 	}
-	public void EnablePanel(GameObject targetPanel){
 
-
+	public void EnablePanel(GameObject targetPanel)
+	{
 		targetPanel.SetActive (true);
 	}
 
 
 	//when level 1 button pressed change scene to Level 1 shape
-	public void LevelOne_Easy (){ 
-
+	public void LevelOne_Easy ()
+	{ 
 		SoundManager_Script.Play_SFX("MenuNav2");
-
-
 
 		SVM_Script.targetScore=50;
 		Application.LoadLevel ("ShapesLV1"); 
 		SVM_Script.gameDifficulty = "easy";
 	}
 
-	public void LevelOne_Advance (){ 
-
-
+	public void LevelOne_Advance ()
+	{
 		SoundManager_Script.Play_SFX("MenuNav2");
 
 		SVM_Script.targetScore=75;
@@ -121,8 +120,8 @@ public class GM : MonoBehaviour {
 		SVM_Script.gameDifficulty = "advance";
 	}
 
-	public void LevelOne_Expert (){ 
-
+	public void LevelOne_Expert ()
+	{ 
 		SoundManager_Script.Play_SFX("MenuNav2");
 
 		SVM_Script.targetScore=90;
@@ -131,28 +130,24 @@ public class GM : MonoBehaviour {
 	}
 
 	//when level 1 button pressed change scene to Level 2 alphabet
-	public void LevelTwo (){ 
-	
-		Application.LoadLevel ("AlphabetLV2"); 
-
+	public void LevelTwo ()
+	{
+		Application.LoadLevel ("AlphabetLV2");
 	}
 	
 	//when level 1 button pressed change scene to Level 3 numbers
-	public void LevelThree (){ 
-
-		Application.LoadLevel ("NumbersLV3"); 
-
+	public void LevelThree ()
+	{ 
+		Application.LoadLevel ("NumbersLV3");
 	}
 	
 	
 	//Back Button when pressed, loads main menu
-	public void BackButton () {
-
+	public void BackButton ()
+	{
 		SoundManager_Script.Play_SFX("MenuNavPop");
-
 		Application.LoadLevel ("MainScene");
 	}
-	
 	//Play audio source when button is pressed
 
 	

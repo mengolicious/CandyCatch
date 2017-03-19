@@ -9,13 +9,6 @@ public class SoundManagerScript : MonoBehaviour {
 	public AudioSource BG_FX_Player;
 	public AudioSource BG_FX_Loop_Player;
 
-	
-
-	private float lowPitchRange;              //The lowest a sound effect will be randomly pitched.
-	private float highPitchRange;            //The highest a sound effect will be randomly pitched.
-
-
-
 	private bool isMute;
 	
 	public Sprite audioSprite;
@@ -23,14 +16,15 @@ public class SoundManagerScript : MonoBehaviour {
 	private GameObject audioButton;
 	private Image audioButtonImage;
 
-	public static SoundManagerScript Instance {
+	public static SoundManagerScript Instance
+	{
 		get;
 		set;
 	}
 	// Use this for initialization
 
-	void Awake () {
-		
+	void Awake ()
+	{
 		DontDestroyOnLoad (transform.gameObject);
 		if (Instance == null) {
 			Instance=this;
@@ -38,18 +32,11 @@ public class SoundManagerScript : MonoBehaviour {
 		else if(Instance != this){
 			Destroy (gameObject);
 		}
-		
-		
 	}
 
 	void Start () {
 		audioButton = GameObject.FindGameObjectWithTag("MuteButton");
 		audioButtonImage = audioButton.GetComponent<Image> ();
-
-		lowPitchRange = .95f;              //The lowest a sound effect will be randomly pitched.
-		highPitchRange = 1.05f;            //The highest a sound effect will be randomly pitched.
-		
-	
 	}
 	
 	public void Play_SFX (string tempStringName)
@@ -80,23 +67,16 @@ public class SoundManagerScript : MonoBehaviour {
 		BG_FX_Player.Stop ();
 		//FX_Player.PlayOneShot (Resources.Load<AudioClip> ("Voices/Set" + setNum + "/" + fileName + ballNum));
 	}
-
-
-
 	
-	public void ChangeBGMusic(string tempBGMusic){
-	FX_Player.clip = Resources.Load<AudioClip> ("BGM/"+tempBGMusic);
-	FX_Player.loop = true;
-	FX_Player.Play ();
-	
-	}
-	// Update is called once per frame
-	void Update () {
-		
+	public void ChangeBGMusic(string tempBGMusic)
+	{
+		FX_Player.clip = Resources.Load<AudioClip> ("BGM/"+tempBGMusic);
+		FX_Player.loop = true;
+		FX_Player.Play ();
 	}
 
-	public void ButtonAudio () {
-		
+	public void ButtonAudio ()
+	{
 		isMute = !isMute;
 		if (isMute == true) {
 			AudioListener.volume = 0.0f;
@@ -108,8 +88,5 @@ public class SoundManagerScript : MonoBehaviour {
 			audioButtonImage.sprite = audioSprite;
 			
 		}
-		
-		
-		
 	}
 }

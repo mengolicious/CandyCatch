@@ -11,8 +11,6 @@ public class ClawScript : MonoBehaviour {
 	public GunScript gunScript;
 
 	
-	
-	
 	public ScoreManagerScript SM_Script;
 	public GM_1 GM_Script;
 	public BeeMScript BeeM_Script;
@@ -38,21 +36,20 @@ public class ClawScript : MonoBehaviour {
 		lineRenderer = GetComponent<LineRenderer> ();
 	}
 
-	void Start(){
-	
+	void Start()
+	{
 		SoundManager_Script = GameObject.FindGameObjectWithTag ("SoundManager").GetComponent<SoundManagerScript> ();
-
-	if (SVM_Script.gameDifficulty == "easy") {
-		retractingSpeed = 2.5f;
-		
-	}
-	else if (SVM_Script.gameDifficulty == "advance") {
-		retractingSpeed = 3.5f;
-		
-	}
-	else if (SVM_Script.gameDifficulty == "expert") {
-		retractingSpeed = 5f;
-		
+	if (SVM_Script.gameDifficulty == "easy")
+		{
+			retractingSpeed = 2.5f;
+		}
+	else if (SVM_Script.gameDifficulty == "advance")
+		{
+			retractingSpeed = 3.5f;	
+		}
+	else if (SVM_Script.gameDifficulty == "expert")
+		{
+			retractingSpeed = 5f;
 		}
 	}
 	
@@ -61,48 +58,40 @@ public class ClawScript : MonoBehaviour {
 		float step = speed * Time.deltaTime; 
 		float stoop = retractingSpeed*Time.deltaTime; 
 
-		if (gunScript.isShooting && !retracting) {
+		if (gunScript.isShooting && !retracting)
+		{
 			transform.position = Vector3.MoveTowards(transform.position, target, step);
 			transform.localEulerAngles += new Vector3(0,10.0f,0);
-
-
 			lineRenderer.material = lineMaterial;
 			lineRenderer.SetPosition (0, origin.position);
 			lineRenderer.SetPosition (1, transform.position);
 		}
-		else if(gunScript.isShooting && retracting){
+		else if(gunScript.isShooting && retracting)
+		{
 			transform.position = Vector3.MoveTowards(transform.position, origin.position, stoop);
 
-			if(!hitCollectibles){
+			if(!hitCollectibles)
+			{
 				transform.localEulerAngles += new Vector3(0,10.0f,0);
 			}
 		}
-			
-		{
-			lineRenderer.material = lineMaterial;
-			lineRenderer.SetPosition (0, origin.position);
-			lineRenderer.SetPosition (1, transform.position);
-
-
-		}
-
-
+		lineRenderer.material = lineMaterial;
+		lineRenderer.SetPosition (0, origin.position);
+		lineRenderer.SetPosition (1, transform.position);
 		//if (transform.position == retractrigin && retracting) 
 		if (transform.position == origin.position && retracting) 
 		{
 			SoundManager_Script.BG_FX_Player.Stop ();	//stop the reeling back sound
 			gunScript.CollectedObject ();
-
 			if (hitBall) // this if is for when the claw hits a ball that needs to be destroyed
 			{
-
 				Debug.Log ("collectedOBJ");
 				//	scoreManager.AddPoints (ballValue);
 				hitBall = false;
 				Debug.Log ("booo");
-
 				Debug.Log ("booo2");
-				if(SM_Script.CheckScore(childObject.GetComponent<BallScript>().scoreValue)){ 	//to instantiate particle for win 
+				if(SM_Script.CheckScore(childObject.GetComponent<BallScript>().scoreValue))
+				{ 	//to instantiate particle for win 
 					childObject.GetComponent<BallScript>().InstantiateParticleWin();
 
 					///////////////////////////////////////////////
@@ -112,24 +101,20 @@ public class ClawScript : MonoBehaviour {
 					GM_Script.SpawnBalls();
 					BeeM_Script.ClearBees();
 				}
-				else {																  			//to instantiate particle for lose
+				else
+				{		//to instantiate particle for lose
 					childObject.GetComponent<BallScript>().InstantiateParticleLose();
 				}
-
 			}
-
-			else if(hitCollectibles){
+			else if(hitCollectibles)
+			{
 				hitCollectibles = false;
-
 
 				childObject.GetComponent<CollectiblesScript>().DestroyCollectible();
 
 				SM_Script.GainLife ();
 				childObject.GetComponent<CollectiblesScript>().InstantiateStars();
-
-
 			}
-
 
 			this.transform.localPosition = new Vector3 (0,-1.888f,-2.77f);
 			Debug.Log ("retracingSpeed");
@@ -140,24 +125,15 @@ public class ClawScript : MonoBehaviour {
 			retracting = false;
 			this.gameObject.SetActive (false);
 
-
 			Debug.Log ("dead");
-
-			//Reposition();
-
-
-			
-
-
-
 		}
 	}
 
 
 	//Re-position the fishing Rod
-	//public void Reposition(){
-//		fishingRod.transform.localEulerAngles = new Vector3 (270, fishingRod.transform.localEulerAngles.y, fishingRod.transform.localEulerAngles.z);
-	//}
+	/*public void Reposition(){
+		fishingRod.transform.localEulerAngles = new Vector3 (270, fishingRod.transform.localEulerAngles.y, fishingRod.transform.localEulerAngles.z);
+	}*/
 	//End reposition fishingRod
 
 	public void ClawTarget (Vector3 pos)	
@@ -165,7 +141,8 @@ public class ClawScript : MonoBehaviour {
 		target = pos;
 	}
 
-	public void GetOrigin(){
+	public void GetOrigin()
+	{
 		target = origin.position;
 	}
 
@@ -175,8 +152,8 @@ public class ClawScript : MonoBehaviour {
 
 	void OnTriggerEnter (Collider other)
 	{
-		if(!retracting){
-
+		if(!retracting)
+		{
 			retracting = true;
 			SoundManager_Script.Play_BG_SFX("reelbackheavy");	//this is the sound for reeling back the rod
 			
@@ -184,8 +161,8 @@ public class ClawScript : MonoBehaviour {
 			//target = origin.position;
 			//target = retractOrigin;
 			gunScript.CallRotateBackRod ();
-			
-			if (other.gameObject.CompareTag ("balls")) {
+			if (other.gameObject.CompareTag ("balls"))
+			{
 				SoundManager_Script.Play_SFX("hit"); // this plays when the claw hits a ball
 				Debug.Log ("Hit");
 				
@@ -197,24 +174,16 @@ public class ClawScript : MonoBehaviour {
 					//SoundManager_Script.Play_SFX("correct");
 					BeeM_Script.SpawnBees(other.gameObject);
 				}
-			
 				other.transform.SetParent (this.transform);
-			} else if (other.gameObject.CompareTag ("collectibles")) {
+			} else if (other.gameObject.CompareTag ("collectibles"))
+			{
 				SoundManager_Script.Play_SFX("hit"); // this plays when the claw hits a ball
 				hitCollectibles = true;
 				childObject = other.gameObject;
 				other.gameObject.GetComponent<CollectiblesScript>().isCollected = true;
 				other.transform.SetParent (this.transform);
-
 			}
 
-
-
-
-		
 		}
 	}
-
-
-	//}
 }

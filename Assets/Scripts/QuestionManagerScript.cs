@@ -100,12 +100,9 @@ public class QuestionManagerScript : MonoBehaviour {
 	public Sprite Q79;
 	public Sprite Q80;
 
-
-
-
-
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 
 		listQuestions = new List<Sprite>();
 		//Start questions for Addition
@@ -199,21 +196,20 @@ public class QuestionManagerScript : MonoBehaviour {
 		listQuestionsDiv.Add (Q80);
 		//END questions for Division
 
-
-		if(SVM_Script.gameDifficulty=="advance" || SVM_Script.gameDifficulty=="expert"){
-			for(int x=0; x<listQuestionsMul.Count; x++){
+		if(SVM_Script.gameDifficulty=="advance" || SVM_Script.gameDifficulty=="expert")
+		{
+			for(int x=0; x<listQuestionsMul.Count; x++)
+			{
 				listQuestions.Add (listQuestionsMul[x]);
-
 			}
-
 		}
 
-		if(SVM_Script.gameDifficulty=="expert"){
-			for(int x=0; x<listQuestionsDiv.Count; x++){
+		if(SVM_Script.gameDifficulty=="expert")
+		{
+			for(int x=0; x<listQuestionsDiv.Count; x++)
+			{
 				listQuestions.Add (listQuestionsDiv[x]);
-				
 			}
-			
 		}
 
 		//-------------------This is the Answers----------------------//
@@ -324,36 +320,34 @@ public class QuestionManagerScript : MonoBehaviour {
 		listAnswers.Add (1);
 		//END of answer for Subtration
 
-		if(SVM_Script.gameDifficulty=="advance" || SVM_Script.gameDifficulty=="expert"){
-			for(int x=0; x<listAnswersMul.Count; x++){
+		if(SVM_Script.gameDifficulty=="advance" || SVM_Script.gameDifficulty=="expert")
+		{
+			for(int x=0; x<listAnswersMul.Count; x++)
+			{
 				listAnswers.Add (listAnswersMul[x]);
-				
 			}
-			
 		}
 
-		if(SVM_Script.gameDifficulty=="expert"){
-			for(int x=0; x<listAnswersDiv.Count; x++){
+		if(SVM_Script.gameDifficulty=="expert")
+		{
+			for(int x=0; x<listAnswersDiv.Count; x++)
+			{
 				listAnswers.Add (listAnswersDiv[x]);
-				
 			}
-			
 		}
-
-	
 	}
 
 
 	// Update is called once per frame
-	void Update () {
-
+	void Update ()
+	{
 		//if(Input.GetButtonDown("Fire1")){
 			//GetQuestion ();
 		//}
-
 	}
 
-	public Sprite GetQuestion(){
+	public Sprite GetQuestion()
+	{
 		tempRandNum = Random.Range(0,listQuestions.Count);
 		
 		Debug.Log (tempRandNum);
@@ -363,9 +357,7 @@ public class QuestionManagerScript : MonoBehaviour {
 		listQuestions.RemoveAt (tempRandNum);
 		listAnswers.RemoveAt (tempRandNum);
 
-
 		return tempQuestion;
-		
 	}
 
 }

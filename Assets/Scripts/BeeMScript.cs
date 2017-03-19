@@ -44,13 +44,6 @@ public class BeeMScript : MonoBehaviour {
 		}
 	}
 
-/*
-	public void SetNumberOfBees(int howManyBees)
-	{
-		numberOfBEES = howManyBees;
-	}
-*/
-
 	/// <summary>
 	/// Starts spawning the bees and sends them after the correct answer.
 	/// </summary>
