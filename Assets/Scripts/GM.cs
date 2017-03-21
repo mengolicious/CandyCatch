@@ -25,11 +25,6 @@ public class GM : MonoBehaviour {
 	
 	public GameObject buttonSound;
 
-
-
-
-	
-	
 	// Use this for initialization
 	void Start ()
 	{
@@ -45,7 +40,12 @@ public class GM : MonoBehaviour {
 		CheckDifficultyLock ();
 		SoundManager_Script.Play_BG_loop("bg1");
 	}
-	
+
+	public void MuteButton()
+	{
+		SoundManager_Script.ButtonAudio();
+	}
+
 	// Update is called once per frame
 	void Update ()
 	{
@@ -54,27 +54,33 @@ public class GM : MonoBehaviour {
 
 	}
 
-	public void CheckDifficultyLock(){
-
-		if (!SVM_Script.advanceIsLocked) {
-			advanceDifficulty.GetComponent<Button> ().interactable = true;
+	public void CheckDifficultyLock()
+	{
+		if(!SVM_Script.advanceIsLocked)
+		{
+			advanceDifficulty.GetComponent<Button>().interactable = true;
 			advanceDifficultyLock.SetActive (false);
-		} else {
-			advanceDifficulty.GetComponent<Button> ().interactable = false;
+		}
+		else
+		{
+			advanceDifficulty.GetComponent<Button>().interactable = false;
 			advanceDifficultyLock.SetActive (true);
 		}
 
-		if (!SVM_Script.expertIsLocked) {
-			expertDifficulty.GetComponent<Button> ().interactable = true;
+		if(!SVM_Script.expertIsLocked)
+		{
+			expertDifficulty.GetComponent<Button>().interactable = true;
 			expertDifficultyLock.SetActive (false);
-		} else {
-			expertDifficulty.GetComponent<Button> ().interactable = false;
+		}
+		else
+		{
+			expertDifficulty.GetComponent<Button>().interactable = false;
 			expertDifficultyLock.SetActive (true);
-
 		}
 	}
 
-	public void RelockDifficulties(){
+	public void RelockDifficulties()
+	{
 		PlayerPrefs.SetInt ("EE_advance", 0);
 		SVM_Script.advanceIsLocked = true;
 		
@@ -89,7 +95,6 @@ public class GM : MonoBehaviour {
 
 	public void DisablePanel(GameObject parentPanel)
 	{
-
 		SoundManager_Script.Play_SFX("MenuNav2");
 
 		parentPanel.SetActive (false);

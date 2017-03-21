@@ -75,18 +75,18 @@ public class SoundManagerScript : MonoBehaviour {
 		FX_Player.Play ();
 	}
 
-	public void ButtonAudio ()
+	public void ButtonAudio()
 	{
 		isMute = !isMute;
-		if (isMute == true) {
+		if(isMute == true) {
 			AudioListener.volume = 0.0f;
 			//audioSpriteRenderer.sprite = audioMuteSprite;
 			audioButtonImage.sprite = audioMuteSprite;
-			
-		} else {
+		}
+		else
+		{
 			AudioListener.volume = 1.0f;
 			audioButtonImage.sprite = audioSprite;
-			
 		}
 	}
 }
