@@ -71,9 +71,8 @@ public class ClawScript : MonoBehaviour {
 		{
 			transform.position = Vector3.MoveTowards(transform.position, origin.position, stoop);
 
-			if(!hitCollectibles)
+			if(!hitCollectibles && !GM_Script.gameIsPaused)
 			{
-				if(!GM_Script.gameIsPaused)
 					transform.localEulerAngles += new Vector3(0,10.0f,0);
 			}
 		}
