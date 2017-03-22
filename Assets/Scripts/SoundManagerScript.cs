@@ -26,15 +26,18 @@ public class SoundManagerScript : MonoBehaviour {
 	void Awake ()
 	{
 		DontDestroyOnLoad (transform.gameObject);
-		if (Instance == null) {
+		if(Instance == null)
+		{
 			Instance=this;
 		}
-		else if(Instance != this){
+		else if(Instance != this)
+		{
 			Destroy (gameObject);
 		}
 	}
 
-	void Start () {
+	public void GetMuteButton()
+	{
 		audioButton = GameObject.FindGameObjectWithTag("MuteButton");
 		audioButtonImage = audioButton.GetComponent<Image> ();
 	}
@@ -46,25 +49,35 @@ public class SoundManagerScript : MonoBehaviour {
 		//FX_Player.PlayOneShot (Resources.Load<AudioClip> ("Voices/Set" + setNum + "/" + fileName + ballNum));
 	}
 
-	public void Play_BG_SFX (string tempStringName)
+	public void Play_BG_SFX(string tempStringName)
 	{
 		BG_FX_Player.clip = Resources.Load<AudioClip> ("SFX/"+ tempStringName);
 		BG_FX_Player.loop = true;
 		BG_FX_Player.Play ();
 		//FX_Player.PlayOneShot (Resources.Load<AudioClip> ("Voices/Set" + setNum + "/" + fileName + ballNum));
 	}
-
-	public void Play_BG_loop (string tempStringName)
+	public void Pause_BG_SFX()
 	{
-		BG_FX_Loop_Player.clip = Resources.Load<AudioClip>("SFX/"+ tempStringName);
-		BG_FX_Loop_Player.loop = true;
-		BG_FX_Loop_Player.Play ();
+		BG_FX_Player.Pause();
+		//FX_Player.PlayOneShot (Resources.Load<AudioClip> ("Voices/Set" + setNum + "/" + fileName + ballNum));
+	}
+	public void Resume_BG_SFX()
+	{
+		BG_FX_Player.UnPause();
 		//FX_Player.PlayOneShot (Resources.Load<AudioClip> ("Voices/Set" + setNum + "/" + fileName + ballNum));
 	}
 
-	public void Stop_BG_SFX ()
+	public void Play_BG_loop(string tempStringName)
 	{
-		BG_FX_Player.Stop ();
+		BG_FX_Loop_Player.clip = Resources.Load<AudioClip>("SFX/"+ tempStringName);
+		BG_FX_Loop_Player.loop = true;
+		BG_FX_Loop_Player.Play();
+		//FX_Player.PlayOneShot (Resources.Load<AudioClip> ("Voices/Set" + setNum + "/" + fileName + ballNum));
+	}
+
+	public void Stop_BG_SFX()
+	{
+		BG_FX_Player.Stop();
 		//FX_Player.PlayOneShot (Resources.Load<AudioClip> ("Voices/Set" + setNum + "/" + fileName + ballNum));
 	}
 	
@@ -72,7 +85,7 @@ public class SoundManagerScript : MonoBehaviour {
 	{
 		FX_Player.clip = Resources.Load<AudioClip> ("BGM/"+tempBGMusic);
 		FX_Player.loop = true;
-		FX_Player.Play ();
+		FX_Player.Play();
 	}
 
 	public void ButtonAudio()

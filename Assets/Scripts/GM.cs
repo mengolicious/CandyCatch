@@ -9,8 +9,6 @@ public class GM : MonoBehaviour {
 	private HighScoreDisplayManagerScript HSDM_Script;
 
 	private SoundManagerScript SoundManager_Script;
-	
-
 
 	public GameObject playGamePanel;
 	public GameObject topScorePanel;
@@ -38,6 +36,9 @@ public class GM : MonoBehaviour {
 		
 		Time.timeScale = 1.0f;
 		CheckDifficultyLock ();
+
+		//Sounds manager Mute button work around and starting back ground music 
+		SoundManager_Script.GetMuteButton();
 		SoundManager_Script.Play_BG_loop("bg1");
 	}
 
@@ -49,9 +50,7 @@ public class GM : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-
-
-
+		
 	}
 
 	public void CheckDifficultyLock()
@@ -91,6 +90,7 @@ public class GM : MonoBehaviour {
 	}
 	
 	//Toggle campaign sprite when clicked
+
 
 
 	public void DisablePanel(GameObject parentPanel)

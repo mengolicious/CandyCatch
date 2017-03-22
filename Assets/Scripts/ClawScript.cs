@@ -27,44 +27,44 @@ public class ClawScript : MonoBehaviour {
 
 	public float retractingSpeed;
 
-	void Awake () 
+	void Awake() 
 	{
 		retractOrigin = new Vector3 (0,0.73f,-2.77f);
 		originalClawPos = transform.localPosition;
 		hitCollectibles = false;
 		
-		lineRenderer = GetComponent<LineRenderer> ();
+		lineRenderer = GetComponent<LineRenderer>();
 	}
 
 	void Start()
 	{
-		SoundManager_Script = GameObject.FindGameObjectWithTag ("SoundManager").GetComponent<SoundManagerScript> ();
-	if (SVM_Script.gameDifficulty == "easy")
-		{
-			retractingSpeed = 2.5f;
-		}
-	else if (SVM_Script.gameDifficulty == "advance")
-		{
-			retractingSpeed = 3.5f;	
-		}
-	else if (SVM_Script.gameDifficulty == "expert")
-		{
-			retractingSpeed = 5f;
-		}
+		SoundManager_Script = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript>();
+		if(SVM_Script.gameDifficulty == "easy")
+			{
+				retractingSpeed = 2.5f;
+			}
+		else if(SVM_Script.gameDifficulty == "advance")
+			{
+				retractingSpeed = 3.5f;	
+			}
+		else if(SVM_Script.gameDifficulty == "expert")
+			{
+				retractingSpeed = 5f;
+			}
 	}
 	
-	void Update () 
+	void Update() 
 	{
 		float step = speed * Time.deltaTime; 
-		float stoop = retractingSpeed*Time.deltaTime; 
+		float stoop = retractingSpeed * Time.deltaTime; 
 
 		if (gunScript.isShooting && !retracting)
 		{
 			transform.position = Vector3.MoveTowards(transform.position, target, step);
 			transform.localEulerAngles += new Vector3(0,10.0f,0);
 			lineRenderer.material = lineMaterial;
-			lineRenderer.SetPosition (0, origin.position);
-			lineRenderer.SetPosition (1, transform.position);
+			lineRenderer.SetPosition(0, origin.position);
+			lineRenderer.SetPosition(1, transform.position);
 		}
 		else if(gunScript.isShooting && retracting)
 		{
@@ -76,20 +76,20 @@ public class ClawScript : MonoBehaviour {
 			}
 		}
 		lineRenderer.material = lineMaterial;
-		lineRenderer.SetPosition (0, origin.position);
-		lineRenderer.SetPosition (1, transform.position);
+		lineRenderer.SetPosition(0, origin.position);
+		lineRenderer.SetPosition(1, transform.position);
 		//if (transform.position == retractrigin && retracting) 
-		if (transform.position == origin.position && retracting) 
+		if(transform.position == origin.position && retracting) 
 		{
-			SoundManager_Script.BG_FX_Player.Stop ();	//stop the reeling back sound
-			gunScript.CollectedObject ();
-			if (hitBall) // this if is for when the claw hits a ball that needs to be destroyed
+			SoundManager_Script.BG_FX_Player.Stop();	//stop the reeling back sound
+			gunScript.CollectedObject();
+			if(hitBall) // this if is for when the claw hits a ball that needs to be destroyed
 			{
-				Debug.Log ("collectedOBJ");
+				//Debug.Log("collectedOBJ");
 				//	scoreManager.AddPoints (ballValue);
 				hitBall = false;
-				Debug.Log ("booo");
-				Debug.Log ("booo2");
+				//Debug.Log("booo");
+				//Debug.Log("booo2");
 				if(SM_Script.CheckScore(childObject.GetComponent<BallScript>().scoreValue))
 				{ 	//to instantiate particle for win 
 					childObject.GetComponent<BallScript>().InstantiateParticleWin();
@@ -112,20 +112,20 @@ public class ClawScript : MonoBehaviour {
 
 				childObject.GetComponent<CollectiblesScript>().DestroyCollectible();
 
-				SM_Script.GainLife ();
+				SM_Script.GainLife();
 				childObject.GetComponent<CollectiblesScript>().InstantiateStars();
 			}
 
-			this.transform.localPosition = new Vector3 (0,-1.888f,-2.77f);
-			Debug.Log ("retracingSpeed");
+			this.transform.localPosition = new Vector3(0,-1.888f,-2.77f);
+			//Debug.Log("retracingSpeed");
 
 			//this.transform.localRotation = Quaternion.Euler (270,0,0); 
 			//this.transform.localEulerAngles = new Vector3 (270,0,0);
 
 			retracting = false;
-			this.gameObject.SetActive (false);
+			this.gameObject.SetActive(false);
 
-			Debug.Log ("dead");
+			//Debug.Log("dead");
 		}
 	}
 
@@ -136,7 +136,7 @@ public class ClawScript : MonoBehaviour {
 	}*/
 	//End reposition fishingRod
 
-	public void ClawTarget (Vector3 pos)	
+	public void ClawTarget(Vector3 pos)	
 	{
 		target = pos;
 	}
@@ -150,40 +150,40 @@ public class ClawScript : MonoBehaviour {
 		//this.transform.localPosition = originalClawPos;
 	//}
 
-	void OnTriggerEnter (Collider other)
+	void OnTriggerEnter(Collider other)
 	{
 		if(!retracting)
 		{
 			retracting = true;
 			SoundManager_Script.Play_BG_SFX("reelbackheavy");	//this is the sound for reeling back the rod
 			
-			GetOrigin ();
+			GetOrigin();
 			//target = origin.position;
 			//target = retractOrigin;
-			gunScript.CallRotateBackRod ();
-			if (other.gameObject.CompareTag ("balls"))
+			gunScript.CallRotateBackRod();
+			if(other.gameObject.CompareTag("balls"))
 			{
 				SoundManager_Script.Play_SFX("hit"); // this plays when the claw hits a ball
-				Debug.Log ("Hit");
+				//Debug.Log ("Hit");
 				
 				hitBall = true;
 				childObject = other.gameObject;
-				SM_Script.playerAnswerInSM = childObject.GetComponent<BallScript> ().points;
+				SM_Script.playerAnswerInSM = childObject.GetComponent<BallScript>().points;
 				if(SM_Script.VerifyAnswer())
 				{
 					//SoundManager_Script.Play_SFX("correct");
 					BeeM_Script.SpawnBees(other.gameObject);
 				}
-				other.transform.SetParent (this.transform);
-			} else if (other.gameObject.CompareTag ("collectibles"))
+				other.transform.SetParent(this.transform);
+			}
+			else if(other.gameObject.CompareTag("collectibles"))
 			{
 				SoundManager_Script.Play_SFX("hit"); // this plays when the claw hits a ball
 				hitCollectibles = true;
 				childObject = other.gameObject;
 				other.gameObject.GetComponent<CollectiblesScript>().isCollected = true;
-				other.transform.SetParent (this.transform);
+				other.transform.SetParent(this.transform);
 			}
-
 		}
 	}
 }

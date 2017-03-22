@@ -13,7 +13,8 @@ public class CollectiblesScript : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Start()
+	{
 		isCollected = false;
 
 		StartCoroutine (CollectibleAnim());
@@ -22,28 +23,29 @@ public class CollectiblesScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update()
+	{
 	
 	}
 
-	IEnumerator CollectibleAnim(){
-
-		while(!isCollected){
+	IEnumerator CollectibleAnim()
+	{
+		while(!isCollected)
+		{
 			transform.localPosition -= new Vector3(0.1f,0,0);
 
 			yield return new WaitForSeconds(0.03f);
 		}
-
 	}
 
-	public void InstantiateStars(){
+	public void InstantiateStars()
+	{
 		tempStar = Instantiate(starParticle,this.transform.position, Quaternion.identity) as GameObject;
-
 	}
 
-	public void DestroyCollectible(){
+	public void DestroyCollectible()
+	{
 		Destroy (this.gameObject);
-
 	}
 
 

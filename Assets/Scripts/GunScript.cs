@@ -35,14 +35,12 @@ public class GunScript : MonoBehaviour {
 	void Start()
 	{
 		//panelInstructionsOff = false;
-
 		SoundManager_Script = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript>();
 		castSpriteRenderer = castImageObject.GetComponent<Image> ();
 
-		line = this.GetComponent<LineRenderer> ();
+		line = this.GetComponent<LineRenderer>();
 
 		shooterAnimator.speed = 0;
-
 
 		rodSpeed = 10.0f;
 		isShooting = false;
@@ -51,35 +49,35 @@ public class GunScript : MonoBehaviour {
 
 		claw.SetActive (false);
 
-
 		//isRenderFrame = false;
 		line.sortingLayerName = "OnTop";
 		line.sortingOrder = 5;
 		line.useWorldSpace = true;
 	}
 
-	void Update ()
+	void Update()
 	{
 		//isRenderFrame = false;
+		if(isShooting == true)
 		{
-			if(isShooting == true)
-			{
-
-				castSpriteRenderer.sprite = castClawPressed;
-			}
-			else
-			{
-			castSpriteRenderer.sprite = castClaw;
-			}
-		}
-		if (!isShooting)
-		{
-			line.SetVertexCount (2);
-			SetupLine ();
+			castSpriteRenderer.sprite = castClawPressed;
 		}
 		else
 		{
-			line.SetVertexCount (0);
+			castSpriteRenderer.sprite = castClaw;
+		}
+	}
+
+	void LateUpdate()
+	{
+		if(!isShooting)
+		{
+			line.SetVertexCount(2);
+			SetupLine();
+		}
+		else
+		{
+			line.SetVertexCount(0);
 		}
 	}
 	/*private bool isRenderFrame;
@@ -103,25 +101,23 @@ public class GunScript : MonoBehaviour {
 		
 	}*/
 
-	public void CastClaw ()
+	public void CastClaw()
 	{
+		if(!isShooting && panelInstructionsOff && canShoot) 
 		{
-			if(!isShooting && panelInstructionsOff && canShoot) 
+			if(!GM1_Script.gameIsPaused)
 			{
-				if(!GM1_Script.gameIsPaused)
-				{
-					SoundManager_Script.Play_SFX("cast");
-					Debug.Log ("ttttt");
+				SoundManager_Script.Play_SFX("cast");
+				//Debug.Log("ttttt");
 
-					//panelInstructionsOff=true;
-					isRotatingRod=true;
-					isShooting = true;
-					
-					//clawScript.GetOrigin();
-					shooterAnimator.speed = 0;
-					StartCoroutine(RotateFishingRod());
-					Debug.Log ("dsdsds");
-				}
+				//panelInstructionsOff=true;
+				isRotatingRod= true;
+				isShooting = true;
+				
+				//clawScript.GetOrigin();
+				shooterAnimator.speed = 0;
+				StartCoroutine(RotateFishingRod());
+				//Debug.Log ("dsdsds");
 			}
 		}
 	}
@@ -141,11 +137,14 @@ public class GunScript : MonoBehaviour {
 		//transform.position = Vector3.MoveTowards(transform.position, target, step);
 		while(isRotatingRod)
 		{
-			//fishingRod.transform.localEulerAngles = Vector3.RotateTowards(transform.localEulerAngles, new Vector3(60,45,180), Time.deltaTime*rodSpeed, 10.5f);
-			fishingRod.transform.localEulerAngles += new Vector3(5.0f,0,0);
-			if(fishingRod.transform.localEulerAngles.x>355)
+			if(Time.timeScale > 0f)
 			{
-				isRotatingRod=false;
+				//fishingRod.transform.localEulerAngles = Vector3.RotateTowards(transform.localEulerAngles, new Vector3(60,45,180), Time.deltaTime*rodSpeed, 10.5f);
+				fishingRod.transform.localEulerAngles += new Vector3(5.0f,0,0);
+				if(fishingRod.transform.localEulerAngles.x>355)
+				{
+					isRotatingRod=false;
+				}
 			}
 			yield return new WaitForSeconds(0.01f);
 		}
@@ -153,11 +152,14 @@ public class GunScript : MonoBehaviour {
 
 		while(isRotatingRod)
 		{
-			//fishingRod.transform.localEulerAngles = Vector3.RotateTowards(transform.localEulerAngles, new Vector3(60,45,180), Time.deltaTime*rodSpeed, 10.5f);
-			fishingRod.transform.localEulerAngles += new Vector3(5.0f,0,0);
-			if(fishingRod.transform.localEulerAngles.x>30)
+			if(Time.timeScale > 0f)
 			{
-				isRotatingRod=false;
+				//fishingRod.transform.localEulerAngles = Vector3.RotateTowards(transform.localEulerAngles, new Vector3(60,45,180), Time.deltaTime*rodSpeed, 10.5f);
+				fishingRod.transform.localEulerAngles += new Vector3(5.0f,0,0);
+				if(fishingRod.transform.localEulerAngles.x>30)
+				{
+					isRotatingRod=false;
+				}
 			}
 			yield return new WaitForSeconds(0.01f);
 		}
