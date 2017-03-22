@@ -156,7 +156,7 @@ public class ScoreManagerScript : MonoBehaviour {
 			tempChangeValue = 99;
 		scoreString = tempChangeValue.ToString ();
 
-		Debug.Log (scoreString.Length);
+		//Debug.Log (scoreString.Length);
 
 		if (scoreString.Length == 1)
 		{

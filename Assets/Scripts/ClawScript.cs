@@ -61,7 +61,8 @@ public class ClawScript : MonoBehaviour {
 		if (gunScript.isShooting && !retracting)
 		{
 			transform.position = Vector3.MoveTowards(transform.position, target, step);
-			transform.localEulerAngles += new Vector3(0,10.0f,0);
+			if(!GM_Script.gameIsPaused)
+				transform.localEulerAngles += new Vector3(0,10.0f,0);
 			lineRenderer.material = lineMaterial;
 			lineRenderer.SetPosition(0, origin.position);
 			lineRenderer.SetPosition(1, transform.position);
@@ -72,7 +73,8 @@ public class ClawScript : MonoBehaviour {
 
 			if(!hitCollectibles)
 			{
-				transform.localEulerAngles += new Vector3(0,10.0f,0);
+				if(!GM_Script.gameIsPaused)
+					transform.localEulerAngles += new Vector3(0,10.0f,0);
 			}
 		}
 		lineRenderer.material = lineMaterial;

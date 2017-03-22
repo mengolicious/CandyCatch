@@ -135,12 +135,12 @@ public class GunScript : MonoBehaviour {
 	IEnumerator RotateFishingRod()
 	{ 
 		//transform.position = Vector3.MoveTowards(transform.position, target, step);
-		while(isRotatingRod)
+		/*while(isRotatingRod)
 		{
 			if(Time.timeScale > 0f)
 			{
 				//fishingRod.transform.localEulerAngles = Vector3.RotateTowards(transform.localEulerAngles, new Vector3(60,45,180), Time.deltaTime*rodSpeed, 10.5f);
-				fishingRod.transform.localEulerAngles += new Vector3(5.0f,0,0);
+				fishingRod.transform.Rotate(new Vector3(5.0f,0,0));
 				if(fishingRod.transform.localEulerAngles.x>355)
 				{
 					isRotatingRod=false;
@@ -149,23 +149,22 @@ public class GunScript : MonoBehaviour {
 			yield return new WaitForSeconds(0.01f);
 		}
 		isRotatingRod=true;
-
+		*/
 		while(isRotatingRod)
 		{
-			if(Time.timeScale > 0f)
-			{
+
 				//fishingRod.transform.localEulerAngles = Vector3.RotateTowards(transform.localEulerAngles, new Vector3(60,45,180), Time.deltaTime*rodSpeed, 10.5f);
-				fishingRod.transform.localEulerAngles += new Vector3(5.0f,0,0);
-				if(fishingRod.transform.localEulerAngles.x>30)
+				fishingRod.transform.Rotate(Vector3.right, 5f);
+				if(fishingRod.transform.localEulerAngles.x>30 && fishingRod.transform.localEulerAngles.x<40)
 				{
 					isRotatingRod=false;
 				}
-			}
+
 			yield return new WaitForSeconds(0.01f);
 		}
 
 		claw.SetActive(true);
-		LaunchClaw ();
+		LaunchClaw();
 	}
 
 	public void CallRotateBackRod()
@@ -181,13 +180,13 @@ public class GunScript : MonoBehaviour {
 		{
 			//fishingRod.transform.localEulerAngles = Vector3.RotateTowards(transform.localEulerAngles, new Vector3(60,45,180), Time.deltaTime*rodSpeed, 10.5f);
 			fishingRod.transform.localEulerAngles -= new Vector3(5.0f,0,0);
-			if(fishingRod.transform.localEulerAngles.x<5)
+			if(fishingRod.transform.localEulerAngles.x<275 && fishingRod.transform.localEulerAngles.x>265)
 			{
 				isRotatingRodBack=false;
 			}
 			yield return new WaitForSeconds(0.01f);
 		}
-		isRotatingRodBack=true;
+		/*isRotatingRodBack=true;
 		while(isRotatingRodBack)
 		{
 			//fishingRod.transform.localEulerAngles = Vector3.RotateTowards(transform.localEulerAngles, new Vector3(60,45,180), Time.deltaTime*rodSpeed, 10.5f);
@@ -197,7 +196,7 @@ public class GunScript : MonoBehaviour {
 				isRotatingRodBack=false;
 			}
 			yield return new WaitForSeconds(0.01f);
-		}
+		}*/
 	}
 	
 	void LaunchClaw()
@@ -206,7 +205,7 @@ public class GunScript : MonoBehaviour {
 		//shooterAnimator.speed = 0;
 
 		Vector3 down = transform.TransformDirection (Vector3.down);
-		Debug.Log ("hit");
+		//Debug.Log ("hit");
 		//claw.SetActive (true); //Activate claw
 		//Raycast must hit oject in order to be true
 		if (Physics.Raycast(this.transform.position,  down, out hit, 100)) 
@@ -216,12 +215,12 @@ public class GunScript : MonoBehaviour {
 				tempGameObject = hit.transform.gameObject as GameObject;
 				tempGameObject.GetComponent<CollectiblesScript>().isCollected=true;
 			}
-			Debug.Log ("Raycast1");
+			//Debug.Log ("Raycast1");
 			claw.SetActive (true); //Activate claw
-			Debug.Log ("Raycast2");
+			//Debug.Log ("Raycast2");
 			clawScript.ClawTarget (hit.point); //launch towards target(balls)
 
-			Debug.Log (hit.point);
+			//Debug.Log (hit.point);
 		}
 		//Debug.DrawLine (transform.position, hit.point, Color.cyan);
 	}
@@ -230,7 +229,7 @@ public class GunScript : MonoBehaviour {
 	{
 		isShooting = false;
 		shooterAnimator.speed = 1;
-		Debug.Log ("collected");
+		//Debug.Log ("collected");
 	}
 	
 }
