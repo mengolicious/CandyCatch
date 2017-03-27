@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class ClawScript : MonoBehaviour {
@@ -71,8 +71,9 @@ public class ClawScript : MonoBehaviour {
 		{
 			transform.position = Vector3.MoveTowards(transform.position, origin.position, stoop);
 
-			if(!hitCollectibles && !GM_Script.gameIsPaused)
+			if(!hitCollectibles)
 			{
+				if(!GM_Script.gameIsPaused)
 					transform.localEulerAngles += new Vector3(0,10.0f,0);
 			}
 		}
@@ -97,13 +98,14 @@ public class ClawScript : MonoBehaviour {
 
 					///////////////////////////////////////////////
 
-					GM_Script.ResetQuestion();
 					GM_Script.DestroyInstatiatedBalls("balls");
 					GM_Script.SpawnBalls();
 					BeeM_Script.ClearBees();
+					GM_Script.ResetQuestion();
 				}
 				else
-				{		//to instantiate particle for lose
+				{
+					//to instantiate particle for lose
 					childObject.GetComponent<BallScript>().InstantiateParticleLose();
 				}
 			}

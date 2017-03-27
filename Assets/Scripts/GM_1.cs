@@ -110,10 +110,15 @@ public class GM_1 : MonoBehaviour {
 	public void DestroyInstatiatedBalls(string tag)
 	{
 		GameObject[] objects = GameObject.FindGameObjectsWithTag(tag);
-		for(int i=0; i<objects.Length; i++)
+		foreach(GameObject ball in objects)
+		{
+			ball.GetComponent<BallScript>().DestroyInstantiate();
+		}
+
+		/*for(int i=0; i<objects.Length; i++)
 		{
 			objects[i].GetComponent<BallScript>().DestroyInstantiate();
-		}
+		}*/
 	}
 
 	public void SpawnBalls()

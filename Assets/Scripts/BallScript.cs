@@ -25,11 +25,11 @@ public class BallScript : MonoBehaviour {
 
 	}
 
-	public void DestroyBallRuss ()
+	/*public void DestroyBallRuss ()
 	{
 		//StartCoroutine (DestroyInstantiate());
 		InstantiateParticleWin ();	
-	}
+	}*/
 
 
 	public void InstantiateParticleWin()
