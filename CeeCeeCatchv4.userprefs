@@ -1,20 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="c:\Users\admin\Desktop\Apps\CeeCeeCatchv4\Assets\Scripts\Bee_Script.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GM_1.cs">
     <Files>
-      <File FileName="Assets\Scripts\GM.cs" Line="40" Column="35" />
-      <File FileName="Assets\Scripts\SoundManagerScript.cs" Line="89" Column="24" />
-      <File FileName="Assets\Scripts\ClawScript.cs" Line="8" Column="20" />
-      <File FileName="Assets\Scripts\BeeMScript.cs" Line="85" Column="29" />
-      <File FileName="Assets\Scripts\ScoreManagerScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GM_1.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\HighScoreDisplayManagerScript.cs" Line="9" Column="23" />
-      <File FileName="Assets\Scripts\HighScoreManagerScript.cs" Line="16" Column="38" />
-      <File FileName="Assets\Scripts\QuestionManagerScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GunScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ScoreModifierSprite.cs" Line="1" Column="1" />
-      <File FileName="c:\Users\admin\Desktop\Apps\CeeCeeCatchv4\Assets\Scripts\BallScript.cs" Line="1" Column="1" />
-      <File FileName="c:\Users\admin\Desktop\Apps\CeeCeeCatchv4\Assets\Scripts\Bee_Script.cs" Line="27" Column="3" />
+      <File FileName="Assets\Scripts\GM_1.cs" Line="118" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

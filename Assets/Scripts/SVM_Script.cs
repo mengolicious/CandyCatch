@@ -16,6 +16,7 @@ public class SVM_Script : MonoBehaviour {
 	public static int targetScore = 50;
 	public static bool advanceIsLocked = true;
 	public static bool expertIsLocked = true;
+	public static bool InstructionSeen = false;
 	public GM GM_Script;
 	public static bool gameSetup;
 		// Make global
@@ -58,6 +59,11 @@ public class SVM_Script : MonoBehaviour {
 		} else {
 
 		}
+		if (!PlayerPrefs.HasKey ("Instructions_Dismissed")) {
+			PlayerPrefs.SetInt ("Instructions_Dismissed", 0);
+		} else {
+			
+		}
 	}
 
 	public void LoadSavedVariables(){
@@ -72,6 +78,13 @@ public class SVM_Script : MonoBehaviour {
 		} else {
 			expertIsLocked = true;
 		}
+		if(PlayerPrefs.GetInt("Instructions_Dismissed") == 1)
+		{
+			InstructionSeen = true;
+		} else {
+			InstructionSeen = false;
+		}
+
 	}
 
 

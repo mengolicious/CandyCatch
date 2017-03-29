@@ -25,7 +25,7 @@ public class GunScript : MonoBehaviour {
 	public GameObject ground;
 	public GM_1 GM1_Script;
 
-	public bool panelInstructionsOff=false;
+	public bool gamePlaying=false;
 
 	public Sprite castClaw;
 	public Sprite castClawPressed;
@@ -103,7 +103,7 @@ public class GunScript : MonoBehaviour {
 
 	public void CastClaw()
 	{
-		if(!isShooting && panelInstructionsOff && canShoot) 
+		if(!isShooting && gamePlaying && canShoot) 
 		{
 			if(!GM1_Script.gameIsPaused)
 			{

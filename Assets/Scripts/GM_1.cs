@@ -52,7 +52,7 @@ public class GM_1 : MonoBehaviour {
 	public Material matBall9;*/
 	public List<Material> matBallList; 
 
-	public GameObject panelInstructions; 
+	public GameObject pauseMenu; 
 
 	public List<Vector3> listPosition;
 	public Vector3 firstLayer;
@@ -62,6 +62,12 @@ public class GM_1 : MonoBehaviour {
 	public float tempX;
 	
 	public GameObject nextDifficultyButton;
+
+	public GameObject InstructionPanelBG;
+	public GameObject InstructionPanel1;
+	
+
+
 	// Use this for initialization
 	void Start()
 	{
@@ -98,12 +104,18 @@ public class GM_1 : MonoBehaviour {
 			listPosition.Add ( new Vector3(secondLayer.x+(2.2f*x), secondLayer.y, secondLayer.z));
 		}
 		*/
-		panelInstructions.SetActive(true);
+		pauseMenu.SetActive(true);
 		bigQuestionBG.SetActive(false);
 		smokeSprite.SetActive(false);
 		smallQuestionDisplay.SetActive(false);
 		if(SVM_Script.gameDifficulty == "expert")
 			nextDifficultyButton.SetActive(false);
+		if(!SVM_Script.InstructionSeen)
+		{
+			pauseMenu.SetActive(false);
+			InstructionPanelBG.SetActive(true);
+			InstructionPanel1.SetActive(true);
+		}
 		SpawnBalls();
 	}
 
@@ -251,8 +263,8 @@ public class GM_1 : MonoBehaviour {
 	{
 		SoundManager_Script.Play_SFX("MenuNavPop");
 
-		panelInstructions.SetActive(false);
-		gunScript.panelInstructionsOff=true; 
+		pauseMenu.SetActive(false);
+		gunScript.gamePlaying=true; 
 		bigQuestionBG.SetActive(true);
 		GetNextQuestion();
 		StartCoroutine(BigDisplayAnim());
@@ -262,7 +274,7 @@ public class GM_1 : MonoBehaviour {
 	{
 		smallQuestionDisplay.SetActive(false);
 
-		gunScript.panelInstructionsOff=true; 
+		gunScript.gamePlaying=true; 
 		bigQuestionBG.SetActive(true);
 		GetNextQuestion();
 		StartCoroutine(BigDisplayAnim());
@@ -351,5 +363,12 @@ public class GM_1 : MonoBehaviour {
 		//gunScript.canShoot = true;
 		gameIsPaused = false;
 		Time.timeScale = 1;
+	}
+
+	public void InstructionClose()
+	{
+		InstructionPanelBG.SetActive(false);
+		PlayerPrefs.SetInt("Instructions_Dismissed",1);
+		SVM_Script.InstructionSeen = true;
 	}
 }
