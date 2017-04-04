@@ -144,12 +144,12 @@ public class GM_1 : MonoBehaviour {
 		{
 			//animM.GetComponent<Animator>().speed = 0.5f;
 			//shooterSpeed = 3.5f;	
-			animM.GetComponent<Animator>().SetFloat("speed",0.5f);
+			animM.GetComponent<Animator>().SetFloat("speed",0.4f);
 		}
 		else if(SVM_Script.gameDifficulty == "expert")
 		{
 			//animM.GetComponent<Animator>().speed = 1.0f;
-			animM.GetComponent<Animator>().SetFloat("speed",0.9f);
+			animM.GetComponent<Animator>().SetFloat("speed",0.8f);
 			//shooterSpeed= 5f;
 		}
 	

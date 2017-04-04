@@ -30,12 +30,12 @@ public class BeeMScript : MonoBehaviour {
 		if (SVM_Script.gameDifficulty == "easy") {
 			numberOfBEES = 2;
 			maxBeeValue = 1;
-			beeSpeed = 10f;
+			beeSpeed = 7.0f;
 		}
 		else if (SVM_Script.gameDifficulty == "advance") {
 			numberOfBEES = 3;
 			maxBeeValue = 2;
-			beeSpeed = 12.5f;
+			beeSpeed = 10.0f;
 		}
 		else if (SVM_Script.gameDifficulty == "expert") {
 			numberOfBEES = 5;

@@ -41,11 +41,11 @@ public class ClawScript : MonoBehaviour {
 		SoundManager_Script = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript>();
 		if(SVM_Script.gameDifficulty == "easy")
 			{
-				retractingSpeed = 2.5f;
+				retractingSpeed = 1.0f;
 			}
 		else if(SVM_Script.gameDifficulty == "advance")
 			{
-				retractingSpeed = 3.5f;	
+				retractingSpeed = 2.0f;	
 			}
 		else if(SVM_Script.gameDifficulty == "expert")
 			{
