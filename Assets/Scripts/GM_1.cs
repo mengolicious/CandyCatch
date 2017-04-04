@@ -65,6 +65,14 @@ public class GM_1 : MonoBehaviour {
 
 	public GameObject InstructionPanelBG;
 	public GameObject InstructionPanel1;
+
+	public float shooterSpeed;
+	public Animator anim;
+	public GameObject animM;
+
+
+
+
 	
 
 
@@ -117,7 +125,36 @@ public class GM_1 : MonoBehaviour {
 			InstructionPanel1.SetActive(true);
 		}
 		SpawnBalls();
-	}
+
+
+
+		if(SVM_Script.gameDifficulty == "easy")
+		{
+			//shooterSpeed = 0.5f;
+			//anim["ShooterAnime"].speed = shooterSpeed;
+
+			//animM.GetComponent<Animator>().speed = 0.1f;
+			animM.GetComponent<Animator>().SetFloat("speed",0.2f); 
+
+		//anim.SetFloat("ShooterAnime",0.5f);
+		
+		
+		}
+		else if(SVM_Script.gameDifficulty == "advance")
+		{
+			//animM.GetComponent<Animator>().speed = 0.5f;
+			//shooterSpeed = 3.5f;	
+			animM.GetComponent<Animator>().SetFloat("speed",0.5f);
+		}
+		else if(SVM_Script.gameDifficulty == "expert")
+		{
+			//animM.GetComponent<Animator>().speed = 1.0f;
+			animM.GetComponent<Animator>().SetFloat("speed",0.9f);
+			//shooterSpeed= 5f;
+		}
+	
+}
+
 
 	public void DestroyInstatiatedBalls(string tag)
 	{
@@ -222,7 +259,7 @@ public class GM_1 : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
-		
+		Debug.Log (animM.GetComponent<Animator>().speed);
 	}
 	
 
@@ -362,7 +399,12 @@ public class GM_1 : MonoBehaviour {
 		SoundManager_Script.Resume_BG_SFX();
 		//gunScript.canShoot = true;
 		gameIsPaused = false;
+
 		Time.timeScale = 1;
+
+		animM.GetComponent<Animator>().speed = 0.1f;
+
+
 	}
 
 	public void InstructionClose()
