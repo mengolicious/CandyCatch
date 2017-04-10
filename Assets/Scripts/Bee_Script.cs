@@ -15,11 +15,13 @@ public class Bee_Script : MonoBehaviour {
 //	private Vector3 answerBallPos;
 	private int value;
 	private bool isAttacking;
+	private bool isGoingToHive;
 //	private Vector3 startPos;
 //	private Vector3 startDir;
 	[SerializeField]
 	private float speed;
-
+	private Vector3 BeeHivePos;
+	private Vector3 MoveDir;
 	void Awake()
 	{
 
@@ -35,7 +37,7 @@ public class Bee_Script : MonoBehaviour {
 	/// </summary>
 	/// <param name="targetBall">Target ball.</param>
 	/// <param name="beeSpeed">Bee speed.</param>
-	public void InitialiseVariables(GameObject targetBall, float beeSpeed, int beeValue,Object particleResource, Object ScoreNumResource)
+	public void InitialiseVariables(GameObject targetBall, float beeSpeed, int beeValue,Object particleResource, Object ScoreNumResource, Vector3 HiveTragetPos)
 	{
 		answerBall = targetBall;
 		isAttacking = true;
@@ -49,6 +51,7 @@ public class Bee_Script : MonoBehaviour {
 		{
 			GetComponent<SpriteRenderer>().color = Color.magenta;
 		}
+		BeeHivePos = HiveTragetPos;
 		particlePrefab = particleResource;
 		ScoreNumberPrefab = ScoreNumResource;
 		StartCoroutine (ATTACK_ON_TITAN());
@@ -73,6 +76,25 @@ public class Bee_Script : MonoBehaviour {
 			}
 			yield return new WaitForSeconds(0.03f);
 		}
+		MoveDir = BeeHivePos - transform.position;
+		float dist = MoveDir.magnitude;
+		MoveDir.Normalize();
+		Vector3 moveStep;
+		while(isGoingToHive)
+		{
+			if( dist >0f )
+			{
+				moveStep = MoveDir * (speed * Time.deltaTime);
+				dist -= moveStep.magnitude;
+				transform.position += moveStep;
+			}
+			else
+			{
+				isGoingToHive = false;
+			}
+			yield return new WaitForSeconds(0.03f);
+		}
+		Kill();
 	}
 	/// <summary>
 	/// Raises the mouse over event.
@@ -98,7 +120,12 @@ public class Bee_Script : MonoBehaviour {
 		if (other.gameObject == answerBall) {
 			other.gameObject.GetComponent<BallScript>().DeductPoints(value);
 			//Debug.Log ("Lose some points you scrub");
-			Kill();
+			isAttacking = false;
+			isGoingToHive = true;
+			if(transform.childCount > 0)
+			{
+				transform.GetChild(0).gameObject.SetActive(true);
+			}
 		}
 	}
 

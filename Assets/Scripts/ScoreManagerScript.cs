@@ -7,7 +7,7 @@ public class ScoreManagerScript : MonoBehaviour {
 
 	public int score;
 	public int targetScore;
-	public float totalScore;
+	public int totalScore;
 	public int pointToAdd;
 	public int tempNum;
 	public int lives;
@@ -79,6 +79,8 @@ public class ScoreManagerScript : MonoBehaviour {
 
 	public GameObject insertScore;
 	public int tempHighScoreIndex;
+
+
 	
 	// Use this for initialization
 	void Start ()
@@ -180,6 +182,8 @@ public class ScoreManagerScript : MonoBehaviour {
 		}
 	}
 
+
+
 	/// <summary>
 	/// Checks if the answer is correct and updates that score if it is, otherwise updates the lives.
 	/// </summary>
@@ -239,10 +243,11 @@ public class ScoreManagerScript : MonoBehaviour {
 
 	public void ComputeTotalScore()
 	{
-		totalScore = (float)((float)score / (float)TM_Script.elapsedTime)*100*lives;
+		totalScore = Mathf.FloorToInt((float)((float)score / (float)TM_Script.elapsedTime)*100f*lives);
 		if(totalScore >= PlayerPrefs.GetInt("EE_Top1_Score_"+tempString))
 		{
 			insertScore.SetActive(true);
+			insertScore.transform.GetChild(3).GetComponent<Text>().text = totalScore.ToString ();
 
 			PlayerPrefs.SetInt("EE_Top3_Score_"+tempString,PlayerPrefs.GetInt("EE_Top2_Score_"+tempString));
 			PlayerPrefs.SetString("EE_Top3_Name_"+tempString,PlayerPrefs.GetString("EE_Top2_Name_"+tempString));
@@ -255,6 +260,7 @@ public class ScoreManagerScript : MonoBehaviour {
 		else if(totalScore >= PlayerPrefs.GetInt("EE_Top2_Score_"+tempString))
 		{
 			insertScore.SetActive(true);
+			insertScore.transform.GetChild(3).GetComponent<Text>().text = totalScore.ToString ();
 
 			PlayerPrefs.SetInt ("EE_Top3_Score_"+tempString,PlayerPrefs.GetInt("EE_Top2_Score_"+tempString));
 			PlayerPrefs.SetInt("EE_Top2_Score_"+tempString, (int)totalScore);
@@ -263,6 +269,7 @@ public class ScoreManagerScript : MonoBehaviour {
 		else if(totalScore >= PlayerPrefs.GetInt("EE_Top3_Score_"+tempString))
 		{
 			insertScore.SetActive(true);
+			insertScore.transform.GetChild(3).GetComponent<Text>().text = totalScore.ToString ();
 
 			PlayerPrefs.SetInt("EE_Top3_Score_"+tempString, (int)totalScore);
 			tempHighScoreIndex = 3;
