@@ -1,14 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GM_1.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\HighScoreDisplayManagerScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\Bee_Script.cs" Line="42" Column="19" />
-      <File FileName="Assets\Scripts\GunScript.cs" Line="75" Column="27" />
-      <File FileName="Assets\Scripts\GM_1.cs" Line="121" Column="34" />
-      <File FileName="Assets\Scripts\ClawScript.cs" Line="46" Column="50" />
-      <File FileName="Assets\Scripts\GM.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\QuestionManagerScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BeeMScript.cs" Line="39" Column="4" />
+      <File FileName="Assets\Scripts\HighScoreDisplayManagerScript.cs" Line="32" Column="3" />
+      <File FileName="Assets\Scripts\HighScoreManagerScript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
