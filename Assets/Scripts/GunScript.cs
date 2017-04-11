@@ -19,8 +19,7 @@ public class GunScript : MonoBehaviour {
 	public GameObject lineEndPos;
 
 	public GameObject tempGameObject;
-
-	public RaycastHit rayHit;
+	
 	public LineRenderer line;
 	public GameObject ground;
 	public GM_1 GM1_Script;
@@ -53,6 +52,7 @@ public class GunScript : MonoBehaviour {
 		line.sortingLayerName = "OnTop";
 		line.sortingOrder = 5;
 		line.useWorldSpace = true;
+		line.SetWidth(0.05f, 0.05f);
 	}
 
 	void Update()
@@ -126,10 +126,15 @@ public class GunScript : MonoBehaviour {
 	{
 		line.SetVertexCount(2);
 		line.SetPosition(0, this.gameObject.transform.position);
-		//line.SetPosition(1,  rayHit.point);
-		line.SetPosition(1,  lineEndPos.transform.position);
-		//line.SetPosition(2, transform.localPosition);
-		line.SetWidth(0.01f, 0.01f);
+		Vector3 down = transform.TransformDirection (Vector3.down);
+		if (Physics.Raycast(this.transform.position,  down, out hit, 10))
+		{
+			line.SetPosition(1,  hit.point);
+		}
+		else 
+		{
+			line.SetPosition(1,  lineEndPos.transform.position);
+		}
 	}
 
 	IEnumerator RotateFishingRod()

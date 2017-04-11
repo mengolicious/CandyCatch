@@ -42,6 +42,15 @@ public class GM : MonoBehaviour {
 		SoundManager_Script.Play_BG_loop("bg1");
 	}
 
+	public void RateOurAppButton()
+	{
+		#if UNITY_ANDROID
+		Application.OpenURL("market://details?id=YOUR_APP_ID);
+		#elif UNITY_APPLE
+
+		#endif
+	}
+
 	public void MuteButton()
 	{
 		SoundManager_Script.ButtonAudio();
