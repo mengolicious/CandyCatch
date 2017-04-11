@@ -51,6 +51,16 @@ public class GM : MonoBehaviour {
 		#endif
 	}
 
+	public void NCCCWebsite()
+	{
+		Application.OpenURL("http://nccc.org.au/");
+	}
+
+	public void MBWebsite()
+	{
+		Application.OpenURL ("http://www.mccormickbytes.org/");
+	}
+
 	public void MuteButton()
 	{
 		SoundManager_Script.ButtonAudio();

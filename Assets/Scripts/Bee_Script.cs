@@ -22,6 +22,7 @@ public class Bee_Script : MonoBehaviour {
 	private float speed;
 	private Vector3 BeeHivePos;
 	private Vector3 MoveDir;
+	private BeeMScript BeeM;
 	void Awake()
 	{
 
@@ -37,7 +38,7 @@ public class Bee_Script : MonoBehaviour {
 	/// </summary>
 	/// <param name="targetBall">Target ball.</param>
 	/// <param name="beeSpeed">Bee speed.</param>
-	public void InitialiseVariables(GameObject targetBall, float beeSpeed, int beeValue,Object particleResource, Object ScoreNumResource, Vector3 HiveTragetPos)
+	public void InitialiseVariables(GameObject targetBall, float beeSpeed, int beeValue,Object particleResource, Object ScoreNumResource, Vector3 HiveTragetPos, BeeMScript BeeMananager)
 	{
 		answerBall = targetBall;
 		isAttacking = true;
@@ -54,6 +55,7 @@ public class Bee_Script : MonoBehaviour {
 		BeeHivePos = HiveTragetPos;
 		particlePrefab = particleResource;
 		ScoreNumberPrefab = ScoreNumResource;
+		BeeM = BeeMananager;
 		StartCoroutine (ATTACK_ON_TITAN());
 	}
 	/// <summary>
@@ -80,6 +82,7 @@ public class Bee_Script : MonoBehaviour {
 		float dist = MoveDir.magnitude;
 		MoveDir.Normalize();
 		Vector3 moveStep;
+		transform.localScale = new Vector3(-1,1,1);
 		while(isGoingToHive)
 		{
 			if( dist >0f )
@@ -94,6 +97,7 @@ public class Bee_Script : MonoBehaviour {
 			}
 			yield return new WaitForSeconds(0.03f);
 		}
+		BeeM.HiveShake(value);
 		Kill();
 	}
 	/// <summary>

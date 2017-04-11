@@ -72,7 +72,7 @@ public class BeeMScript : MonoBehaviour {
 			int tI = Random.Range(0,SpawnPoints.Count);
 			//Vector3 shiftPos = new Vector3(0f, Random.Range (-2.5f,2.5f), 0f);
 			GameObject tempBee = GameObject.Instantiate(BeePrefab, SpawnPoints[tI], Quaternion.identity) as GameObject;
-			tempBee.GetComponent<Bee_Script>().InitialiseVariables(tempBall, beeSpeed, beeValue,BeeBurstPrefab,ScoreChangeSpritePrefab, Hive.transform.position);
+			tempBee.GetComponent<Bee_Script>().InitialiseVariables(tempBall, beeSpeed, beeValue,BeeBurstPrefab,ScoreChangeSpritePrefab, Hive.transform.position, this);
 			//tempBee.GetComponent<Bee_Script>().value = tempValue;
 			beeList.Add(tempBee);
 			UsedSpawnPoints.Add(SpawnPoints[tI]);
@@ -87,6 +87,13 @@ public class BeeMScript : MonoBehaviour {
 	public void ClearBees()
 	{
 		StartCoroutine(ClearListCoRoutine());
+	}
+
+	public void HiveShake(int BeeValue)
+	{
+		Hive.GetComponent<Animator>().Play("HiveShake");
+		GameObject tempParticle = Instantiate(ScoreChangeSpritePrefab, Hive.transform.position, Quaternion.identity) as GameObject;
+		tempParticle.GetComponent<ScoreModifierSprite>().SetNumber(BeeValue, false, true);
 	}
 
 	IEnumerator ClearListCoRoutine()
