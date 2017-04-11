@@ -45,9 +45,9 @@ public class GM : MonoBehaviour {
 	public void RateOurAppButton()
 	{
 		#if UNITY_ANDROID
-		Application.OpenURL("market://details?id=YOUR_APP_ID);
+		Application.OpenURL("market://details?id=com.mccormickbytes.CandyCatch");
 		#elif UNITY_APPLE
-
+		Application.OpenURL("itms-apps://itunes.apple.com/app/idYOUR_APP_ID");
 		#endif
 	}
 
