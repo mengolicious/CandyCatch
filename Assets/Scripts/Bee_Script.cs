@@ -130,6 +130,7 @@ public class Bee_Script : MonoBehaviour {
 			{
 				transform.GetChild(0).gameObject.SetActive(true);
 			}
+			answerBall = null;
 		}
 	}
 

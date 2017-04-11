@@ -17,6 +17,7 @@ public class GunScript : MonoBehaviour {
 	public RaycastHit hit;
 	public float rodSpeed;
 	public GameObject lineEndPos;
+	public GameObject tempBallHit;
 
 	public GameObject tempGameObject;
 	
@@ -127,13 +128,26 @@ public class GunScript : MonoBehaviour {
 		line.SetVertexCount(2);
 		line.SetPosition(0, this.gameObject.transform.position);
 		Vector3 down = transform.TransformDirection (Vector3.down);
-		if (Physics.Raycast(this.transform.position,  down, out hit, 10))
+		if (Physics.Raycast(this.transform.position,  down, out hit, 20))
 		{
 			line.SetPosition(1,  hit.point);
+
+			if(hit.transform.gameObject.CompareTag("balls")){
+				tempBallHit = hit.transform.gameObject;
+				tempBallHit.transform.localScale = new Vector3(75,75,75);
+				tempBallHit.GetComponent<Renderer>().material.SetFloat("_Metallic", 0);
+			}
+			else{
+				if(tempBallHit){
+					tempBallHit.transform.localScale = new Vector3(65,65,65);
+					tempBallHit.GetComponent<Renderer>().material.SetFloat("_Metallic", 0.3f);
+				}
+			}
 		}
 		else 
 		{
 			line.SetPosition(1,  lineEndPos.transform.position);
+
 		}
 	}
 

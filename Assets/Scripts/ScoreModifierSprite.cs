@@ -20,7 +20,7 @@ public class ScoreModifierSprite : MonoBehaviour {
 		}
 		else
 		{
-			spriteRend.sprite = Resources.Load("Sprites/GamePlayNum/" + aValue + "minus") as Sprite;
+			spriteRend.sprite = Resources.Load<Sprite>("Sprites/GamePlayNum/" + aValue + "minus");
 		}
 		isMooving = isMoving;
 		Destroy(gameObject, 5f);
