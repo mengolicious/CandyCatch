@@ -7,19 +7,13 @@ public class CollectiblesScript : MonoBehaviour {
 
 	public Object starParticle;
 	public GameObject tempStar;
-
-
-
-
-
+	
 	// Use this for initialization
 	void Start()
 	{
 		isCollected = false;
 
 		StartCoroutine (CollectibleAnim());
-		Destroy(gameObject, 10f);
-		//Invoke ("DestroyCollectible",10.0f);
 	}
 	
 	// Update is called once per frame
@@ -43,10 +37,9 @@ public class CollectiblesScript : MonoBehaviour {
 		tempStar = Instantiate(starParticle,this.transform.position, Quaternion.identity) as GameObject;
 	}
 
-	public void DestroyCollectible()
+	public void DestroySelf()
 	{
 		Destroy (this.gameObject);
 	}
-
-
+	
 }

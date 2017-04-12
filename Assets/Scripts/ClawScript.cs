@@ -22,6 +22,7 @@ public class ClawScript : MonoBehaviour {
 	public Material lineMaterial;
 	public bool hitBall;
 	public bool hitCollectibles;
+	public bool hitAngryBee;
 	public bool retracting; 
 	public GameObject fishingRod;
 
@@ -32,7 +33,8 @@ public class ClawScript : MonoBehaviour {
 		retractOrigin = new Vector3 (0,0.73f,-2.77f);
 		originalClawPos = transform.localPosition;
 		hitCollectibles = false;
-		
+		hitAngryBee = false;
+
 		lineRenderer = GetComponent<LineRenderer>();
 	}
 
@@ -113,10 +115,15 @@ public class ClawScript : MonoBehaviour {
 			{
 				hitCollectibles = false;
 
-				childObject.GetComponent<CollectiblesScript>().DestroyCollectible();
+				childObject.GetComponent<CollectiblesScript>().DestroySelf();
 
 				SM_Script.GainLife();
 				childObject.GetComponent<CollectiblesScript>().InstantiateStars();
+			}
+			else if (hitAngryBee)
+			{
+				childObject.GetComponent<AngryBee_Script>().DestroySelf();
+				//whatever else we need to call for this to work right
 			}
 
 			this.transform.localPosition = new Vector3(0,-1.888f,-2.77f);
@@ -166,7 +173,7 @@ public class ClawScript : MonoBehaviour {
 			gunScript.CallRotateBackRod();
 			if(other.gameObject.CompareTag("balls"))
 			{
-				SoundManager_Script.Play_SFX("hit"); // this plays when the claw hits a ball
+				SoundManager_Script.Play_SFX("hit"); // this plays when the claw hits  an object
 				//Debug.Log ("Hit");
 				
 				hitBall = true;
@@ -181,11 +188,17 @@ public class ClawScript : MonoBehaviour {
 			}
 			else if(other.gameObject.CompareTag("collectibles"))
 			{
-				SoundManager_Script.Play_SFX("hit"); // this plays when the claw hits a ball
+				SoundManager_Script.Play_SFX("hit"); // this plays when the claw hits an object
 				hitCollectibles = true;
 				childObject = other.gameObject;
 				other.gameObject.GetComponent<CollectiblesScript>().isCollected = true;
 				other.transform.SetParent(this.transform);
+			}
+			else if(other.gameObject.CompareTag("AngryBee"))
+			{
+				SoundManager_Script.Play_SFX("hit"); // this plays when the claw hits an object
+				hitAngryBee = true;
+				childObject = other.gameObject;
 			}
 		}
 	}

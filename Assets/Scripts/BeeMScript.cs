@@ -113,11 +113,15 @@ public class BeeMScript : MonoBehaviour {
 	{
 		for(int x = 0; x < beeList.Count; x++)
 		{
-			if(beeList[x])
-				beeList[x].GetComponent<Bee_Script>().Kill();
+			if(!beeList[x])
+				beeList.RemoveAt(x);
+			else
+			{
+				beeList[x].GetComponent<Bee_Script>().ClearTarget();
+			}
 			yield return null;
 		}
-		beeList.Clear();
+		//beeList.Clear();
 		SpawnPoints.Clear();
 		UsedSpawnPoints.Clear();
 		for( int x = 0; x < 5; ++x)

@@ -148,4 +148,15 @@ public class Bee_Script : MonoBehaviour {
 		Destroy(gameObject);
 	}
 
+	public void ClearTarget()
+	{
+		answerBall = null;
+		if(isAttacking)
+		{
+			//Destroy(this.GetComponent<Collider>());
+			isAttacking = false;
+		}
+		isGoingToHive = true;
+	}
+
 }
