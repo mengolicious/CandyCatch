@@ -20,6 +20,7 @@ public class BeeMScript : MonoBehaviour {
 		beeList = new List<GameObject>();
 		SpawnPoints = new List<Vector3>();
 		UsedSpawnPoints = new List<Vector3>();
+		beeValue = 1;
 		BeePrefab = Resources.Load("Prefabs/BeeEnemy");
 		BeeBurstPrefab = Resources.Load("Prefabs/BeeBurst");
 		ScoreChangeSpritePrefab = Resources.Load("Prefabs/ScoreChangeSprite");
@@ -30,18 +31,18 @@ public class BeeMScript : MonoBehaviour {
 		//Checking Difficulty and setting amount of bees to be spawned
 		if (SVM_Script.gameDifficulty == "easy") {
 			numberOfBEES = 2;
-			maxBeeValue = 1;
+			//maxBeeValue = 1;
 			beeSpeed = 7.0f;
 		}
 		else if (SVM_Script.gameDifficulty == "advance") {
 			numberOfBEES = 3;
-			maxBeeValue = 2;
-			beeSpeed = 10.0f;
+			//maxBeeValue = 2;
+			beeSpeed = 7.5f;
 		}
 		else if (SVM_Script.gameDifficulty == "expert") {
 			numberOfBEES = 5;
-			maxBeeValue = 3;
-			beeSpeed = 15f;
+			//maxBeeValue = 3;
+			beeSpeed = 8f;
 		}
 	}
 
@@ -68,7 +69,7 @@ public class BeeMScript : MonoBehaviour {
 		Debug.Log ("Spawning " + numberOfBEES + " Bees");
 		for(int x = 0; x < numberOfBEES; x++)
 		{
-			beeValue = Random.Range(1, maxBeeValue+1);
+			//beeValue = Random.Range(1, maxBeeValue+1);
 			int tI = Random.Range(0,SpawnPoints.Count);
 			//Vector3 shiftPos = new Vector3(0f, Random.Range (-2.5f,2.5f), 0f);
 			GameObject tempBee = GameObject.Instantiate(BeePrefab, SpawnPoints[tI], Quaternion.identity) as GameObject;
@@ -91,9 +92,21 @@ public class BeeMScript : MonoBehaviour {
 
 	public void HiveShake(int BeeValue)
 	{
+		//StartCoroutine(ShakeHive());
 		Hive.GetComponent<Animator>().Play("HiveShake");
-		GameObject tempParticle = Instantiate(ScoreChangeSpritePrefab, Hive.transform.position, Quaternion.identity) as GameObject;
-		tempParticle.GetComponent<ScoreModifierSprite>().SetNumber(BeeValue, false, true);
+		/*GameObject tempParticle = Instantiate(ScoreChangeSpritePrefab, Hive.transform.position, Quaternion.identity) as GameObject;
+		tempParticle.GetComponent<ScoreModifierSprite>().SetNumber(BeeValue, false, true);//*/
+	}
+
+	IEnumerator ShakeHive()
+	{
+		bool firstRun = true;
+		while(firstRun)
+		{
+			Hive.GetComponent<Animator>().Play("HiveShake");
+			firstRun = false;
+			yield return null;
+		}
 	}
 
 	IEnumerator ClearListCoRoutine()
@@ -102,7 +115,6 @@ public class BeeMScript : MonoBehaviour {
 		{
 			if(beeList[x])
 				beeList[x].GetComponent<Bee_Script>().Kill();
-
 			yield return null;
 		}
 		beeList.Clear();

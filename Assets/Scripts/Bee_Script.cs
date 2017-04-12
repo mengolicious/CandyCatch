@@ -44,18 +44,23 @@ public class Bee_Script : MonoBehaviour {
 		isAttacking = true;
 		speed = beeSpeed;
 		value = beeValue;
-		if(value == 2)
+		/*if(value == 2)
 		{
 			GetComponent<SpriteRenderer>().color = Color.cyan;
 		}
 		else if(value == 3)
 		{
 			GetComponent<SpriteRenderer>().color = Color.magenta;
-		}
+		}//*/
 		BeeHivePos = HiveTragetPos;
 		particlePrefab = particleResource;
 		ScoreNumberPrefab = ScoreNumResource;
 		BeeM = BeeMananager;
+		if(targetBall.transform.position.x > transform.position.x)
+		{
+			//transform.localScale = new Vector3(-1,1,1);
+			transform.Rotate(Vector3.up,180f);
+		}//*/
 		StartCoroutine (ATTACK_ON_TITAN());
 	}
 	/// <summary>
@@ -82,7 +87,8 @@ public class Bee_Script : MonoBehaviour {
 		float dist = MoveDir.magnitude;
 		MoveDir.Normalize();
 		Vector3 moveStep;
-		transform.localScale = new Vector3(-1,1,1);
+		if(transform.eulerAngles.y <180)
+			transform.eulerAngles += new Vector3(0,180,0);
 		while(isGoingToHive)
 		{
 			if( dist >0f )
@@ -123,6 +129,8 @@ public class Bee_Script : MonoBehaviour {
 	{
 		if (other.gameObject == answerBall) {
 			other.gameObject.GetComponent<BallScript>().DeductPoints(value);
+			GameObject tempScoreParticle = GameObject.Instantiate(ScoreNumberPrefab, this.transform.position, Quaternion.identity) as GameObject;
+			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, false, false);
 			//Debug.Log ("Lose some points you scrub");
 			isAttacking = false;
 			isGoingToHive = true;
