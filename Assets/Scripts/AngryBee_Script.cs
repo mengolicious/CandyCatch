@@ -7,6 +7,8 @@ public class AngryBee_Script : MonoBehaviour
 	public bool isExpert;
 	public Vector3 scoreChangeSpritePos;
 	public Object ScoreChangeSpritePrefab;
+
+	public GameObject destroyLeftTrigger;
 	void Start()
 	{
 		isCollected = false;
@@ -59,5 +61,18 @@ public class AngryBee_Script : MonoBehaviour
 	{
 		Destroy (this.gameObject);
 	}
+
+	public void OnTriggerEnter(Collider destroyTriggerLeft){
+		if (destroyTriggerLeft.CompareTag ("DestroyTriggerLeft")) {
+		
+			Debug.Log ("Trigger enter");
+		
+			Destroy(this.gameObject);
+		}
+
+	}
+
+
+
 
 }

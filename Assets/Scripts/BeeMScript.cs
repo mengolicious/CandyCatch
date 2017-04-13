@@ -130,14 +130,12 @@ public class BeeMScript : MonoBehaviour {
 		GameObject tempAngryBee = null;
 		while(true)
 		{
-			if(!tempAngryBee)
-			{
 				tempAngryBee = GameObject.Instantiate(AngryBeePrefab, AngryBeeSpawnPoint, Quaternion.identity) as GameObject;
 				tempAngryBee.GetComponent<AngryBee_Script>().isExpert = isExpert;
 				tempAngryBee.GetComponent<AngryBee_Script>().scoreChangeSpritePos = transform.position;
 				tempAngryBee.GetComponent<AngryBee_Script>().ScoreChangeSpritePrefab = Resources.Load("Prefabs/ScoreChangeSprite");
-			}
-			yield return new WaitForSeconds(1f);
+
+				yield return new WaitForSeconds(6.0f);
 		}
 	}
 
