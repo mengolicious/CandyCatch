@@ -147,8 +147,11 @@ public class ScoreManagerScript : MonoBehaviour {
 		}
 	}
 
-	public void EditScore(int changeScore){
+	public void EditScore(int changeScore)
+	{
 		score += changeScore;
+		if(score < 0)
+			score = 0;
 		DisplayScore(scoreNum1, scoreNum2, score);
 	}
 

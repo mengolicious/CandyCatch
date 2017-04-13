@@ -231,8 +231,13 @@ public class GunScript : MonoBehaviour {
 		{
 			if(hit.transform.tag == "collectibles")
 			{
-				tempGameObject = hit.transform.gameObject as GameObject;
+				tempGameObject = hit.transform.gameObject;
 				tempGameObject.GetComponent<CollectiblesScript>().isCollected=true;
+			}
+			else if(hit.transform.tag == "AngryBee")
+			{
+				tempGameObject = hit.transform.gameObject;
+				tempGameObject.GetComponent<AngryBee_Script>().isCollected=true;
 			}
 			//Debug.Log ("Raycast1");
 			claw.SetActive (true); //Activate claw

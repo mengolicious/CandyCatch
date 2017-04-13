@@ -15,8 +15,12 @@ public class BeeMScript : MonoBehaviour {
 	private Object ScoreChangeSpritePrefab;
 	private int maxBeeValue;
 	public GameObject Hive;
+	private bool isExpert;
+	private Vector3 AngryBeeSpawnPoint;
+	private Object AngryBeePrefab;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		beeList = new List<GameObject>();
 		SpawnPoints = new List<Vector3>();
 		UsedSpawnPoints = new List<Vector3>();
@@ -24,25 +28,35 @@ public class BeeMScript : MonoBehaviour {
 		BeePrefab = Resources.Load("Prefabs/BeeEnemy");
 		BeeBurstPrefab = Resources.Load("Prefabs/BeeBurst");
 		ScoreChangeSpritePrefab = Resources.Load("Prefabs/ScoreChangeSprite");
+		AngryBeePrefab = Resources.Load("Prefabs/SoldierBee");
+		AngryBeeSpawnPoint = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<Transform>().position;
 		for( int x = 0; x < 5; ++x)
 		{
 			SpawnPoints.Add(transform.GetChild(x).position);
 		}
 		//Checking Difficulty and setting amount of bees to be spawned
-		if (SVM_Script.gameDifficulty == "easy") {
+		if(SVM_Script.gameDifficulty == "easy")
+		{
 			numberOfBEES = 2;
 			//maxBeeValue = 1;
 			beeSpeed = 7.0f;
+			isExpert = false;
 		}
-		else if (SVM_Script.gameDifficulty == "advance") {
+		else if(SVM_Script.gameDifficulty == "advance")
+		{
 			numberOfBEES = 3;
 			//maxBeeValue = 2;
 			beeSpeed = 7.5f;
+			isExpert = false;
+			StartCoroutine(AngryBeeSpawner());
 		}
-		else if (SVM_Script.gameDifficulty == "expert") {
+		else if(SVM_Script.gameDifficulty == "expert")
+		{
 			numberOfBEES = 5;
 			//maxBeeValue = 3;
 			beeSpeed = 8f;
+			isExpert = true;
+			StartCoroutine(AngryBeeSpawner());
 		}
 	}
 
@@ -66,13 +80,15 @@ public class BeeMScript : MonoBehaviour {
 	/// </summary>
 	IEnumerator ReleaseTheBees()
 	{
-		Debug.Log ("Spawning " + numberOfBEES + " Bees");
+		GameObject tempBee;
+		int tI;
+		//Debug.Log ("Spawning " + numberOfBEES + " Bees");
 		for(int x = 0; x < numberOfBEES; x++)
 		{
 			//beeValue = Random.Range(1, maxBeeValue+1);
-			int tI = Random.Range(0,SpawnPoints.Count);
+			tI = Random.Range(0,SpawnPoints.Count);
 			//Vector3 shiftPos = new Vector3(0f, Random.Range (-2.5f,2.5f), 0f);
-			GameObject tempBee = GameObject.Instantiate(BeePrefab, SpawnPoints[tI], Quaternion.identity) as GameObject;
+			tempBee = GameObject.Instantiate(BeePrefab, SpawnPoints[tI], Quaternion.identity) as GameObject;
 			tempBee.GetComponent<Bee_Script>().InitialiseVariables(tempBall, beeSpeed, beeValue,BeeBurstPrefab,ScoreChangeSpritePrefab, Hive.transform.position, this);
 			//tempBee.GetComponent<Bee_Script>().value = tempValue;
 			beeList.Add(tempBee);
@@ -109,6 +125,22 @@ public class BeeMScript : MonoBehaviour {
 		}
 	}
 
+	IEnumerator AngryBeeSpawner()
+	{
+		GameObject tempAngryBee = null;
+		while(true)
+		{
+			if(!tempAngryBee)
+			{
+				tempAngryBee = GameObject.Instantiate(AngryBeePrefab, AngryBeeSpawnPoint, Quaternion.identity) as GameObject;
+				tempAngryBee.GetComponent<AngryBee_Script>().isExpert = isExpert;
+				tempAngryBee.GetComponent<AngryBee_Script>().scoreChangeSpritePos = transform.position;
+				tempAngryBee.GetComponent<AngryBee_Script>().ScoreChangeSpritePrefab = Resources.Load("Prefabs/ScoreChangeSprite");
+			}
+			yield return new WaitForSeconds(1f);
+		}
+	}
+
 	IEnumerator ClearListCoRoutine()
 	{
 		for(int x = 0; x < beeList.Count; x++)
@@ -116,9 +148,7 @@ public class BeeMScript : MonoBehaviour {
 			if(!beeList[x])
 				beeList.RemoveAt(x);
 			else
-			{
 				beeList[x].GetComponent<Bee_Script>().ClearTarget();
-			}
 			yield return null;
 		}
 		//beeList.Clear();

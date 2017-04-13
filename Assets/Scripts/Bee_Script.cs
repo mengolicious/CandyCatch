@@ -134,11 +134,8 @@ public class Bee_Script : MonoBehaviour {
 			//Debug.Log ("Lose some points you scrub");
 			isAttacking = false;
 			isGoingToHive = true;
-			if(transform.childCount > 0)
-			{
-				transform.GetChild(0).gameObject.SetActive(true);
-			}
 			answerBall = null;
+			transform.GetChild(0).gameObject.SetActive(true);
 		}
 	}
 

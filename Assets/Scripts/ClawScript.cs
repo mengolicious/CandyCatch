@@ -122,8 +122,11 @@ public class ClawScript : MonoBehaviour {
 			}
 			else if (hitAngryBee)
 			{
-				childObject.GetComponent<AngryBee_Script>().DestroySelf();
+				hitAngryBee = false;
+				childObject.GetComponent<AngryBee_Script>().SpawnScoreSprite();
 				//whatever else we need to call for this to work right
+				childObject.GetComponent<AngryBee_Script>().DestroySelf();
+				SM_Script.EditScore(-5);
 			}
 
 			this.transform.localPosition = new Vector3(0,-1.888f,-2.77f);
@@ -198,6 +201,8 @@ public class ClawScript : MonoBehaviour {
 			{
 				SoundManager_Script.Play_SFX("hit"); // this plays when the claw hits an object
 				hitAngryBee = true;
+				other.gameObject.GetComponent<AngryBee_Script>().isCollected = true;
+				other.transform.SetParent(this.transform);
 				childObject = other.gameObject;
 			}
 		}
