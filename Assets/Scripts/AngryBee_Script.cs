@@ -7,8 +7,8 @@ public class AngryBee_Script : MonoBehaviour
 	public bool isExpert;
 	public Vector3 scoreChangeSpritePos;
 	public Object ScoreChangeSpritePrefab;
-
-	public GameObject destroyLeftTrigger;
+	public Vector3 DirChangeLeft;
+	public Vector3 DirChangeRight;
 	void Start()
 	{
 		isCollected = false;
@@ -25,12 +25,12 @@ public class AngryBee_Script : MonoBehaviour
 			if(isExpert)
 			{
 				//Code for expert to be done to move the Angry Bee in a different manner to normal
-				if(transform.position.x < -10)
+				if(transform.position.x < DirChangeLeft.x)
 				{
 					dir = 1f;
 					transform.eulerAngles = new Vector3(0,0,0);
 				}
-				if(transform.position.x > 10)
+				if(transform.position.x > DirChangeRight.x)
 				{
 					dir = -1f;
 					transform.eulerAngles = new Vector3(0,180,0);
@@ -61,18 +61,4 @@ public class AngryBee_Script : MonoBehaviour
 	{
 		Destroy (this.gameObject);
 	}
-
-	public void OnTriggerEnter(Collider destroyTriggerLeft){
-		if (destroyTriggerLeft.CompareTag ("DestroyTriggerLeft")) {
-		
-			Debug.Log ("Trigger enter");
-		
-			Destroy(this.gameObject);
-		}
-
-	}
-
-
-
-
 }

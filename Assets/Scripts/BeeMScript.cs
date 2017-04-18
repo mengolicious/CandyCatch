@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class BeeMScript : MonoBehaviour {
+public class BeeMScript : MonoBehaviour
+{
 	private List<GameObject> beeList;
 	private int numberOfBEES;
 	private GameObject tempBall;
@@ -18,6 +19,8 @@ public class BeeMScript : MonoBehaviour {
 	private bool isExpert;
 	private Vector3 AngryBeeSpawnPoint;
 	private Object AngryBeePrefab;
+	private Vector3 DirChangeLeft;
+	private Vector3 DirChangeRight;
 	// Use this for initialization
 	void Start ()
 	{
@@ -34,6 +37,8 @@ public class BeeMScript : MonoBehaviour {
 		{
 			SpawnPoints.Add(transform.GetChild(x).position);
 		}
+		DirChangeLeft = transform.GetChild(5).position;
+		DirChangeRight = transform.GetChild(6).position;
 		//Checking Difficulty and setting amount of bees to be spawned
 		if(SVM_Script.gameDifficulty == "easy")
 		{
@@ -130,12 +135,16 @@ public class BeeMScript : MonoBehaviour {
 		GameObject tempAngryBee = null;
 		while(true)
 		{
+			if(!tempAngryBee)
+			{
 				tempAngryBee = GameObject.Instantiate(AngryBeePrefab, AngryBeeSpawnPoint, Quaternion.identity) as GameObject;
 				tempAngryBee.GetComponent<AngryBee_Script>().isExpert = isExpert;
 				tempAngryBee.GetComponent<AngryBee_Script>().scoreChangeSpritePos = transform.position;
 				tempAngryBee.GetComponent<AngryBee_Script>().ScoreChangeSpritePrefab = Resources.Load("Prefabs/ScoreChangeSprite");
-
-				yield return new WaitForSeconds(6.0f);
+				tempAngryBee.GetComponent<AngryBee_Script>().DirChangeLeft = DirChangeLeft;
+				tempAngryBee.GetComponent<AngryBee_Script>().DirChangeRight = DirChangeRight;
+			}
+			yield return new WaitForSeconds(1.0f);
 		}
 	}
 
