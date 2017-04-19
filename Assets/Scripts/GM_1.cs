@@ -15,6 +15,8 @@ public class GM_1 : MonoBehaviour {
 	public int currentAnswer;
 	public GameObject smokeSprite;
 	public Image smokeSpriteImageComponent;
+	public GameObject smokeSpriteSmol;
+	public Image smokeSpriteSmolImageComponent;
 	public GameObject smallQuestionDisplay;
 	public Image smallQuestionDisplayImage;
 	public GameObject bigQuestionDisplay;
@@ -66,10 +68,10 @@ public class GM_1 : MonoBehaviour {
 	public GameObject InstructionPanelBG;
 	public GameObject InstructionPanel1;
 
-	public float shooterSpeed;
+	//public float shooterSpeed;
 	public Animator anim;
 	public GameObject animM;
-
+	//public float animSpeed;
 
 
 
@@ -115,6 +117,7 @@ public class GM_1 : MonoBehaviour {
 		pauseMenu.SetActive(true);
 		bigQuestionBG.SetActive(false);
 		smokeSprite.SetActive(false);
+		smokeSpriteSmol.SetActive(false);
 		smallQuestionDisplay.SetActive(false);
 		if(SVM_Script.gameDifficulty == "expert")
 			nextDifficultyButton.SetActive(false);
@@ -134,6 +137,7 @@ public class GM_1 : MonoBehaviour {
 			//anim["ShooterAnime"].speed = shooterSpeed;
 
 			//animM.GetComponent<Animator>().speed = 0.1f;
+			//animSpeed = 0.2f;
 			animM.GetComponent<Animator>().SetFloat("speed",0.2f); 
 
 		//anim.SetFloat("ShooterAnime",0.5f);
@@ -144,14 +148,18 @@ public class GM_1 : MonoBehaviour {
 		{
 			//animM.GetComponent<Animator>().speed = 0.5f;
 			//shooterSpeed = 3.5f;	
+			//animSpeed = 0.3f;
 			animM.GetComponent<Animator>().SetFloat("speed",0.3f);
 		}
 		else if(SVM_Script.gameDifficulty == "expert")
 		{
 			//animM.GetComponent<Animator>().speed = 1.0f;
+			//animSpeed = 0.4f;
 			animM.GetComponent<Animator>().SetFloat("speed",0.4f);
 			//shooterSpeed= 5f;
 		}
+		//animM.GetComponent<Animator>().SetFloat("speed",0f);
+		//Debug.Log(animM.GetComponent<Animator>().GetFloat("speed"));
 	
 }
 
@@ -259,7 +267,7 @@ public class GM_1 : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
-		Debug.Log (animM.GetComponent<Animator>().speed);
+		//Debug.Log (animM.GetComponent<Animator>().speed);
 	}
 	
 
@@ -323,7 +331,7 @@ public class GM_1 : MonoBehaviour {
 	IEnumerator BigDisplayAnim()
 	{
 		yield return new WaitForSeconds(1.0f);
-
+		animM.GetComponent<Animator>().speed = 0.1f;
 		for(int x=0; x<20; x++)
 		{
 			bigQuestionBG.GetComponent<RectTransform>().localScale -= new Vector3 (0.03f, 0.03f, 0.03f);
@@ -337,10 +345,12 @@ public class GM_1 : MonoBehaviour {
 	IEnumerator SmokeSpriteAnim()
 	{
 		smokeSprite.SetActive(true);
-
+		smokeSpriteSmol.SetActive(true);
 		for(int x=1; x<8; x++)
 		{
-			smokeSpriteImageComponent.sprite = Resources.Load<Sprite>("Sprites/Smoke/Smoke"+x);
+			Sprite smokeOnTheWater = Resources.Load<Sprite>("Sprites/Smoke/Smoke"+x);
+			smokeSpriteImageComponent.sprite = smokeOnTheWater;
+			smokeSpriteSmolImageComponent.sprite = smokeOnTheWater;
 			yield return new WaitForSeconds(0.04f);
 			if(x==4)
 			{
@@ -350,6 +360,7 @@ public class GM_1 : MonoBehaviour {
 		}
 
 		smokeSprite.SetActive(false);
+		smokeSpriteSmol.SetActive(false);
 
 		smallQuestionDisplay.SetActive(true);
 		smallQuestionDisplayImage.sprite = currentQuestion;
@@ -402,9 +413,7 @@ public class GM_1 : MonoBehaviour {
 
 		Time.timeScale = 1;
 
-		animM.GetComponent<Animator>().speed = 0.1f;
-
-
+		//animM.GetComponent<Animator>().speed = 0.1f;
 	}
 
 	public void InstructionClose()
