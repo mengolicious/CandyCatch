@@ -73,6 +73,10 @@ public class GM_1 : MonoBehaviour {
 	public GameObject animM;
 	//public float animSpeed;
 
+	private List<Transform> BubbleSpawns;
+	private List<GameObject> BubbleList;
+	private bool SpawnBubbles;
+
 
 
 	
@@ -108,6 +112,8 @@ public class GM_1 : MonoBehaviour {
 		firstLayer = new Vector3(-7.32f,-2.65f,259.0f);
 		secondLayer = new Vector3(-6.07f,-4.07f,259.0f);
 		listPosition = new List<Vector3>();
+		BubbleSpawns = new List<Transform>();
+		BubbleList = new List<GameObject>();
 		/*
 		for(int x=0; x<8; x++){
 			listPosition.Add ( new Vector3(firstLayer.x+(2.2f*x), firstLayer.y, firstLayer.z));
@@ -138,11 +144,12 @@ public class GM_1 : MonoBehaviour {
 
 			//animM.GetComponent<Animator>().speed = 0.1f;
 			//animSpeed = 0.2f;
-			animM.GetComponent<Animator>().SetFloat("speed",0.2f); 
-
-		//anim.SetFloat("ShooterAnime",0.5f);
-		
-		
+			animM.GetComponent<Animator>().SetFloat("speed",0.2f);
+			SpawnBubbles = true;
+			for(int i =0; i <5; i++)
+			{
+				BubbleSpawns.Add(stageSpriteRendererBG.transform.GetChild(0));
+			}
 		}
 		else if(SVM_Script.gameDifficulty == "advance")
 		{
@@ -160,9 +167,19 @@ public class GM_1 : MonoBehaviour {
 		}
 		//animM.GetComponent<Animator>().SetFloat("speed",0f);
 		//Debug.Log(animM.GetComponent<Animator>().GetFloat("speed"));
-	
+		//if(SpawnBubbles)
+		//	StartCoroutine(BubbleSpawner());
 }
-
+	IEnumerator BubbleSpawner()
+	{
+		while(true)
+		{
+			if(BubbleList.Count < 5)
+			{
+				//do the bubble spawning code here since it's almost 4
+			}
+		}
+	}
 
 	public void DestroyInstatiatedBalls(string tag)
 	{
