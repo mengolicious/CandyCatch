@@ -33,6 +33,9 @@ public class BeeMScript : MonoBehaviour
 		ScoreChangeSpritePrefab = Resources.Load("Prefabs/ScoreChangeSprite");
 		AngryBeePrefab = Resources.Load("Prefabs/SoldierBee");
 		AngryBeeSpawnPoint = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<Transform>().position;
+
+		Hive = GameObject.FindGameObjectWithTag("BeeHive"); //So we can move the BeeHive and not worry about it's position-Need to instantiate the Background with BeeHive
+
 		for( int x = 0; x < 5; ++x)
 		{
 			SpawnPoints.Add(transform.GetChild(x).position);

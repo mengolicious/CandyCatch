@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GM_1.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Bee_Script.cs">
     <Files>
-      <File FileName="Assets\Scripts\GM_1.cs" Line="179" Column="45" />
+      <File FileName="Assets\Scripts\Bee_Script.cs" Line="37" Column="16" />
+      <File FileName="Assets\Scripts\BeeMScript.cs" Line="63" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

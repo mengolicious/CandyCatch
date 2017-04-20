@@ -7,6 +7,7 @@ public class GM_1 : MonoBehaviour {
 	
 
 	public SoundManagerScript SoundManager_Script;
+	public BeeMScript BeeM_Script; 	//this script is attached manually
 	public int numBalls = 5;
 	public Object balls;
 	public GunScript gunScript;
@@ -21,6 +22,13 @@ public class GM_1 : MonoBehaviour {
 	public Image smallQuestionDisplayImage;
 	public GameObject bigQuestionDisplay;
 	public GameObject bigQuestionBG;
+
+	//END of BG variables for instatiating BG and it's components
+	public GameObject BG;
+	public Object BG_Easy;
+	public Object BG_Advance;
+	public Object BG_Expert;
+	//END of BG variables for instatiating BG and it's components
 
 	public ScoreManagerScript SM_Script;
 	//public float bigQuestionBGTime = 5f;
@@ -85,6 +93,8 @@ public class GM_1 : MonoBehaviour {
 	// Use this for initialization
 	void Start()
 	{
+
+
 		SoundManager_Script = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript> ();
 		Time.timeScale = 0;	//Pause time at the start
 		GetBG();			// Get the appropriate BG for the Game
@@ -139,6 +149,9 @@ public class GM_1 : MonoBehaviour {
 
 		if(SVM_Script.gameDifficulty == "easy")
 		{
+			BG = Instantiate(BG_Easy, new Vector3(0,-1.6f,262), Quaternion.identity ) as GameObject;
+			BG.transform.localScale = new Vector3(1.12f, 1.12f,1);
+
 			//shooterSpeed = 0.5f;
 			//anim["ShooterAnime"].speed = shooterSpeed;
 
@@ -153,6 +166,10 @@ public class GM_1 : MonoBehaviour {
 		}
 		else if(SVM_Script.gameDifficulty == "advance")
 		{
+
+			BG = Instantiate(BG_Advance, new Vector3(0,-1.6f,262), Quaternion.identity ) as GameObject;
+			BG.transform.localScale = new Vector3(1.12f, 1.12f,1);
+
 			//animM.GetComponent<Animator>().speed = 0.5f;
 			//shooterSpeed = 3.5f;	
 			//animSpeed = 0.3f;
@@ -160,6 +177,10 @@ public class GM_1 : MonoBehaviour {
 		}
 		else if(SVM_Script.gameDifficulty == "expert")
 		{
+
+			BG = Instantiate(BG_Expert, new Vector3(0,-1.6f,262), Quaternion.identity ) as GameObject;
+			BG.transform.localScale = new Vector3(1.12f, 1.12f,1);
+
 			//animM.GetComponent<Animator>().speed = 1.0f;
 			//animSpeed = 0.4f;
 			animM.GetComponent<Animator>().SetFloat("speed",0.4f);
@@ -243,7 +264,7 @@ public class GM_1 : MonoBehaviour {
 	{
 		if(SVM_Script.gameDifficulty == "easy")
 		{
-			stageSpriteRendererBG.sprite = equationEasy;
+			//stageSpriteRendererBG.sprite = equationEasy;
 			targetScoreImage.sprite = easyTargetScore;
 			SM_Script.targetScore = SVM_Script.targetScore;
 
@@ -252,7 +273,7 @@ public class GM_1 : MonoBehaviour {
 		}
 		else if(SVM_Script.gameDifficulty == "advance")
 		{
-			stageSpriteRendererBG.sprite = equationAdvance;
+			//stageSpriteRendererBG.sprite = equationAdvance;
 			targetScoreImage.sprite = advanceTargetScore;
 			SM_Script.targetScore = SVM_Script.targetScore;
 
@@ -261,7 +282,7 @@ public class GM_1 : MonoBehaviour {
 		}
 		else if(SVM_Script.gameDifficulty == "expert")
 		{
-			stageSpriteRendererBG.sprite = equationExpert;
+			//stageSpriteRendererBG.sprite = equationExpert;
 			targetScoreImage.sprite = expertTargetScore;
 			SM_Script.targetScore = SVM_Script.targetScore;
 
