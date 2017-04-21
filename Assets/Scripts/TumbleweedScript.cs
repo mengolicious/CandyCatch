@@ -9,6 +9,8 @@ public class TumbleweedScript : MonoBehaviour {
 	public Object twigParticlePrefab;
 	public Object scoreChangePrefab;
 	public int tempLifeNum;
+	public int lifeTest;
+	public int tempValue;
 	// Use this for initialization
 	void Start () {
 
@@ -16,11 +18,16 @@ public class TumbleweedScript : MonoBehaviour {
 		SM_Script = GameObject.FindGameObjectWithTag ("SoundManager").GetComponent<SoundManagerScript>();
 
 		tempLifeNum = 0;
+		//lifeTest = 0;
+		//tempValue = 0;
 
 		
+
+	}
+
+	public void StartRolling(){
 		StartCoroutine (Move ());
 	}
-	
 	// Update is called once per frame
 	void Update () {
 	
@@ -54,13 +61,13 @@ public class TumbleweedScript : MonoBehaviour {
 			GameObject.Instantiate(twigParticlePrefab, this.transform.position, this.transform.rotation);
 		
 			tempLifeNum++;
-			if (tempLifeNum < 9) {
+			if (tempLifeNum < lifeTest) {
 				
-				transform.localScale -= new Vector3 (0.04f, 0.04f, 0.04f);
+				transform.localScale -= new Vector3 (0.06f, 0.06f, 0.06f);
 			} else {
 				GameObject tempScoreParticle = GameObject.Instantiate(scoreChangePrefab, this.transform.position, Quaternion.identity) as GameObject;
-				tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(1, true, true);
-				ScoreManager_Script.EditScore(1);
+				tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(tempValue, true, true);
+				ScoreManager_Script.EditScore(tempValue);
 				Destroy(this.gameObject);
 			}
 		}
