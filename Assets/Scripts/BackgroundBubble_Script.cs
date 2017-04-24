@@ -17,7 +17,7 @@ public class BackgroundBubble_Script : MonoBehaviour
 		GameManager = GameObject.FindGameObjectWithTag("GM").GetComponent<GM_1>();
 	}
 
-	public void InitialiseVariables(Vector3 position, float intendedScale, int spawnIndex, int listIndex)
+	public void InitialiseVariables(Vector3 position, float intendedScale, int spawnIndex)
 	{
 		//transform.position = position;
 		targetScale = intendedScale;
@@ -58,7 +58,7 @@ public class BackgroundBubble_Script : MonoBehaviour
 
 	IEnumerator SelfDestroy()
 	{
-		float waitTime = 0.4f;
+		float waitTime = 0.3f;
 		while(true)
 		{
 			waitTime -= 0.03f;
