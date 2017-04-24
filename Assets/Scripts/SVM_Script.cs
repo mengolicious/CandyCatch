@@ -39,12 +39,6 @@ public class SVM_Script : MonoBehaviour {
 		else if(Instance != this){
 			Destroy (gameObject);
 		}
-
-
-	}
-		
-	void Start() {
-
 	}
 
 	public void InitializeSavedVariables(){
@@ -84,13 +78,5 @@ public class SVM_Script : MonoBehaviour {
 		} else {
 			InstructionSeen = false;
 		}
-
 	}
-
-
-
-
-		
-
-
 }

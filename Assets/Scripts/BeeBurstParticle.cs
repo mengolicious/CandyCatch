@@ -4,16 +4,12 @@ using System.Collections;
 public class BeeBurstParticle : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		float zRot = Random.Range(-90f, 90f);
 		//float yRot = Random.Range(-90f, 90f);
 		this.transform.eulerAngles = new Vector3(0f, 0f, zRot);
 		Destroy(gameObject, 0.3f);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
 	}
 
 	/*IEnumerator Animate()

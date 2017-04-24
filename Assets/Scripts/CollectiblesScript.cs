@@ -15,12 +15,6 @@ public class CollectiblesScript : MonoBehaviour {
 
 		StartCoroutine (CollectibleAnim());
 	}
-	
-	// Update is called once per frame
-	void Update()
-	{
-	
-	}
 
 	IEnumerator CollectibleAnim()
 	{

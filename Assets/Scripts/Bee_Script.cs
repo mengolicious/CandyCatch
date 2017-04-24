@@ -23,10 +23,6 @@ public class Bee_Script : MonoBehaviour {
 	private Vector3 BeeHivePos;
 	private Vector3 MoveDir;
 	private BeeMScript BeeM;
-	void Awake()
-	{
-
-	}
 	// Use this for initialization
 	void Start ()
 	{

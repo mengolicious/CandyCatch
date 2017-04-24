@@ -8,11 +8,6 @@ public class CloudScript : MonoBehaviour {
 	
 		StartCoroutine (Move ());
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	IEnumerator Move(){
 		while (true) {

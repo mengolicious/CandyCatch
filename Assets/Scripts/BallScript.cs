@@ -18,12 +18,6 @@ public class BallScript : MonoBehaviour {
 		scoreChangeSpritePos = GameObject.FindGameObjectWithTag("BeeM").GetComponent<Transform>().position;
 		scoreUpParticle = Resources.Load("Prefabs/ScoreChangeSprite");
 	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-
-	}
 
 	/*public void DestroyBallRuss ()
 	{

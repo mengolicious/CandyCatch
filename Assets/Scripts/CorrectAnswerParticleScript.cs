@@ -8,13 +8,6 @@ public class CorrectAnswerParticleScript : MonoBehaviour {
 	{
 		Invoke ("DestroyThisObject", 2.0f);
 	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
-
 	public void DestroyThisObject()
 	{
 		Destroy (this.gameObject);

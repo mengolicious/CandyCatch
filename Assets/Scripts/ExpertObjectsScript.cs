@@ -40,11 +40,6 @@ public class ExpertObjectsScript : MonoBehaviour {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-	
 	void InitializeObjects(){
 		
 		tumbleweedPrefab = Resources.Load<Object> ("Prefabs/BG/ExpertObjects/Tumbleweed");

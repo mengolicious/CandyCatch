@@ -48,9 +48,4 @@ public class CameraScript : MonoBehaviour {
 			cameraComponent.rect = rect;
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

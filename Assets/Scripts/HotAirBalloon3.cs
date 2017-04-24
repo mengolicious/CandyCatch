@@ -39,18 +39,6 @@ public class HotAirBalloon3 : MonoBehaviour {
 		StartCoroutine (MoveBalloon ());
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-		
-		
-
-
-		
-		
-		
-	}
 
 	IEnumerator MoveBalloon(){
 

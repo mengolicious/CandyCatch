@@ -28,10 +28,6 @@ public class TumbleweedScript : MonoBehaviour {
 	public void StartRolling(){
 		StartCoroutine (Move ());
 	}
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	IEnumerator Move(){
 		while (true) {

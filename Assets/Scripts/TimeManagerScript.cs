@@ -72,11 +72,6 @@ public class TimeManagerScript : MonoBehaviour {
 		StartCoroutine (UpdateTime ());
 
 	}
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
 
 	public void InitializeTime(){
 		timeStarted = Time.time;

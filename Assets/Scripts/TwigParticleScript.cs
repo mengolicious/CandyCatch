@@ -8,11 +8,6 @@ public class TwigParticleScript : MonoBehaviour {
 		Invoke ("DestroyThisParticle", 1.0f);
 	
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	void DestroyThisParticle(){
 		Destroy (this.gameObject);

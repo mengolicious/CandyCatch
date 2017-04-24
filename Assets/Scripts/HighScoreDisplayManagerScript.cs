@@ -16,18 +16,6 @@ public class HighScoreDisplayManagerScript : MonoBehaviour {
 	public Text top2Expert;
 	public Text top3Expert;
 
-	// Use this for initialization
-	void Start ()
-	{
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-
-	}
-
 	public void QueryHighScore()
 	{
 		//top1Easy.text = "test";

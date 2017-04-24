@@ -311,12 +311,6 @@ public class GM_1 : MonoBehaviour
 		z= UnityEngine.Random.Range(0,0);
 		return new Vector3(x, y, z);
 	}
-	
-	// Update is called once per frame
-	void Update()
-	{
-		//Debug.Log (animM.GetComponent<Animator>().speed);
-	}
 
 	public void BackToMenu()
 	{

@@ -128,12 +128,6 @@ public class ScoreManagerScript : MonoBehaviour {
 
 		//loseScreen.SetActive (false);
 	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-
-	}
 
 	IEnumerator CollectibleSpawn(){
 

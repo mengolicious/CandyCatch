@@ -42,15 +42,4 @@ public class ScoreModifierSprite : MonoBehaviour {
 			yield return new WaitForSeconds(0.05f);
 		}
 	}
-	// Use this for initialization
-	void Start ()
-	{
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
 }
