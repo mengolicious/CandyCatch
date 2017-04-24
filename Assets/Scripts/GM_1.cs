@@ -83,12 +83,9 @@ public class GM_1 : MonoBehaviour {
 
 	private List<Transform> BubbleSpawns;
 	private List<GameObject> BubbleList;
+	private List<int> tempIndexList;
 	private bool SpawnBubbles;
-
-
-
-	
-
+	private Object bubblePrefab;
 
 	// Use this for initialization
 	void Start()
@@ -135,8 +132,6 @@ public class GM_1 : MonoBehaviour {
 		smokeSprite.SetActive(false);
 		smokeSpriteSmol.SetActive(false);
 		smallQuestionDisplay.SetActive(false);
-		if(SVM_Script.gameDifficulty == "expert")
-			nextDifficultyButton.SetActive(false);
 		if(!SVM_Script.InstructionSeen)
 		{
 			pauseMenu.SetActive(false);
@@ -144,8 +139,6 @@ public class GM_1 : MonoBehaviour {
 			InstructionPanel1.SetActive(true);
 		}
 		SpawnBalls();
-
-
 
 		if(SVM_Script.gameDifficulty == "easy")
 		{
@@ -159,9 +152,11 @@ public class GM_1 : MonoBehaviour {
 			//animSpeed = 0.2f;
 			animM.GetComponent<Animator>().SetFloat("speed",0.2f);
 			SpawnBubbles = true;
+			bubblePrefab = Resources.Load("Prefabs/Bubble");
+			tempIndexList = new List<int>();
 			for(int i =0; i <5; i++)
 			{
-				BubbleSpawns.Add(stageSpriteRendererBG.transform.GetChild(0));
+				BubbleSpawns.Add(BG.transform.GetChild(i));
 			}
 		}
 		else if(SVM_Script.gameDifficulty == "advance")
@@ -180,7 +175,7 @@ public class GM_1 : MonoBehaviour {
 
 			BG = Instantiate(BG_Expert, new Vector3(0,-1.6f,262), Quaternion.identity ) as GameObject;
 			BG.transform.localScale = new Vector3(1.12f, 1.12f,1);
-
+			nextDifficultyButton.SetActive(false);
 			//animM.GetComponent<Animator>().speed = 1.0f;
 			//animSpeed = 0.4f;
 			animM.GetComponent<Animator>().SetFloat("speed",0.4f);
@@ -188,18 +183,36 @@ public class GM_1 : MonoBehaviour {
 		}
 		//animM.GetComponent<Animator>().SetFloat("speed",0f);
 		//Debug.Log(animM.GetComponent<Animator>().GetFloat("speed"));
-		//if(SpawnBubbles)
-		//	StartCoroutine(BubbleSpawner());
+		if(SpawnBubbles)
+			StartCoroutine(BubbleSpawner());
 }
 	IEnumerator BubbleSpawner()
 	{
+		for(int i =0; i < BubbleSpawns.Count; i++)
+		{
+			tempIndexList.Add(i);
+		}
+		int x;
+		GameObject tempBubble;
 		while(true)
 		{
+			x = Random.Range(0,tempIndexList.Count);
 			if(BubbleList.Count < 5)
 			{
 				//do the bubble spawning code here since it's almost 4
+				tempBubble = Instantiate(bubblePrefab, BubbleSpawns[tempIndexList[x]].position, Quaternion.identity) as GameObject;
+				BubbleList.Add(tempBubble);
+				tempBubble.GetComponent<BackgroundBubble_Script>().InitialiseVariables(BubbleSpawns[tempIndexList[x]].position,BubbleSpawns[tempIndexList[x]].localScale.x, tempIndexList[x], BubbleList.Count-1);
+				tempIndexList.RemoveAt(x);
 			}
+			yield return new WaitForSeconds(1.5f);
 		}
+	}
+
+	public void BubbleDestroyed(int spawnIndex, GameObject bubble)
+	{
+		tempIndexList.Add(spawnIndex);
+		BubbleList.Remove(bubble);
 	}
 
 	public void DestroyInstatiatedBalls(string tag)
