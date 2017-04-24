@@ -3,8 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class GM_1 : MonoBehaviour {
-	
+public class GM_1 : MonoBehaviour
+{
 
 	public SoundManagerScript SoundManager_Script;
 	public BeeMScript BeeM_Script; 	//this script is attached manually
@@ -47,8 +47,7 @@ public class GM_1 : MonoBehaviour {
 	public bool gameHasStarted;
 	public bool gameIsPaused;
 	public bool isShooting;
-
-
+	
 	public GameObject ballPrefabs;
 	/*public Material matBall0;
 	public Material matBall1;
@@ -90,8 +89,6 @@ public class GM_1 : MonoBehaviour {
 	// Use this for initialization
 	void Start()
 	{
-
-
 		SoundManager_Script = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript> ();
 		Time.timeScale = 0;	//Pause time at the start
 		GetBG();			// Get the appropriate BG for the Game
@@ -203,6 +200,8 @@ public class GM_1 : MonoBehaviour {
 				tempBubble = Instantiate(bubblePrefab, BubbleSpawns[tempIndexList[x]].position, Quaternion.identity) as GameObject;
 				BubbleList.Add(tempBubble);
 				tempBubble.GetComponent<BackgroundBubble_Script>().InitialiseVariables(BubbleSpawns[tempIndexList[x]].position,BubbleSpawns[tempIndexList[x]].localScale.x, tempIndexList[x], BubbleList.Count-1);
+				//tempBubble.GetComponent<SpriteRenderer>().color;
+
 				tempIndexList.RemoveAt(x);
 			}
 			yield return new WaitForSeconds(1.5f);
@@ -304,8 +303,6 @@ public class GM_1 : MonoBehaviour {
 		}
 	}
 
-	
-	
 	Vector3 RandomPos()
 	{
 		int  x,y,z;
@@ -320,23 +317,24 @@ public class GM_1 : MonoBehaviour {
 	{
 		//Debug.Log (animM.GetComponent<Animator>().speed);
 	}
-	
-
 
 	public void BackToMenu()
 	{
 		SoundManager_Script.Play_SFX("MenuNavPop");
+		SoundManager_Script.Stop_BG_SFX();
 		Application.LoadLevel("MainScene");
 	}
 
 	public void Restart()
 	{
 		SoundManager_Script.Play_SFX("MenuNavPop");
+		SoundManager_Script.Stop_BG_SFX();
 		Application.LoadLevel("ShapesLV1");
 	}
 
 	public void NextDiff()
 	{
+		SoundManager_Script.Stop_BG_SFX();
 		if(SVM_Script.gameDifficulty == "easy")
 		{
 			SVM_Script.gameDifficulty = "advance";

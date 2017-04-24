@@ -8,6 +8,7 @@ public class BackgroundBubble_Script : MonoBehaviour
 	private float targetScale;
 	private bool Poppable;
 	private int SpawnIndex;
+
 	void Start()
 	{
 		anim = GetComponent<Animator>();
@@ -30,15 +31,15 @@ public class BackgroundBubble_Script : MonoBehaviour
 	{
 		while(!Poppable)
 		{
-			if(transform.localScale.x != targetScale)
+			if(transform.localScale.x < targetScale)
 			{
-				transform.localScale += Vector3.one * 0.1f;
+				transform.localScale += Vector3.one * 0.025f;
 			}
 			else
 			{
 				Poppable = true;
 			}
-			yield return new WaitForSeconds(0.3f);
+			yield return new WaitForSeconds(0.03f);
 		}
 	}
 
@@ -57,7 +58,7 @@ public class BackgroundBubble_Script : MonoBehaviour
 
 	IEnumerator SelfDestroy()
 	{
-		float waitTime = 0.6f;
+		float waitTime = 0.4f;
 		while(true)
 		{
 			waitTime -= 0.03f;
