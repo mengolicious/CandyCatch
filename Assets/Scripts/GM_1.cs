@@ -213,7 +213,7 @@ public class GM_1 : MonoBehaviour
 				//do the bubble spawning code here since it's almost 4
 				tempBubble = Instantiate(bubblePrefab, BubbleSpawns[tempIndexList[x]].position, Quaternion.identity) as GameObject;
 				BubbleList.Add(tempBubble);
-				tempBubble.GetComponent<BackgroundBubble_Script>().InitialiseVariables(BubbleSpawns[tempIndexList[x]].position,BubbleSpawns[tempIndexList[x]].localScale.x, tempIndexList[x]);
+				tempBubble.GetComponent<BackgroundBubble_Script>().InitialiseVariables(BubbleSpawns[tempIndexList[x]].position,BubbleSpawns[tempIndexList[x]].localScale.x, tempIndexList[x], Random.Range(0.1f,1f));
 				if(Color.TryParseHexString(colourList[tempI], out tempColour))
 				{
 					tempBubble.GetComponent<SpriteRenderer>().color = tempColour;
