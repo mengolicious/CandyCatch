@@ -282,7 +282,7 @@ public class GM_1 : MonoBehaviour
 			
 			ballPrefabs.GetComponent<BallScript>().points = x;
 			ballPrefabs.GetComponent<BallScript>().scoreValue = 5;
-			ballPrefabs.transform.localEulerAngles = new Vector3(270,196,0);
+			ballPrefabs.transform.localEulerAngles = new Vector3(270,0,0);
 			ballPrefabs.GetComponent<Renderer>().material = matBallList[x];
 			yield return null;
 		}
