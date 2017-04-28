@@ -49,6 +49,7 @@ public class BallScript : MonoBehaviour {
 
 	public void DestroyInstantiate()
 	{
+
 		//yield return new WaitForSeconds(1.0f);
 		Destroy(this.gameObject);
 	}
