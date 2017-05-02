@@ -63,7 +63,7 @@ public class BackgroundBubble_Script : MonoBehaviour
 		{
 			if(Input.GetMouseButtonDown(0))
 			{
-				anim.Play("BubbleBurst");
+				anim.Play("Burst");
 				Poppable = false;
 				StartCoroutine(SelfDestroy());
 				//JUST DO IT, DON'T LET YOUR DREAMS JUST BE DREAMS - SHIA LABEOUF
