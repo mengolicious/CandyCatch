@@ -63,6 +63,7 @@ public class BackgroundBubble_Script : MonoBehaviour
 		{
 			if(Input.GetMouseButtonDown(0))
 			{
+				transform.GetChild(0).gameObject.SetActive(false);
 				anim.Play("Burst");
 				Poppable = false;
 				StartCoroutine(SelfDestroy());

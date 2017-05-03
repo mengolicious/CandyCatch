@@ -55,15 +55,16 @@ public class TumbleweedScript : MonoBehaviour {
 		{
 			SM_Script.Play_SFX("twigsnap");
 			GameObject.Instantiate(twigParticlePrefab, this.transform.position, this.transform.rotation);
-		
 			tempLifeNum++;
 			if (tempLifeNum < lifeTest) {
 				
 				transform.localScale -= new Vector3 (0.06f, 0.06f, 0.06f);
 			} else {
-				GameObject tempScoreParticle = GameObject.Instantiate(scoreChangePrefab, this.transform.position, Quaternion.identity) as GameObject;
-				tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(tempValue, true, true);
-				ScoreManager_Script.EditScore(tempValue);
+				if(ScoreManager_Script.EditScore(tempValue, ScoreManagerScript.ScoreSource.BackGroundObj))
+				{
+					GameObject tempScoreParticle = GameObject.Instantiate(scoreChangePrefab, this.transform.position, Quaternion.identity) as GameObject;
+					tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(tempValue, true, true);
+				}
 				Destroy(this.gameObject);
 			}
 		}

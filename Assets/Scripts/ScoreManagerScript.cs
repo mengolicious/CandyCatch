@@ -11,7 +11,7 @@ public class ScoreManagerScript : MonoBehaviour {
 	public int pointToAdd;
 	public int tempNum;
 	public int lives;
-
+	private int BGObjScoreRemain;
 
 	public Object collectiblePrefab;
 	public GameObject tempCollectible;
@@ -79,7 +79,15 @@ public class ScoreManagerScript : MonoBehaviour {
 
 	public GameObject insertScore;
 	public int tempHighScoreIndex;
-
+	public enum ScoreSource
+	{
+		BackGroundObj,
+		Colllectible,
+		Ball,
+		Bee,
+		AngryBee,
+		QueenBee
+	}
 
 	
 	// Use this for initialization
@@ -90,7 +98,7 @@ public class ScoreManagerScript : MonoBehaviour {
 
 		//testing
 		targetScore = SVM_Script.targetScore;
-
+		BGObjScoreRemain = (int)(targetScore * 0.2f);
 		tempHighScoreIndex = 0;
 
 		score = 0;
@@ -135,18 +143,24 @@ public class ScoreManagerScript : MonoBehaviour {
 			if(lives <2)
 			{
 				tempCollectible = Instantiate(collectiblePrefab, this.gameObject.transform.localPosition, Quaternion.identity) as GameObject;
-
 			}
 			yield return new WaitForSeconds(10f);
 		}
 	}
 
-	public void EditScore(int changeScore)
+	public bool EditScore(int changeScore, ScoreSource srcType)//tag of the object that changed the score, to 
 	{
+		if(srcType == ScoreSource.BackGroundObj)
+		{
+			if(BGObjScoreRemain <=0)
+				return false;
+			BGObjScoreRemain -= changeScore;
+		}
 		score += changeScore;
 		if(score < 0)
 			score = 0;
 		DisplayScore(scoreNum1, scoreNum2, score);
+		return true;
 	}
 
 	public void DisplayScore(GameObject num1, GameObject num2, int tempChangeValue)

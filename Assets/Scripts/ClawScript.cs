@@ -126,7 +126,7 @@ public class ClawScript : MonoBehaviour {
 				childObject.GetComponent<AngryBee_Script>().SpawnScoreSprite();
 				//whatever else we need to call for this to work right
 				childObject.GetComponent<AngryBee_Script>().DestroySelf();
-				SM_Script.EditScore(-5);
+				SM_Script.EditScore(-5, ScoreManagerScript.ScoreSource.AngryBee);
 			}
 
 			this.transform.localPosition = new Vector3(0,-1.888f,-2.77f);
