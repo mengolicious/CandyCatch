@@ -103,12 +103,12 @@ public class Bee_Script : MonoBehaviour {
 		Kill();
 	}
 	/// <summary>
-	/// Raises the mouse over event.
+	/// Raises the mouse down event.
 	/// </summary>
-	public void OnMouseOver()
+	public void OnMouseDown()
 	{
-		if(Input.GetMouseButtonDown(0))
-		{
+		//if(Input.GetMouseButtonDown(0))
+		//{
 			SM_Script.Play_SFX("splat");
 			if(ScoreManager_Script.EditScore(value, ScoreManagerScript.ScoreSource.Bee))
 			{
@@ -117,7 +117,7 @@ public class Bee_Script : MonoBehaviour {
 				tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, true, true);
 			}
 			Kill();
-		}
+		//}
 	}
 	/// <summary>
 	/// Raises the trigger enter event.

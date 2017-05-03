@@ -42,6 +42,11 @@ public class GM : MonoBehaviour {
 		SoundManager_Script.Play_BG_loop("bg1");
 	}
 
+	void OnMouseDown()
+	{
+		Debug.Log (Input.mousePosition);
+	}
+
 	public void RateOurAppButton()
 	{
 		#if UNITY_ANDROID
