@@ -153,7 +153,7 @@ public class GM_1 : MonoBehaviour
 			bubblePrefab = Resources.Load("Prefabs/Bubble");
 			tempIndexList = new List<int>();
 			colourList = new List<string>();
-			for(int i =0; i <5; i++)
+			for(int i =0; i <6; i++)
 			{
 				BubbleSpawns.Add(BG.transform.GetChild(i));
 			}
@@ -208,12 +208,12 @@ public class GM_1 : MonoBehaviour
 		{
 			x = Random.Range(0,tempIndexList.Count);
 			tempI = Random.Range(0, colourList.Count);
-			if(BubbleList.Count < 5)
+			if(BubbleList.Count < 6)
 			{
 				//do the bubble spawning code here since it's almost 4
 				tempBubble = Instantiate(bubblePrefab, BubbleSpawns[tempIndexList[x]].position, Quaternion.identity) as GameObject;
 				BubbleList.Add(tempBubble);
-				tempBubble.GetComponent<BackgroundBubble_Script>().InitialiseVariables(BubbleSpawns[tempIndexList[x]].position,BubbleSpawns[tempIndexList[x]].localScale.x, tempIndexList[x], Random.Range(0.1f,1f));
+				tempBubble.GetComponent<BackgroundBubble_Script>().InitialiseVariables(BubbleSpawns[tempIndexList[x]].position,BubbleSpawns[tempIndexList[x]].localScale.x, tempIndexList[x], Random.Range(0.1f,0.6f));
 				if(Color.TryParseHexString(colourList[tempI], out tempColour))
 				{
 					tempBubble.GetComponent<SpriteRenderer>().color = tempColour;
