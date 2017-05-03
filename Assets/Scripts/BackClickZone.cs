@@ -13,7 +13,7 @@ public class BackClickZone : MonoBehaviour {
 		HudRipple = Resources.Load("Prefabs/HudRipple");
 		for(int i =0; i < 9; i++)
 		{
-			HudRippleFrames.Add(Resources.Load<Sprite>("Sprites/Ripple/" + i));
+			HudRippleFrames.Add(Resources.Load<Sprite>("Sprites/Ripple/ripple" + i));
 		}
 		HudRippleFrames.Add(Resources.Load<Sprite>("Sprites/Transparent 1x1"));
 	}
