@@ -10,13 +10,18 @@ public class BackgroundBubble_Script : MonoBehaviour
 	private int SpawnIndex;
 	[SerializeField]
 	private float bobSpeed;
+	private ScoreManagerScript SM;
+	private Object ScoreModifierPrefab;
 
 	void Start()
 	{
 		anim = GetComponent<Animator>();
+
 		Poppable = false;
 		transform.localScale = Vector3.zero;
 		GameManager = GameObject.FindGameObjectWithTag("GM").GetComponent<GM_1>();
+		SM = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManagerScript>();
+		ScoreModifierPrefab = Resources.Load("Prefabs/ScoreChangeSprite");
 	}
 
 	public void InitialiseVariables(Vector3 position, float intendedScale, int spawnIndex, float a_bobSpeed)
@@ -66,6 +71,11 @@ public class BackgroundBubble_Script : MonoBehaviour
 				transform.GetChild(0).gameObject.SetActive(false);
 				anim.Play("Burst");
 				Poppable = false;
+				if(SM.EditScore(1, ScoreManagerScript.ScoreSource.BackGroundObj))
+				{
+					GameObject scoreSprite = Instantiate(ScoreModifierPrefab, transform.position, Quaternion.identity) as GameObject;
+					scoreSprite.GetComponent<ScoreModifierSprite>().SetNumber(1, true, true);
+				}
 				StartCoroutine(SelfDestroy());
 				//JUST DO IT, DON'T LET YOUR DREAMS JUST BE DREAMS - SHIA LABEOUF
 			}
