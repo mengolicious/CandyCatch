@@ -18,7 +18,7 @@ public class HudRipple_Script : MonoBehaviour
 		for(int i =0; i < RippleFrames.Count; i++)
 		{
 			image.sprite = RippleFrames[i];
-			yield return new WaitForSeconds(0.03f);
+			yield return new WaitForSeconds(0.04f);
 		}
 		Destroy(gameObject);
 	}
