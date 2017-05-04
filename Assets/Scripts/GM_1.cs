@@ -99,10 +99,7 @@ public class GM_1 : MonoBehaviour
 
 		tempX = -8.2f;
 		matBallList = new List<Material>();
-		for(int i = 0; i < 10; i++)
-		{
-			matBallList.Add(Resources.Load<Material>("Materials/Ball_MAT"+i));
-		}
+
 		/*matBallList.Add (matBall0);
 		matBallList.Add (matBall1);
 		matBallList.Add (matBall2);
@@ -136,7 +133,6 @@ public class GM_1 : MonoBehaviour
 			InstructionPanelBG.SetActive(true);
 			InstructionPanel1.SetActive(true);
 		}
-		SpawnBalls();
 
 		if(SVM_Script.gameDifficulty == "easy")
 		{
@@ -166,6 +162,8 @@ public class GM_1 : MonoBehaviour
 			colourList.Add("7f64ac");
 			colourList.Add("ee3d3b");
 			colourList.Add("89d2d7");
+
+			SetMaterials("Set 1"); //setting materials of Balls for easy
 		}
 		else if(SVM_Script.gameDifficulty == "advance")
 		{
@@ -177,6 +175,8 @@ public class GM_1 : MonoBehaviour
 			//shooterSpeed = 3.5f;	
 			//animSpeed = 0.3f;
 			animM.GetComponent<Animator>().SetFloat("speed",0.3f);
+
+			SetMaterials("Set 2"); //setting materials of Balls for advance
 		}
 		else if(SVM_Script.gameDifficulty == "expert")
 		{
@@ -188,12 +188,30 @@ public class GM_1 : MonoBehaviour
 			//animSpeed = 0.4f;
 			animM.GetComponent<Animator>().SetFloat("speed",0.4f);
 			//shooterSpeed= 5f;
+
+			SetMaterials("Set 3"); //setting materials of Balls for expert
 		}
+
+
+
 		//animM.GetComponent<Animator>().SetFloat("speed",0f);
 		//Debug.Log(animM.GetComponent<Animator>().GetFloat("speed"));
+		SpawnBalls();
 		if(SpawnBubbles)
 			StartCoroutine(BubbleSpawner());
 }
+
+
+	public void SetMaterials(string tempSet){
+
+		for(int i = 0; i < 10; i++)
+		{
+			
+			matBallList.Add(Resources.Load<Material>("Materials/"+tempSet+"/Ball_MAT"+i));
+		}
+	}
+
+
 	IEnumerator BubbleSpawner()
 	{
 		for(int i =0; i < BubbleSpawns.Count; i++)
