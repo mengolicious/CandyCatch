@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class GM_1 : MonoBehaviour
 {
+	public Canvas canvas;
 
 	public SoundManagerScript SoundManager_Script;
 	public BeeMScript BeeM_Script; 	//this script is attached manually
@@ -458,8 +459,8 @@ public class GM_1 : MonoBehaviour
 	IEnumerator QuestionMovingParticleAction(){
 
 		QuestionMovingPart_GameObject = Instantiate (QuestionMovingPart_Object, new Vector3(0,0,0), Quaternion.identity) as GameObject;
-		//transform.position = Vector3.MoveTowards(transform.position, answerBall.transform.position, speed  * Time.deltaTime); 
-		// if(Vector3.Distance(transform.position, newTarget.position) < 0.1f){
+		QuestionMovingPart_GameObject.transform.SetParent (canvas.transform);
+
 		while(Vector3.Distance(QuestionMovingPart_GameObject.transform.position, QuestionMovingPart_EndPos) > 0.01f){
 
 			QuestionMovingPart_GameObject.transform.position =  Vector3.MoveTowards(QuestionMovingPart_GameObject.transform.position, QuestionMovingPart_EndPos, 15.0f  * Time.deltaTime); 
