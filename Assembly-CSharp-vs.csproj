@@ -71,6 +71,7 @@
      <Compile Include="Assets\Scripts\HudRipple_Script.cs" />
      <Compile Include="Assets\Scripts\LeftBannerPrefab_Script.cs" />
      <Compile Include="Assets\Scripts\QuestionManagerScript.cs" />
+     <Compile Include="Assets\Scripts\QuestionPartScript.cs" />
      <Compile Include="Assets\Scripts\SVM_Script.cs" />
      <Compile Include="Assets\Scripts\ScoreManagerScript.cs" />
      <Compile Include="Assets\Scripts\ScoreModifierSprite.cs" />

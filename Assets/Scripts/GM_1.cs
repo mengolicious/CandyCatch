@@ -22,6 +22,9 @@ public class GM_1 : MonoBehaviour
 	public Image smallQuestionDisplayImage;
 	public GameObject bigQuestionDisplay;
 	public GameObject bigQuestionBG;
+	public Object QuestionMovingPart_Object;
+	public GameObject QuestionMovingPart_GameObject;
+	public Vector3 QuestionMovingPart_EndPos;
 
 	//END of BG variables for instatiating BG and it's components
 	public GameObject BG;
@@ -122,6 +125,8 @@ public class GM_1 : MonoBehaviour
 			listPosition.Add ( new Vector3(secondLayer.x+(2.2f*x), secondLayer.y, secondLayer.z));
 		}
 		*/
+		QuestionMovingPart_EndPos = new Vector3 (-5.5f,-6,-3);
+
 		pauseMenu.SetActive(true);
 		bigQuestionBG.SetActive(false);
 		smokeSprite.SetActive(false);
@@ -422,12 +427,12 @@ public class GM_1 : MonoBehaviour
 	IEnumerator SmokeSpriteAnim()
 	{
 		smokeSprite.SetActive(true);
-		smokeSpriteSmol.SetActive(true);
+		//smokeSpriteSmol.SetActive(true); // placed in QuestionMovingParticleAction() IEnumerator
 		for(int x=1; x<8; x++)
 		{
 			Sprite smokeOnTheWater = Resources.Load<Sprite>("Sprites/Smoke/Smoke"+x);
 			smokeSpriteImageComponent.sprite = smokeOnTheWater;
-			smokeSpriteSmolImageComponent.sprite = smokeOnTheWater;
+		//	smokeSpriteSmolImageComponent.sprite = smokeOnTheWater;
 			yield return new WaitForSeconds(0.04f);
 			if(x==4)
 			{
@@ -437,16 +442,52 @@ public class GM_1 : MonoBehaviour
 		}
 
 		smokeSprite.SetActive(false);
-		smokeSpriteSmol.SetActive(false);
+		//smokeSpriteSmol.SetActive(false);
 
+		//smallQuestionDisplay.SetActive(true);
+		//smallQuestionDisplayImage.sprite = currentQuestion;
+
+		//isShooting = false;
+		//gunScript.canShoot = true;
+
+		//gunScript.shooterAnimator.speed = 1; // shooter starts moving only once smoke appears.
+
+		StartCoroutine (QuestionMovingParticleAction());
+	}
+
+	IEnumerator QuestionMovingParticleAction(){
+
+		QuestionMovingPart_GameObject = Instantiate (QuestionMovingPart_Object, new Vector3(0,0,0), Quaternion.identity) as GameObject;
+		//transform.position = Vector3.MoveTowards(transform.position, answerBall.transform.position, speed  * Time.deltaTime); 
+		// if(Vector3.Distance(transform.position, newTarget.position) < 0.1f){
+		while(Vector3.Distance(QuestionMovingPart_GameObject.transform.position, QuestionMovingPart_EndPos) > 0.01f){
+
+			QuestionMovingPart_GameObject.transform.position =  Vector3.MoveTowards(QuestionMovingPart_GameObject.transform.position, QuestionMovingPart_EndPos, 20.0f  * Time.deltaTime); 
+
+			yield return new WaitForSeconds (0.03f);
+		}
+		QuestionMovingPart_GameObject.GetComponent<QuestionPartScript> ().DestroyThisObject ();
+
+
+
+		smokeSpriteSmol.SetActive(true);
+		for(int x=1; x<8; x++)
+		{
+			Sprite smokeOnTheWater = Resources.Load<Sprite>("Sprites/Smoke/Smoke"+x);
+			smokeSpriteSmolImageComponent.sprite = smokeOnTheWater;
+			yield return new WaitForSeconds(0.04f);
+		
+		}
+
+		smokeSpriteSmol.SetActive(false);
 		smallQuestionDisplay.SetActive(true);
 		smallQuestionDisplayImage.sprite = currentQuestion;
-
 		isShooting = false;
 		gunScript.canShoot = true;
-
 		gunScript.shooterAnimator.speed = 1; // shooter starts moving only once smoke appears.
 	}
+
+
 
 	public void GetNextQuestion()
 	{

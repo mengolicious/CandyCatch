@@ -1,10 +1,47 @@
 fileFormatVersion: 2
 guid: 78aaafcfa12d00745ae963d99deb929d
-timeCreated: 1493864590
+timeCreated: 1493954893
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - SoundManager_Script: {instanceID: 0}
+  - BeeM_Script: {instanceID: 0}
+  - balls: {instanceID: 0}
+  - gunScript: {instanceID: 0}
+  - questionManagerScript: {instanceID: 0}
+  - currentQuestion: {instanceID: 0}
+  - smokeSprite: {instanceID: 0}
+  - smokeSpriteImageComponent: {instanceID: 0}
+  - smokeSpriteSmol: {instanceID: 0}
+  - smokeSpriteSmolImageComponent: {instanceID: 0}
+  - smallQuestionDisplay: {instanceID: 0}
+  - smallQuestionDisplayImage: {instanceID: 0}
+  - bigQuestionDisplay: {instanceID: 0}
+  - bigQuestionBG: {instanceID: 0}
+  - QuestionMovingPart_Object: {fileID: 111874, guid: 39d6060e1dbaa2e448727fe92f38dd56,
+      type: 2}
+  - QuestionMovingPart_GameObject: {instanceID: 0}
+  - BG: {instanceID: 0}
+  - BG_Easy: {instanceID: 0}
+  - BG_Advance: {instanceID: 0}
+  - BG_Expert: {instanceID: 0}
+  - SM_Script: {instanceID: 0}
+  - stageSpriteRendererBG: {instanceID: 0}
+  - equationEasy: {instanceID: 0}
+  - equationAdvance: {instanceID: 0}
+  - equationExpert: {instanceID: 0}
+  - targetScoreImage: {instanceID: 0}
+  - easyTargetScore: {instanceID: 0}
+  - advanceTargetScore: {instanceID: 0}
+  - expertTargetScore: {instanceID: 0}
+  - ballPrefabs: {instanceID: 0}
+  - pauseMenu: {instanceID: 0}
+  - nextDifficultyButton: {instanceID: 0}
+  - InstructionPanelBG: {instanceID: 0}
+  - InstructionPanel1: {instanceID: 0}
+  - anim: {instanceID: 0}
+  - animM: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

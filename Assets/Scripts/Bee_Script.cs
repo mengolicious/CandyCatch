@@ -71,7 +71,7 @@ public class Bee_Script : MonoBehaviour {
 			if(answerBall)
 			{
 				//Debug.Log("Ball Found");
-				transform.position = Vector3.MoveTowards(transform.position, answerBall.transform.position, speed  * 0.03f);
+				transform.position = Vector3.MoveTowards(transform.position, answerBall.transform.position, speed  * Time.deltaTime); //replaced 0.03f with Time.deltaTime. I'll explain it in detail if you don't know why 0.03f will not work
 			}
 			else
 			{
@@ -89,7 +89,7 @@ public class Bee_Script : MonoBehaviour {
 		{
 			if( dist >0f )
 			{
-				moveStep = MoveDir * (speed * 0.03f);
+				moveStep = MoveDir * (speed * Time.deltaTime); //replaced 0.03f with Time.deltaTime. I'll explain it in detail if you don't know why 0.03f will not work
 				dist -= moveStep.magnitude;
 				transform.position += moveStep;
 			}

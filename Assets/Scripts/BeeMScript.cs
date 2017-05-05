@@ -47,14 +47,14 @@ public class BeeMScript : MonoBehaviour
 		{
 			numberOfBEES = 2;
 			//maxBeeValue = 1;
-			beeSpeed = 7.0f;
+			beeSpeed = 6.0f;
 			isExpert = false;
 		}
 		else if(SVM_Script.gameDifficulty == "advance")
 		{
 			numberOfBEES = 3;
 			//maxBeeValue = 2;
-			beeSpeed = 7.5f;
+			beeSpeed = 6.5f;
 			isExpert = false;
 			StartCoroutine(AngryBeeSpawner());
 		}
@@ -62,7 +62,7 @@ public class BeeMScript : MonoBehaviour
 		{
 			numberOfBEES = 5;
 			//maxBeeValue = 3;
-			beeSpeed = 8f;
+			beeSpeed = 7f;
 			isExpert = true;
 			StartCoroutine(AngryBeeSpawner());
 		}
