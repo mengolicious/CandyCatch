@@ -462,7 +462,7 @@ public class GM_1 : MonoBehaviour
 		// if(Vector3.Distance(transform.position, newTarget.position) < 0.1f){
 		while(Vector3.Distance(QuestionMovingPart_GameObject.transform.position, QuestionMovingPart_EndPos) > 0.01f){
 
-			QuestionMovingPart_GameObject.transform.position =  Vector3.MoveTowards(QuestionMovingPart_GameObject.transform.position, QuestionMovingPart_EndPos, 20.0f  * Time.deltaTime); 
+			QuestionMovingPart_GameObject.transform.position =  Vector3.MoveTowards(QuestionMovingPart_GameObject.transform.position, QuestionMovingPart_EndPos, 15.0f  * Time.deltaTime); 
 
 			yield return new WaitForSeconds (0.03f);
 		}
