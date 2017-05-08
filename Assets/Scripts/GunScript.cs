@@ -252,7 +252,7 @@ public class GunScript : MonoBehaviour {
 	public void CollectedObject() //after hits object, shooter stops rotation and retracts
 	{
 		isShooting = false;
-		//shooterAnimator.speed = 1;
+		shooterAnimator.speed = 1;
 		//Debug.Log ("collected");
 	}
 	

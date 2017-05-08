@@ -132,8 +132,9 @@ public class Bee_Script : MonoBehaviour {
 			//Debug.Log ("Lose some points you scrub");
 			isAttacking = false;
 			isGoingToHive = true;
-			answerBall = null;
+			transform.GetChild(0).GetComponent<Renderer>().material = answerBall.GetComponent<Renderer>().material;
 			transform.GetChild(0).gameObject.SetActive(true);
+			answerBall = null;
 		}
 	}
 
