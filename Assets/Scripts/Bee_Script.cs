@@ -127,6 +127,8 @@ public class Bee_Script : MonoBehaviour {
 	{
 		if (other.gameObject == answerBall) {
 			other.gameObject.GetComponent<BallScript>().DeductPoints(value);
+			other.gameObject.transform.localScale -= new Vector3(0.1f,0.1f,0.1f);
+
 			GameObject tempScoreParticle = GameObject.Instantiate(ScoreNumberPrefab, this.transform.position, Quaternion.identity) as GameObject;
 			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, false, false);
 			//Debug.Log ("Lose some points you scrub");
