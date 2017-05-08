@@ -141,8 +141,7 @@ public class ClawScript : MonoBehaviour {
 			//Debug.Log("dead");
 		}
 	}
-
-
+	
 	//Re-position the fishing Rod
 	/*public void Reposition(){
 		fishingRod.transform.localEulerAngles = new Vector3 (270, fishingRod.transform.localEulerAngles.y, fishingRod.transform.localEulerAngles.z);

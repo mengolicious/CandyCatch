@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class BeeMScript : MonoBehaviour
 {
+	[SerializeField]
 	private List<GameObject> beeList;
 	private int numberOfBEES;
 	private GameObject tempBall;
@@ -106,6 +107,18 @@ public class BeeMScript : MonoBehaviour
 		}
 	}
 
+	public bool BeesAlive()
+	{
+		if (beeList.Count > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	/// <summary>
 	/// Clears the bees.
 	/// </summary>
@@ -120,6 +133,11 @@ public class BeeMScript : MonoBehaviour
 		Hive.GetComponent<Animator>().Play("HiveShake");
 		/*GameObject tempParticle = Instantiate(ScoreChangeSpritePrefab, Hive.transform.position, Quaternion.identity) as GameObject;
 		tempParticle.GetComponent<ScoreModifierSprite>().SetNumber(BeeValue, false, true);//*/
+	}
+
+	public void RemoveBee(GameObject bee)
+	{
+		beeList.Remove(bee);
 	}
 
 	IEnumerator ShakeHive()

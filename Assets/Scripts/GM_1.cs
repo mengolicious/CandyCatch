@@ -80,8 +80,6 @@ public class GM_1 : MonoBehaviour
 	public GameObject InstructionPanel1;
 
 	//public float shooterSpeed;
-	public Animator anim;
-	public GameObject animM;
 	//public float animSpeed;
 
 	private List<Transform> BubbleSpawns;
@@ -150,7 +148,7 @@ public class GM_1 : MonoBehaviour
 
 			//animM.GetComponent<Animator>().speed = 0.1f;
 			//animSpeed = 0.2f;
-			animM.GetComponent<Animator>().SetFloat("speed",0.2f);
+			gunScript.shooterAnimator.SetFloat("speed",0.2f);
 			SpawnBubbles = true;
 			bubblePrefab = Resources.Load("Prefabs/Bubble");
 			tempIndexList = new List<int>();
@@ -180,7 +178,7 @@ public class GM_1 : MonoBehaviour
 			//animM.GetComponent<Animator>().speed = 0.5f;
 			//shooterSpeed = 3.5f;	
 			//animSpeed = 0.3f;
-			animM.GetComponent<Animator>().SetFloat("speed",0.3f);
+			gunScript.shooterAnimator.SetFloat("speed",0.3f);
 
 			SetMaterials("Set 2"); //setting materials of Balls for advance
 		}
@@ -192,7 +190,7 @@ public class GM_1 : MonoBehaviour
 			nextDifficultyButton.SetActive(false);
 			//animM.GetComponent<Animator>().speed = 1.0f;
 			//animSpeed = 0.4f;
-			animM.GetComponent<Animator>().SetFloat("speed",0.4f);
+			gunScript.shooterAnimator.SetFloat("speed",0.4f);
 			//shooterSpeed= 5f;
 
 			SetMaterials("Set 3"); //setting materials of Balls for expert
@@ -392,7 +390,6 @@ public class GM_1 : MonoBehaviour
 		SoundManager_Script.Play_SFX("MenuNavPop");
 
 		pauseMenu.SetActive(false);
-		gunScript.gamePlaying=true; 
 		bigQuestionBG.SetActive(true);
 		GetNextQuestion();
 		StartCoroutine(BigDisplayAnim());
@@ -400,21 +397,26 @@ public class GM_1 : MonoBehaviour
 
 	public void ResetQuestion()
 	{
-		smallQuestionDisplay.SetActive(false);
+		StartCoroutine(ResetQuestionEnumerator());
+	}
 
-		gunScript.gamePlaying=true; 
+	IEnumerator ResetQuestionEnumerator()
+	{
+		smallQuestionDisplay.SetActive(false);
+		gunScript.canShoot = false;
+		while(BeeM_Script.BeesAlive())
+		{
+			yield return new WaitForSeconds(0.1f);
+		}
 		bigQuestionBG.SetActive(true);
 		GetNextQuestion();
 		StartCoroutine(BigDisplayAnim());
-
-		gunScript.canShoot = false;
 	}
-
 
 	IEnumerator BigDisplayAnim()
 	{
 		yield return new WaitForSeconds(1.0f);
-		animM.GetComponent<Animator>().speed = 0.1f;
+		gunScript.shooterAnimator.speed = 0.1f;
 		for(int x=0; x<20; x++)
 		{
 			bigQuestionBG.GetComponent<RectTransform>().localScale -= new Vector3 (0.03f, 0.03f, 0.03f);

@@ -25,8 +25,6 @@ public class GunScript : MonoBehaviour {
 	public GameObject ground;
 	public GM_1 GM1_Script;
 
-	public bool gamePlaying=false;
-
 	public Sprite castClaw;
 	public Sprite castClawPressed;
 	public GameObject castImageObject;
@@ -104,7 +102,7 @@ public class GunScript : MonoBehaviour {
 
 	public void CastClaw()
 	{
-		if(!isShooting && gamePlaying && canShoot) 
+		if(!isShooting && canShoot) 
 		{
 			if(!GM1_Script.gameIsPaused)
 			{
@@ -254,7 +252,7 @@ public class GunScript : MonoBehaviour {
 	public void CollectedObject() //after hits object, shooter stops rotation and retracts
 	{
 		isShooting = false;
-		shooterAnimator.speed = 1;
+		//shooterAnimator.speed = 1;
 		//Debug.Log ("collected");
 	}
 	

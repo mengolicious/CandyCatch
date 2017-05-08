@@ -140,6 +140,7 @@ public class Bee_Script : MonoBehaviour {
 	public void Kill()
 	{
 		//Debug.Log ("Bee Dead");
+		BeeM.RemoveBee(gameObject);
 		Destroy(gameObject);
 	}
 
