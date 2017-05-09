@@ -70,25 +70,27 @@ public class Bee_Script : MonoBehaviour {
 		{
 			if(Time.deltaTime < 0.03f)
 			{
-				Debug.Log("Update faster than 30fps, Delta time is: " + Time.deltaTime);
+				//Debug.Log("Update faster than 30fps, Delta time is: " + Time.deltaTime);
 				stepTime = 0.03f;
 			}
 			else
 			{
-				Debug.Log ("Update Slower that 30fps, Delta time is: " + Time.deltaTime);
+				//Debug.Log ("Update Slower that 30fps, Delta time is: " + Time.deltaTime);
 				stepTime = Time.deltaTime;
 			}
 			//Debug.Log ("Attack");
 			if(answerBall)
 			{
 				//Debug.Log("Ball Found");
-				transform.position = Vector3.MoveTowards(transform.position, answerBall.transform.position, speed  *  0.03f /*Time.deltaTime*/); //replaced 0.03f with Time.deltaTime. I'll explain it in detail if you don't know why 0.03f will not work
+				transform.position = Vector3.MoveTowards(transform.position, answerBall.transform.position, speed * 0.02f /*Time.deltaTime*/); //replaced 0.03f with Time.deltaTime. I'll explain it in detail if you don't know why 0.03f will not work
 			}
 			else
 			{
 				isAttacking = false;
 			}
+			Debug.Log(Time.time);Debug.Log(Time.deltaTime);Debug.Log(Time.fixedDeltaTime);
 			yield return new WaitForSeconds(0.03f);
+			Debug.Log(Time.time);
 		}
 		MoveDir = BeeHivePos - transform.position;
 		float dist = MoveDir.magnitude;
@@ -100,7 +102,7 @@ public class Bee_Script : MonoBehaviour {
 		{
 			if( dist >0f )
 			{
-				moveStep = MoveDir * (speed * 0.03f/*Time.deltaTime */); //replaced 0.03f with Time.deltaTime. I'll explain it in detail if you don't know why 0.03f will not work
+				moveStep = MoveDir * (speed * 0.02f/*Time.deltaTime */); //replaced 0.03f with Time.deltaTime. I'll explain it in detail if you don't know why 0.03f will not work
 				dist -= moveStep.magnitude;
 				transform.position += moveStep;
 			}
