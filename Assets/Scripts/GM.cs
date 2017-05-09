@@ -24,7 +24,7 @@ public class GM : MonoBehaviour {
 	public GameObject buttonSound;
 
 	// Use this for initialization
-	void Start ()
+	void Start()
 	{
 		//HSDM_Script = GameObject.FindGameObjectWithTag("High Score Display Manager").GetComponent<HighScoreDisplayManagerScript>();
 		SoundManager_Script = GameObject.FindGameObjectWithTag ("SoundManager").GetComponent<SoundManagerScript> ();
@@ -72,7 +72,7 @@ public class GM : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update ()
+	void Update()
 	{
 		
 	}
@@ -131,7 +131,7 @@ public class GM : MonoBehaviour {
 
 
 	//when level 1 button pressed change scene to Level 1 shape
-	public void LevelOne_Easy ()
+	public void LevelOne_Easy()
 	{ 
 		SoundManager_Script.Play_SFX("MenuNav2");
 
@@ -140,7 +140,7 @@ public class GM : MonoBehaviour {
 		SVM_Script.gameDifficulty = "easy";
 	}
 
-	public void LevelOne_Advance ()
+	public void LevelOne_Advance()
 	{
 		SoundManager_Script.Play_SFX("MenuNav2");
 
@@ -158,13 +158,13 @@ public class GM : MonoBehaviour {
 		SVM_Script.gameDifficulty = "expert";
 	}
 
-	//when level 1 button pressed change scene to Level 2 alphabet
+	//when level 2 button pressed change scene to Level 2 alphabet
 	public void LevelTwo ()
 	{
 		Application.LoadLevel ("AlphabetLV2");
 	}
 	
-	//when level 1 button pressed change scene to Level 3 numbers
+	//when level 3 button pressed change scene to Level 3 numbers
 	public void LevelThree ()
 	{ 
 		Application.LoadLevel ("NumbersLV3");
