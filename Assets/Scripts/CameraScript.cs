@@ -48,4 +48,8 @@ public class CameraScript : MonoBehaviour {
 			cameraComponent.rect = rect;
 		}
 	}
+	void LateUpdate()
+	{
+		GL.Clear(true, true, Color.black);
+	}
 }
