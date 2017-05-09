@@ -64,9 +64,20 @@ public class Bee_Script : MonoBehaviour {
 	/// </summary>
 	IEnumerator ATTACK_ON_TITAN()
 	{
+		float stepTime;
 		//Debug.Log("Begin Moving");
 		while(isAttacking)
 		{
+			if(Time.deltaTime < 0.03f)
+			{
+				Debug.Log("Update faster than 30fps, Delta time is: " + Time.deltaTime);
+				stepTime = 0.03f;
+			}
+			else
+			{
+				Debug.Log ("Update Slower that 30fps, Delta time is: " + Time.deltaTime);
+				stepTime = Time.deltaTime;
+			}
 			//Debug.Log ("Attack");
 			if(answerBall)
 			{
