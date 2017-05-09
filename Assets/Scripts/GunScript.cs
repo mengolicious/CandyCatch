@@ -48,10 +48,14 @@ public class GunScript : MonoBehaviour {
 		claw.SetActive (false);
 
 		//isRenderFrame = false;
+		Color targetColour;
+		Color.TryParseHexString("7f64ac", out targetColour);
+		line.material = new Material(Shader.Find("Unlit/Color"));
+		line.material.color = targetColour;
 		line.sortingLayerName = "OnTop";
 		line.sortingOrder = 5;
 		line.useWorldSpace = true;
-		line.SetWidth(0.05f, 0.05f);
+		line.SetWidth(0.1f, 0.1f);
 	}
 
 	void Update()
