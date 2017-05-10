@@ -20,6 +20,8 @@ public class GM : MonoBehaviour {
 	public GameObject expertDifficulty;
 	public GameObject expertDifficultyLock;
 
+	public GameObject targetPanel1;
+
 	
 	public GameObject buttonSound;
 
@@ -136,8 +138,16 @@ public class GM : MonoBehaviour {
 		SoundManager_Script.Play_SFX("MenuNav2");
 
 		SVM_Script.targetScore=50;
-		Application.LoadLevel ("ShapesLV1"); 
 		SVM_Script.gameDifficulty = "easy";
+
+		targetPanel1.SetActive (true);
+		Invoke ("LoadingLvl1", 0.5f);
+
+	}
+
+	public void LoadingLvl1(){
+		SVM_Script.Instance.LoadLevel("ShapesLV1"); 
+
 	}
 
 	public void LevelOne_Advance()
@@ -145,8 +155,9 @@ public class GM : MonoBehaviour {
 		SoundManager_Script.Play_SFX("MenuNav2");
 
 		SVM_Script.targetScore=75;
-		Application.LoadLevel ("ShapesLV1"); 
 		SVM_Script.gameDifficulty = "advance";
+		targetPanel1.SetActive (true);
+		Invoke ("LoadingLvl1", 0.5f);
 	}
 
 	public void LevelOne_Expert ()
@@ -154,8 +165,9 @@ public class GM : MonoBehaviour {
 		SoundManager_Script.Play_SFX("MenuNav2");
 
 		SVM_Script.targetScore=90;
-		Application.LoadLevel ("ShapesLV1"); 
 		SVM_Script.gameDifficulty = "expert";
+		targetPanel1.SetActive (true);
+		Invoke ("LoadingLvl1", 0.5f);
 	}
 
 	//when level 2 button pressed change scene to Level 2 alphabet
@@ -169,15 +181,5 @@ public class GM : MonoBehaviour {
 	{ 
 		Application.LoadLevel ("NumbersLV3");
 	}
-	
-	
-	//Back Button when pressed, loads main menu
-	public void BackButton ()
-	{
-		SoundManager_Script.Play_SFX("MenuNavPop");
-		Application.LoadLevel ("MainScene");
-	}
-	//Play audio source when button is pressed
 
-	
 }

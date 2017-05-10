@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class CameraScript : MonoBehaviour {
 	
 	
 	public Camera cameraComponent;
+	public Text fpsCounter;
 	// Use this for initialization
 	void Start() 
 	{
 		cameraComponent = GetComponent<Camera>();
-		
 		
 		
 		// Set the desired aspect ratio (the values in this example are hard-coded for 16:9, but you could make them into public
@@ -48,8 +49,15 @@ public class CameraScript : MonoBehaviour {
 			cameraComponent.rect = rect;
 		}
 	}
+
+	void Update()
+	{
+
+	}
+
 	void LateUpdate()
 	{
+		fpsCounter.text = "fps : " +  Mathf.FloorToInt(1f / Time.deltaTime);
 		GL.Clear(true, true, Color.black);
 	}
 }
