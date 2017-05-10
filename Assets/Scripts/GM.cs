@@ -20,7 +20,7 @@ public class GM : MonoBehaviour {
 	public GameObject expertDifficulty;
 	public GameObject expertDifficultyLock;
 
-	public GameObject targetPanel1;
+	//public GameObject targetPanel1;
 
 	
 	public GameObject buttonSound;
@@ -139,15 +139,7 @@ public class GM : MonoBehaviour {
 
 		SVM_Script.targetScore=50;
 		SVM_Script.gameDifficulty = "easy";
-
-		targetPanel1.SetActive (true);
-		Invoke ("LoadingLvl1", 0.5f);
-
-	}
-
-	public void LoadingLvl1(){
-		SVM_Script.Instance.LoadLevel("ShapesLV1"); 
-
+		SVM_Script.Instance.LoadLevel("ShapesLV1");
 	}
 
 	public void LevelOne_Advance()
@@ -156,8 +148,7 @@ public class GM : MonoBehaviour {
 
 		SVM_Script.targetScore=75;
 		SVM_Script.gameDifficulty = "advance";
-		targetPanel1.SetActive (true);
-		Invoke ("LoadingLvl1", 0.5f);
+		SVM_Script.Instance.LoadLevel("ShapesLV1");
 	}
 
 	public void LevelOne_Expert ()
@@ -166,8 +157,7 @@ public class GM : MonoBehaviour {
 
 		SVM_Script.targetScore=90;
 		SVM_Script.gameDifficulty = "expert";
-		targetPanel1.SetActive (true);
-		Invoke ("LoadingLvl1", 0.5f);
+		SVM_Script.Instance.LoadLevel("ShapesLV1");
 	}
 
 	//when level 2 button pressed change scene to Level 2 alphabet

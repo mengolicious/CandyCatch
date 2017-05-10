@@ -21,9 +21,9 @@ public class HighScoreDisplayManagerScript : MonoBehaviour {
 		//top1Easy.text = "test";
 		//top1Easy.text = PlayerPrefs.GetString ("EE_Top1_Name_Easy")
 
+		top3Easy.text = PlayerPrefs.GetString("EE_Top3_Name_Easy")+" - "+PlayerPrefs.GetInt("EE_Top3_Score_Easy");
 		top1Easy.text = PlayerPrefs.GetString("EE_Top1_Name_Easy")+" - "+PlayerPrefs.GetInt("EE_Top1_Score_Easy");
 		top2Easy.text = PlayerPrefs.GetString("EE_Top2_Name_Easy")+" - "+PlayerPrefs.GetInt("EE_Top2_Score_Easy");
-		top3Easy.text = PlayerPrefs.GetString("EE_Top3_Name_Easy")+" - "+PlayerPrefs.GetInt("EE_Top3_Score_Easy");
 
 		top1Advance.text = PlayerPrefs.GetString("EE_Top1_Name_Advance")+" - "+PlayerPrefs.GetInt("EE_Top1_Score_Advance");
 		top2Advance.text = PlayerPrefs.GetString("EE_Top2_Name_Advance")+" - "+PlayerPrefs.GetInt("EE_Top2_Score_Advance");

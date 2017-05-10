@@ -24,7 +24,7 @@ public class SVM_Script : MonoBehaviour {
 			set;
 	}
 		
-	private GameObject canvas;
+	public GameObject canvas;
 	private GameObject loadingScreen;
 	void Awake ()
 	{
@@ -37,19 +37,28 @@ public class SVM_Script : MonoBehaviour {
 			Destroy (gameObject);
 		}
 		Debug.Log("Rawr means I love you in Dinosaur");
-		//canvas = GameObject.FindGameObjectWithTag("Canvas");
-		//loadingScreen = Instantiate(Resources.Load("prefabs/LoadingScreen"))as GameObject;
-		//loadingScreen.transform.SetParent(canvas.transform);
-		//loadingScreen.transform. = Vector3.zero;
-		InitializeSavedVariables (); 	//Initialize variables that needs to be saved when APP is closed
-		LoadSavedVariables ();			//Load the variables from Playerprefs
+		SetUpLoadingScreen();
+		InitializeSavedVariables();		//Initialize variables that needs to be saved when APP is closed
+		LoadSavedVariables();			//Load the variables from Playerprefs
 	}
 
-	void OnLevelWasLoaded()
+	void SetUpLoadingScreen()
 	{
 		canvas = GameObject.FindGameObjectWithTag("Canvas");
+		loadingScreen = Instantiate(Resources.Load("prefabs/LoadingScreen"))as GameObject;
+		loadingScreen.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0.5f);
+		loadingScreen.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.5f);
+		loadingScreen.GetComponent<RectTransform>().sizeDelta = new Vector2(800, 450);;
 		loadingScreen.transform.SetParent(canvas.transform);
-		//loadingScreen.GetComponent<Rect>().
+		loadingScreen.GetComponent<RectTransform>().localPosition = Vector3.zero;
+		loadingScreen.GetComponent<RectTransform>().localScale = Vector3.one;
+		loadingScreen.SetActive(false);
+	}
+
+	void OnLevelWasLoaded(int sceneIndex)
+	{
+		Debug.Log("Meng what the fuck " + sceneIndex);
+		SetUpLoadingScreen();
 	}
 	public void InitializeSavedVariables(){
 		if (!PlayerPrefs.HasKey ("EE_advance")) {
@@ -92,11 +101,14 @@ public class SVM_Script : MonoBehaviour {
 
 	public void LoadLevel(string levelName)
 	{
+		loadingScreen.SetActive(true);
+		Debug.Log ("still wtf");
 		StartCoroutine(LevelLoader(levelName));
 	}
 
 	IEnumerator LevelLoader(string levelName)
 	{
+		yield return new WaitForSeconds(0.5f);
 		AsyncOperation async = Application.LoadLevelAsync(levelName);
 		yield return async;
 	}

@@ -90,7 +90,7 @@ public class GM_1 : MonoBehaviour
 	private Object bubblePrefab;
 
 
-	public GameObject LoadingScreen;
+	//public GameObject LoadingScreen;
 	// Use this for initialization
 	void Start()
 	{
@@ -356,7 +356,8 @@ public class GM_1 : MonoBehaviour
 	{
 		SoundManager_Script.Play_SFX("MenuNavPop");
 		SoundManager_Script.Stop_BG_SFX();
-		LoadingScreen.SetActive(true);
+		//LoadingScreen.SetActive(true);
+		Time.timeScale = 1f;
 		SVM_Script.Instance.LoadLevel("MainScene");
 	}
 
@@ -364,7 +365,8 @@ public class GM_1 : MonoBehaviour
 	{
 		SoundManager_Script.Play_SFX("MenuNavPop");
 		SoundManager_Script.Stop_BG_SFX();
-		LoadingScreen.SetActive(true);
+		//LoadingScreen.SetActive(true);
+		Time.timeScale = 1f;
 		SVM_Script.Instance.LoadLevel("ShapesLV1");
 	}
 
