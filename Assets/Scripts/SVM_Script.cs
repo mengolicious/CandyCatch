@@ -17,7 +17,6 @@ public class SVM_Script : MonoBehaviour {
 	public static bool advanceIsLocked = true;
 	public static bool expertIsLocked = true;
 	public static bool InstructionSeen = false;
-	public GM GM_Script;
 	public static bool gameSetup;
 		// Make global
 	public static SVM_Script Instance {
@@ -25,22 +24,33 @@ public class SVM_Script : MonoBehaviour {
 			set;
 	}
 		
-
-
-	void Awake () {
-
-		InitializeSavedVariables (); 	//Initialize variables that needs to be saved when APP is closed
-		LoadSavedVariables ();			//Load the variables from Playerprefs
-
+	private GameObject canvas;
+	private GameObject loadingScreen;
+	void Awake ()
+	{
 		DontDestroyOnLoad (transform.gameObject);
 		if (Instance == null) {
 			Instance=this;
 		}
-		else if(Instance != this){
+		else if(Instance != this)
+		{
 			Destroy (gameObject);
 		}
+		Debug.Log("Rawr means I love you in Dinosaur");
+		//canvas = GameObject.FindGameObjectWithTag("Canvas");
+		//loadingScreen = Instantiate(Resources.Load("prefabs/LoadingScreen"))as GameObject;
+		//loadingScreen.transform.SetParent(canvas.transform);
+		//loadingScreen.transform. = Vector3.zero;
+		InitializeSavedVariables (); 	//Initialize variables that needs to be saved when APP is closed
+		LoadSavedVariables ();			//Load the variables from Playerprefs
 	}
 
+	void OnLevelWasLoaded()
+	{
+		canvas = GameObject.FindGameObjectWithTag("Canvas");
+		loadingScreen.transform.SetParent(canvas.transform);
+		//loadingScreen.GetComponent<Rect>().
+	}
 	public void InitializeSavedVariables(){
 		if (!PlayerPrefs.HasKey ("EE_advance")) {
 			PlayerPrefs.SetInt ("EE_advance", 0);
@@ -78,5 +88,16 @@ public class SVM_Script : MonoBehaviour {
 		} else {
 			InstructionSeen = false;
 		}
+	}
+
+	public void LoadLevel(string levelName)
+	{
+		StartCoroutine(LevelLoader(levelName));
+	}
+
+	IEnumerator LevelLoader(string levelName)
+	{
+		AsyncOperation async = Application.LoadLevelAsync(levelName);
+		yield return async;
 	}
 }
