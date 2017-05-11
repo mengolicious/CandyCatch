@@ -85,11 +85,18 @@ public class TimeManagerScript : MonoBehaviour {
 		while(true){
 
 			elapsedTime = (int)(Time.time - timeStarted);
-			timeInString = elapsedTime.ToString ();
-			tempChar = timeInString [0];
-			tempLength = timeInString.Length;
 			minutes = elapsedTime / 60;
 			seconds = elapsedTime % 60;
+			if(seconds> 9)
+			{
+				timeInString = minutes.ToString() + seconds.ToString();
+			}
+			else
+			{
+				timeInString = minutes.ToString() + "0" + seconds.ToString();
+			}
+			tempChar = timeInString [0];
+			tempLength = timeInString.Length;
 			tempNumV2 = 3;
 			for(int x=timeInString.Length; x>0; x--){
 				tempNum = (int)char.GetNumericValue(timeInString[x-1]);
