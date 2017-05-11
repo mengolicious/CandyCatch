@@ -253,10 +253,13 @@ public class GunScript : MonoBehaviour {
 		//Debug.DrawLine (transform.position, hit.point, Color.cyan);
 	}
 	
-	public void CollectedObject() //after hits object, shooter stops rotation and retracts
+	public void CollectedObject(bool rightAnwser) //after hits object, shooter stops rotation and retracts
 	{
 		isShooting = false;
-		shooterAnimator.speed = 1;
+		if(!rightAnwser)
+		{
+			shooterAnimator.speed = 1;
+		}
 		//Debug.Log ("collected");
 	}
 	

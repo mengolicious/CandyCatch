@@ -28,6 +28,8 @@ public class ClawScript : MonoBehaviour {
 
 	public float retractingSpeed;
 
+	bool rightAnswer;
+
 	void Awake() 
 	{
 		retractOrigin = new Vector3 (0,0.73f,-2.77f);
@@ -86,7 +88,7 @@ public class ClawScript : MonoBehaviour {
 		if(transform.position == origin.position && retracting) 
 		{
 			SoundManager_Script.BG_FX_Player.Stop();	//stop the reeling back sound
-			gunScript.CollectedObject();
+
 			if(hitBall) // this if is for when the claw hits a ball that needs to be destroyed
 			{
 				//Debug.Log("collectedOBJ");
@@ -94,7 +96,8 @@ public class ClawScript : MonoBehaviour {
 				hitBall = false;
 				//Debug.Log("booo");
 				//Debug.Log("booo2");
-				if(SM_Script.CheckScore(childObject.GetComponent<BallScript>().scoreValue))
+				rightAnswer = SM_Script.CheckScore(childObject.GetComponent<BallScript>().scoreValue);
+				if(rightAnswer)
 				{ 	//to instantiate particle for win 
 					childObject.GetComponent<BallScript>().InstantiateParticleWin();
 
@@ -134,7 +137,7 @@ public class ClawScript : MonoBehaviour {
 
 			//this.transform.localRotation = Quaternion.Euler (270,0,0); 
 			//this.transform.localEulerAngles = new Vector3 (270,0,0);
-
+			gunScript.CollectedObject(rightAnswer);
 			retracting = false;
 			this.gameObject.SetActive(false);
 

@@ -6,7 +6,7 @@ public class LoadingScreenCandy : MonoBehaviour
 	public float rotateSpeed;
 	public int dir;
 
-	void Start()
+	void OnEnable()
 	{
 
 		StartCoroutine(Rotate());
