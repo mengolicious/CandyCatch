@@ -99,7 +99,7 @@ public class GM_1 : MonoBehaviour
 		GetBG();			// Get the appropriate BG for the Game
 
 		gameHasStarted = false;
-		gameIsPaused = false;
+		gameIsPaused = true;
 
 		tempX = -8.2f;
 		matBallList = new List<Material>();
