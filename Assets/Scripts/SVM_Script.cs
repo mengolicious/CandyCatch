@@ -36,7 +36,7 @@ public class SVM_Script : MonoBehaviour {
 		{
 			Destroy (gameObject);
 		}
-		Debug.Log("Rawr means I love you in Dinosaur");
+		//Debug.Log("Rawr means I love you in Dinosaur");
 		SetUpLoadingScreen();
 		InitializeSavedVariables();		//Initialize variables that needs to be saved when APP is closed
 		LoadSavedVariables();			//Load the variables from Playerprefs
@@ -57,7 +57,7 @@ public class SVM_Script : MonoBehaviour {
 
 	void OnLevelWasLoaded(int sceneIndex)
 	{
-		Debug.Log("Meng what the fuck " + sceneIndex);
+		//Debug.Log("Meng what the fuck " + sceneIndex);
 		SetUpLoadingScreen();
 	}
 	public void InitializeSavedVariables(){
@@ -102,7 +102,7 @@ public class SVM_Script : MonoBehaviour {
 	public void LoadLevel(string levelName)
 	{
 		loadingScreen.SetActive(true);
-		Debug.Log ("still wtf");
+		//Debug.Log ("still wtf");
 		StartCoroutine(LevelLoader(levelName));
 	}
 

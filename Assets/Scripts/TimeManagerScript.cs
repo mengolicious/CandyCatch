@@ -73,33 +73,37 @@ public class TimeManagerScript : MonoBehaviour {
 
 	}
 
-	public void InitializeTime(){
+	public void InitializeTime()
+	{
 		timeStarted = Time.time;
-
-
 	}
 
-	IEnumerator UpdateTime(){
+	IEnumerator UpdateTime()
+	{
+		int minutes;
+		int seconds;
 		while(true){
 
 			elapsedTime = (int)(Time.time - timeStarted);
 			timeInString = elapsedTime.ToString ();
 			tempChar = timeInString [0];
 			tempLength = timeInString.Length;
-
+			minutes = elapsedTime / 60;
+			seconds = elapsedTime % 60;
 			tempNumV2 = 3;
 			for(int x=timeInString.Length; x>0; x--){
 				tempNum = (int)char.GetNumericValue(timeInString[x-1]);
 				listDisplayImages[tempNumV2].sprite = listNumImages[tempNum];
 				tempNumV2--;
 			}
-
-//			tempNumV2 = 3;
-//			for(int x=0; x<timeInString.Length; x++){
-//				tempNum = (int)char.GetNumericValue(timeInString[x]);
-//				listDisplayImages[tempNumV2].sprite = listNumImages[tempNum];
-//				tempNumV2--;
-//			}
+			//Debug.Log ("Minutes: " + minutes);
+			//Debug.Log ("Seconds: " + seconds);
+			/*tempNumV2 = 3;
+			for(int x=0; x<timeInString.Length; x++){
+				tempNum = (int)char.GetNumericValue(timeInString[x]);
+				listDisplayImages[tempNumV2].sprite = listNumImages[tempNum];
+				tempNumV2--;
+			}*/
 
 			yield return new WaitForSeconds(0.5f);
 		}
