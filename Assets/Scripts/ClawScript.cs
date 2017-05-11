@@ -61,7 +61,7 @@ public class ClawScript : MonoBehaviour {
 	{
 		float step = speed * Time.deltaTime; 
 		float stoop = retractingSpeed * Time.deltaTime; 
-
+		rightAnswer = false;
 		if (gunScript.isShooting && !retracting)
 		{
 			transform.position = Vector3.MoveTowards(transform.position, target, step);
