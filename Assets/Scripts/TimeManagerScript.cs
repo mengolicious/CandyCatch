@@ -81,15 +81,20 @@ public class TimeManagerScript : MonoBehaviour {
 	IEnumerator UpdateTime()
 	{
 		int minutes;
+		string minutesStr;
 		int seconds;
+		string secondsStr;
 		while(true){
 
 			elapsedTime = (int)(Time.time - timeStarted);
 			minutes = elapsedTime / 60;
 			seconds = elapsedTime % 60;
+/*
 			if(seconds> 9)
 			{
 				timeInString = minutes.ToString() + seconds.ToString();
+
+
 			}
 			else
 			{
@@ -103,6 +108,10 @@ public class TimeManagerScript : MonoBehaviour {
 				listDisplayImages[tempNumV2].sprite = listNumImages[tempNum];
 				tempNumV2--;
 			}
+
+*/
+
+
 			//Debug.Log ("Minutes: " + minutes);
 			//Debug.Log ("Seconds: " + seconds);
 			/*tempNumV2 = 3;
@@ -111,6 +120,43 @@ public class TimeManagerScript : MonoBehaviour {
 				listDisplayImages[tempNumV2].sprite = listNumImages[tempNum];
 				tempNumV2--;
 			}*/
+
+			/* ---------------Start RUSS CODE TIME DISPLAY--- Remove this comment and other codes that are not needed once it's finalised-------------- */
+		
+			if(seconds> 9)
+			{
+
+				secondsStr = seconds.ToString();
+			}
+			else
+			{
+				secondsStr = "0"+seconds.ToString();
+			}
+
+			if(minutes>9){
+				if(minutes>99){
+					minutes = 99;	// temporary fix for exceeding 99 minutes
+				}
+				minutesStr = minutes.ToString ();
+			}
+			else{
+				minutesStr = "0"+minutes.ToString ();
+			}
+
+
+			tempNum = (int)char.GetNumericValue(secondsStr[1]);
+			listDisplayImages[3].sprite = listNumImages[tempNum];
+
+			tempNum = (int)char.GetNumericValue(secondsStr[0]);
+			listDisplayImages[2].sprite = listNumImages[tempNum];
+
+			tempNum = (int)char.GetNumericValue(minutesStr[1]);
+			listDisplayImages[1].sprite = listNumImages[tempNum];
+
+			tempNum = (int)char.GetNumericValue(minutesStr[0]);
+			listDisplayImages[0].sprite = listNumImages[tempNum];
+
+			/* ---------------END RUSS CODE TIME DISPLAY--- Remove this comment and other codes that are not needed once it's finalised-------------- */
 
 			yield return new WaitForSeconds(0.5f);
 		}
