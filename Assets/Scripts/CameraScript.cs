@@ -50,11 +50,6 @@ public class CameraScript : MonoBehaviour {
 		}
 	}
 
-	void Update()
-	{
-
-	}
-
 	void LateUpdate()
 	{
 		fpsCounter.text = "fps : " +  Mathf.FloorToInt(1f / Time.unscaledDeltaTime);

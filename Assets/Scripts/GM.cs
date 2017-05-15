@@ -73,12 +73,6 @@ public class GM : MonoBehaviour {
 		SoundManager_Script.ButtonAudio();
 	}
 
-	// Update is called once per frame
-	void Update()
-	{
-		
-	}
-
 	public void CheckDifficultyLock()
 	{
 		if(!SVM_Script.advanceIsLocked)

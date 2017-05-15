@@ -197,9 +197,6 @@ public class GM_1 : MonoBehaviour
 
 			SetMaterials("Set 3"); //setting materials of Balls for expert
 		}
-
-
-
 		//animM.GetComponent<Animator>().SetFloat("speed",0f);
 		//Debug.Log(animM.GetComponent<Animator>().GetFloat("speed"));
 		SpawnBalls();

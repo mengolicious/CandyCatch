@@ -20,7 +20,8 @@ public class TimeManagerScript : MonoBehaviour {
 	public Image thirdNum;
 	public Image fourthNum;
 
-
+	public string minutesStr;
+	public string secondsStr;
 
 	public Sprite num0;
 	public Sprite num1;
@@ -81,20 +82,15 @@ public class TimeManagerScript : MonoBehaviour {
 	IEnumerator UpdateTime()
 	{
 		int minutes;
-		string minutesStr;
 		int seconds;
-		string secondsStr;
 		while(true){
 
 			elapsedTime = (int)(Time.time - timeStarted);
 			minutes = elapsedTime / 60;
 			seconds = elapsedTime % 60;
-/*
-			if(seconds> 9)
+			/*if(seconds> 9)
 			{
 				timeInString = minutes.ToString() + seconds.ToString();
-
-
 			}
 			else
 			{
@@ -107,11 +103,7 @@ public class TimeManagerScript : MonoBehaviour {
 				tempNum = (int)char.GetNumericValue(timeInString[x-1]);
 				listDisplayImages[tempNumV2].sprite = listNumImages[tempNum];
 				tempNumV2--;
-			}
-
-*/
-
-
+			}*/
 			//Debug.Log ("Minutes: " + minutes);
 			//Debug.Log ("Seconds: " + seconds);
 			/*tempNumV2 = 3;
@@ -120,9 +112,7 @@ public class TimeManagerScript : MonoBehaviour {
 				listDisplayImages[tempNumV2].sprite = listNumImages[tempNum];
 				tempNumV2--;
 			}*/
-
 			/* ---------------Start RUSS CODE TIME DISPLAY--- Remove this comment and other codes that are not needed once it's finalised-------------- */
-		
 			if(seconds> 9)
 			{
 

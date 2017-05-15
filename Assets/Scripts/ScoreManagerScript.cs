@@ -15,8 +15,6 @@ public class ScoreManagerScript : MonoBehaviour {
 
 	public Object collectiblePrefab;
 	public GameObject tempCollectible;
-	//public Object beePrefab;
-	//public GameObject beeTemp;
 
 	public string tempString;
 
@@ -69,7 +67,7 @@ public class ScoreManagerScript : MonoBehaviour {
 	public Sprite loseScreenImg;
 	public Sprite winScreenImg;
 
-	public string playerName;	//this is for input of the player for high score
+	//public string playerName;	//this is for input of the player for high score
 
 	public GM_1 gM_1;
 
@@ -240,7 +238,7 @@ public class ScoreManagerScript : MonoBehaviour {
 
 				//show score on winScreen
 			}
-			Debug.Log ("Correct Answer");
+			//Debug.Log ("Correct Answer");
 			return true;
 		} 
 		//when answer is wrong
@@ -258,7 +256,6 @@ public class ScoreManagerScript : MonoBehaviour {
 		if(totalScore >= PlayerPrefs.GetInt("EE_Top1_Score_"+tempString))
 		{
 			insertScore.SetActive(true);
-			insertScore.transform.GetChild(3).GetComponent<Text>().text = totalScore.ToString ();
 
 			PlayerPrefs.SetInt("EE_Top3_Score_"+tempString,PlayerPrefs.GetInt("EE_Top2_Score_"+tempString));
 			PlayerPrefs.SetString("EE_Top3_Name_"+tempString,PlayerPrefs.GetString("EE_Top2_Name_"+tempString));
@@ -271,7 +268,6 @@ public class ScoreManagerScript : MonoBehaviour {
 		else if(totalScore >= PlayerPrefs.GetInt("EE_Top2_Score_"+tempString))
 		{
 			insertScore.SetActive(true);
-			insertScore.transform.GetChild(3).GetComponent<Text>().text = totalScore.ToString ();
 
 			PlayerPrefs.SetInt ("EE_Top3_Score_"+tempString,PlayerPrefs.GetInt("EE_Top2_Score_"+tempString));
 			PlayerPrefs.SetInt("EE_Top2_Score_"+tempString, (int)totalScore);
@@ -280,11 +276,14 @@ public class ScoreManagerScript : MonoBehaviour {
 		else if(totalScore >= PlayerPrefs.GetInt("EE_Top3_Score_"+tempString))
 		{
 			insertScore.SetActive(true);
-			insertScore.transform.GetChild(3).GetComponent<Text>().text = totalScore.ToString ();
 
 			PlayerPrefs.SetInt("EE_Top3_Score_"+tempString, (int)totalScore);
 			tempHighScoreIndex = 3;
 		}
+		insertScore.transform.GetChild(3).GetComponent<Text>().text ="Total = " + totalScore.ToString() +" :";
+		insertScore.transform.GetChild(5).GetComponent<Text>().text = score.ToString();
+		insertScore.transform.GetChild(7).GetComponent<Text>().text = " X " + lives.ToString();
+		insertScore.transform.GetChild(9).GetComponent<Text>().text = TM_Script.minutesStr + ":" + TM_Script.secondsStr;
 	}
 
 	public void SetTopScoreName()
