@@ -255,8 +255,8 @@ public class ScoreManagerScript : MonoBehaviour {
 		totalScore = Mathf.FloorToInt((float)((float)score / (float)TM_Script.elapsedTime)*100f*lives);
 		if(totalScore >= PlayerPrefs.GetInt("EE_Top1_Score_"+tempString))
 		{
-			insertScore.SetActive(true);
-
+			insertScore.transform.parent.gameObject.SetActive(true);
+			SoundManagerScript.Instance.Play_SFX("HighScore");
 			PlayerPrefs.SetInt("EE_Top3_Score_"+tempString,PlayerPrefs.GetInt("EE_Top2_Score_"+tempString));
 			PlayerPrefs.SetString("EE_Top3_Name_"+tempString,PlayerPrefs.GetString("EE_Top2_Name_"+tempString));
 			PlayerPrefs.SetInt("EE_Top2_Score_"+tempString,PlayerPrefs.GetInt("EE_Top1_Score_"+tempString));
@@ -267,16 +267,16 @@ public class ScoreManagerScript : MonoBehaviour {
 		}
 		else if(totalScore >= PlayerPrefs.GetInt("EE_Top2_Score_"+tempString))
 		{
-			insertScore.SetActive(true);
-
+			insertScore.transform.parent.gameObject.SetActive(true);
+			SoundManagerScript.Instance.Play_SFX("HighScore");
 			PlayerPrefs.SetInt ("EE_Top3_Score_"+tempString,PlayerPrefs.GetInt("EE_Top2_Score_"+tempString));
 			PlayerPrefs.SetInt("EE_Top2_Score_"+tempString, (int)totalScore);
 			tempHighScoreIndex = 2;
 		}
 		else if(totalScore >= PlayerPrefs.GetInt("EE_Top3_Score_"+tempString))
 		{
-			insertScore.SetActive(true);
-
+			insertScore.transform.parent.gameObject.SetActive(true);
+			SoundManagerScript.Instance.Play_SFX("HighScore");
 			PlayerPrefs.SetInt("EE_Top3_Score_"+tempString, (int)totalScore);
 			tempHighScoreIndex = 3;
 		}

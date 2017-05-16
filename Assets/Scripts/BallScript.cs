@@ -19,16 +19,9 @@ public class BallScript : MonoBehaviour {
 		scoreUpParticle = Resources.Load("Prefabs/ScoreChangeSprite");
 	}
 
-	/*public void DestroyBallRuss ()
-	{
-		//StartCoroutine (DestroyInstantiate());
-		InstantiateParticleWin ();	
-	}*/
-
-
 	public void InstantiateParticleWin()
 	{
-		SoundManager_Script.Play_SFX("correct");
+		SoundManager_Script.Play_SFX("CorrectAnswer");
 		tempParticle = Instantiate (winParticle, this.transform.position, Quaternion.identity) as GameObject;
 		tempParticle = Instantiate(scoreUpParticle, scoreChangeSpritePos, Quaternion.identity) as GameObject;
 		tempParticle.GetComponent<ScoreModifierSprite>().SetNumber(scoreValue, true, false);
