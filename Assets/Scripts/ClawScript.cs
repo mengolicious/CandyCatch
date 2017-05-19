@@ -49,11 +49,11 @@ public class ClawScript : MonoBehaviour {
 			}
 		else if(SVM_Script.gameDifficulty == "advance")
 			{
-				retractingSpeed = 1.25f;
+				retractingSpeed = 1.15f;
 			}
 		else if(SVM_Script.gameDifficulty == "expert")
 			{
-				retractingSpeed = 1.5f;
+				retractingSpeed = 1.25f;
 			}
 	}
 	

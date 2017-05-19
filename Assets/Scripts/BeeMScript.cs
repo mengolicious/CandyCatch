@@ -9,6 +9,7 @@ public class BeeMScript : MonoBehaviour
 	private int numberOfBEES;
 	private GameObject tempBall;
 	private float beeSpeed;
+	private float queenBeeSpeed;
 	private int beeValue;
 	private List<Vector3> SpawnPoints;
 	private List<Vector3> UsedSpawnPoints;
@@ -20,6 +21,7 @@ public class BeeMScript : MonoBehaviour
 	private bool isExpert;
 	private Vector3 AngryBeeSpawnPoint;
 	private Object AngryBeePrefab;
+	private Object QueenBeePrefab;
 	private Vector3 DirChangeLeft;
 	private Vector3 DirChangeRight;
 	// Use this for initialization
@@ -33,6 +35,7 @@ public class BeeMScript : MonoBehaviour
 		BeeBurstPrefab = Resources.Load("Prefabs/BeeBurst");
 		ScoreChangeSpritePrefab = Resources.Load("Prefabs/ScoreChangeSprite");
 		AngryBeePrefab = Resources.Load("Prefabs/SoldierBee");
+		QueenBeePrefab = Resources.Load("Prefabs/QueenBee");
 		AngryBeeSpawnPoint = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<Transform>().position;
 
 		Hive = GameObject.FindGameObjectWithTag("BeeHive"); //So we can move the BeeHive and not worry about it's position-Need to instantiate the Background with BeeHive
@@ -61,9 +64,11 @@ public class BeeMScript : MonoBehaviour
 		}
 		else if(SVM_Script.gameDifficulty == "expert")
 		{
-			numberOfBEES = 5;
+			numberOfBEES = 2;
 			//maxBeeValue = 3;
 			beeSpeed = 7f;
+			queenBeeSpeed = 5.5f;
+
 			isExpert = true;
 			StartCoroutine(AngryBeeSpawner());
 		}
@@ -105,6 +110,20 @@ public class BeeMScript : MonoBehaviour
 			SpawnPoints.RemoveAt(tI);
 			yield return null;
 		}
+
+		//---------------------------Start of Queen Bee--------------------------//
+		if(isExpert){
+			tI = Random.Range(0,SpawnPoints.Count);
+			//Vector3 shiftPos = new Vector3(0f, Random.Range (-2.5f,2.5f), 0f);
+			tempBee = GameObject.Instantiate(QueenBeePrefab, SpawnPoints[tI], Quaternion.identity) as GameObject;
+			tempBee.GetComponent<QueenBeeScript>().InitialiseVariables(tempBall, queenBeeSpeed, beeValue,BeeBurstPrefab,ScoreChangeSpritePrefab, Hive.transform.position, this);
+			//tempBee.GetComponent<Bee_Script>().value = tempValue;
+			beeList.Add(tempBee);
+			UsedSpawnPoints.Add(SpawnPoints[tI]);
+			SpawnPoints.RemoveAt(tI);
+
+		}
+		//---------------------------END of Queen Bee--------------------------//
 	}
 
 	public bool BeesAlive()
