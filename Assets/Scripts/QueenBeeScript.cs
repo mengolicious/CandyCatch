@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class QueenBeeScript : MonoBehaviour {
+public class QueenBeeScript : Bee_Script {
 
 	private ScoreManagerScript ScoreManager_Script;
 	private SoundManagerScript SM_Script;
@@ -45,7 +45,7 @@ public class QueenBeeScript : MonoBehaviour {
 	/// </summary>
 	/// <param name="targetBall">Target ball.</param>
 	/// <param name="beeSpeed">Bee speed.</param>
-	public void InitialiseVariables(GameObject targetBall, float beeSpeed, int beeValue,Object particleResource, Object ScoreNumResource, Vector3 HiveTragetPos, BeeMScript BeeMananager)
+	public override void InitialiseVariables(GameObject targetBall, float beeSpeed, int beeValue,Object particleResource, Object ScoreNumResource, Vector3 HiveTragetPos, BeeMScript BeeMananager)
 	{
 		hasBall = false;
 		answerBall = targetBall;
@@ -130,7 +130,7 @@ public class QueenBeeScript : MonoBehaviour {
 	/// <summary>
 	/// Raises the mouse down event.
 	/// </summary>
-	public void OnMouseDown()
+	public override void OnMouseDown()
 	{
 		//if(Input.GetMouseButtonDown(0))
 		//{
@@ -148,7 +148,7 @@ public class QueenBeeScript : MonoBehaviour {
 	/// Raises the trigger enter event.
 	/// </summary>
 	/// <param name="other">Other.</param>
-	public void OnTriggerEnter(Collider other)
+	public override void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject == answerBall) {
 			other.gameObject.GetComponent<BallScript>().DeductPoints(value);
@@ -185,11 +185,12 @@ public class QueenBeeScript : MonoBehaviour {
 		}
 	}
 	
-	public void Kill()
+	public override void Kill()
 	{
 
 		//Start for Restarting Balls and Questions
 		if(hasBall){
+			Debug.Log ("The Queen lost the ball");
 			GM_1Script.DestroyInstatiatedBalls("balls");
 			GM_1Script.SpawnBalls();
 			BeeM_Script.ClearBees();
@@ -205,7 +206,7 @@ public class QueenBeeScript : MonoBehaviour {
 
 	}
 	
-	public void ClearTarget()
+	public override void ClearTarget()
 	{
 		answerBall = null;
 		if(isAttacking)

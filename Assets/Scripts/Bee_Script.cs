@@ -34,7 +34,7 @@ public class Bee_Script : MonoBehaviour {
 	/// </summary>
 	/// <param name="targetBall">Target ball.</param>
 	/// <param name="beeSpeed">Bee speed.</param>
-	public void InitialiseVariables(GameObject targetBall, float beeSpeed, int beeValue,Object particleResource, Object ScoreNumResource, Vector3 HiveTragetPos, BeeMScript BeeMananager)
+	public virtual void InitialiseVariables(GameObject targetBall, float beeSpeed, int beeValue,Object particleResource, Object ScoreNumResource, Vector3 HiveTragetPos, BeeMScript BeeMananager)
 	{
 		answerBall = targetBall;
 		isAttacking = true;
@@ -118,7 +118,7 @@ public class Bee_Script : MonoBehaviour {
 	/// <summary>
 	/// Raises the mouse down event.
 	/// </summary>
-	public void OnMouseDown()
+	public virtual void OnMouseDown()
 	{
 		//if(Input.GetMouseButtonDown(0))
 		//{
@@ -136,7 +136,7 @@ public class Bee_Script : MonoBehaviour {
 	/// Raises the trigger enter event.
 	/// </summary>
 	/// <param name="other">Other.</param>
-	public void OnTriggerEnter(Collider other)
+	public virtual void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject == answerBall) {
 			other.gameObject.GetComponent<BallScript>().DeductPoints(value);
@@ -153,14 +153,14 @@ public class Bee_Script : MonoBehaviour {
 		}
 	}
 
-	public void Kill()
+	public virtual void Kill()
 	{
 		//Debug.Log ("Bee Dead");
 		BeeM.RemoveBee(gameObject);
 		Destroy(gameObject);
 	}
 
-	public void ClearTarget()
+	public virtual void ClearTarget()
 	{
 		answerBall = null;
 		if(isAttacking)

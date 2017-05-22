@@ -113,6 +113,7 @@ public class BeeMScript : MonoBehaviour
 
 		//---------------------------Start of Queen Bee--------------------------//
 		if(isExpert){
+			Debug.Log ("The Queen cometh");
 			tI = Random.Range(0,SpawnPoints.Count);
 			//Vector3 shiftPos = new Vector3(0f, Random.Range (-2.5f,2.5f), 0f);
 			tempBee = GameObject.Instantiate(QueenBeePrefab, SpawnPoints[tI], Quaternion.identity) as GameObject;
