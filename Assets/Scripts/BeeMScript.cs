@@ -95,6 +95,7 @@ public class BeeMScript : MonoBehaviour
 	IEnumerator ReleaseTheBees()
 	{
 		GameObject tempBee;
+		GameObject tempQueenBee;
 		int tI;
 		//Debug.Log ("Spawning " + numberOfBEES + " Bees");
 		for(int x = 0; x < numberOfBEES; x++)
@@ -116,10 +117,10 @@ public class BeeMScript : MonoBehaviour
 			Debug.Log ("The Queen cometh");
 			tI = Random.Range(0,SpawnPoints.Count);
 			//Vector3 shiftPos = new Vector3(0f, Random.Range (-2.5f,2.5f), 0f);
-			tempBee = GameObject.Instantiate(QueenBeePrefab, SpawnPoints[tI], Quaternion.identity) as GameObject;
-			tempBee.GetComponent<QueenBeeScript>().InitialiseVariables(tempBall, queenBeeSpeed, beeValue,BeeBurstPrefab,ScoreChangeSpritePrefab, Hive.transform.position, this);
+			tempQueenBee = GameObject.Instantiate(QueenBeePrefab, SpawnPoints[tI], Quaternion.identity) as GameObject;
+			tempQueenBee.GetComponent<QueenBeeScript>().InitialiseVariables(tempBall, queenBeeSpeed, beeValue,BeeBurstPrefab,ScoreChangeSpritePrefab, Hive.transform.position, this);
 			//tempBee.GetComponent<Bee_Script>().value = tempValue;
-			beeList.Add(tempBee);
+			//beeList.Add(tempBee); //add this back ***
 			UsedSpawnPoints.Add(SpawnPoints[tI]);
 			SpawnPoints.RemoveAt(tI);
 
