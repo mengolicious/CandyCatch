@@ -3,26 +3,26 @@ using System.Collections;
 
 public class Bee_Script : MonoBehaviour {
 
-	private ScoreManagerScript ScoreManager_Script;
-	private SoundManagerScript SM_Script;
+	protected ScoreManagerScript ScoreManager_Script;
+	protected SoundManagerScript SM_Script;
 	//public bool isCollected;
 
-	private GameObject answerBall;
+	protected GameObject answerBall;
 
-	private Object particlePrefab;
-	private Object ScoreNumberPrefab;
+	protected Object particlePrefab;
+	protected Object ScoreNumberPrefab;
 //	[SerializeField]
 //	private Vector3 answerBallPos;
-	private int value;
-	private bool isAttacking;
-	private bool isGoingToHive;
+	protected int value;
+	protected bool isAttacking;
+	protected bool isGoingToHive;
 //	private Vector3 startPos;
 //	private Vector3 startDir;
 	[SerializeField]
-	private float speed;
-	private Vector3 BeeHivePos;
-	private Vector3 MoveDir;
-	private BeeMScript BeeM;
+	protected float speed;
+	protected Vector3 BeeHivePos;
+	protected Vector3 MoveDir;
+	protected BeeMScript BeeM;
 	// Use this for initialization
 	void Start ()
 	{

@@ -3,8 +3,6 @@ using System.Collections;
 
 public class QueenBeeScript : Bee_Script {
 
-	private ScoreManagerScript ScoreManager_Script;
-	private SoundManagerScript SM_Script;
 	private GM_1 GM_1Script;
 	private BeeMScript BeeM_Script;
 	private ClawScript Claw_Script;
@@ -13,23 +11,7 @@ public class QueenBeeScript : Bee_Script {
 
 	private Animator QueenAnimation;
 	//public bool isCollected;
-	
-	private GameObject answerBall;
-	
-	private Object particlePrefab;
-	private Object ScoreNumberPrefab;
-	//	[SerializeField]
-	//	private Vector3 answerBallPos;
-	private int value;
-	private bool isAttacking;
-	private bool isGoingToHive;
-	//	private Vector3 startPos;
-	//	private Vector3 startDir;
 
-	private float speed;
-	private Vector3 BeeHivePos;
-	private Vector3 MoveDir;
-	private BeeMScript BeeM;
 	// Use this for initialization
 	void Start ()
 	{
