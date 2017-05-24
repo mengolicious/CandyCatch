@@ -7,7 +7,14 @@ public class QueenBeeScript : Bee_Script {
 	private BeeMScript BeeM_Script;
 	private ClawScript Claw_Script;
 	private bool hasBall;
-	public int life;
+	public int numberOfHit;
+	[SerializeField]
+	private Transform QBParent;
+	[SerializeField]
+	private GameObject healthBar;
+	[SerializeField]
+	private float subtractor;
+
 
 	private Animator QueenAnimation;
 	//public bool isCollected;
@@ -22,6 +29,9 @@ public class QueenBeeScript : Bee_Script {
 		Claw_Script = GameObject.FindGameObjectWithTag ("Claw").GetComponent<ClawScript>();
 
 		QueenAnimation = this.GetComponent<Animator> ();
+
+
+
 	}
 	/// <summary>
 	/// Initialises the variables.
@@ -30,7 +40,7 @@ public class QueenBeeScript : Bee_Script {
 	/// <param name="beeSpeed">Bee speed.</param>
 	public override void InitialiseVariables(GameObject targetBall, float beeSpeed, int beeValue,Object particleResource, Object ScoreNumResource, Vector3 HiveTragetPos, BeeMScript BeeMananager)
 	{
-		life = 5;
+		numberOfHit = 5;
 		hasBall = false;
 		answerBall = targetBall;
 		isAttacking = true;
@@ -53,6 +63,9 @@ public class QueenBeeScript : Bee_Script {
 			//transform.localScale = new Vector3(-1,1,1);
 			transform.Rotate(Vector3.up,180f);
 		}//*/
+		QBParent = transform.parent;
+		healthBar = QBParent.GetChild(1).GetChild(2).gameObject;
+		subtractor = healthBar.transform.localScale.x / numberOfHit;
 		StartCoroutine (ATTACK_ON_TITAN());
 	}
 	/// <summary>
@@ -78,7 +91,7 @@ public class QueenBeeScript : Bee_Script {
 			if(answerBall)
 			{
 				//Debug.Log("Ball Found");
-				transform.position = Vector3.MoveTowards(transform.position, answerBall.transform.position, speed * 0.02f /*Time.deltaTime*/); //replaced 0.03f with Time.deltaTime. I'll explain it in detail if you don't know why 0.03f will not work
+				QBParent.position = Vector3.MoveTowards(QBParent.position, answerBall.transform.position, speed * 0.02f /*Time.deltaTime*/); //replaced 0.03f with Time.deltaTime. I'll explain it in detail if you don't know why 0.03f will not work
 			}
 			else
 			{
@@ -100,7 +113,7 @@ public class QueenBeeScript : Bee_Script {
 			{
 				moveStep = MoveDir * (speed * 0.02f/*Time.deltaTime */); //replaced 0.03f with Time.deltaTime. I'll explain it in detail if you don't know why 0.03f will not work
 				dist -= moveStep.magnitude;
-				transform.position += moveStep;
+				QBParent.position += moveStep;
 			}
 			else
 			{
@@ -118,7 +131,7 @@ public class QueenBeeScript : Bee_Script {
 	{
 		//if(Input.GetMouseButtonDown(0))
 		//{
-		SM_Script.Play_SFX("splat");
+		/*SM_Script.Play_SFX("splat");
 		if(ScoreManager_Script.EditScore(value, ScoreManagerScript.ScoreSource.Bee))
 		{
 			GameObject.Instantiate(particlePrefab, this.transform.position, this.transform.rotation);
@@ -126,7 +139,26 @@ public class QueenBeeScript : Bee_Script {
 			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, true, true);
 		}
 		Kill();
-		//}
+		//}*/
+	}
+
+	public void ReduceHealth(){
+
+
+		numberOfHit--;
+		if(numberOfHit < 1)
+		{
+			numberOfHit = 0;
+			isAttacking = false;
+			isGoingToHive = true;
+
+			this.transform.GetChild (0).gameObject.SetActive(false);
+			this.transform.GetChild (1).gameObject.SetActive(false);
+			this.transform.GetChild (2).gameObject.SetActive(false);
+			this.transform.GetChild (3).gameObject.SetActive(false);
+		}
+		healthBar.transform.localScale -= new Vector3 (subtractor, 0, 0); 
+		healthBar.transform.localPosition -= new Vector3 (1, 0, 0); 
 	}
 	/// <summary>
 	/// Raises the trigger enter event.
@@ -134,9 +166,11 @@ public class QueenBeeScript : Bee_Script {
 	/// <param name="other">Other.</param>
 	public override void OnTriggerEnter(Collider other)
 	{
+
 		if (other.gameObject == answerBall) {
-			other.gameObject.GetComponent<BallScript>().DeductPoints(value);
-			other.gameObject.transform.localScale -= new Vector3(0.1f,0.1f,0.1f);
+
+			Debug.Log ("QueenBee IF");
+
 			
 			GameObject tempScoreParticle = GameObject.Instantiate(ScoreNumberPrefab, this.transform.position, Quaternion.identity) as GameObject;
 			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, false, false);
@@ -154,6 +188,8 @@ public class QueenBeeScript : Bee_Script {
 			other.gameObject.transform.localScale = new Vector3(1.0f,1.0f,1.0f);
 			other.gameObject.transform.localPosition = new Vector3(-1.2f,-2.3f,0);
 			other.gameObject.transform.localEulerAngles = new Vector3(270,0,0);
+
+			BeeM_Script.ClearBees();
 
 			hasBall=true;
 			Claw_Script.hitBall=false;
@@ -177,7 +213,6 @@ public class QueenBeeScript : Bee_Script {
 			Debug.Log ("The Queen lost the ball");
 			GM_1Script.DestroyInstatiatedBalls("balls");
 			GM_1Script.SpawnBalls();
-			BeeM_Script.ClearBees();
 			GM_1Script.ResetQuestion();
 		}
 		//END for Restarting Balls and Questions
@@ -185,9 +220,7 @@ public class QueenBeeScript : Bee_Script {
 
 		//Debug.Log ("Bee Dead");
 		BeeM.RemoveBee(gameObject);
-		Destroy(gameObject);
-
-
+		Destroy(transform.parent.gameObject);
 	}
 	
 	public override void ClearTarget()
@@ -203,3 +236,5 @@ public class QueenBeeScript : Bee_Script {
 
 	}
 }
+
+

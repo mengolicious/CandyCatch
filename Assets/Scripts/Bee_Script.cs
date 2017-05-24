@@ -14,8 +14,8 @@ public class Bee_Script : MonoBehaviour {
 //	[SerializeField]
 //	private Vector3 answerBallPos;
 	protected int value;
-	protected bool isAttacking;
-	protected bool isGoingToHive;
+	public bool isAttacking;
+	public bool isGoingToHive;
 //	private Vector3 startPos;
 //	private Vector3 startDir;
 	[SerializeField]

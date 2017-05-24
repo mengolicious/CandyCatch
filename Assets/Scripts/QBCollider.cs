@@ -5,6 +5,7 @@ public class QBCollider : MonoBehaviour {
 
 	public string animationString;
 	public GameObject QueenBeeParent;
+	public QueenBeeScript QueenBee_Script;
 	public Animator QueenBeeAnimator;
 	public GameObject particlePrefab;
 
@@ -15,6 +16,7 @@ public class QBCollider : MonoBehaviour {
 
 		QueenBeeParent = this.transform.parent.gameObject;
 		QueenBeeAnimator = QueenBeeParent.GetComponent<Animator> ();
+		QueenBee_Script = QueenBeeParent.GetComponent<QueenBeeScript>();
 	
 	}
 	
@@ -25,8 +27,14 @@ public class QBCollider : MonoBehaviour {
 
 	public void OnMouseDown()
 	{
+	
 
 		particlePrefab = Instantiate(particlePrefabObject, this.transform.position, this.transform.rotation)as GameObject;
 		QueenBeeAnimator.Play (animationString);
+
+	
+		QueenBee_Script.ReduceHealth ();
+	
+
 	}
 }
