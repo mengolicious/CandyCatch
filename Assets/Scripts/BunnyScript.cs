@@ -50,8 +50,12 @@ public class BunnyScript : MonoBehaviour
 	{
 		while(currentState == States.MoveUp)
 		{
-			transform.position += Vector3.up * 0.05f;
-			yield return new WaitForSeconds(0.03f);
+			for(int i =0; i <20; i++)
+			{
+				transform.position += Vector3.up * 0.05f;
+				yield return new WaitForSeconds(0.03f);
+			}
+			transform.GetChild(0).localPosition += Vector3.up;
 		}
 	}
 }
