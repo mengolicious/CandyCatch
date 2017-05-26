@@ -22,6 +22,7 @@ public class AngryBee_Script : MonoBehaviour
 		transform.eulerAngles = new Vector3(0,180,0);
 		while(!isCollected)
 		{
+			//----------------Start Expert Soldier Bee ---------------------------//
 			if(isExpert)
 			{
 				//Code for expert to be done to move the Angry Bee in a different manner to normal

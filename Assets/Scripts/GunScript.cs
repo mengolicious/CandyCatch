@@ -140,8 +140,12 @@ public class GunScript : MonoBehaviour {
 				//tempBallHit.transform.localScale = new Vector3(75,75,75);
 				tempBallHit.GetComponent<Renderer>().material.SetFloat("_Metallic", 0);
 			}
+
+			else if(hit.transform.gameObject.CompareTag("QueenTag")){
+
+			}
 			else{
-				if(tempBallHit){
+				if(tempBallHit && !tempBallHit.transform.gameObject.CompareTag("QueenTag")){
 					tempBallHit.transform.localScale = new Vector3(0.6f,0.6f,0.6f);
 					//tempBallHit.transform.localScale = new Vector3(65,65,65);
 					tempBallHit.GetComponent<Renderer>().material.SetFloat("_Metallic", 0.3f);

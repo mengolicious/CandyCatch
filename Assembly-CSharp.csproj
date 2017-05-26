@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\BeeBurstParticle.cs" />
      <Compile Include="Assets\Scripts\BeeMScript.cs" />
      <Compile Include="Assets\Scripts\Bee_Script.cs" />
+     <Compile Include="Assets\Scripts\BunnyScript.cs" />
      <Compile Include="Assets\Scripts\CameraScript.cs" />
      <Compile Include="Assets\Scripts\ClawScript.cs" />
      <Compile Include="Assets\Scripts\CloudScript.cs" />
@@ -65,11 +66,12 @@
      <Compile Include="Assets\Scripts\GunScript.cs" />
      <Compile Include="Assets\Scripts\HighScoreDisplayManagerScript.cs" />
      <Compile Include="Assets\Scripts\HighScoreManagerScript.cs" />
-     <Compile Include="Assets\Scripts\HotAirBalloon.cs" />
-     <Compile Include="Assets\Scripts\HotAirBalloon2.cs" />
      <Compile Include="Assets\Scripts\HotAirBalloon3.cs" />
      <Compile Include="Assets\Scripts\HudRipple_Script.cs" />
      <Compile Include="Assets\Scripts\LeftBannerPrefab_Script.cs" />
+     <Compile Include="Assets\Scripts\LoadingScreenCandy.cs" />
+     <Compile Include="Assets\Scripts\QBCollider.cs" />
+     <Compile Include="Assets\Scripts\QueenBeeScript.cs" />
      <Compile Include="Assets\Scripts\QuestionManagerScript.cs" />
      <Compile Include="Assets\Scripts\QuestionPartScript.cs" />
      <Compile Include="Assets\Scripts\SVM_Script.cs" />

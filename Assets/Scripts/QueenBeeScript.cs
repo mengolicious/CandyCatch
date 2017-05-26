@@ -171,7 +171,8 @@ public class QueenBeeScript : Bee_Script {
 
 			Debug.Log ("QueenBee IF");
 
-			
+
+
 			GameObject tempScoreParticle = GameObject.Instantiate(ScoreNumberPrefab, this.transform.position, Quaternion.identity) as GameObject;
 			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, false, false);
 			//Debug.Log ("Lose some points you scrub");
@@ -189,6 +190,7 @@ public class QueenBeeScript : Bee_Script {
 			other.gameObject.transform.localPosition = new Vector3(-1.2f,-2.3f,0);
 			other.gameObject.transform.localEulerAngles = new Vector3(270,0,0);
 
+
 			BeeM_Script.ClearBees();
 
 			hasBall=true;
@@ -202,6 +204,7 @@ public class QueenBeeScript : Bee_Script {
 
 
 			answerBall = null;
+			other.gameObject.tag = "QueenTag";
 		}
 	}
 	
