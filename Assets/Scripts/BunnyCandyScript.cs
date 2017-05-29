@@ -11,13 +11,13 @@ public class BunnyCandyScript : MonoBehaviour {
 		anim = GetComponent<Animator>();
 	}
 
-	void InitialiseVariables(int candyIndex)
+	public void InitialiseVariables(int candyIndex)
 	{
 		candyNum = candyIndex;
-		if(anim)
+		/*if(anim)
 		{
 			anim.Play("CandyRaise" + candyNum);
-		}
+		}//*/
 	}
 
 	void OnMouseDown()

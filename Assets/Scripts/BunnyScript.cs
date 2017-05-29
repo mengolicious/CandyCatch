@@ -14,7 +14,10 @@ public class BunnyScript : MonoBehaviour
 	[SerializeField]
 	private Animator anim;
 	[SerializeField]
+	private Animator candyAnim;
+	[SerializeField]
 	private GameObject bunnyCandy;
+	private int candyNum;
 
 	/// <summary>
 	/// Start this instance.
@@ -22,13 +25,14 @@ public class BunnyScript : MonoBehaviour
 	void Start()
 	{
 		currentState = States.EarWiggle;
-		int candyNum = Random.Range(1, 5);
-
+		candyNum = Random.Range(1, 5);
+		//transform.GetChild(0).GetComponent<BunnyCandyScript>().InitialiseVariables(candyNum);
 		//bunnyCandy = Instantiate(Resources.Load("Prefabs/Bunny/Candy" + candyNum)) as GameObject;
 		//bunnyCandy.transform.SetParent(this.transform);
 		//bunnyCandy.transform.localScale = Vector3.one;
 		//bunnyCandy.transform.localPosition = Vector3.up;
 		anim = GetComponent<Animator>();
+		candyAnim = transform.GetChild(0).GetComponent<Animator>();
 	}
 
 	public void SwitchState(States newState)
@@ -41,8 +45,13 @@ public class BunnyScript : MonoBehaviour
 		if(currentState == States.EarWiggle)
 		{
 			anim.Play ("HeadRaise");
+			candyAnim.Play("CandyRaise" + candyNum);
 			currentState = States.MoveUp;
 			StartCoroutine(RiseUp());
+		}
+		else if(currentState == States.WavingCandy)
+		{
+			//do ya thang
 		}
 	}
 
@@ -56,6 +65,9 @@ public class BunnyScript : MonoBehaviour
 				yield return new WaitForSeconds(0.03f);
 			}
 			transform.GetChild(0).localPosition += Vector3.up;
+			anim.Play ("HeadWiggle");
+			candyAnim.Play("CandyWiggle" + candyNum);
+			currentState = States.WavingCandy;
 		}
 	}
 }
