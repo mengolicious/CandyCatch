@@ -28,6 +28,7 @@ public class BunnyScript : MonoBehaviour
 	/// </summary>
 	void Start()
 	{
+		transform.position -= Vector3.up * 0.5f;
 		currentState = States.EarWiggle;
 		candyNum = Random.Range(1, 5);
 		//transform.GetChild(0).GetComponent<BunnyCandyScript>().InitialiseVariables(candyNum);
@@ -40,6 +41,7 @@ public class BunnyScript : MonoBehaviour
 		scoreChangePrefab = Resources.Load("Prefabs/ScoreChangeSprite");
 		dissapearing = false;
 		SM = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManagerScript>();
+		StartCoroutine(AppearTransition());
 
 	}
 
@@ -72,6 +74,16 @@ public class BunnyScript : MonoBehaviour
 		}
 	}
 
+	IEnumerator AppearTransition()
+	{
+		int totalStep = (int)(0.5f / 0.05f);
+		for(int i =0; i <totalStep; i++)
+		{
+			transform.position += Vector3.up * 0.05f;
+			yield return new WaitForSeconds(0.03f);
+		}
+	}
+
 	IEnumerator RiseUp()
 	{
 		while(currentState == States.MoveUp)
@@ -94,6 +106,7 @@ public class BunnyScript : MonoBehaviour
 
 	IEnumerator SmokeAnim()
 	{
+		this.transform.localScale = Vector3.one;
 		SpriteRenderer sr = GetComponent<SpriteRenderer>();
 		for(int x=1; x<8; x++)
 		{
