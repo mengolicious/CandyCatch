@@ -82,7 +82,7 @@ public class BunnyScript : MonoBehaviour
 				transform.position += Vector3.up * 0.05f;
 				yield return new WaitForSeconds(0.03f);
 			}
-			transform.GetChild(0).localPosition += Vector3.up * 0.25f;
+			transform.GetChild(0).localPosition += Vector3.up * 0.1f;
 			anim.Play ("HeadWiggle");
 			candyAnim.Play("CandyWiggle" + candyNum);
 			currentState = States.WavingCandy;
