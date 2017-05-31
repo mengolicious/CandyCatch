@@ -15,8 +15,6 @@ public class BunnyScript : MonoBehaviour
 	private Animator anim;
 	[SerializeField]
 	private Animator candyAnim;
-	[SerializeField]
-	private GameObject bunnyCandy;
 	private int candyNum;
 	private ScoreManagerScript SM;
 	private Object scoreChangePrefab;
@@ -104,16 +102,8 @@ public class BunnyScript : MonoBehaviour
 		Dissapear();
 	}
 
-	IEnumerator SmokeAnim()
+	void DestroySelf()
 	{
-		this.transform.localScale = Vector3.one;
-		SpriteRenderer sr = GetComponent<SpriteRenderer>();
-		for(int x=1; x<8; x++)
-		{
-			Sprite smokeOnTheWater = Resources.Load<Sprite>("Sprites/Smoke/Smoke"+x);
-			sr.sprite = smokeOnTheWater;
-			yield return new WaitForSeconds(0.04f);
-		}
 		BunnySpawn.BunnyGone(spawnIndex);
 		Destroy(this.gameObject);
 	}
@@ -126,7 +116,6 @@ public class BunnyScript : MonoBehaviour
 		}
 		dissapearing = true;
 		transform.GetChild(0).gameObject.SetActive(false);
-		Destroy(anim);
-		StartCoroutine(SmokeAnim());
+		anim.Play("SmokePop");
 	}
 }
