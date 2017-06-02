@@ -49,9 +49,10 @@ public class GunScript : MonoBehaviour {
 
 		//isRenderFrame = false;
 		Color targetColour;
-		Color.TryParseHexString("7f64ac", out targetColour);
+//		Color.TryParseHexString("7f64ac", out targetColour);
 		line.material = new Material(Shader.Find("Unlit/Color"));
-		line.material.color = targetColour;
+//		line.material.color = targetColour;
+		line.material.color = new Color(0.6f, 0.5f, 0.9f, 1f );
 		line.sortingLayerName = "OnTop";
 		line.sortingOrder = 5;
 		line.useWorldSpace = true;
