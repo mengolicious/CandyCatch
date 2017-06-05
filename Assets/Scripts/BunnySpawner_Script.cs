@@ -26,12 +26,12 @@ public class BunnySpawner_Script : MonoBehaviour {
 
 	IEnumerator BunnySpawner()
 	{
-		GameObject tempBunny;
+		GameObject tempBunny = null;
 		int tempI;
 		while(true)
 		{
 			tempI = Random.Range(0, indexList.Count);
-			if(indexList.Count > 0)
+			if(tempBunny == null)
 			{
 				//do the bubble spawning code here since it's almost 4
 				tempBunny = Instantiate(BunnyPrefab, spawnPoints[indexList[tempI]].position, Quaternion.identity) as GameObject;

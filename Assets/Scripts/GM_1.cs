@@ -237,7 +237,7 @@ public class GM_1 : MonoBehaviour
 		}
 		int x;
 		GameObject tempBubble;
-		Color tempColour;
+		//Color tempColour;
 		int tempI;
 		while(true)
 		{

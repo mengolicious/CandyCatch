@@ -109,7 +109,7 @@ public class SVM_Script : MonoBehaviour {
 	IEnumerator LevelLoader(string levelName)
 	{
 		yield return new WaitForSeconds(0.5f);
-		AsyncOperation async = Application.LoadLevelAsync(levelName);
+		AsyncOperation async = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(levelName);
 		yield return async;
 	}
 }

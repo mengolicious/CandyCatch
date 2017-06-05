@@ -48,7 +48,7 @@ public class GunScript : MonoBehaviour {
 		claw.SetActive (false);
 
 		//isRenderFrame = false;
-		Color targetColour;
+		//Color targetColour;
 //		Color.TryParseHexString("7f64ac", out targetColour);
 		line.material = new Material(Shader.Find("Unlit/Color"));
 //		line.material.color = targetColour;
@@ -56,8 +56,10 @@ public class GunScript : MonoBehaviour {
 		line.sortingLayerName = "OnTop";
 		line.sortingOrder = 5;
 		line.useWorldSpace = true;
-		line.SetWidth(0.1f, 0.1f);
-	}
+		line.startWidth = 0.1f;
+        line.endWidth = 0.1f;
+
+    }
 
 	void Update()
 	{
@@ -76,12 +78,12 @@ public class GunScript : MonoBehaviour {
 	{
 		if(!isShooting)
 		{
-			line.SetVertexCount(2);
+			line.positionCount = 2;
 			SetupLine();
 		}
 		else
 		{
-			line.SetVertexCount(0);
+			line.positionCount = 0;
 		}
 	}
 	/*private bool isRenderFrame;
@@ -128,7 +130,7 @@ public class GunScript : MonoBehaviour {
 	
 	void SetupLine()
 	{
-		line.SetVertexCount(2);
+		line.positionCount = 2;
 		line.SetPosition(0, this.gameObject.transform.position);
 		Vector3 down = transform.TransformDirection (Vector3.down);
 		if (Physics.Raycast(this.transform.position,  down, out hit, 20))

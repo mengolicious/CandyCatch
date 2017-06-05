@@ -157,13 +157,13 @@ public class GM : MonoBehaviour {
 	//when level 2 button pressed change scene to Level 2 alphabet
 	public void LevelTwo ()
 	{
-		Application.LoadLevel ("AlphabetLV2");
+		//Application.LoadLevel ("AlphabetLV2");
 	}
 	
 	//when level 3 button pressed change scene to Level 3 numbers
 	public void LevelThree ()
 	{ 
-		Application.LoadLevel ("NumbersLV3");
+		//Application.LoadLevel ("NumbersLV3");
 	}
 
 }

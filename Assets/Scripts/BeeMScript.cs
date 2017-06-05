@@ -16,7 +16,6 @@ public class BeeMScript : MonoBehaviour
 	private Object BeePrefab;
 	private Object BeeBurstPrefab;
 	private Object ScoreChangeSpritePrefab;
-	private int maxBeeValue;
 	public GameObject Hive;
 	private bool isExpert;
 	private Vector3 AngryBeeSpawnPoint;
