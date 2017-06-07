@@ -60,12 +60,16 @@ public class GM : MonoBehaviour {
 
 	public void NCCCWebsite()
 	{
-		Application.OpenURL("http://nccc.org.au/");
+		#if !UNITY_APPLE
+		Application.OpenURL("http://nccc.org.au/"); 
+		#endif
 	}
 
 	public void MBWebsite()
 	{
+		#if !UNITY_APPLE
 		Application.OpenURL ("http://www.mccormickbytes.org/");
+		#endif
 	}
 
 	public void MuteButton()

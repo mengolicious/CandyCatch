@@ -357,14 +357,14 @@ public class GM_1 : MonoBehaviour
 		}
 	}
 
-	Vector3 RandomPos()
-	{
-		int  x,y,z;
-		x = UnityEngine.Random.Range(-2, 2);
-		y = UnityEngine.Random.Range(-1,1);
-		z= UnityEngine.Random.Range(0,0);
-		return new Vector3(x, y, z);
-	}
+	//Vector3 RandomPos()
+	//{
+	//	int x, y, z;
+	//	x = Random.Range(-2, 2);
+	//	y = Random.Range(-1, 1);
+	//	z = Random.Range(0, 0);
+	//	return new Vector3(x, y, z);
+	//}
 
 	public void BackToMenu()
 	{

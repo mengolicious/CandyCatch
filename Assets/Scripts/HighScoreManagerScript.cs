@@ -63,8 +63,8 @@ public class HighScoreManagerScript : MonoBehaviour
 		PlayerPrefs.Save();
 	}
 
-	public void SaveHighScore()
-	{
+	//public void SaveHighScore()
+	//{
 
-	}
+	//}
 }

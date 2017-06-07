@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class SVM_Script : MonoBehaviour
 { 
-	public static GameObject advanceDifficulty;
-	public static GameObject advanceDifficultyLock;
-	public static GameObject expertDifficulty;
-	public static GameObject expertDifficultyLock;
+	//public static GameObject advanceDifficulty;
+	//public static GameObject advanceDifficultyLock;
+	//public static GameObject expertDifficulty;
+	//public static GameObject expertDifficultyLock;
 
 	public static string gameDifficulty;
 	public static int targetScore = 50;
@@ -14,7 +15,7 @@ public class SVM_Script : MonoBehaviour
 	public static bool expertIsLocked = true;
 	public static bool InstructionSeen = false;
 	public static bool gameSetup;
-		// Make global
+	// Make global instance, need to check if the instance is being used by external sources
 	public static SVM_Script Instance
 	{
 		get;
@@ -23,6 +24,8 @@ public class SVM_Script : MonoBehaviour
 		
 	public GameObject canvas;
 	private GameObject loadingScreen;
+
+	public int targetTime;
 
 	public int currentTotalScore;
 	public int bonusTime;
@@ -40,6 +43,7 @@ public class SVM_Script : MonoBehaviour
 			Destroy (gameObject);
 		}
 		//Debug.Log("Rawr means I love you in Dinosaur");
+		SceneManager.sceneLoaded += SceneLoadListener;
 		SetUpLoadingScreen();			//Establish the loading screen and attach it to the canvas while fixing strange value artifacts
 		InitializeSavedVariables();		//Initialize variables that needs to be saved when APP is closed
 		LoadSavedVariables();			//Load the variables from Playerprefs
@@ -58,7 +62,7 @@ public class SVM_Script : MonoBehaviour
 		loadingScreen.SetActive(false);
 	}
 
-	void OnLevelWasLoaded(int sceneIndex)
+	void SceneLoadListener(Scene scene, LoadSceneMode loadMode)
 	{
 		SetUpLoadingScreen();
 	}
@@ -109,7 +113,6 @@ public class SVM_Script : MonoBehaviour
 	public void LoadLevel(string levelName)
 	{
 		loadingScreen.SetActive(true);
-		//Debug.Log ("still wtf");
 		StartCoroutine(LevelLoader(levelName));
 	}
 

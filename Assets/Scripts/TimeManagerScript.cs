@@ -3,7 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class TimeManagerScript : MonoBehaviour {
+public class TimeManagerScript : MonoBehaviour
+{
 
 	public float timeStarted;
 	public int elapsedTime;
@@ -44,33 +45,35 @@ public class TimeManagerScript : MonoBehaviour {
 
 	// Use this for initialization
 
-	void Awake(){
+	void Awake()
+	{
 		InitializeTime();
 	}
 
-	void Start () {
+	void Start()
+	{
 
 		listNumImages = new List<Sprite>();
-		listNumImages.Add (num0);
-		listNumImages.Add (num1);
-		listNumImages.Add (num2);
-		listNumImages.Add (num3);
-		listNumImages.Add (num4);
-		listNumImages.Add (num5);
-		listNumImages.Add (num6);
-		listNumImages.Add (num7);
-		listNumImages.Add (num8);
-		listNumImages.Add (num9);
-		listNumImages.Add (period);
+		listNumImages.Add(num0);
+		listNumImages.Add(num1);
+		listNumImages.Add(num2);
+		listNumImages.Add(num3);
+		listNumImages.Add(num4);
+		listNumImages.Add(num5);
+		listNumImages.Add(num6);
+		listNumImages.Add(num7);
+		listNumImages.Add(num8);
+		listNumImages.Add(num9);
+		listNumImages.Add(period);
 
 		listDisplayImages = new List<Image>();
-		listDisplayImages.Add (firstNum);
-		listDisplayImages.Add (secondNum);
-		listDisplayImages.Add (thirdNum);
-		listDisplayImages.Add (fourthNum);
+		listDisplayImages.Add(firstNum);
+		listDisplayImages.Add(secondNum);
+		listDisplayImages.Add(thirdNum);
+		listDisplayImages.Add(fourthNum);
 
 
-		StartCoroutine (UpdateTime ());
+		StartCoroutine(UpdateTime());
 
 	}
 
@@ -83,7 +86,8 @@ public class TimeManagerScript : MonoBehaviour {
 	{
 		int minutes;
 		int seconds;
-		while(true){
+		while (true)
+		{
 
 			elapsedTime = (int)(Time.time - timeStarted);
 			minutes = elapsedTime / 60;
@@ -113,24 +117,27 @@ public class TimeManagerScript : MonoBehaviour {
 				tempNumV2--;
 			}*/
 			/* ---------------Start RUSS CODE TIME DISPLAY--- Remove this comment and other codes that are not needed once it's finalised-------------- */
-			if(seconds> 9)
+			if (seconds > 9)
 			{
 
 				secondsStr = seconds.ToString();
 			}
 			else
 			{
-				secondsStr = "0"+seconds.ToString();
+				secondsStr = "0" + seconds.ToString();
 			}
 
-			if(minutes>9){
-				if(minutes>99){
-					minutes = 99;	// temporary fix for exceeding 99 minutes
+			if (minutes > 9)
+			{
+				if (minutes > 99)
+				{
+					minutes = 99;   // temporary fix for exceeding 99 minutes
 				}
-				minutesStr = minutes.ToString ();
+				minutesStr = minutes.ToString();
 			}
-			else{
-				minutesStr = "0"+minutes.ToString ();
+			else
+			{
+				minutesStr = "0" + minutes.ToString();
 			}
 
 
@@ -152,9 +159,7 @@ public class TimeManagerScript : MonoBehaviour {
 		}
 	}
 
+	//public void DisplayTime(){
 
-
-	public void DisplayTime(){
-
-	}
+	//}
 }
