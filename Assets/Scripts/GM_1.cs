@@ -405,6 +405,7 @@ public class GM_1 : MonoBehaviour
 		case "advance": SVM_Script.gameDifficulty = "expert"; break;
 		}*/
 	}
+
 	public void StartGame()
 	{
 		SoundManager_Script.Play_SFX("MenuNavPop");
