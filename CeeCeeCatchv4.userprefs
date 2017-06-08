@@ -1,9 +1,13 @@
 ﻿<Properties StartupItem="CeeCeeCatchv4.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GunScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GM_1.cs">
     <Files>
-      <File FileName="Assets\Scripts\GunScript.cs" Line="79" Column="1" />
-      <File FileName="Assets\Scripts\GM_1.cs" Line="243" Column="83" />
+      <File FileName="Assets\Scripts\GunScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GM_1.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GM.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SVM_Script.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ScoreManagerScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\HighScoreManagerScript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

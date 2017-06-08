@@ -43,10 +43,19 @@ public class GM_1 : MonoBehaviour
 	public Sprite equationAdvance;
 	public Sprite equationExpert;
 
+	//Start this is for Target Score
 	public Image targetScoreImage;
 	public Sprite easyTargetScore;
 	public Sprite advanceTargetScore;
 	public Sprite expertTargetScore;
+	//END this is for Target Score
+
+	//Start this is for Target Time
+	public Image targetTimeImage;
+	public Sprite easyTargetTime;
+	public Sprite advanceTargetTime;
+	public Sprite expertTargetTime;
+	//END this is for Target TIme
 
 	public bool gameHasStarted;
 	public bool gameIsPaused;
@@ -341,6 +350,7 @@ public class GM_1 : MonoBehaviour
 		{
 			//stageSpriteRendererBG.sprite = equationEasy;
 			targetScoreImage.sprite = easyTargetScore;
+			targetTimeImage.sprite = easyTargetTime;
 			SM_Script.targetScore = SVM_Script.targetScore;
 
 			//Play BG Music
@@ -350,6 +360,7 @@ public class GM_1 : MonoBehaviour
 		{
 			//stageSpriteRendererBG.sprite = equationAdvance;
 			targetScoreImage.sprite = advanceTargetScore;
+			targetTimeImage.sprite = advanceTargetTime;
 			SM_Script.targetScore = SVM_Script.targetScore;
 
 			//Play BG Music
@@ -359,6 +370,7 @@ public class GM_1 : MonoBehaviour
 		{
 			//stageSpriteRendererBG.sprite = equationExpert;
 			targetScoreImage.sprite = expertTargetScore;
+			targetTimeImage.sprite = expertTargetTime;
 			SM_Script.targetScore = SVM_Script.targetScore;
 
 			//Play BG Music
