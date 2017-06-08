@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SVM_Script : MonoBehaviour
@@ -25,11 +25,14 @@ public class SVM_Script : MonoBehaviour
 	public GameObject canvas;
 	private GameObject loadingScreen;
 
+	//taget time to beat in seconds
 	public int targetTime;
-
+	//the total score from the game
 	public int currentTotalScore;
+	//the time left over to be used for the bonus stage
 	public int bonusTime;
-
+	//the index for the highscore that we beat, may have to recode the saving of the highscore to ensure we don't change the high score list then beat an even higher score
+	public int highScoreIndex;
 
 	void Awake ()
 	{
@@ -61,7 +64,11 @@ public class SVM_Script : MonoBehaviour
 		loadingScreen.GetComponent<RectTransform>().localScale = Vector3.one;
 		loadingScreen.SetActive(false);
 	}
-
+	/// <summary>
+	/// Listener for scene changes, used to setup the loading screen for use when a loadscene call happens
+	/// </summary>
+	/// <param name="scene"> required input param for listeners </param>
+	/// <param name="loadMode"> required input param for listeners </param>
 	void SceneLoadListener(Scene scene, LoadSceneMode loadMode)
 	{
 		SetUpLoadingScreen();
@@ -119,7 +126,7 @@ public class SVM_Script : MonoBehaviour
 	IEnumerator LevelLoader(string levelName)
 	{
 		yield return new WaitForSeconds(0.5f);
-		AsyncOperation async = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(levelName);
+		AsyncOperation async = SceneManager.LoadSceneAsync(levelName);
 		yield return async;
 	}
 }

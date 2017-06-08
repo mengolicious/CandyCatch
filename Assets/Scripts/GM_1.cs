@@ -152,6 +152,7 @@ public class GM_1 : MonoBehaviour
 			//animM.GetComponent<Animator>().speed = 0.1f;
 			//animSpeed = 0.2f;
 			gunScript.shooterAnimator.SetFloat("speed",0.2f);
+			// ---- should take some lines here to it's own script 
 			SpawnBubbles = true;
 			bubblePrefab = Resources.Load("Prefabs/Bubble");
 			tempIndexList = new List<int>();
@@ -182,7 +183,7 @@ public class GM_1 : MonoBehaviour
 			colourList.Add (new Color(0.7f,0.6f, 0.55f, 1f));
 			colourList.Add (new Color(0.93f,0.2f, 0.19f, 1f));
 			colourList.Add (new Color(0.79f,0.85f, 0.86f, 1f));
-
+			// ---- end of code to seperate into own script
 			SetMaterials("Set 1"); //setting materials of Balls for easy
 		}
 		else if(SVM_Script.gameDifficulty == "advance")
@@ -213,6 +214,7 @@ public class GM_1 : MonoBehaviour
 		}
 		//animM.GetComponent<Animator>().SetFloat("speed",0f);
 		//Debug.Log(animM.GetComponent<Animator>().GetFloat("speed"));
+		//also move this to to easy bg script when made
 		SpawnBalls();
 		if(SpawnBubbles)
 			StartCoroutine(BubbleSpawner());
@@ -228,7 +230,10 @@ public class GM_1 : MonoBehaviour
 		}
 	}
 
-
+	/// <summary>
+	/// Move to Easy BG Script when made
+	/// </summary>
+	/// <returns></returns>
 	IEnumerator BubbleSpawner()
 	{
 		for(int i =0; i < BubbleSpawns.Count; i++)
@@ -261,7 +266,11 @@ public class GM_1 : MonoBehaviour
 			yield return new WaitForSeconds(1.5f);
 		}
 	}
-
+	/// <summary>
+	/// Easy BG Script when made
+	/// </summary>
+	/// <param name="spawnIndex"></param>
+	/// <param name="bubble"></param>
 	public void BubbleDestroyed(int spawnIndex, GameObject bubble)
 	{
 		tempIndexList.Add(spawnIndex);
