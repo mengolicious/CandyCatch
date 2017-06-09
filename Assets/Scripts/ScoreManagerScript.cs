@@ -7,6 +7,7 @@ public class ScoreManagerScript : MonoBehaviour {
 
 	public int score;
 	public int targetScore;
+	public int targetTime;
 	public int totalScore;
 	public int pointToAdd;
 	public int tempNum;
@@ -206,37 +207,46 @@ public class ScoreManagerScript : MonoBehaviour {
 			DisplayScore(scoreNum1, scoreNum2, score); 
 
 			if(score>=targetScore){
-				winScreen.SetActive(true);
-				//winScreen.GetComponent<Image> ().sprite = winScreenImg;
+				if(TM_Script.elapsedTime < SVM_Script.Instance.targetTime){
 
-				gM_1.PauseGame();
-				pauseButton.SetActive (false);
+					winScreen.SetActive(true);
+					gM_1.PauseGame();
+					pauseButton.SetActive (false);
 
-				if (SVM_Script.gameDifficulty=="easy")
-				{
-					tempString="Easy";
-					if(SVM_Script.advanceIsLocked){
-						SVM_Script.advanceIsLocked=false;
-						PlayerPrefs.SetInt("EE_advance",1);
-					}
-				}else if(SVM_Script.gameDifficulty=="advance")
-				{
-					tempString="Advance";
-					if(SVM_Script.expertIsLocked){
-						SVM_Script.expertIsLocked=false;
-						PlayerPrefs.SetInt("EE_expert",1);
-					}
 				}
-				else if(SVM_Script.gameDifficulty=="expert")
-				{
-					tempString="Expert";
+				else{
+					winScreen.SetActive(true);
+					//winScreen.GetComponent<Image> ().sprite = winScreenImg;
+
+					gM_1.PauseGame();
+					pauseButton.SetActive (false);
+
+					if (SVM_Script.gameDifficulty=="easy")
+					{
+						tempString="Easy";
+						if(SVM_Script.advanceIsLocked){
+							SVM_Script.advanceIsLocked=false;
+							PlayerPrefs.SetInt("EE_advance",1);
+						}
+					}else if(SVM_Script.gameDifficulty=="advance")
+					{
+						tempString="Advance";
+						if(SVM_Script.expertIsLocked){
+							SVM_Script.expertIsLocked=false;
+							PlayerPrefs.SetInt("EE_expert",1);
+						}
+					}
+					else if(SVM_Script.gameDifficulty=="expert")
+					{
+						tempString="Expert";
+					}
+
+					ComputeTotalScore(); //this is for saving highscores
+					//print (totalScore);
+					//Debug.Log ("itsGoingHere");
+
+					//show score on winScreen
 				}
-
-				ComputeTotalScore(); //this is for saving highscores
-				//print (totalScore);
-				//Debug.Log ("itsGoingHere");
-
-				//show score on winScreen
 			}
 			//Debug.Log ("Correct Answer");
 			return true;

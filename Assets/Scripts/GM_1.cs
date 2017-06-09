@@ -352,6 +352,8 @@ public class GM_1 : MonoBehaviour
 			targetScoreImage.sprite = easyTargetScore;
 			targetTimeImage.sprite = easyTargetTime;
 			SM_Script.targetScore = SVM_Script.targetScore;
+			SM_Script.targetTime = SVM_Script.Instance.targetTime; //Store target time
+
 
 			//Play BG Music
 			SoundManager_Script.Play_BG_loop("bg2");
@@ -362,6 +364,7 @@ public class GM_1 : MonoBehaviour
 			targetScoreImage.sprite = advanceTargetScore;
 			targetTimeImage.sprite = advanceTargetTime;
 			SM_Script.targetScore = SVM_Script.targetScore;
+			SM_Script.targetTime = SVM_Script.Instance.targetTime; //Store target time
 
 			//Play BG Music
 			SoundManager_Script.Play_BG_loop("bg2");
@@ -372,6 +375,7 @@ public class GM_1 : MonoBehaviour
 			targetScoreImage.sprite = expertTargetScore;
 			targetTimeImage.sprite = expertTargetTime;
 			SM_Script.targetScore = SVM_Script.targetScore;
+			SM_Script.targetTime = SVM_Script.Instance.targetTime; //Store target time
 
 			//Play BG Music
 			SoundManager_Script.Play_BG_loop("bg2");
