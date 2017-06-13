@@ -98,6 +98,12 @@ public class ExpertObjectsScript : MonoBehaviour {
 			tumbleWeedClone.GetComponent<SpriteRenderer>().color = tempColor;
 
 			yield return new WaitForSeconds(4.0f);
+
+			if(SVM_Script.Instance.isBonus)
+			{
+				Destroy(this.gameObject);
+				break;
+			}
 		}
 	}
 	

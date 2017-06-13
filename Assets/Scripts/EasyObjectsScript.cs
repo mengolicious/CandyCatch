@@ -45,7 +45,7 @@ public class EasyObjectsScript : MonoBehaviour
 		colourList.Add(new Color(0.93f, 0.2f, 0.19f, 1f));
 		colourList.Add(new Color(0.79f, 0.85f, 0.86f, 1f));
 
-
+		StartCoroutine (BubbleSpawner ());
 	}
 
 	/// <summary>

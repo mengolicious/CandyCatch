@@ -207,4 +207,9 @@ public class BeeMScript : MonoBehaviour
 			SpawnPoints.Add(transform.GetChild(x).position);
 		}
 	}
+
+	public void DestroyOthers()
+	{
+		Destroy (this.Hive);
+	}
 }

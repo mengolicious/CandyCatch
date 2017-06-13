@@ -87,6 +87,7 @@ public class GM_1 : MonoBehaviour
 
 	public GameObject InstructionPanelBG;
 	public GameObject InstructionPanel1;
+	public GameObject tempDestroyObject;
 
 	//public float shooterSpeed;
 	//public float animSpeed;
@@ -499,9 +500,13 @@ public class GM_1 : MonoBehaviour
 	}
 
 
-	public void StartBonusStage(){
+	public void StartBonusStage()
+	{
 		//Start Disabling Objects
 		gunScript.DestroyGunObject();
+		//tempDestroyObject = gameObject.Get
+		BeeM_Script.DestroyOthers();
+		DestroyInstatiatedBalls ("balls");
 	}
 
 }

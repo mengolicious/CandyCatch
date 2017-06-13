@@ -271,7 +271,11 @@ public class GunScript : MonoBehaviour {
 	}
 
 
-	public void DestroyGunObject(){
+	public void DestroyGunObject()
+	{
+
+
+		Destroy (castImageObject);
 		Destroy (this.transform.parent.gameObject);
 	}
 	
