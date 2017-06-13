@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BackgroundBubble_Script : MonoBehaviour
 {
-	private GM_1 GameManager;
+	private EasyObjectsScript easyObjectManger;
 	private Animator anim;
 	private float targetScale;
 	private bool Poppable;
@@ -19,12 +19,11 @@ public class BackgroundBubble_Script : MonoBehaviour
 
 		Poppable = false;
 		transform.localScale = Vector3.zero;
-		GameManager = GameObject.FindGameObjectWithTag("GM").GetComponent<GM_1>();
 		SM = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManagerScript>();
 		ScoreModifierPrefab = Resources.Load("Prefabs/ScoreChangeSprite");
 	}
 
-	public void InitialiseVariables(Vector3 position, float intendedScale, int spawnIndex, float a_bobSpeed)
+	public void InitialiseVariables(Vector3 position, float intendedScale, int spawnIndex, float a_bobSpeed, EasyObjectsScript a_EasyObjectManager)
 	{
 		//transform.position = position;
 		targetScale = intendedScale;
@@ -33,6 +32,7 @@ public class BackgroundBubble_Script : MonoBehaviour
 		SpawnIndex = spawnIndex;
 		bobSpeed = a_bobSpeed;
 		StartCoroutine(ExpandBubble());
+		easyObjectManger = a_EasyObjectManager;
 	}
 
 	IEnumerator ExpandBubble()
@@ -90,7 +90,7 @@ public class BackgroundBubble_Script : MonoBehaviour
 			waitTime -= 0.03f;
 			if(waitTime < 0f)
 			{
-				GameManager.BubbleDestroyed(SpawnIndex, gameObject);
+				easyObjectManger.BubbleDestroyed(SpawnIndex, gameObject);
 				Destroy(gameObject);
 			}
 			yield return new WaitForSeconds(0.03f);

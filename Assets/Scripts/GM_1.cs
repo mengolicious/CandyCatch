@@ -91,15 +91,6 @@ public class GM_1 : MonoBehaviour
 	//public float shooterSpeed;
 	//public float animSpeed;
 
-	private List<Transform> BubbleSpawns;
-	private List<GameObject> BubbleList;
-	private List<int> tempIndexList;
-	//private List<string> colourList;
-	private List<Color> colourList;
-	private bool SpawnBubbles;
-	private Object bubblePrefab;
-
-
 	//public GameObject LoadingScreen;
 	// Use this for initialization
 	void Start()
@@ -128,8 +119,6 @@ public class GM_1 : MonoBehaviour
 		firstLayer = new Vector3(-7.32f,-2.65f,259.0f);
 		secondLayer = new Vector3(-6.07f,-4.07f,259.0f);
 		listPosition = new List<Vector3>();
-		BubbleSpawns = new List<Transform>();
-		BubbleList = new List<GameObject>();
 		/*
 		for(int x=0; x<8; x++){
 			listPosition.Add ( new Vector3(firstLayer.x+(2.2f*x), firstLayer.y, firstLayer.z));
@@ -161,38 +150,6 @@ public class GM_1 : MonoBehaviour
 			//animM.GetComponent<Animator>().speed = 0.1f;
 			//animSpeed = 0.2f;
 			gunScript.shooterAnimator.SetFloat("speed",0.2f);
-			// ---- should take some lines here to it's own script 
-			SpawnBubbles = true;
-			bubblePrefab = Resources.Load("Prefabs/Bubble");
-			tempIndexList = new List<int>();
-			//colourList = new List<string>();
-			colourList = new List<Color>();
-			for(int i =0; i <6; i++)
-			{
-				BubbleSpawns.Add(BG.transform.GetChild(i));
-			}
-			/*
-			colourList.Add("00adef");
-			colourList.Add("5ec19e");
-			colourList.Add("9a519f");
-			colourList.Add("fbe044");
-			colourList.Add("f7964f");
-			colourList.Add("8bc75d");
-			colourList.Add("7f64ac");
-			colourList.Add("ee3d3b");
-			colourList.Add("89d2d7");
-			*/
-
-			colourList.Add (new Color(0f,0.7f, 0.85f, 1f));
-			colourList.Add (new Color(0.4f,0.85f, 0.1f, 1f));
-			colourList.Add (new Color(0.85f,0.55f, 0.9f, 1f));
-			colourList.Add (new Color(0.95f,0.1f, 0.85f, 1f));
-			colourList.Add (new Color(0.95f,0.8f, 0.3f, 1f));
-			colourList.Add (new Color(0.75f,0.85f, 0.3f, 1f));
-			colourList.Add (new Color(0.7f,0.6f, 0.55f, 1f));
-			colourList.Add (new Color(0.93f,0.2f, 0.19f, 1f));
-			colourList.Add (new Color(0.79f,0.85f, 0.86f, 1f));
-			// ---- end of code to seperate into own script
 			SetMaterials("Set 1"); //setting materials of Balls for easy
 		}
 		else if(SVM_Script.gameDifficulty == "advance")
@@ -225,9 +182,7 @@ public class GM_1 : MonoBehaviour
 		//Debug.Log(animM.GetComponent<Animator>().GetFloat("speed"));
 		//also move this to to easy bg script when made
 		SpawnBalls();
-		if(SpawnBubbles)
-			StartCoroutine(BubbleSpawner());
-}
+	}
 
 
 	public void SetMaterials(string tempSet){
@@ -237,53 +192,6 @@ public class GM_1 : MonoBehaviour
 			
 			matBallList.Add(Resources.Load<Material>("Materials/"+tempSet+"/Ball_MAT"+i));
 		}
-	}
-
-	/// <summary>
-	/// Move to Easy BG Script when made
-	/// </summary>
-	/// <returns></returns>
-	IEnumerator BubbleSpawner()
-	{
-		for(int i =0; i < BubbleSpawns.Count; i++)
-		{
-			tempIndexList.Add(i);
-		}
-		int x;
-		GameObject tempBubble;
-		//Color tempColour;
-		int tempI;
-		while(true)
-		{
-			x = Random.Range(0,tempIndexList.Count);
-			tempI = Random.Range(0, colourList.Count);
-			if(BubbleList.Count < 6)
-			{
-				//do the bubble spawning code here since it's almost 4
-				tempBubble = Instantiate(bubblePrefab, BubbleSpawns[tempIndexList[x]].position, Quaternion.identity) as GameObject;
-				BubbleList.Add(tempBubble);
-				tempBubble.GetComponent<BackgroundBubble_Script>().InitialiseVariables(BubbleSpawns[tempIndexList[x]].position,BubbleSpawns[tempIndexList[x]].localScale.x, tempIndexList[x], Random.Range(0.1f,0.6f));
-//				if(Color.TryParseHexString(colourList[tempI], out tempColour))  //this is DEPRECIATED in latest version Unity 5.6
-//				{
-//					tempBubble.GetComponent<SpriteRenderer>().color = tempColour;
-					
-				tempBubble.GetComponent<SpriteRenderer> ().color = colourList[tempI];
-
-//				}
-				tempIndexList.RemoveAt(x);
-			}
-			yield return new WaitForSeconds(1.5f);
-		}
-	}
-	/// <summary>
-	/// Easy BG Script when made
-	/// </summary>
-	/// <param name="spawnIndex"></param>
-	/// <param name="bubble"></param>
-	public void BubbleDestroyed(int spawnIndex, GameObject bubble)
-	{
-		tempIndexList.Add(spawnIndex);
-		BubbleList.Remove(bubble);
 	}
 
 	public void DestroyInstatiatedBalls(string tag)
