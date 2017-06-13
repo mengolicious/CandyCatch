@@ -62,8 +62,9 @@ public class ScoreManagerScript : MonoBehaviour {
 	public Sprite marshNumImg2;
 
 
-	public GameObject loseScreen;
+	public GameObject bonusScreen;
 	public GameObject winScreen;
+	public GameObject loseScreen;
 	public GameObject textInputField;
 	public Sprite loseScreenImg;
 	public Sprite winScreenImg;
@@ -209,9 +210,10 @@ public class ScoreManagerScript : MonoBehaviour {
 			if(score>=targetScore){
 				if(TM_Script.elapsedTime < SVM_Script.Instance.targetTime){
 
-					winScreen.SetActive(true);
+					bonusScreen.SetActive(true);
 					gM_1.PauseGame();
 					pauseButton.SetActive (false);
+					SVM_Script.Instance.isBonus = true;
 
 				}
 				else{

@@ -10,6 +10,7 @@ public class SVM_Script : MonoBehaviour
 	//public static GameObject expertDifficultyLock;
 
 	public static string gameDifficulty;
+	public bool isBonus;
 	public static int targetScore = 50;
 	public static bool advanceIsLocked = true;
 	public static bool expertIsLocked = true;
@@ -50,6 +51,7 @@ public class SVM_Script : MonoBehaviour
 		SetUpLoadingScreen();			//Establish the loading screen and attach it to the canvas while fixing strange value artifacts
 		InitializeSavedVariables();		//Initialize variables that needs to be saved when APP is closed
 		LoadSavedVariables();			//Load the variables from Playerprefs
+		isBonus = false;
 	}
 
 	void SetUpLoadingScreen()

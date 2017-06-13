@@ -589,4 +589,11 @@ public class GM_1 : MonoBehaviour
 		PlayerPrefs.SetInt("Instructions_Dismissed",1);
 		SVM_Script.InstructionSeen = true;
 	}
+
+
+	public void StartBonusStage(){
+		//Start Disabling Objects
+		gunScript.DestroyGunObject();
+	}
+
 }

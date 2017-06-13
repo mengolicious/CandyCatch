@@ -269,5 +269,10 @@ public class GunScript : MonoBehaviour {
 		}
 		//Debug.Log ("collected");
 	}
+
+
+	public void DestroyGunObject(){
+		Destroy (this.transform.parent.gameObject);
+	}
 	
 }
