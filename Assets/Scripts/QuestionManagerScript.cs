@@ -350,4 +350,13 @@ public class QuestionManagerScript : MonoBehaviour {
 
 		return tempQuestion;
 	}
+
+	public void SwitchToBonusRound()
+	{
+		listQuestions.Clear();
+		listAnswers.Clear();
+		// -------populate with new questions and answers ------- //
+		
+		// -------- end population ------------------ //
+	}
 }
