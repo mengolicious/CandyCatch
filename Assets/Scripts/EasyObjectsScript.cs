@@ -83,6 +83,11 @@ public class EasyObjectsScript : MonoBehaviour
 			yield return new WaitForSeconds(1.5f);
 			if(SVM_Script.Instance.isBonus)
 			{
+				for (int i = 0; i < BubbleList.Count; i++)
+				{
+					Destroy(BubbleList[i]);
+				}
+
 				Destroy(this.gameObject);
 				break;
 			}
