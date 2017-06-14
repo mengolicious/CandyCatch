@@ -358,7 +358,10 @@ public class GM_1 : MonoBehaviour
 	IEnumerator ResetQuestionEnumerator()
 	{
 		smallQuestionDisplay.SetActive(false);
+
+		if(!SVM_Script.Instance.isBonus)
 		gunScript.canShoot = false;
+		
 		while(BeeM_Script.BeesAlive())
 		{
 			yield return new WaitForSeconds(0.1f);
@@ -371,7 +374,10 @@ public class GM_1 : MonoBehaviour
 	IEnumerator BigDisplayAnim()
 	{
 		yield return new WaitForSeconds(1.0f);
+
+		if(!SVM_Script.Instance.isBonus)
 		gunScript.shooterAnimator.speed = 0.1f;
+		
 		for(int x=0; x<20; x++)
 		{
 			bigQuestionBG.GetComponent<RectTransform>().localScale -= new Vector3 (0.03f, 0.03f, 0.03f);
@@ -441,8 +447,11 @@ public class GM_1 : MonoBehaviour
 		smallQuestionDisplay.SetActive(true);
 		smallQuestionDisplayImage.sprite = currentQuestion;
 		isShooting = false;
-		gunScript.canShoot = true;
-		gunScript.shooterAnimator.speed = 1; // shooter starts moving only once smoke appears.
+		if(!SVM_Script.Instance.isBonus)
+		{
+			gunScript.canShoot = true;
+			gunScript.shooterAnimator.speed = 1; // shooter starts moving only once smoke appears.
+		}
 	}
 
 
@@ -502,11 +511,22 @@ public class GM_1 : MonoBehaviour
 
 	public void StartBonusStage()
 	{
+
+
 		//Start Disabling Objects
+
 		gunScript.DestroyGunObject();
 		//tempDestroyObject = gameObject.Get
 		BeeM_Script.DestroyOthers();
 		DestroyInstatiatedBalls ("balls");
+		//Start Reset Questions and Change it to Bonus Question
+
+		questionManagerScript.SwitchToBonusRound ();
+
+		//End Reset Questions and Change it to Bonus Question
+
+		ResumeGame ();
+		ResetQuestion ();
 	}
 
 }

@@ -106,6 +106,7 @@ public class ClawScript : MonoBehaviour {
 					GM_Script.DestroyInstatiatedBalls("balls");
 					GM_Script.SpawnBalls();
 					BeeM_Script.ClearBees();
+					if(!SVM_Script.Instance.isBonus)
 					GM_Script.ResetQuestion();
 				}
 				else
