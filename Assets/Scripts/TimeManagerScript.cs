@@ -54,6 +54,7 @@ public class TimeManagerScript : MonoBehaviour
 	public GameObject timeStartingPos;
 
 	public int BonusTime;
+	public GM_1 GameManager;
 	// Use this for initialization
 
 	void Awake()
@@ -63,7 +64,7 @@ public class TimeManagerScript : MonoBehaviour
 
 	void Start()
 	{
-
+		GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GM_1>();
 		listNumImages = new List<Sprite>();
 		listNumImages.Add(num0);
 		listNumImages.Add(num1);
@@ -93,7 +94,6 @@ public class TimeManagerScript : MonoBehaviour
 		DisplayTargetTime ();
 		StartCoroutine(UpdateTime());
 
-
 	}
 
 	public void InitializeTime()
@@ -115,8 +115,13 @@ public class TimeManagerScript : MonoBehaviour
 			else
 			{
 				//elapsedTime = //bonus time - time elasped since last check; BonusTime - (int)(Time.time - timeStarted); InitializeTime();
-				BonusTime = (int)(BonusTime - 0.5f);
+				BonusTime = BonusTime - 1;
 				elapsedTime = BonusTime;
+				if(elapsedTime < 1 )
+				{
+					GameManager.EndBonusStage();
+					//call some GM_1 Function to make it end the bonus time game
+				}
 			}
 			minutes = elapsedTime / 60;
 			seconds = elapsedTime % 60;
@@ -130,8 +135,8 @@ public class TimeManagerScript : MonoBehaviour
 		}
 	}
 
-	public void DisplayTargetTime(){
-
+	public void DisplayTargetTime()
+    {
 		int minutes;
 		int seconds;
 
@@ -145,11 +150,16 @@ public class TimeManagerScript : MonoBehaviour
 	}
 
 
-
+    /// <summary>
+    /// Function to call on any part of Game that wants to display time
+    /// </summary>
+    /// <param name="targetImageList">List of GameObject Images to Display Time</param>
+    /// <param name="min">Minutes</param>
+    /// <param name="sec">Seconds</param>
 	public void DisplayTime(List<Image> targetImageList, int min, int sec)
 	{ //Function to call on any part of Game that wants to display time
-	  // targetImageList is a List of GameObject Images to Display Time
-	  // min is minutes and sec is seconds 
+	    // targetImageList is a List of GameObject Images to Display Time
+	    // min is minutes and sec is seconds 
 	
 		if (sec > 9)
 		{
@@ -174,10 +184,6 @@ public class TimeManagerScript : MonoBehaviour
 			minutesStr = "0" + min.ToString();
 		}
 
-
-
-
-
 		tempNum = (int)char.GetNumericValue(secondsStr[1]);
 		targetImageList[3].sprite = listNumImages[tempNum];
 
@@ -189,7 +195,5 @@ public class TimeManagerScript : MonoBehaviour
 
 		tempNum = (int)char.GetNumericValue(minutesStr[0]);
 		targetImageList[0].sprite = listNumImages[tempNum];
-
-		
 	}
 }

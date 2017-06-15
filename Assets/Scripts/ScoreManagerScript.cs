@@ -266,6 +266,7 @@ public class ScoreManagerScript : MonoBehaviour {
 	public void ComputeTotalScore()
 	{
 		totalScore = Mathf.FloorToInt((float)((float)score / (float)TM_Script.elapsedTime)*100f*lives);
+		// removing following code and place it elsewhere for the purposes of handling score better for the bonus mode
 		if(totalScore >= PlayerPrefs.GetInt("EE_Top1_Score_" + tempString))
 		{
 			insertScore.transform.parent.gameObject.SetActive(true);
@@ -301,6 +302,7 @@ public class ScoreManagerScript : MonoBehaviour {
 		insertScore.transform.GetChild(5).GetComponent<Text>().text = score.ToString();
 		insertScore.transform.GetChild(7).GetComponent<Text>().text = " X " + lives.ToString();
 		insertScore.transform.GetChild(9).GetComponent<Text>().text = TM_Script.minutesStr + ":" + TM_Script.secondsStr;
+		// end removal of code
 	}
 
 	public void SetTopScoreName()

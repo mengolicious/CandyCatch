@@ -529,4 +529,11 @@ public class GM_1 : MonoBehaviour
 		ResetQuestion ();
 	}
 
+	/// <summary>
+	/// End the bonus stage with something else
+	/// </summary>
+	public void EndBonusStage()
+	{
+		//call some func for bonus score to total score calc and highscore checking
+	}
 }
