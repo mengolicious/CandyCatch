@@ -53,7 +53,7 @@ public class TimeManagerScript : MonoBehaviour
 	public Object timePrefabNum;
 	public GameObject timeStartingPos;
 
-
+	public int BonusTime;
 	// Use this for initialization
 
 	void Awake()
@@ -107,13 +107,26 @@ public class TimeManagerScript : MonoBehaviour
 		int seconds;
 		while (true)
 		{
-
-			elapsedTime = (int)(Time.time - timeStarted);
+			if (!SVM_Script.Instance.isBonus)
+			{
+				elapsedTime = (int)(Time.time - timeStarted);
+				
+			}
+			else
+			{
+				//elapsedTime = //bonus time - time elasped since last check; BonusTime - (int)(Time.time - timeStarted); InitializeTime();
+				BonusTime = (int)(BonusTime - 0.5f);
+				elapsedTime = BonusTime;
+			}
 			minutes = elapsedTime / 60;
 			seconds = elapsedTime % 60;
 
 			DisplayTime (listDisplayImages, minutes, seconds);
-			yield return new WaitForSeconds(0.5f);
+
+			if(!SVM_Script.Instance.isBonus)
+				yield return new WaitForSeconds(0.5f);
+			else
+				yield return new WaitForSeconds(1.0f);
 		}
 	}
 

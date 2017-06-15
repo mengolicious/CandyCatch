@@ -214,7 +214,8 @@ public class ScoreManagerScript : MonoBehaviour {
 					gM_1.PauseGame();
 					pauseButton.SetActive (false);
 					SVM_Script.Instance.isBonus = true;
-
+					SVM_Script.Instance.bonusTime = targetTime - TM_Script.elapsedTime;
+					TM_Script.BonusTime = SVM_Script.Instance.bonusTime;
 				}
 				else{
 					winScreen.SetActive(true);

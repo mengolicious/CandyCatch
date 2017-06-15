@@ -204,7 +204,7 @@ public class BeeMScript : MonoBehaviour
 	IEnumerator AngryBeeSpawner()
 	{
 		GameObject tempAngryBee = null;
-		while(true)
+		while(!SVM_Script.Instance.isBonus)
 		{
 			if(!tempAngryBee)
 			{
@@ -216,6 +216,10 @@ public class BeeMScript : MonoBehaviour
 				tempAngryBee.GetComponent<AngryBee_Script>().DirChangeRight = DirChangeRight;
 			}
 			yield return new WaitForSeconds(1.0f);
+		}
+		if(tempAngryBee)
+		{
+			tempAngryBee.GetComponent<AngryBee_Script>().DestroySelf();
 		}
 	}
 

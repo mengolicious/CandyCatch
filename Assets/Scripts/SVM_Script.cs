@@ -73,6 +73,8 @@ public class SVM_Script : MonoBehaviour
 	/// <param name="loadMode"> required input param for listeners </param>
 	void SceneLoadListener(Scene scene, LoadSceneMode loadMode)
 	{
+		isBonus = false;
+		bonusTime = 0;
 		SetUpLoadingScreen();
 	}
 

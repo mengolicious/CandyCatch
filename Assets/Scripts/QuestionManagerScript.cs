@@ -465,19 +465,16 @@ public class QuestionManagerScript : MonoBehaviour {
 		listAnswers.Clear();
 
 		///Start this is to populate questions
-		if(SVM_Script.gameDifficulty=="easy")
+		for(int x=0; x<listBonusQuestionsAddSub.Count; x++)
 		{
-			for(int x=0; x<listBonusQuestionsAddSub.Count; x++)
-			{
-				listQuestions.Add(listBonusQuestionsAddSub[x]);
-				if (x < 5) {
-					listAnswers.Add (1);
-				} else {
-					listAnswers.Add (2);
-				}
+			listQuestions.Add(listBonusQuestionsAddSub[x]);
+			if (x < 5) {
+				listAnswers.Add (1);
+			} else {
+				listAnswers.Add (2);
 			}
 		}
-		else if(SVM_Script.gameDifficulty=="advance")
+		if(SVM_Script.gameDifficulty=="advance" || SVM_Script.gameDifficulty=="expert")
 		{
 			for(int x=0; x<listBonusQuestionsMul.Count; x++)
 			{
@@ -486,7 +483,7 @@ public class QuestionManagerScript : MonoBehaviour {
 
 			}
 		}
-		else if(SVM_Script.gameDifficulty=="expert")
+		if(SVM_Script.gameDifficulty=="expert")
 		{
 			for(int x=0; x<listBonusQuestionsDiv.Count; x++)
 			{
