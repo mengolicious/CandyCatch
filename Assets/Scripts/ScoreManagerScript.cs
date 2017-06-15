@@ -216,8 +216,10 @@ public class ScoreManagerScript : MonoBehaviour {
 					SVM_Script.Instance.isBonus = true;
 					SVM_Script.Instance.bonusTime = targetTime - TM_Script.elapsedTime;
 					TM_Script.BonusTime = SVM_Script.Instance.bonusTime;
+					ComputeTotalScore();
 				}
-				else{
+				else
+				{
 					winScreen.SetActive(true);
 					//winScreen.GetComponent<Image> ().sprite = winScreenImg;
 
@@ -266,8 +268,16 @@ public class ScoreManagerScript : MonoBehaviour {
 	public void ComputeTotalScore()
 	{
 		totalScore = Mathf.FloorToInt((float)((float)score / (float)TM_Script.elapsedTime)*100f*lives);
-		// removing following code and place it elsewhere for the purposes of handling score better for the bonus mode
-		if(totalScore >= PlayerPrefs.GetInt("EE_Top1_Score_" + tempString))
+		if (!SVM_Script.Instance.isBonus)
+		{
+			CheckHighScore();
+		}
+	}
+
+	public void CheckHighScore()
+	{
+		//Might need to do some other stuff with total score / bonus points here or elsewhere
+		if (totalScore >= PlayerPrefs.GetInt("EE_Top1_Score_" + tempString))
 		{
 			insertScore.transform.parent.gameObject.SetActive(true);
 			SoundManagerScript.Instance.Play_SFX("HighScore");
@@ -298,11 +308,10 @@ public class ScoreManagerScript : MonoBehaviour {
 		{
 			SVM_Script.Instance.highScoreIndex = 0;
 		}
-		insertScore.transform.GetChild(3).GetComponent<Text>().text ="Total = " + totalScore.ToString() +" :";
+		insertScore.transform.GetChild(3).GetComponent<Text>().text = "Total = " + totalScore.ToString() + " :";
 		insertScore.transform.GetChild(5).GetComponent<Text>().text = score.ToString();
 		insertScore.transform.GetChild(7).GetComponent<Text>().text = " X " + lives.ToString();
 		insertScore.transform.GetChild(9).GetComponent<Text>().text = TM_Script.minutesStr + ":" + TM_Script.secondsStr;
-		// end removal of code
 	}
 
 	public void SetTopScoreName()
@@ -334,9 +343,6 @@ public class ScoreManagerScript : MonoBehaviour {
 			gM_1.PauseGame();
 			pauseButton.SetActive (false);
 		}
-
-	
-
 	}
 
 	public bool VerifyAnswer()
