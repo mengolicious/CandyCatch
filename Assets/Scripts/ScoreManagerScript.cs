@@ -3,11 +3,12 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class ScoreManagerScript : MonoBehaviour {
-
+public class ScoreManagerScript : MonoBehaviour
+{
 	public int score;
 	public int targetScore;
 	public int targetTime;
+	public int bonusScore;
 	public int totalScore;
 	public int pointToAdd;
 	public int tempNum;
@@ -17,6 +18,9 @@ public class ScoreManagerScript : MonoBehaviour {
 	public Object collectiblePrefab;
 	public GameObject tempCollectible;
 
+	/// <summary>
+	/// Used to hold the player Prefs friendly difficulty String
+	/// </summary>
 	public string tempString;
 
 	public char tempChar;
@@ -86,7 +90,8 @@ public class ScoreManagerScript : MonoBehaviour {
 		Ball,
 		Bee,
 		AngryBee,
-		QueenBee
+		QueenBee,
+		BonusBee
 	}
 
 	
@@ -95,39 +100,41 @@ public class ScoreManagerScript : MonoBehaviour {
 	{
 		lives = 5;
 		pointToAdd = 5;
-
 		//testing
 		targetScore = SVM_Script.targetScore;
 		BGObjScoreRemain = (int)(targetScore * 0.2f);
 		tempHighScoreIndex = 0;
-
 		score = 0;
+		bonusScore = 0;
 		totalScore = 0;
 
 		//insertScore.SetActive(false);
 		//DisplayScore ();
 		//END testing
-		listNumImage = new List<Sprite> ();
-		listNumImage.Add (num0);
-		listNumImage.Add (num1);
-		listNumImage.Add (num2);
-		listNumImage.Add (num3);
-		listNumImage.Add (num4);
-		listNumImage.Add (num5);
-		listNumImage.Add (num6);
-		listNumImage.Add (num7);
-		listNumImage.Add (num8);
-		listNumImage.Add (num9);
+		listNumImage = new List<Sprite>
+		{
+			num0,
+			num1,
+			num2,
+			num3,
+			num4,
+			num5,
+			num6,
+			num7,
+			num8,
+			num9
+		};
 
 		//DisplayScore ();
 
-		marshMLives = new List<GameObject> ();
-		marshMLives.Add (marshNum1);
-		marshMLives.Add (marshNum2);
-		marshMLives.Add (marshNum3);
-		marshMLives.Add (marshNum4);
-		marshMLives.Add (marshNum5);
-
+		marshMLives = new List<GameObject>
+		{
+			marshNum1,
+			marshNum2,
+			marshNum3,
+			marshNum4,
+			marshNum5
+		};
 		DisplayScore (targetScoreNum1,targetScoreNum2,targetScore);
 
 		//StartCoroutine (BeeSpawn ());
@@ -148,13 +155,24 @@ public class ScoreManagerScript : MonoBehaviour {
 		}
 	}
 
-	public bool EditScore(int changeScore, ScoreSource srcType)//tag of the object that changed the score, to 
+	/// <summary>
+	/// Changes the score based off of the Source.
+	/// </summary>
+	/// <param name="changeScore">The amount to change the score by.</param>
+	/// <param name="srcType">The source of what changed the score.</param>
+	/// <returns>whether the score was changed based of the source.</returns>
+	public bool EditScore(int changeScore, ScoreSource srcType)
 	{
 		if(srcType == ScoreSource.BackGroundObj)
 		{
 			if(BGObjScoreRemain <=0)
 				return false;
 			BGObjScoreRemain -= changeScore;
+		}
+		else if(srcType == ScoreSource.BonusBee)
+		{
+			bonusScore += changeScore;
+			return true;
 		}
 		score += changeScore;
 		if(score < 0)
@@ -192,9 +210,7 @@ public class ScoreManagerScript : MonoBehaviour {
 			
 		}
 	}
-
-
-
+		
 	/// <summary>
 	/// Checks if the answer is correct and updates that score if it is, otherwise updates the lives.
 	/// </summary>

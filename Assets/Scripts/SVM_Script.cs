@@ -16,7 +16,9 @@ public class SVM_Script : MonoBehaviour
 	public static bool expertIsLocked = true;
 	public static bool InstructionSeen = false;
 	public static bool gameSetup;
-	// Make global instance, need to check if the instance is being used by external sources
+	/// <summary>
+	/// Make global instance, need to check if the instance is being used by external sources.
+	/// </summary>
 	public static SVM_Script Instance
 	{
 		get;
@@ -26,13 +28,21 @@ public class SVM_Script : MonoBehaviour
 	public GameObject canvas;
 	private GameObject loadingScreen;
 
-	//taget time to beat in seconds
+	/// <summary>
+	/// Target time to beat in seconds.
+	/// </summary>
 	public int targetTime;
-	//the total score from the game
+	/// <summary>
+	/// The total score from the game.
+	/// </summary>
 	public int currentTotalScore;
-	//the time left over to be used for the bonus stage
+	/// <summary>
+	/// The time left over to be used for the bonus stage.
+	/// </summary>
 	public int bonusTime;
-	//the index for the highscore that we beat, may have to recode the saving of the highscore to ensure we don't change the high score list then beat an even higher score
+	/// <summary>
+	/// The index for the highscore that we beat, may have to recode the saving of the highscore to ensure we don't change the high score list then beat an even higher score.
+	/// </summary>
 	public int highScoreIndex;
 
 	void Awake ()
@@ -60,7 +70,7 @@ public class SVM_Script : MonoBehaviour
 		loadingScreen = Instantiate(Resources.Load("prefabs/LoadingScreen"))as GameObject;
 		loadingScreen.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0.5f);
 		loadingScreen.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.5f);
-		loadingScreen.GetComponent<RectTransform>().sizeDelta = new Vector2(800, 450);;
+		loadingScreen.GetComponent<RectTransform>().sizeDelta = new Vector2(800, 450);
 		loadingScreen.transform.SetParent(canvas.transform);
 		loadingScreen.GetComponent<RectTransform>().localPosition = Vector3.zero;
 		loadingScreen.GetComponent<RectTransform>().localScale = Vector3.one;
@@ -123,6 +133,11 @@ public class SVM_Script : MonoBehaviour
 
 	public void LoadLevel(string levelName)
 	{
+		if(!loadingScreen)
+		{
+			Debug.LogError("Loading Screen has not been set up");
+			return;
+		}
 		loadingScreen.SetActive(true);
 		StartCoroutine(LevelLoader(levelName));
 	}

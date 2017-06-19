@@ -54,7 +54,7 @@ public class TimeManagerScript : MonoBehaviour
 	public GameObject timeStartingPos;
 
 	public int BonusTime;
-	public GM_1 GameManager;
+	private GM_1 GameManager;
 	// Use this for initialization
 
 	void Awake()
@@ -64,33 +64,35 @@ public class TimeManagerScript : MonoBehaviour
 
 	void Start()
 	{
-		GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GM_1>();
-		listNumImages = new List<Sprite>();
-		listNumImages.Add(num0);
-		listNumImages.Add(num1);
-		listNumImages.Add(num2);
-		listNumImages.Add(num3);
-		listNumImages.Add(num4);
-		listNumImages.Add(num5);
-		listNumImages.Add(num6);
-		listNumImages.Add(num7);
-		listNumImages.Add(num8);
-		listNumImages.Add(num9);
-		listNumImages.Add(period);
-
-		listDisplayImages = new List<Image>();
-		listDisplayImages.Add(firstNum);
-		listDisplayImages.Add(secondNum);
-		listDisplayImages.Add(thirdNum);
-		listDisplayImages.Add(fourthNum);
-
-
-		listDisplayImagesTargetTime = new List<Image>();
-		listDisplayImagesTargetTime.Add(firstNumTime);
-		listDisplayImagesTargetTime.Add(secondNumTime);
-		listDisplayImagesTargetTime.Add(thirdNumTime);
-		listDisplayImagesTargetTime.Add(fourthNumTime);
-
+		GameManager = GameObject.FindGameObjectWithTag("GM").GetComponent<GM_1>();
+		listNumImages = new List<Sprite>
+		{
+			num0,
+			num1,
+			num2,
+			num3,
+			num4,
+			num5,
+			num6,
+			num7,
+			num8,
+			num9,
+			period
+		};
+		listDisplayImages = new List<Image>
+		{
+			firstNum,
+			secondNum,
+			thirdNum,
+			fourthNum
+		};
+		listDisplayImagesTargetTime = new List<Image>
+		{
+			firstNumTime,
+			secondNumTime,
+			thirdNumTime,
+			fourthNumTime
+		};
 		DisplayTargetTime ();
 		StartCoroutine(UpdateTime());
 

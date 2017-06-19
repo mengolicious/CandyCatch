@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿	using UnityEngine;
+	using System.Collections;
+	using System.Collections.Generic;
 
-public class QuestionManagerScript : MonoBehaviour {
+	public class QuestionManagerScript : MonoBehaviour {
 
 	public List<Sprite> listQuestions; 
 	public List<int> listAnswers; 
@@ -152,99 +152,105 @@ public class QuestionManagerScript : MonoBehaviour {
 		listQuestions = new List<Sprite>();
 
 
-		//Start questions for Addition
-		listQuestionsAdd = new List<Sprite>();
-		listQuestionsAdd.Add(Q1);
-		listQuestionsAdd.Add(Q2);
-		listQuestionsAdd.Add(Q3);
-		listQuestionsAdd.Add(Q4);
-		listQuestionsAdd.Add(Q5);
-		listQuestionsAdd.Add(Q6);
-		listQuestionsAdd.Add(Q7);
-		listQuestionsAdd.Add(Q8);
-		listQuestionsAdd.Add(Q9);
-		listQuestionsAdd.Add(Q10);
-		listQuestionsAdd.Add(Q11);
-		listQuestionsAdd.Add(Q12);
-		listQuestionsAdd.Add(Q13);
-		listQuestionsAdd.Add(Q14);
-		listQuestionsAdd.Add(Q15);
-		listQuestionsAdd.Add(Q16);
-		listQuestionsAdd.Add(Q17);
-		listQuestionsAdd.Add(Q18);
-		listQuestionsAdd.Add(Q19);
-		listQuestionsAdd.Add(Q20);
-		//END questions for Addition
-		//Start questions for Subtraction
-		listQuestionsAdd.Add(Q21);
-		listQuestionsAdd.Add(Q22);
-		listQuestionsAdd.Add(Q23);
-		listQuestionsAdd.Add(Q24);
-		listQuestionsAdd.Add(Q25);
-		listQuestionsAdd.Add(Q26);
-		listQuestionsAdd.Add(Q27);
-		listQuestionsAdd.Add(Q28);
-		listQuestionsAdd.Add(Q29);
-		listQuestionsAdd.Add(Q30);
-		listQuestionsAdd.Add(Q31);
-		listQuestionsAdd.Add(Q32);
-		listQuestionsAdd.Add(Q33);
-		listQuestionsAdd.Add(Q34);
-		listQuestionsAdd.Add(Q35);
-		listQuestionsAdd.Add(Q36);
-		listQuestionsAdd.Add(Q37);
-		listQuestionsAdd.Add(Q38);
-		listQuestionsAdd.Add(Q39);
-		listQuestionsAdd.Add(Q40);
-		//END questions for Subtraction
-		//Start questions for Multiplication
-		listQuestionsMul = new List<Sprite> ();
-		listQuestionsMul.Add(Q41);
-		listQuestionsMul.Add(Q42);
-		listQuestionsMul.Add(Q43);
-		listQuestionsMul.Add(Q44);
-		listQuestionsMul.Add(Q45);
-		listQuestionsMul.Add(Q46);
-		listQuestionsMul.Add(Q47);
-		listQuestionsMul.Add(Q48);
-		listQuestionsMul.Add(Q49);
-		listQuestionsMul.Add(Q50);
-		listQuestionsMul.Add(Q51);
-		listQuestionsMul.Add(Q52);
-		listQuestionsMul.Add(Q53);
-		listQuestionsMul.Add(Q54);
-		listQuestionsMul.Add(Q55);
-		listQuestionsMul.Add(Q56);
-		listQuestionsMul.Add(Q57);
-		listQuestionsMul.Add(Q58);
-		listQuestionsMul.Add(Q59);
-		listQuestionsMul.Add(Q60);
-		//END questions for Multiplication
-		//Start questions for Division
-		listQuestionsDiv = new List<Sprite> ();
-		listQuestionsDiv.Add(Q61);
-		listQuestionsDiv.Add(Q62);
-		listQuestionsDiv.Add(Q63);
-		listQuestionsDiv.Add(Q64);
-		listQuestionsDiv.Add(Q65);
-		listQuestionsDiv.Add(Q66);
-		listQuestionsDiv.Add(Q67);
-		listQuestionsDiv.Add(Q68);
-		listQuestionsDiv.Add(Q69);
-		listQuestionsDiv.Add(Q70);
-		listQuestionsDiv.Add(Q71);
-		listQuestionsDiv.Add(Q72);
-		listQuestionsDiv.Add(Q73);
-		listQuestionsDiv.Add(Q74);
-		listQuestionsDiv.Add(Q75);
-		listQuestionsDiv.Add(Q76);
-		listQuestionsDiv.Add(Q77);
-		listQuestionsDiv.Add(Q78);
-		listQuestionsDiv.Add(Q79);
-		listQuestionsDiv.Add(Q80);
-		//END questions for Division
+		listQuestionsAdd = new List<Sprite>
+		{
+			//Start questions for Addition
+			Q1,
+			Q2,
+			Q3,
+			Q4,
+			Q5,
+			Q6,
+			Q7,
+			Q8,
+			Q9,
+			Q10,
+			Q11,
+			Q12,
+			Q13,
+			Q14,
+			Q15,
+			Q16,
+			Q17,
+			Q18,
+			Q19,
+			Q20,
+			//END questions for Addition
+			//Start questions for Subtraction
+			Q21,
+			Q22,
+			Q23,
+			Q24,
+			Q25,
+			Q26,
+			Q27,
+			Q28,
+			Q29,
+			Q30,
+			Q31,
+			Q32,
+			Q33,
+			Q34,
+			Q35,
+			Q36,
+			Q37,
+			Q38,
+			Q39,
+			Q40
+			//END questions for Subtraction
+		};
+		listQuestionsMul = new List<Sprite>
+		{
+			//Start questions for Multiplication
+			Q41,
+			Q42,
+			Q43,
+			Q44,
+			Q45,
+			Q46,
+			Q47,
+			Q48,
+			Q49,
+			Q50,
+			Q51,
+			Q52,
+			Q53,
+			Q54,
+			Q55,
+			Q56,
+			Q57,
+			Q58,
+			Q59,
+			Q60
+			//END questions for Multiplication
+		};
+		listQuestionsDiv = new List<Sprite>
+		{
+			//Start questions for Division
+			Q61,
+			Q62,
+			Q63,
+			Q64,
+			Q65,
+			Q66,
+			Q67,
+			Q68,
+			Q69,
+			Q70,
+			Q71,
+			Q72,
+			Q73,
+			Q74,
+			Q75,
+			Q76,
+			Q77,
+			Q78,
+			Q79,
+			Q80
+			//END questions for Division
+		};
 
-		if(SVM_Script.gameDifficulty=="easy"){
+		if (SVM_Script.gameDifficulty=="easy"){
 			for(int x=0; x<listQuestionsAdd.Count; x++)
 			{
 				listQuestions.Add(listQuestionsAdd[x]);
@@ -269,152 +275,161 @@ public class QuestionManagerScript : MonoBehaviour {
 		}
 
 
-		listBonusQuestionsAddSub = new List<Sprite> ();
-		listBonusQuestionsAddSub.Add(BQ1);
-		listBonusQuestionsAddSub.Add(BQ2);
-		listBonusQuestionsAddSub.Add(BQ3);
-		listBonusQuestionsAddSub.Add(BQ4);
-		listBonusQuestionsAddSub.Add(BQ5);
-		listBonusQuestionsAddSub.Add(BQ6);
-		listBonusQuestionsAddSub.Add(BQ7);
-		listBonusQuestionsAddSub.Add(BQ8);
-		listBonusQuestionsAddSub.Add(BQ9);
-		listBonusQuestionsAddSub.Add(BQ10);
-
-		listBonusQuestionsMul = new List<Sprite> ();
-		listBonusQuestionsMul.Add(BQ11);
-		listBonusQuestionsMul.Add(BQ12);
-		listBonusQuestionsMul.Add(BQ13);
-		listBonusQuestionsMul.Add(BQ14);
-		listBonusQuestionsMul.Add(BQ15);
-		listBonusQuestionsMul.Add(BQ16);
-		listBonusQuestionsMul.Add(BQ17);
-		listBonusQuestionsMul.Add(BQ18);
-		listBonusQuestionsMul.Add(BQ19);
-		listBonusQuestionsMul.Add(BQ20);
-
-		listBonusQuestionsDiv = new List<Sprite> ();
-		listBonusQuestionsDiv.Add(BQ21);
-		listBonusQuestionsDiv.Add(BQ22);
-		listBonusQuestionsDiv.Add(BQ23);
-		listBonusQuestionsDiv.Add(BQ24);
-		listBonusQuestionsDiv.Add(BQ25);
-		listBonusQuestionsDiv.Add(BQ26);
-		listBonusQuestionsDiv.Add(BQ27);
-		listBonusQuestionsDiv.Add(BQ28);
-		listBonusQuestionsDiv.Add(BQ29);
-		listBonusQuestionsDiv.Add(BQ30);
+		listBonusQuestionsAddSub = new List<Sprite>
+		{
+			BQ1,
+			BQ2,
+			BQ3,
+			BQ4,
+			BQ5,
+			BQ6,
+			BQ7,
+			BQ8,
+			BQ9,
+			BQ10
+		};
+		listBonusQuestionsMul = new List<Sprite>
+		{
+			BQ11,
+			BQ12,
+			BQ13,
+			BQ14,
+			BQ15,
+			BQ16,
+			BQ17,
+			BQ18,
+			BQ19,
+			BQ20
+		};
+		listBonusQuestionsDiv = new List<Sprite>
+		{
+			BQ21,
+			BQ22,
+			BQ23,
+			BQ24,
+			BQ25,
+			BQ26,
+			BQ27,
+			BQ28,
+			BQ29,
+			BQ30
+		};
 
 
 
 
 		//-------------------This is the Answers----------------------//
 
-		listAnswersMul = new List<int>();
-		//Start of Answer for Multiplication
-		listAnswersMul.Add(2);
-		listAnswersMul.Add(5);
-		listAnswersMul.Add(3);
-		listAnswersMul.Add(7);
-		listAnswersMul.Add(6);
+		listAnswersMul = new List<int>
+		{
+			//Start of Answer for Multiplication
+			2,
+			5,
+			3,
+			7,
+			6,
 
-		listAnswersMul.Add(2);
-		listAnswersMul.Add(8);
-		listAnswersMul.Add(9);
-		listAnswersMul.Add(4);
-		listAnswersMul.Add(3);
+			2,
+			8,
+			9,
+			4,
+			3,
 
-		listAnswersMul.Add(3);
-		listAnswersMul.Add(9);
-		listAnswersMul.Add(9);
-		listAnswersMul.Add(2);
-		listAnswersMul.Add(6);
+			3,
+			9,
+			9,
+			2,
+			6,
 
-		listAnswersMul.Add(7);
-		listAnswersMul.Add(8);
-		listAnswersMul.Add(6);
-		listAnswersMul.Add(9);
-		listAnswersMul.Add(7);
+			7,
+			8,
+			6,
+			9,
+			7
+			//End of answers for Multiplication
+		};
+		listAnswersDiv = new List<int>
+		{
+			//Start of Answer for Division
+			8,
+			3,
+			5,
+			6,
+			7,
 
+			9,
+			5,
+			4,
+			9,
+			9,
 
-		listAnswersDiv = new List<int> ();
-		//Start of Answer for Division
-		listAnswersDiv.Add(8);
-		listAnswersDiv.Add(3);
-		listAnswersDiv.Add(5);
-		listAnswersDiv.Add(6);
-		listAnswersDiv.Add(7);
+			8,
+			2,
+			3,
+			4,
+			5,
 
-		listAnswersDiv.Add(9);
-		listAnswersDiv.Add(5);
-		listAnswersDiv.Add(4);
-		listAnswersDiv.Add(9);
-		listAnswersDiv.Add(9);
+			8,
+			6,
+			9,
+			3,
+			4
+			//End of answers for Division
+		};
+		listAnswersAdd = new List<int>
+		{
+			//Start of answers for Addition
+			5,
+			4,
+			9,
+			9,
+			5,
 
-		listAnswersDiv.Add(8);
-		listAnswersDiv.Add(2);
-		listAnswersDiv.Add(3);
-		listAnswersDiv.Add(4);
-		listAnswersDiv.Add(5);
+			8,
+			4,
+			6,
+			8,
+			9,
 
-		listAnswersDiv.Add(8);
-		listAnswersDiv.Add(6);
-		listAnswersDiv.Add(9);
-		listAnswersDiv.Add(3);
-		listAnswersDiv.Add(4);
+			2,
+			4,
+			3,
+			1,
+			6,
 
-		listAnswersAdd = new List<int> ();
-		//Start of answer for Addition
-		listAnswersAdd.Add(5);
-		listAnswersAdd.Add(4);
-		listAnswersAdd.Add(9);
-		listAnswersAdd.Add(9);
-		listAnswersAdd.Add(5);
-				   
-		listAnswersAdd.Add(8);
-		listAnswersAdd.Add(4);
-		listAnswersAdd.Add(6);
-		listAnswersAdd.Add(8);
-		listAnswersAdd.Add(9);
-				   
-		listAnswersAdd.Add(2);
-		listAnswersAdd.Add(4);
-		listAnswersAdd.Add(3);
-		listAnswersAdd.Add(1);
-		listAnswersAdd.Add(6);
-				   
-		listAnswersAdd.Add(1);
-		listAnswersAdd.Add(2);
-		listAnswersAdd.Add(2);
-		listAnswersAdd.Add(4);
-		listAnswersAdd.Add(6);
-		//END of answer for Addition
-				   
-		//Start of answer for Subtration
-		listAnswersAdd.Add(1);
-		listAnswersAdd.Add(5);
-		listAnswersAdd.Add(6);
-		listAnswersAdd.Add(8);
-		listAnswersAdd.Add(5);
-				   
-		listAnswersAdd.Add(5);
-		listAnswersAdd.Add(8);
-		listAnswersAdd.Add(9);
-		listAnswersAdd.Add(9);
-		listAnswersAdd.Add(9);
-				   
-		listAnswersAdd.Add(2);
-		listAnswersAdd.Add(9);
-		listAnswersAdd.Add(8);
-		listAnswersAdd.Add(6);
-		listAnswersAdd.Add(4);
-				   
-		listAnswersAdd.Add(9);
-		listAnswersAdd.Add(4);
-		listAnswersAdd.Add(7);
-		listAnswersAdd.Add(7);
-		listAnswersAdd.Add(1);
-		//END of answer for Subtration
+			1,
+			2,
+			2,
+			4,
+			6,
+			//END of answers for Addition
+
+			//Start of answers for Subtration
+			1,
+			5,
+			6,
+			8,
+			5,
+
+			5,
+			8,
+			9,
+			9,
+			9,
+
+			2,
+			9,
+			8,
+			6,
+			4,
+
+			9,
+			4,
+			7,
+			7,
+			1
+			//END of answers for Subtration
+		};
 
 		listAnswers = new List<int>();	//List of questions new
 		if(SVM_Script.gameDifficulty=="easy")
@@ -424,7 +439,6 @@ public class QuestionManagerScript : MonoBehaviour {
 				listAnswers.Add(listAnswersAdd[x]);
 			}
 		}
-
 		else if(SVM_Script.gameDifficulty=="advance")
 		{
 			for(int x=0; x<listAnswersMul.Count; x++)
@@ -432,7 +446,6 @@ public class QuestionManagerScript : MonoBehaviour {
 				listAnswers.Add(listAnswersMul[x]);
 			}
 		}
-
 		else if(SVM_Script.gameDifficulty=="expert")
 		{
 			for(int x=0; x<listAnswersDiv.Count; x++)
@@ -480,7 +493,6 @@ public class QuestionManagerScript : MonoBehaviour {
 			{
 				listQuestions.Add(listBonusQuestionsMul[x]);
 				listAnswers.Add (3);
-
 			}
 		}
 		if(SVM_Script.gameDifficulty=="expert")
@@ -492,4 +504,4 @@ public class QuestionManagerScript : MonoBehaviour {
 			}
 		}
 	}
-}
+	}
