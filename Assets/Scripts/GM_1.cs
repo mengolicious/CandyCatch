@@ -508,25 +508,35 @@ public class GM_1 : MonoBehaviour
 		SVM_Script.InstructionSeen = true;
 	}
 
-
-	public void StartBonusStage()
+	/// <summary>
+	/// Switch everything to the bonus stage when the game has been qualified as being onto the bonus stage. Use this to remove all no longer needed objects when the Start Bonus Stage Panal appears.
+	/// </summary>
+	public void SwitchToBonusStage()
 	{
 
+	}
+
+	/// <summary>
+	/// Starts the game into the bonus stage
+	/// </summary>
+	public void StartBonusStage()
+	{
+		StopAllCoroutines();
 
 		//Start Disabling Objects
 
 		gunScript.DestroyGunObject();
 		//tempDestroyObject = gameObject.Get
-		BeeM_Script.DestroyOthers();
+		BeeM_Script.SwitchToBonusRound();
 		DestroyInstatiatedBalls ("balls");
 		//Start Reset Questions and Change it to Bonus Question
 
-		questionManagerScript.SwitchToBonusRound ();
+		questionManagerScript.SwitchToBonusRound();
 
 		//End Reset Questions and Change it to Bonus Question
 
-		ResumeGame ();
-		ResetQuestion ();
+		ResumeGame();
+		ResetQuestion();
 	}
 
 	/// <summary>

@@ -17,9 +17,21 @@ public class EasyObjectsScript : MonoBehaviour
 		BubbleList = new List<GameObject>();
 		tempIndexList = new List<int>();
 		//colourList = new List<string>();
-		colourList = new List<Color>();
+		//colourList = new List<Color>();
+		colourList = new List<Color>()
+		{
+			new Color(0f   ,	0.70f,	0.85f),
+			new Color(0.40f,	0.85f,	0.10f),
+			new Color(0.85f,	0.55f,	0.90f),
+			new Color(0.95f,	0.10f,	0.85f),
+			new Color(0.95f,	0.80f,	0.30f),
+			new Color(0.75f,	0.85f,	0.30f),
+			new Color(0.70f,	0.60f,	0.55f),
+			new Color(0.93f,	0.20f,	0.19f),
+			new Color(0.79f,	0.85f,	0.86f)
+		};
 		bubblePrefab = Resources.Load("Prefabs/Bubble");
-		for (int i = 0; i < 6; i++)
+		for(int i = 0; i < 6; i++)
 		{
 			BubbleSpawns.Add(transform.GetChild(i));
 		}
@@ -34,18 +46,18 @@ public class EasyObjectsScript : MonoBehaviour
 		colourList.Add("ee3d3b");
 		colourList.Add("89d2d7");
 		*/
-
-		colourList.Add(new Color(0f, 0.7f, 0.85f, 1f));
-		colourList.Add(new Color(0.4f, 0.85f, 0.1f, 1f));
-		colourList.Add(new Color(0.85f, 0.55f, 0.9f, 1f));
-		colourList.Add(new Color(0.95f, 0.1f, 0.85f, 1f));
-		colourList.Add(new Color(0.95f, 0.8f, 0.3f, 1f));
-		colourList.Add(new Color(0.75f, 0.85f, 0.3f, 1f));
-		colourList.Add(new Color(0.7f, 0.6f, 0.55f, 1f));
-		colourList.Add(new Color(0.93f, 0.2f, 0.19f, 1f));
-		colourList.Add(new Color(0.79f, 0.85f, 0.86f, 1f));
-
-		StartCoroutine (BubbleSpawner ());
+		/*
+		colourList.Add(new Color(0f, 0.7f, 0.85f, 1f)		);
+		colourList.Add(new Color(0.4f, 0.85f, 0.1f, 1f)		);
+		colourList.Add(new Color(0.85f, 0.55f, 0.9f, 1f)	);
+		colourList.Add(new Color(0.95f, 0.1f, 0.85f, 1f)	);
+		colourList.Add(new Color(0.95f, 0.8f, 0.3f, 1f)		);
+		colourList.Add(new Color(0.75f, 0.85f, 0.3f, 1f)	);
+		colourList.Add(new Color(0.7f, 0.6f, 0.55f, 1f)		);
+		colourList.Add(new Color(0.93f, 0.2f, 0.19f, 1f)	);
+		colourList.Add(new Color(0.79f, 0.85f, 0.86f, 1f)	);
+		*/
+		StartCoroutine(BubbleSpawner());
 	}
 
 	/// <summary>
@@ -54,7 +66,7 @@ public class EasyObjectsScript : MonoBehaviour
 	/// <returns></returns>
 	IEnumerator BubbleSpawner()
 	{
-		for (int i = 0; i < BubbleSpawns.Count; i++)
+		for(int i = 0; i < BubbleSpawns.Count; i++)
 		{
 			tempIndexList.Add(i);
 		}
@@ -62,11 +74,11 @@ public class EasyObjectsScript : MonoBehaviour
 		GameObject tempBubble;
 		//Color tempColour;
 		int tempI;
-		while (true)
+		while(true)
 		{
 			x = Random.Range(0, tempIndexList.Count);
 			tempI = Random.Range(0, colourList.Count);
-			if (BubbleList.Count < 6)
+			if(BubbleList.Count < 6)
 			{
 				tempBubble = Instantiate(bubblePrefab, BubbleSpawns[tempIndexList[x]].position, Quaternion.identity) as GameObject;
 				BubbleList.Add(tempBubble);
@@ -83,7 +95,7 @@ public class EasyObjectsScript : MonoBehaviour
 			yield return new WaitForSeconds(1.5f);
 			if(SVM_Script.Instance.isBonus)
 			{
-				for (int i = 0; i < BubbleList.Count; i++)
+				for(int i = 0; i < BubbleList.Count; i++)
 				{
 					Destroy(BubbleList[i]);
 				}

@@ -138,7 +138,7 @@ public class GM : MonoBehaviour {
 		SVM_Script.targetScore = 50;
 		SVM_Script.gameDifficulty = "easy";
 		SVM_Script.Instance.targetTime = 90;
-		SVM_Script.Instance.LoadLevel("ShapesLV1");
+		SVM_Script.Instance.LoadLevel("Enticing Equations");
 	}
 
 	public void LevelOne_Advance()
@@ -148,7 +148,7 @@ public class GM : MonoBehaviour {
 		SVM_Script.targetScore=75;
 		SVM_Script.gameDifficulty = "advance";
 		SVM_Script.Instance.targetTime = 120;
-		SVM_Script.Instance.LoadLevel("ShapesLV1");
+		SVM_Script.Instance.LoadLevel("Enticing Equations");
 	}
 
 	public void LevelOne_Expert ()
@@ -158,7 +158,7 @@ public class GM : MonoBehaviour {
 		SVM_Script.targetScore=90;
 		SVM_Script.gameDifficulty = "expert";
 		SVM_Script.Instance.targetTime = 180;
-		SVM_Script.Instance.LoadLevel("ShapesLV1");
+		SVM_Script.Instance.LoadLevel("Enticing Equations");
 	}
 
 	//when level 2 button pressed change scene to Level 2 alphabet

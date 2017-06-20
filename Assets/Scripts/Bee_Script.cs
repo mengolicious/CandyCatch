@@ -11,23 +11,23 @@ public class Bee_Script : MonoBehaviour {
 
 	protected Object particlePrefab;
 	protected Object ScoreNumberPrefab;
-//	[SerializeField]
-//	private Vector3 answerBallPos;
+	//[SerializeField]
+	//private Vector3 answerBallPos;
 	protected int value;
 	public bool isAttacking;
 	public bool isGoingToHive;
-//	private Vector3 startPos;
-//	private Vector3 startDir;
+	//private Vector3 startPos;
+	//private Vector3 startDir;
 	[SerializeField]
 	protected float speed;
 	protected Vector3 BeeHivePos;
 	protected Vector3 MoveDir;
 	protected BeeMScript BeeM;
 	// Use this for initialization
-	void Start ()
+	void Start()
 	{
 		ScoreManager_Script = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManagerScript>();
-		SM_Script = GameObject.FindGameObjectWithTag ("SoundManager").GetComponent<SoundManagerScript>();
+		SM_Script = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript>();
 	}
 	/// <summary>
 	/// Initialises the variables.

@@ -23,6 +23,7 @@ public class BeeMScript : MonoBehaviour
 	private Object QueenBeePrefab;
 	private Vector3 DirChangeLeft;
 	private Vector3 DirChangeRight;
+	private List<Texture> bonusTextures;
 	// Use this for initialization
 	void Start ()
 	{
@@ -87,7 +88,21 @@ public class BeeMScript : MonoBehaviour
 	public void SwitchToBonusRound()
 	{
 		//load the prefab for the bonus round bees, whatever they bee called cap'n
-		BeePrefab = Resources.Load("prefabs/BonusRoundBees");
+		BeePrefab = Resources.Load("prefabs/BonusRoundBees"); //change the string to the proper name once the prefab is created
+		bonusTextures = new List<Texture>
+		{
+			Resources.Load<Texture>("Texuture Sprite/BonusAnswers/add"),
+			Resources.Load<Texture>("Texuture Sprite/BonusAnswers/div")
+		};
+		if(SVM_Script.gameDifficulty == "advance")
+		{
+			bonusTextures.Add(Resources.Load<Texture>("Texuture Sprite/BonusAnswers/mul"));
+		}
+		if(SVM_Script.gameDifficulty == "expert")
+		{
+			bonusTextures.Add(Resources.Load<Texture>("Texuture Sprite/BonusAnswers/div"));
+		}
+		Destroy(Hive);
 	}
 
 	public void SpawnBeeWave()
@@ -125,7 +140,7 @@ public class BeeMScript : MonoBehaviour
 			tempQueenBee = GameObject.Instantiate(QueenBeePrefab, SpawnPoints[SpawnIndices[tI]], Quaternion.identity) as GameObject;
 			tempQueenBee.transform.GetChild(0).GetComponent<QueenBeeScript>().InitialiseVariables(tempBall, queenBeeSpeed, beeValue, BeeBurstPrefab, ScoreChangeSpritePrefab, Hive.transform.position, this);
 			//tempBee.GetComponent<Bee_Script>().value = tempValue;
-			//beeList.Add(tempBee); //add this back ***
+			beeList.Add(tempQueenBee); //add this back
 			SpawnIndices.RemoveAt(tI);
 		}
 		//---------------------------END of Queen Bee--------------------------//
@@ -234,7 +249,8 @@ public class BeeMScript : MonoBehaviour
 			yield return null;
 		}
 		SpawnIndices.Clear();
-		for( int x = 0; x < 5; ++x)
+		//Reset the indicies for the spawning of new bees
+		for ( int x = 0; x < 5; ++x)
 		{
 			SpawnIndices.Add(x);
 		}
@@ -242,23 +258,20 @@ public class BeeMScript : MonoBehaviour
 
 	IEnumerator ClearBonusListCoRoutine()
 	{
-		for (int x = 0; x < beeList.Count; x++)
+		yield return null;
+		/*for (int x = 0; x < beeList.Count; x++)
 		{
-			//if (!beeList[x])
-			//	beeList.RemoveAt(x);
-			//else
-			//	beeList[x].GetComponent<Bee_Script>().ClearTarget();
+			if (!beeList[x])
+				beeList.RemoveAt(x);
+			else
+				beeList[x].GetComponent<Bee_Script>().ClearTarget();
 			yield return null;
-		}
+		}*/
 		SpawnIndices.Clear();
+		//Reset the indicies for the spawning of new bees
 		for (int x = 0; x < 4; ++x)
 		{
 			SpawnIndices.Add(x);
 		}
-	}
-
-	public void DestroyOthers()
-	{
-		Destroy (Hive);
 	}
 }

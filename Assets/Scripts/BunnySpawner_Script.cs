@@ -42,6 +42,10 @@ public class BunnySpawner_Script : MonoBehaviour {
 			yield return new WaitForSeconds(1.5f);
 			if (SVM_Script.Instance.isBonus)
 			{
+				if(tempBunny)
+				{
+					Destroy(tempBunny);
+				}
 				Destroy(this.gameObject);
 				break;
 			}
