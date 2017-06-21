@@ -513,7 +513,15 @@ public class GM_1 : MonoBehaviour
 	/// </summary>
 	public void SwitchToBonusStage()
 	{
-
+		StopAllCoroutines();
+		if(QuestionMovingPart_GameObject)
+		{
+			Destroy(QuestionMovingPart_GameObject);
+		}
+		gunScript.DestroyGunObject();
+		DestroyInstatiatedBalls ("balls");
+		BeeM_Script.SwitchToBonusRound();
+		questionManagerScript.SwitchToBonusRound();
 	}
 
 	/// <summary>
@@ -521,18 +529,12 @@ public class GM_1 : MonoBehaviour
 	/// </summary>
 	public void StartBonusStage()
 	{
-		StopAllCoroutines();
 
 		//Start Disabling Objects
 
-		gunScript.DestroyGunObject();
 		//tempDestroyObject = gameObject.Get
-		BeeM_Script.SwitchToBonusRound();
-		DestroyInstatiatedBalls ("balls");
 		//Start Reset Questions and Change it to Bonus Question
-
-		questionManagerScript.SwitchToBonusRound();
-
+		
 		//End Reset Questions and Change it to Bonus Question
 
 		ResumeGame();
