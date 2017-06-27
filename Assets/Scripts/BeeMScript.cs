@@ -23,7 +23,7 @@ public class BeeMScript : MonoBehaviour
 	private Object QueenBeePrefab;
 	private Vector3 DirChangeLeft;
 	private Vector3 DirChangeRight;
-	private List<Texture> bonusTextures;
+	private List<Material> bonusBallMattList;
 	// Use this for initialization
 	void Start ()
 	{
@@ -88,19 +88,20 @@ public class BeeMScript : MonoBehaviour
 	public void SwitchToBonusRound()
 	{
 		//load the prefab for the bonus round bees, whatever they bee called cap'n
-		BeePrefab = Resources.Load("prefabs/BonusRoundBees"); //change the string to the proper name once the prefab is created
-		bonusTextures = new List<Texture>
+		BeePrefab = Resources.Load("prefabs/BonusBee"); //change the string to the proper name once the prefab is created
+		bonusBallMattList = new List<Material>
 		{
-			Resources.Load<Texture>("Texuture Sprite/BonusAnswers/add"),
-			Resources.Load<Texture>("Texuture Sprite/BonusAnswers/div")
+			Resources.Load<Material>("Materials/BonusAnswers/Ball_add"),
+			Resources.Load<Material>("Materials/BonusAnswers/Ball_sub")
 		};
 		if(SVM_Script.gameDifficulty == "advance")
 		{
-			bonusTextures.Add(Resources.Load<Texture>("Texuture Sprite/BonusAnswers/mul"));
+			bonusBallMattList.Add(Resources.Load<Material>("Materials/BonusAnswers/Ball_mul"));
 		}
-		if(SVM_Script.gameDifficulty == "expert")
+		else if(SVM_Script.gameDifficulty == "expert")
 		{
-			bonusTextures.Add(Resources.Load<Texture>("Texuture Sprite/BonusAnswers/div"));
+			bonusBallMattList.Add(Resources.Load<Material>("Materials/BonusAnswers/Ball_mul"));
+			bonusBallMattList.Add(Resources.Load<Material>("Materials/BonusAnswers/Ball_div"));
 		}
 		Destroy(Hive);
 	}
@@ -149,15 +150,16 @@ public class BeeMScript : MonoBehaviour
 	IEnumerator BeeWaveSpawner()
 	{
 		GameObject tempBee;
-		int tI;
+		int tI, tV;
 		//Debug.Log ("Spawning " + numberOfBEES + " Bees");
 		for (int x = 0; x < 4; x++)
 		{
 			//beeValue = Random.Range(1, maxBeeValue+1);
 			tI = Random.Range(0, SpawnIndices.Count);
+			tV = Random.Range(0, bonusBallMattList.Count);
 			//Vector3 shiftPos = new Vector3(0f, Random.Range (-2.5f,2.5f), 0f);
 			tempBee = GameObject.Instantiate(BeePrefab, SpawnPoints[SpawnIndices[tI]], Quaternion.identity) as GameObject;
-			tempBee.GetComponent<Bee_Script>().InitialiseVariables(tempBall, beeSpeed, beeValue, BeeBurstPrefab, ScoreChangeSpritePrefab, Hive.transform.position, this);
+			tempBee.GetComponent<BonusBeeScript>().InitialiseVariables(beeSpeed, tV+1, BeeBurstPrefab, ScoreChangeSpritePrefab, this, bonusBallMattList[tV]);
 			//tempBee.GetComponent<Bee_Script>().value = tempValue;
 			beeList.Add(tempBee);
 			SpawnIndices.RemoveAt(tI);

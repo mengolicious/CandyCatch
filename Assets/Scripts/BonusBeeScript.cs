@@ -4,24 +4,35 @@ using UnityEngine;
 
 public class BonusBeeScript : MonoBehaviour
 {
+	[SerializeField]
 	ScoreManagerScript ScoreManager_Script;
+	[SerializeField]
 	SoundManagerScript SM_Script;
+	[SerializeField]
 	BeeMScript BeeM;
 
+	[SerializeField]
 	int value;
-	float moveSpeed, moveDir;
+	[SerializeField]
+	float moveSpeed;
 	GameObject CarryBall;
 	Object particlePrefab, scoreNumberPrefab;
 
 	// Use this for initialization
 	void Start ()
 	{
-		CarryBall = transform.GetChild(0).gameObject;
 		ScoreManager_Script	=	GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManagerScript>();
 		SM_Script			=	GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript>();
-		BeeM				=	GameObject.FindGameObjectWithTag("BeeM").GetComponent<BeeMScript>();
-		particlePrefab		=	Resources.Load("Prefabs/BeeBurst");
-		scoreNumberPrefab	=	Resources.Load("Prefabs/ScoreChangeSprite");
 	}
-	
+
+	public void InitialiseVariables(float beeSpeed, int beeValue,Object particleResource, Object ScoreNumResource, BeeMScript BeeMananager, Material CarryBallMat)
+	{
+		CarryBall = transform.GetChild(0).gameObject;
+		moveSpeed = beeSpeed;
+		value = beeValue;
+		particlePrefab = particleResource;
+		scoreNumberPrefab = ScoreNumResource;
+		BeeM = BeeMananager;
+		CarryBall.GetComponent<MeshRenderer>().material = CarryBallMat;
+	}
 }
