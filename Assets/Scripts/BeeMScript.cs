@@ -21,6 +21,7 @@ public class BeeMScript : MonoBehaviour
 	private Vector3 AngryBeeSpawnPoint;
 	private Object AngryBeePrefab;
 	private Object QueenBeePrefab;
+	private GameObject BossBee;
 	private Vector3 DirChangeLeft;
 	private Vector3 DirChangeRight;
 	private List<Material> bonusBallMattList;
@@ -88,7 +89,8 @@ public class BeeMScript : MonoBehaviour
 	public void SwitchToBonusRound()
 	{
 		//load the prefab for the bonus round bees, whatever they bee called cap'n
-		BeePrefab = Resources.Load("prefabs/BonusBee"); //change the string to the proper name once the prefab is created
+		BeePrefab =			Resources.Load("prefabs/BonusWave/BonusBee");//Load the bonus round bee
+		QueenBeePrefab =	Resources.Load("prefabs/BonusWave/BossBee");//Load the boss queen bee to spawn the bonus bee waves
 		bonusBallMattList = new List<Material>
 		{
 			Resources.Load<Material>("Materials/BonusAnswers/Ball_add"),
@@ -104,6 +106,13 @@ public class BeeMScript : MonoBehaviour
 			bonusBallMattList.Add(Resources.Load<Material>("Materials/BonusAnswers/Ball_div"));
 		}
 		Destroy(Hive);
+		BossBee = Instantiate(QueenBeePrefab) as GameObject;
+		SpawnPoints.Clear();
+		SpawnIndices.Clear();
+		for(int i =0; i < BossBee.transform.childCount; i++)
+		{
+			SpawnPoints.Add(BossBee.transform.GetChild(i).position);
+		}
 	}
 
 	public void SpawnBeeWave()
@@ -124,7 +133,7 @@ public class BeeMScript : MonoBehaviour
 			//beeValue = Random.Range(1, maxBeeValue+1);
 			tI = Random.Range(0, SpawnIndices.Count);
 			//Vector3 shiftPos = new Vector3(0f, Random.Range (-2.5f,2.5f), 0f);
-			tempBee = GameObject.Instantiate(BeePrefab, SpawnPoints[SpawnIndices[tI]], Quaternion.identity) as GameObject;
+			tempBee = Instantiate(BeePrefab, SpawnPoints[SpawnIndices[tI]], Quaternion.identity) as GameObject;
 			tempBee.GetComponent<Bee_Script>().InitialiseVariables(tempBall, beeSpeed, beeValue, BeeBurstPrefab, ScoreChangeSpritePrefab, Hive.transform.position, this);
 			//tempBee.GetComponent<Bee_Script>().value = tempValue;
 			beeList.Add(tempBee);
@@ -138,7 +147,7 @@ public class BeeMScript : MonoBehaviour
 			//Debug.Log("The Queen cometh");
 			tI = Random.Range(0, SpawnPoints.Count);
 			//Vector3 shiftPos = new Vector3(0f, Random.Range (-2.5f,2.5f), 0f);
-			tempQueenBee = GameObject.Instantiate(QueenBeePrefab, SpawnPoints[SpawnIndices[tI]], Quaternion.identity) as GameObject;
+			tempQueenBee = Instantiate(QueenBeePrefab, SpawnPoints[SpawnIndices[tI]], Quaternion.identity) as GameObject;
 			tempQueenBee.transform.GetChild(0).GetComponent<QueenBeeScript>().InitialiseVariables(tempBall, queenBeeSpeed, beeValue, BeeBurstPrefab, ScoreChangeSpritePrefab, Hive.transform.position, this);
 			//tempBee.GetComponent<Bee_Script>().value = tempValue;
 			beeList.Add(tempQueenBee); //add this back
@@ -150,20 +159,18 @@ public class BeeMScript : MonoBehaviour
 	IEnumerator BeeWaveSpawner()
 	{
 		GameObject tempBee;
-		int tI, tV;
+		int tV;
 		//Debug.Log ("Spawning " + numberOfBEES + " Bees");
-		for (int x = 0; x < 4; x++)
+		for (int x = 0; x < SpawnPoints.Count; x++)
 		{
 			//beeValue = Random.Range(1, maxBeeValue+1);
-			tI = Random.Range(0, SpawnIndices.Count);
-			tV = Random.Range(0, bonusBallMattList.Count);
+			tV = /*x < bonusBallMattList.Count ? x : */Random.Range(0, bonusBallMattList.Count);
 			//Vector3 shiftPos = new Vector3(0f, Random.Range (-2.5f,2.5f), 0f);
-			tempBee = GameObject.Instantiate(BeePrefab, SpawnPoints[SpawnIndices[tI]], Quaternion.identity) as GameObject;
+			tempBee = Instantiate(BeePrefab, SpawnPoints[x], Quaternion.identity) as GameObject;
 			tempBee.GetComponent<BonusBeeScript>().InitialiseVariables(beeSpeed, tV+1, BeeBurstPrefab, ScoreChangeSpritePrefab, this, bonusBallMattList[tV]);
 			//tempBee.GetComponent<Bee_Script>().value = tempValue;
 			beeList.Add(tempBee);
-			SpawnIndices.RemoveAt(tI);
-			yield return null;
+			yield return new WaitForSeconds(0.05f);
 		}
 	}
 
@@ -225,7 +232,7 @@ public class BeeMScript : MonoBehaviour
 		{
 			if(!tempAngryBee)
 			{
-				tempAngryBee = GameObject.Instantiate(AngryBeePrefab, AngryBeeSpawnPoint, Quaternion.identity) as GameObject;
+				tempAngryBee = Instantiate(AngryBeePrefab, AngryBeeSpawnPoint, Quaternion.identity) as GameObject;
 				tempAngryBee.GetComponent<AngryBee_Script>().isExpert = isExpert;
 				tempAngryBee.GetComponent<AngryBee_Script>().scoreChangeSpritePos = transform.position;
 				tempAngryBee.GetComponent<AngryBee_Script>().ScoreChangeSpritePrefab = Resources.Load("Prefabs/ScoreChangeSprite");
@@ -268,12 +275,6 @@ public class BeeMScript : MonoBehaviour
 			else
 				beeList[x].GetComponent<Bee_Script>().ClearTarget();
 			yield return null;
-		}*/
-		SpawnIndices.Clear();
-		//Reset the indicies for the spawning of new bees
-		for (int x = 0; x < 4; ++x)
-		{
-			SpawnIndices.Add(x);
-		}
+		}// */
 	}
 }

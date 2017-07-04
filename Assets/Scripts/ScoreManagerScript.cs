@@ -233,6 +233,7 @@ public class ScoreManagerScript : MonoBehaviour
 					SVM_Script.Instance.bonusTime = targetTime - TM_Script.elapsedTime;
 					TM_Script.BonusTime = SVM_Script.Instance.bonusTime;
 					ComputeTotalScore();
+					gM_1.SwitchToBonusStage();
 				}
 				else
 				{

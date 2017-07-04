@@ -97,7 +97,7 @@ public class ClawScript : MonoBehaviour {
 				//Debug.Log("booo");
 				//Debug.Log("booo2");
 				rightAnswer = SM_Script.CheckScore(childObject.GetComponent<BallScript>().scoreValue);
-				if(rightAnswer)
+				if(rightAnswer && !SVM_Script.Instance.isBonus)
 				{ 	//to instantiate particle for win 
 					childObject.GetComponent<BallScript>().InstantiateParticleWin();
 
