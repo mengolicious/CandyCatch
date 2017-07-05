@@ -29,11 +29,17 @@ public class Bee_Script : MonoBehaviour {
 		ScoreManager_Script = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManagerScript>();
 		SM_Script = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript>();
 	}
+	
 	/// <summary>
-	/// Initialises the variables.
+	/// Initialises the variables used by the bee to begin all actions.
 	/// </summary>
-	/// <param name="targetBall">Target ball.</param>
-	/// <param name="beeSpeed">Bee speed.</param>
+	/// <param name="targetBall">the correct answer ball, grabbed by the claw, so the bee can follow it and check when it has touched it.</param>
+	/// <param name="beeSpeed">the movement speed of the bee.</param>
+	/// <param name="beeValue">the value of the bee to be taken from the answer ball or added when clicked upon.</param>
+	/// <param name="particleResource">the prefab of the bee burst particle.</param>
+	/// <param name="ScoreNumResource">the prefab of the score modifier particle.</param>
+	/// <param name="HiveTragetPos">the world space location of the hive.</param>
+	/// <param name="BeeMananager">the bee manager, should be the only one. aka 'this'.</param>
 	public virtual void InitialiseVariables(GameObject targetBall, float beeSpeed, int beeValue,Object particleResource, Object ScoreNumResource, Vector3 HiveTragetPos, BeeMScript BeeMananager)
 	{
 		answerBall = targetBall;

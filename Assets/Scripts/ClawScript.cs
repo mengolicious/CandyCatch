@@ -142,7 +142,7 @@ public class ClawScript : MonoBehaviour {
 			//this.transform.localEulerAngles = new Vector3 (270,0,0);
 			gunScript.CollectedObject(rightAnswer);
 			retracting = false;
-			this.gameObject.SetActive(false);
+			gameObject.SetActive(false);
 
 			//Debug.Log("dead");
 		}

@@ -122,13 +122,19 @@ public class TimeManagerScript : MonoBehaviour
 				if(elapsedTime < 1 )
 				{
 					GameManager.EndBonusStage();
+					minutes = elapsedTime / 60;
+					seconds = elapsedTime % 60;
+
+					DisplayTime (listDisplayImages, minutes, seconds);
+
+					break;
 					//call some GM_1 Function to make it end the bonus time game
 				}
 			}
 			minutes = elapsedTime / 60;
 			seconds = elapsedTime % 60;
 
-			DisplayTime (listDisplayImages, minutes, seconds);
+			DisplayTime(listDisplayImages, minutes, seconds);
 
 			if(!SVM_Script.Instance.isBonus)
 				yield return new WaitForSeconds(0.5f);
@@ -146,7 +152,7 @@ public class TimeManagerScript : MonoBehaviour
 		minutes = tempTargetTime / 60;
 		seconds = tempTargetTime % 60;
 
-		DisplayTime (listDisplayImagesTargetTime, minutes, seconds);
+		DisplayTime(listDisplayImagesTargetTime, minutes, seconds);
 
 
 	}

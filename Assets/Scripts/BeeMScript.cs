@@ -169,6 +169,7 @@ public class BeeMScript : MonoBehaviour
 			tV = /*x < bonusBallMattList.Count ? x : */Random.Range(0, bonusBallMattList.Count);
 			//Vector3 shiftPos = new Vector3(0f, Random.Range (-2.5f,2.5f), 0f);
 			tempBee = Instantiate(BeePrefab, SpawnPoints[x], Quaternion.identity) as GameObject;
+			tempBee.name = "Bonus Bee";
 			tempBee.GetComponent<BonusBeeScript>().InitialiseVariables(beeSpeed, tV+1, BeeBurstPrefab, ScoreChangeSpritePrefab, this, bonusBallMattList[tV]);
 			//tempBee.GetComponent<Bee_Script>().value = tempValue;
 			beeList.Add(tempBee);

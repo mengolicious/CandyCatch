@@ -226,16 +226,17 @@ public class ScoreManagerScript : MonoBehaviour
 	/// </summary>
 	/// <returns><c>true</c> If answer is correct, <c>false</c> otherwise.</returns>
 	/// <param name="ballScoreValue">Ball score value.</param>
-	public bool CheckScore(int ballScoreValue){
-
+	public bool CheckScore(int ballScoreValue)
+	{
 		//when answer is right
-		if (VerifyAnswer()) {
+		if (VerifyAnswer())
+		{
 			score += ballScoreValue;
 			DisplayScore(scoreNum1, scoreNum2, score); 
 
 			if(score>=targetScore){
-				if(TM_Script.elapsedTime < SVM_Script.Instance.targetTime){
-
+				if(TM_Script.elapsedTime < SVM_Script.Instance.targetTime)
+				{
 					bonusScreen.SetActive(true);
 					gM_1.PauseGame();
 					pauseButton.SetActive (false);
@@ -256,14 +257,16 @@ public class ScoreManagerScript : MonoBehaviour
 					if (SVM_Script.gameDifficulty=="easy")
 					{
 						tempString="Easy";
-						if(SVM_Script.advanceIsLocked){
+						if(SVM_Script.advanceIsLocked)
+						{
 							SVM_Script.advanceIsLocked=false;
 							PlayerPrefs.SetInt("EE_advance",1);
 						}
 					}else if(SVM_Script.gameDifficulty=="advance")
 					{
 						tempString="Advance";
-						if(SVM_Script.expertIsLocked){
+						if(SVM_Script.expertIsLocked)
+						{
 							SVM_Script.expertIsLocked=false;
 							PlayerPrefs.SetInt("EE_expert",1);
 						}

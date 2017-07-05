@@ -18,13 +18,21 @@ public class BonusBeeScript : MonoBehaviour
 	GameObject CarryBall;
 	Object particlePrefab, scoreNumberPrefab;
 
-	// Use this for initialization
 	void Start ()
 	{
 		ScoreManager_Script	=	GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManagerScript>();
 		SM_Script			=	GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript>();
 	}
 
+	/// <summary>
+	/// Initialises the variables used by the bee to begin all actions.
+	/// </summary>
+	/// <param name="beeSpeed">the movement speed of the bee.</param>
+	/// <param name="beeValue">the answer the bee carries in an int based format.</param>
+	/// <param name="particleResource">the prefab of the bee burst particle.</param>
+	/// <param name="ScoreNumResource">the prefab of the score modifier particle.</param>
+	/// <param name="BeeMananager">the bee manager, should be the only one. aka 'this'.</param>
+	/// <param name="CarryBallMat">the appropriate answer ball material.</param>
 	public void InitialiseVariables(float beeSpeed, int beeValue,Object particleResource, Object ScoreNumResource, BeeMScript BeeMananager, Material CarryBallMat)
 	{
 		CarryBall = transform.GetChild(0).gameObject;
@@ -54,14 +62,16 @@ public class BonusBeeScript : MonoBehaviour
 	public void OnMouseDown()
 	{
 		SM_Script.Play_SFX("splat");
-		/*if(ScoreManager_Script.EditScore(value, ScoreManagerScript.ScoreSource.BonusBee))
+		if(ScoreManager_Script.CheckBeeAnswer(value))
 		{
-			Instantiate(particlePrefab, this.transform.position, this.transform.rotation);
-			/*GameObject tempScoreParticle = Instantiate(scoreNumberPrefab, this.transform.position, Quaternion.identity) as GameObject;
-			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, true, true);
-		}*/
+			Instantiate(particlePrefab, this.transform.position, this.transform.rotation); //Need to complete the following lines based on the Agreed Upon value for the Bonus Round bees
+			//ScoreManager_Script.EditScore(/*the value to actually pass once decided upon*/1,ScoreManagerScript.ScoreSource.BonusBee); 
+			//GameObject tempScoreParticle = Instantiate(scoreNumberPrefab, this.transform.position, Quaternion.identity) as GameObject;
+			//tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, true, true);
+		}
 		Kill();
 	}
+
 
 	public void Kill()
 	{
