@@ -97,17 +97,19 @@ public class ClawScript : MonoBehaviour {
 				//Debug.Log("booo");
 				//Debug.Log("booo2");
 				rightAnswer = SM_Script.CheckScore(childObject.GetComponent<BallScript>().scoreValue);
-				if(rightAnswer && !SVM_Script.Instance.isBonus)
-				{ 	//to instantiate particle for win 
-					childObject.GetComponent<BallScript>().InstantiateParticleWin();
-
-					///////////////////////////////////////////////
-
-					GM_Script.DestroyInstatiatedBalls("balls");
-					GM_Script.SpawnBalls();
-					BeeM_Script.ClearBees();
+				if(rightAnswer)
+				{   //to instantiate particle for win 
 					if(!SVM_Script.Instance.isBonus)
-					GM_Script.ResetQuestion();
+					{
+						childObject.GetComponent<BallScript>().InstantiateParticleWin();
+
+						///////////////////////////////////////////////
+
+						GM_Script.DestroyInstatiatedBalls("balls");
+						GM_Script.SpawnBalls();
+						BeeM_Script.ClearBees();
+						GM_Script.ResetQuestion();
+					}
 				}
 				else
 				{

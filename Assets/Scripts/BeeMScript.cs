@@ -109,7 +109,7 @@ public class BeeMScript : MonoBehaviour
 		BossBee = Instantiate(QueenBeePrefab) as GameObject;
 		SpawnPoints.Clear();
 		SpawnIndices.Clear();
-		for(int i =0; i < BossBee.transform.childCount; i++)
+		for(int i = 0; i < BossBee.transform.childCount; i++)
 		{
 			SpawnPoints.Add(BossBee.transform.GetChild(i).position);
 		}
@@ -119,6 +119,7 @@ public class BeeMScript : MonoBehaviour
 	{
 		StartCoroutine(BeeWaveSpawner());
 	}
+
 	/// <summary>
 	/// Spawns the bees with a delay between each, number spawned based off of member variable.
 	/// </summary>
@@ -128,7 +129,7 @@ public class BeeMScript : MonoBehaviour
 		GameObject tempQueenBee;
 		int tI;
 		//Debug.Log ("Spawning " + numberOfBEES + " Bees");
-		for (int x = 0; x < numberOfBEES; x++)
+		for(int x = 0; x < numberOfBEES; x++)
 		{
 			//beeValue = Random.Range(1, maxBeeValue+1);
 			tI = Random.Range(0, SpawnIndices.Count);
@@ -142,7 +143,7 @@ public class BeeMScript : MonoBehaviour
 		}
 
 		//---------------------------Start of Queen Bee--------------------------//
-		if (isExpert)
+		if(isExpert)
 		{
 			//Debug.Log("The Queen cometh");
 			tI = Random.Range(0, SpawnPoints.Count);

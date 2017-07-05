@@ -12,7 +12,7 @@ public class BossBee : MonoBehaviour
 		BeeManager = GameObject.FindGameObjectWithTag("BeeM") ? GameObject.FindGameObjectWithTag("BeeM").GetComponent<BeeMScript>()  : null;
 	}
 
-	private void SpawnWave()
+	public void SpawnWave()
 	{
 		if(BeeManager)
 		{

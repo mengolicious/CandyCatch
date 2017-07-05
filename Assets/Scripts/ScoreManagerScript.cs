@@ -94,9 +94,9 @@ public class ScoreManagerScript : MonoBehaviour
 		BonusBee
 	}
 
-	
+
 	// Use this for initialization
-	void Start ()
+	void Start()
 	{
 		lives = 5;
 		pointToAdd = 5;
@@ -135,19 +135,19 @@ public class ScoreManagerScript : MonoBehaviour
 			marshNum4,
 			marshNum5
 		};
-		DisplayScore (targetScoreNum1,targetScoreNum2,targetScore);
+		DisplayScore(targetScoreNum1, targetScoreNum2, targetScore);
 
 		//StartCoroutine (BeeSpawn ());
 
-		StartCoroutine (CollectibleSpawn ());
+		StartCoroutine(CollectibleSpawn());
 
 		//loseScreen.SetActive (false);
 	}
 
-	IEnumerator CollectibleSpawn(){
+	IEnumerator CollectibleSpawn() {
 
-		while(true){
-			if(lives <2)
+		while(true) {
+			if(lives < 2)
 			{
 				tempCollectible = Instantiate(collectiblePrefab, this.gameObject.transform.localPosition, Quaternion.identity) as GameObject;
 			}
@@ -165,7 +165,7 @@ public class ScoreManagerScript : MonoBehaviour
 	{
 		if(srcType == ScoreSource.BackGroundObj)
 		{
-			if(BGObjScoreRemain <=0)
+			if(BGObjScoreRemain <= 0)
 				return false;
 			BGObjScoreRemain -= changeScore;
 		}
@@ -185,32 +185,42 @@ public class ScoreManagerScript : MonoBehaviour
 	{
 		if(tempChangeValue > 99)
 			tempChangeValue = 99;
-		scoreString = tempChangeValue.ToString ();
+		scoreString = tempChangeValue.ToString();
 
 		//Debug.Log (scoreString.Length);
 
-		if (scoreString.Length == 1)
+		if(scoreString.Length == 1)
 		{
 			tempChar = scoreString[0];
 			tempNum = (int)char.GetNumericValue(tempChar);
-			num1.GetComponent<Image> ().sprite = listNumImage [tempNum];
-			num2.GetComponent<Image> ().sprite = listNumImage [0];
+			num1.GetComponent<Image>().sprite = listNumImage[tempNum];
+			num2.GetComponent<Image>().sprite = listNumImage[0];
 		} else
 		{
 
 			tempChar = scoreString[1];
 			tempNum = (int)char.GetNumericValue(tempChar);
-			num1.GetComponent<Image> ().sprite = listNumImage[tempNum];
+			num1.GetComponent<Image>().sprite = listNumImage[tempNum];
 			//scoreNum2.GetComponent<Image> ().sprite = listNumImage[scoreString[0]];
 
 			tempChar = scoreString[0];
 			tempNum = (int)char.GetNumericValue(tempChar);
-			num2.GetComponent<Image> ().sprite = listNumImage[tempNum];
+			num2.GetComponent<Image>().sprite = listNumImage[tempNum];
 
-			
+
 		}
 	}
-		
+	
+	/// <summary>
+	/// not sure If I want to do anything special while checking bee answers
+	/// </summary>
+	/// <returns></returns>
+	public bool CheckBeeAnswer(int value)
+	{
+		playerAnswerInSM = value;
+		return VerifyAnswer();		
+	}
+
 	/// <summary>
 	/// Checks if the answer is correct and updates that score if it is, otherwise updates the lives.
 	/// </summary>
@@ -219,7 +229,7 @@ public class ScoreManagerScript : MonoBehaviour
 	public bool CheckScore(int ballScoreValue){
 
 		//when answer is right
-		if (currentAnswerInSM == playerAnswerInSM) {
+		if (VerifyAnswer()) {
 			score += ballScoreValue;
 			DisplayScore(scoreNum1, scoreNum2, score); 
 
