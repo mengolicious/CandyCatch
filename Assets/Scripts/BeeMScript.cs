@@ -150,7 +150,7 @@ public class BeeMScript : MonoBehaviour
 			tempQueenBee = Instantiate(QueenBeePrefab, SpawnPoints[SpawnIndices[tI]], Quaternion.identity) as GameObject;
 			tempQueenBee.transform.GetChild(0).GetComponent<QueenBeeScript>().InitialiseVariables(tempBall, queenBeeSpeed, beeValue, BeeBurstPrefab, ScoreChangeSpritePrefab, Hive.transform.position, this);
 			//tempBee.GetComponent<Bee_Script>().value = tempValue;
-			beeList.Add(tempQueenBee); //add this back
+			beeList.Add(tempQueenBee);
 			SpawnIndices.RemoveAt(tI);
 		}
 		//---------------------------END of Queen Bee--------------------------//
@@ -160,6 +160,7 @@ public class BeeMScript : MonoBehaviour
 	{
 		GameObject tempBee;
 		int tV;
+		BossBee.GetComponent<Animator>().Play("QueenBossSpawn");
 		//Debug.Log ("Spawning " + numberOfBEES + " Bees");
 		for (int x = 0; x < SpawnPoints.Count; x++)
 		{
@@ -170,7 +171,7 @@ public class BeeMScript : MonoBehaviour
 			tempBee.GetComponent<BonusBeeScript>().InitialiseVariables(beeSpeed, tV+1, BeeBurstPrefab, ScoreChangeSpritePrefab, this, bonusBallMattList[tV]);
 			//tempBee.GetComponent<Bee_Script>().value = tempValue;
 			beeList.Add(tempBee);
-			yield return new WaitForSeconds(0.05f);
+			yield return new WaitForSeconds(0.3f);
 		}
 	}
 
