@@ -42,6 +42,7 @@ public class BonusBeeScript : MonoBehaviour
 		scoreNumberPrefab = ScoreNumResource;
 		BeeM = BeeMananager;
 		CarryBall.GetComponent<MeshRenderer>().material = CarryBallMat;
+		Invoke("Kill", 5f);
 		StartCoroutine(Movement());
 	}
 
@@ -65,10 +66,15 @@ public class BonusBeeScript : MonoBehaviour
 		if(ScoreManager_Script.CheckBeeAnswer(value))
 		{
 			Instantiate(particlePrefab, this.transform.position, this.transform.rotation); //Need to complete the following lines based on the Agreed Upon value for the Bonus Round bees
-			//ScoreManager_Script.EditScore(/*the value to actually pass once decided upon*/1,ScoreManagerScript.ScoreSource.BonusBee); 
-			//GameObject tempScoreParticle = Instantiate(scoreNumberPrefab, this.transform.position, Quaternion.identity) as GameObject;
-			//tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, true, true);
+			ScoreManager_Script.EditScore(5,ScoreManagerScript.ScoreSource.BonusBee); 
+			GameObject tempScoreParticle = Instantiate(scoreNumberPrefab, this.transform.position, Quaternion.identity) as GameObject;
+			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(5, true, true);
 		}
+		/*else
+		{
+			//Reduce the time remaining or something like that here
+		}
+		*/
 		Kill();
 	}
 

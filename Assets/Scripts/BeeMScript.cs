@@ -6,6 +6,8 @@ public class BeeMScript : MonoBehaviour
 {
 	[SerializeField]
 	private List<GameObject> beeList;
+	[SerializeField]
+	private GM_1 gm; 
 	private int numberOfBEES;
 	private GameObject tempBall;
 	private float beeSpeed;
@@ -16,7 +18,7 @@ public class BeeMScript : MonoBehaviour
 	private Object BeePrefab;
 	private Object BeeBurstPrefab;
 	private Object ScoreChangeSpritePrefab;
-	public GameObject Hive;
+	private GameObject Hive;
 	private bool isExpert;
 	private Vector3 AngryBeeSpawnPoint;
 	private Object AngryBeePrefab;
@@ -37,10 +39,11 @@ public class BeeMScript : MonoBehaviour
 		ScoreChangeSpritePrefab = Resources.Load("Prefabs/ScoreChangeSprite");
 		AngryBeePrefab = Resources.Load("Prefabs/SoldierBee");
 		QueenBeePrefab = Resources.Load("Prefabs/QueenBee");
+		//---------------------should be null checking in this region----------------------------------//
 		AngryBeeSpawnPoint = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<Transform>().position;
-
 		Hive = GameObject.FindGameObjectWithTag("BeeHive"); //So we can move the BeeHive and not worry about it's position-Need to instantiate the Background with BeeHive
-
+		gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GM_1>();
+		//---------------------end of where null checking should be done-------------------------------//
 		for( int x = 0; x < 5; ++x)
 		{
 			SpawnPoints.Add(transform.GetChild(x).position);
@@ -163,7 +166,7 @@ public class BeeMScript : MonoBehaviour
 		int tV;
 		BossBee.GetComponent<Animator>().Play("QueenBossSpawn");
 		//Debug.Log ("Spawning " + numberOfBEES + " Bees");
-		for (int x = 0; x < SpawnPoints.Count; x++)
+		for(int x = 0; x < SpawnPoints.Count; x++)
 		{
 			//beeValue = Random.Range(1, maxBeeValue+1);
 			tV = /*x < bonusBallMattList.Count ? x : */Random.Range(0, bonusBallMattList.Count);

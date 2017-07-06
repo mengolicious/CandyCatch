@@ -384,7 +384,6 @@ public class GM_1 : MonoBehaviour
 
 			yield return new WaitForSeconds(0.03f);
 		}
-
 		StartCoroutine (SmokeSpriteAnim());
 	}
 
@@ -522,6 +521,7 @@ public class GM_1 : MonoBehaviour
 		DestroyInstatiatedBalls ("balls");
 		BeeM_Script.SwitchToBonusRound();
 		questionManagerScript.SwitchToBonusRound();
+		SM_Script.SwitchToBonusRound();
 	}
 
 	/// <summary>
@@ -529,14 +529,12 @@ public class GM_1 : MonoBehaviour
 	/// </summary>
 	public void StartBonusStage()
 	{
-
 		//Start Disabling Objects
 
 		//tempDestroyObject = gameObject.Get
 		//Start Reset Questions and Change it to Bonus Question
 		
 		//End Reset Questions and Change it to Bonus Question
-
 		ResumeGame();
 		ResetQuestion();
 	}
@@ -546,6 +544,7 @@ public class GM_1 : MonoBehaviour
 	/// </summary>
 	public void EndBonusStage()
 	{
+		SM_Script.EndBonusStage();
 		//Add it here more make a function depending upon where we decide to store bonus score
 		//SM_Script.totalScore += /*add the bonus score when it is strored*/;
 		//call some func for bonus score to total score calc and highscore checking

@@ -168,16 +168,27 @@ public class ScoreManagerScript : MonoBehaviour
 			if(BGObjScoreRemain <= 0)
 				return false;
 			BGObjScoreRemain -= changeScore;
+			score += changeScore;
 		}
 		else if(srcType == ScoreSource.BonusBee)
 		{
 			bonusScore += changeScore;
-			return true;
 		}
-		score += changeScore;
-		if(score < 0)
-			score = 0;
-		DisplayScore(scoreNum1, scoreNum2, score);
+		else
+		{
+			score += changeScore;
+		}
+		
+		if(!SVM_Script.Instance.isBonus)
+		{
+			if(score < 0)
+				score = 0;
+			DisplayScore(scoreNum1, scoreNum2, score);
+		}
+		else
+		{
+			DisplayScore(scoreNum1, scoreNum2, bonusScore);
+		}
 		return true;
 	}
 
@@ -195,7 +206,8 @@ public class ScoreManagerScript : MonoBehaviour
 			tempNum = (int)char.GetNumericValue(tempChar);
 			num1.GetComponent<Image>().sprite = listNumImage[tempNum];
 			num2.GetComponent<Image>().sprite = listNumImage[0];
-		} else
+		}
+		else
 		{
 
 			tempChar = scoreString[1];
@@ -218,7 +230,41 @@ public class ScoreManagerScript : MonoBehaviour
 	public bool CheckBeeAnswer(int value)
 	{
 		playerAnswerInSM = value;
-		return VerifyAnswer();		
+		return VerifyAnswer();
+	}
+
+	/// <summary>
+	/// End the bonus Stage so that highscores etc can be handled.
+	/// </summary>
+	public void EndBonusStage()
+	{
+		gM_1.PauseGame();
+		winScreen.SetActive(true);
+		pauseButton.SetActive(false);
+		if (SVM_Script.gameDifficulty=="easy")
+		{
+			tempString="Easy";
+			if(SVM_Script.advanceIsLocked)
+			{
+				SVM_Script.advanceIsLocked=false;
+				PlayerPrefs.SetInt("EE_advance",1);
+			}
+		}
+		else if(SVM_Script.gameDifficulty=="advance")
+		{
+			tempString="Advance";
+			if(SVM_Script.expertIsLocked)
+			{
+				SVM_Script.expertIsLocked=false;
+				PlayerPrefs.SetInt("EE_expert",1);
+			}
+		}
+		else if(SVM_Script.gameDifficulty=="expert")
+		{
+			tempString="Expert";
+		}
+		totalScore += bonusScore * 2/* some sort of modification to make it highscore worthy*/;
+		CheckHighScore();
 	}
 
 	/// <summary>
@@ -234,7 +280,8 @@ public class ScoreManagerScript : MonoBehaviour
 			score += ballScoreValue;
 			DisplayScore(scoreNum1, scoreNum2, score); 
 
-			if(score>=targetScore){
+			if(score>=targetScore)
+			{
 				if(TM_Script.elapsedTime < SVM_Script.Instance.targetTime)
 				{
 					bonusScreen.SetActive(true);
@@ -254,7 +301,7 @@ public class ScoreManagerScript : MonoBehaviour
 					gM_1.PauseGame();
 					pauseButton.SetActive (false);
 
-					if (SVM_Script.gameDifficulty=="easy")
+					if(SVM_Script.gameDifficulty=="easy")
 					{
 						tempString="Easy";
 						if(SVM_Script.advanceIsLocked)
@@ -262,7 +309,8 @@ public class ScoreManagerScript : MonoBehaviour
 							SVM_Script.advanceIsLocked=false;
 							PlayerPrefs.SetInt("EE_advance",1);
 						}
-					}else if(SVM_Script.gameDifficulty=="advance")
+					}
+					else if(SVM_Script.gameDifficulty=="advance")
 					{
 						tempString="Advance";
 						if(SVM_Script.expertIsLocked)
@@ -289,16 +337,22 @@ public class ScoreManagerScript : MonoBehaviour
 		//when answer is wrong
 		else
 		{ 
-			LoseLife (); 
-			CheckLives ();
+			LoseLife(); 
+			CheckLives();
 			return false;
 		}
 	}
 
+	/// <summary>
+	/// Only to be called on when the game is not in the bonus round.
+	/// </summary>
 	public void ComputeTotalScore()
 	{
 		totalScore = Mathf.FloorToInt((float)((float)score / (float)TM_Script.elapsedTime)*100f*lives);
-		if (!SVM_Script.Instance.isBonus)
+		insertScore.transform.GetChild(5).GetComponent<Text>().text = score.ToString();
+		insertScore.transform.GetChild(7).GetComponent<Text>().text = " X " + lives.ToString();
+		insertScore.transform.GetChild(9).GetComponent<Text>().text = TM_Script.minutesStr + ":" + TM_Script.secondsStr;
+		if(!SVM_Script.Instance.isBonus)
 		{
 			CheckHighScore();
 		}
@@ -307,7 +361,7 @@ public class ScoreManagerScript : MonoBehaviour
 	public void CheckHighScore()
 	{
 		//Might need to do some other stuff with total score / bonus points here or elsewhere
-		if (totalScore >= PlayerPrefs.GetInt("EE_Top1_Score_" + tempString))
+		if(totalScore >= PlayerPrefs.GetInt("EE_Top1_Score_" + tempString))
 		{
 			insertScore.transform.parent.gameObject.SetActive(true);
 			SoundManagerScript.Instance.Play_SFX("HighScore");
@@ -316,22 +370,22 @@ public class ScoreManagerScript : MonoBehaviour
 			PlayerPrefs.SetInt("EE_Top2_Score_" + tempString, PlayerPrefs.GetInt("EE_Top1_Score_" + tempString));
 			PlayerPrefs.SetString("EE_Top2_Name_" + tempString, PlayerPrefs.GetString("EE_Top1_Name_" + tempString));
 
-			PlayerPrefs.SetInt("EE_Top1_Score_" + tempString, (int)totalScore);
+			PlayerPrefs.SetInt("EE_Top1_Score_" + tempString, totalScore);
 			SVM_Script.Instance.highScoreIndex = 1;
 		}
-		else if (totalScore >= PlayerPrefs.GetInt("EE_Top2_Score_" + tempString))
+		else if(totalScore >= PlayerPrefs.GetInt("EE_Top2_Score_" + tempString))
 		{
 			insertScore.transform.parent.gameObject.SetActive(true);
 			SoundManagerScript.Instance.Play_SFX("HighScore");
 			PlayerPrefs.SetInt("EE_Top3_Score_" + tempString, PlayerPrefs.GetInt("EE_Top2_Score_" + tempString));
-			PlayerPrefs.SetInt("EE_Top2_Score_" + tempString, (int)totalScore);
+			PlayerPrefs.SetInt("EE_Top2_Score_" + tempString, totalScore);
 			SVM_Script.Instance.highScoreIndex = 2;
 		}
-		else if (totalScore >= PlayerPrefs.GetInt("EE_Top3_Score_" + tempString))
+		else if(totalScore >= PlayerPrefs.GetInt("EE_Top3_Score_" + tempString))
 		{
 			insertScore.transform.parent.gameObject.SetActive(true);
 			SoundManagerScript.Instance.Play_SFX("HighScore");
-			PlayerPrefs.SetInt("EE_Top3_Score_" + tempString, (int)totalScore);
+			PlayerPrefs.SetInt("EE_Top3_Score_" + tempString, totalScore);
 			SVM_Script.Instance.highScoreIndex = 3;
 		}
 		else
@@ -339,9 +393,6 @@ public class ScoreManagerScript : MonoBehaviour
 			SVM_Script.Instance.highScoreIndex = 0;
 		}
 		insertScore.transform.GetChild(3).GetComponent<Text>().text = "Total = " + totalScore.ToString() + " :";
-		insertScore.transform.GetChild(5).GetComponent<Text>().text = score.ToString();
-		insertScore.transform.GetChild(7).GetComponent<Text>().text = " X " + lives.ToString();
-		insertScore.transform.GetChild(9).GetComponent<Text>().text = TM_Script.minutesStr + ":" + TM_Script.secondsStr;
 	}
 
 	public void SetTopScoreName()
@@ -369,7 +420,7 @@ public class ScoreManagerScript : MonoBehaviour
 		{
 			loseScreen.SetActive (true);
 
-			loseScreen.GetComponent<Image> ().sprite = loseScreenImg;
+			loseScreen.GetComponent<Image>().sprite = loseScreenImg;
 			gM_1.PauseGame();
 			pauseButton.SetActive (false);
 		}
@@ -381,5 +432,10 @@ public class ScoreManagerScript : MonoBehaviour
 			return true;
 		else
 			return false;
+	}
+
+	public void SwitchToBonusRound()
+	{
+		DisplayScore(scoreNum1, scoreNum2, bonusScore);
 	}
 }
