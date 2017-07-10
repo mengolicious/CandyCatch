@@ -66,9 +66,9 @@ public class BonusBeeScript : MonoBehaviour
 		if(ScoreManager_Script.CheckBeeAnswer(value))
 		{
 			Instantiate(particlePrefab, this.transform.position, this.transform.rotation); //Need to complete the following lines based on the Agreed Upon value for the Bonus Round bees
-			ScoreManager_Script.EditScore(5,ScoreManagerScript.ScoreSource.BonusBee); 
+			ScoreManager_Script.EditScore(1,ScoreManagerScript.ScoreSource.BonusBee); 
 			GameObject tempScoreParticle = Instantiate(scoreNumberPrefab, this.transform.position, Quaternion.identity) as GameObject;
-			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(5, true, true);
+			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(1, true, true);
 		}
 		/*else
 		{

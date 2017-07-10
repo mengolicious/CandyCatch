@@ -241,7 +241,7 @@ public class ScoreManagerScript : MonoBehaviour
 		gM_1.PauseGame();
 		winScreen.SetActive(true);
 		pauseButton.SetActive(false);
-		if (SVM_Script.gameDifficulty=="easy")
+		if(SVM_Script.gameDifficulty=="easy")
 		{
 			tempString="Easy";
 			if(SVM_Script.advanceIsLocked)
@@ -263,7 +263,7 @@ public class ScoreManagerScript : MonoBehaviour
 		{
 			tempString="Expert";
 		}
-		totalScore += bonusScore * 2/* some sort of modification to make it highscore worthy*/;
+		totalScore += bonusScore  /* some sort of modification to make it highscore worthy maybe*/;
 		CheckHighScore();
 	}
 

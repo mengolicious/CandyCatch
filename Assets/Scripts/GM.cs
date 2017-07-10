@@ -137,7 +137,7 @@ public class GM : MonoBehaviour {
 
 		SVM_Script.targetScore = 50;
 		SVM_Script.gameDifficulty = "easy";
-		SVM_Script.Instance.targetTime = 90;
+		SVM_Script.Instance.targetTime = 200;
 		SVM_Script.Instance.LoadLevel("Enticing Equations");
 	}
 
@@ -145,9 +145,9 @@ public class GM : MonoBehaviour {
 	{
 		SoundManager_Script.Play_SFX("MenuNav2");
 
-		SVM_Script.targetScore=75;
+		SVM_Script.targetScore = 75;
 		SVM_Script.gameDifficulty = "advance";
-		SVM_Script.Instance.targetTime = 120;
+		SVM_Script.Instance.targetTime = 300;
 		SVM_Script.Instance.LoadLevel("Enticing Equations");
 	}
 
@@ -155,9 +155,9 @@ public class GM : MonoBehaviour {
 	{ 
 		SoundManager_Script.Play_SFX("MenuNav2");
 
-		SVM_Script.targetScore=90;
+		SVM_Script.targetScore = 90;
 		SVM_Script.gameDifficulty = "expert";
-		SVM_Script.Instance.targetTime = 180;
+		SVM_Script.Instance.targetTime = 400;
 		SVM_Script.Instance.LoadLevel("Enticing Equations");
 	}
 
