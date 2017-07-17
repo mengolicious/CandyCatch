@@ -70,11 +70,11 @@ public class BonusBeeScript : MonoBehaviour
 			GameObject tempScoreParticle = Instantiate(scoreNumberPrefab, this.transform.position, Quaternion.identity) as GameObject;
 			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(1, true, true);
 		}
-		/*else
+		else
 		{
 			//Reduce the time remaining or something like that here
+			BeeM.ReduceTime();
 		}
-		*/
 		Kill();
 	}
 

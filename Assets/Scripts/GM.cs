@@ -137,7 +137,7 @@ public class GM : MonoBehaviour {
 
 		SVM_Script.targetScore = 50;
 		SVM_Script.gameDifficulty = "easy";
-		SVM_Script.Instance.targetTime = 200; //Find a good balance between beating it if no mistakes are made and having a low enough time to make the bonus stage not feel too long
+		SVM_Script.Instance.targetTime = 120; //Find a good balance between beating it if no mistakes are made and having a low enough time to make the bonus stage not feel too long
 		SVM_Script.Instance.LoadLevel("Enticing Equations");
 	}
 
@@ -147,7 +147,7 @@ public class GM : MonoBehaviour {
 
 		SVM_Script.targetScore = 75;
 		SVM_Script.gameDifficulty = "advance";
-		SVM_Script.Instance.targetTime = 300; //add a resonable amount to this to make it higher than easy but increases by maybe the same step on Expert
+		SVM_Script.Instance.targetTime = 180; //add a resonable amount to this to make it higher than easy but increases by maybe the same step on Expert
 		SVM_Script.Instance.LoadLevel("Enticing Equations");
 	}
 
@@ -157,7 +157,7 @@ public class GM : MonoBehaviour {
 
 		SVM_Script.targetScore = 90;
 		SVM_Script.gameDifficulty = "expert";
-		SVM_Script.Instance.targetTime = 400; //a ditto was his father, and raised him in his mothers stead
+		SVM_Script.Instance.targetTime = 240; //a ditto was his father, and raised him in his mothers stead
 		SVM_Script.Instance.LoadLevel("Enticing Equations");
 	}
 

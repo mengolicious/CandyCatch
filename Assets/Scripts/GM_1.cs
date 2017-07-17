@@ -549,6 +549,7 @@ public class GM_1 : MonoBehaviour
 	public void EndBonusStage()
 	{
 		SM_Script.EndBonusStage();
+		BeeM_Script.EndBonuStage();
 		//Add it here more make a function depending upon where we decide to store bonus score
 		//SM_Script.totalScore += /*add the bonus score when it is strored*/;
 		//call some func for bonus score to total score calc and highscore checking

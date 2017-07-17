@@ -152,6 +152,19 @@ public class TimeManagerScript : MonoBehaviour
 		DisplayTime (listDisplayImages, minutes, seconds);
 	}
 
+	public void ReduceTime()
+	{
+		BonusTime = BonusTime - 1;
+		if(BonusTime < 1)
+		{
+			GameManager.EndBonusStage();
+		}
+		int minutes = elapsedTime / 60;
+		int seconds = elapsedTime % 60;
+
+		DisplayTime (listDisplayImages, minutes, seconds);
+	}
+
 	public void DisplayTargetTime()
     {
 		int minutes;

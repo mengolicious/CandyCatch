@@ -7,7 +7,7 @@ public class BeeMScript : MonoBehaviour
 	[SerializeField]
 	private List<GameObject> beeList;
 	[SerializeField]
-	private GM_1 gm; 
+	private GM_1 gm;
 	private int numberOfBEES;
 	private GameObject tempBall;
 	private float beeSpeed;
@@ -28,6 +28,7 @@ public class BeeMScript : MonoBehaviour
 	private Vector3 DirChangeRight;
 	private List<Material> bonusBallMattList;
 	private int waveCount;
+	private bool isSpawningWave;
 	// Use this for initialization
 	void Start ()
 	{
@@ -120,9 +121,23 @@ public class BeeMScript : MonoBehaviour
 		}
 	}
 
+	public void EndBonuStage()
+	{
+		for(int i = 0; i < beeList.Count; i++)
+		{
+			Destroy(beeList[i]);
+		}
+		beeList.Clear();
+		StopAllCoroutines();
+	}
+
 	public void SpawnBeeWave()
 	{
-		StartCoroutine(BeeWaveSpawner());
+		if(!isSpawningWave)
+		{
+			StartCoroutine(BeeWaveSpawner());
+			isSpawningWave = true;
+		}
 	}
 
 	/// <summary>
@@ -187,6 +202,7 @@ public class BeeMScript : MonoBehaviour
 			beeList.Add(tempBee);
 			yield return new WaitForSeconds(0.3f);
 		}
+		isSpawningWave = false;
 	}
 
 	public bool BeesAlive()
@@ -206,11 +222,7 @@ public class BeeMScript : MonoBehaviour
 	/// </summary>
 	public void ClearBees()
 	{
-		if (SVM_Script.Instance.isBonus)
-		{
-			StartCoroutine(ClearBonusListCoRoutine());
-		}
-		else
+		if (!SVM_Script.Instance.isBonus)
 		{
 			StartCoroutine(ClearListCoRoutine());
 		}
@@ -291,5 +303,10 @@ public class BeeMScript : MonoBehaviour
 				beeList[x].GetComponent<Bee_Script>().ClearTarget();
 			yield return null;
 		}// */
+	}
+
+	public void ReduceTime()
+	{
+		gm.TM.ReduceTime();
 	}
 }
