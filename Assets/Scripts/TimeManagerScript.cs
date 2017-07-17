@@ -143,6 +143,15 @@ public class TimeManagerScript : MonoBehaviour
 		}
 	}
 
+	public void SwitchToBonusRound()
+	{
+		elapsedTime = BonusTime;
+		int minutes = elapsedTime / 60;
+		int seconds = elapsedTime % 60;
+
+		DisplayTime (listDisplayImages, minutes, seconds);
+	}
+
 	public void DisplayTargetTime()
     {
 		int minutes;
@@ -157,13 +166,12 @@ public class TimeManagerScript : MonoBehaviour
 
 	}
 
-
     /// <summary>
-    /// Function to call on any part of Game that wants to display time
+    /// Function to call on any part of Game that wants to display time.
     /// </summary>
-    /// <param name="targetImageList">List of GameObject Images to Display Time</param>
-    /// <param name="min">Minutes</param>
-    /// <param name="sec">Seconds</param>
+    /// <param name="targetImageList">List of GameObject Images to Display Time.</param>
+    /// <param name="min">Minutes.</param>
+    /// <param name="sec">Seconds.</param>
 	public void DisplayTime(List<Image> targetImageList, int min, int sec)
 	{ //Function to call on any part of Game that wants to display time
 	    // targetImageList is a List of GameObject Images to Display Time

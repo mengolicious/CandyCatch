@@ -27,9 +27,11 @@ public class BeeMScript : MonoBehaviour
 	private Vector3 DirChangeLeft;
 	private Vector3 DirChangeRight;
 	private List<Material> bonusBallMattList;
+	private int waveCount;
 	// Use this for initialization
 	void Start ()
 	{
+		waveCount = 0;
 		beeList = new List<GameObject>();
 		SpawnPoints = new List<Vector3>();
 		SpawnIndices = new List<int>();
@@ -164,6 +166,13 @@ public class BeeMScript : MonoBehaviour
 	{
 		GameObject tempBee;
 		int tV;
+		waveCount++;
+		if(waveCount > 5)
+		{
+			gm.ResetQuestion();
+			waveCount = 1;
+			yield return new WaitForSeconds(3f);
+		}
 		BossBee.GetComponent<Animator>().Play("QueenBossSpawn");
 		//Debug.Log ("Spawning " + numberOfBEES + " Bees");
 		for(int x = 0; x < SpawnPoints.Count; x++)

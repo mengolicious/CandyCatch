@@ -91,7 +91,7 @@ public class GM_1 : MonoBehaviour
 
 	//public float shooterSpeed;
 	//public float animSpeed;
-
+	public TimeManagerScript TM;
 	//public GameObject LoadingScreen;
 	// Use this for initialization
 	void Start()
@@ -360,11 +360,12 @@ public class GM_1 : MonoBehaviour
 		smallQuestionDisplay.SetActive(false);
 
 		if(!SVM_Script.Instance.isBonus)
-		gunScript.canShoot = false;
-		
-		while(BeeM_Script.BeesAlive())
 		{
-			yield return new WaitForSeconds(0.1f);
+			gunScript.canShoot = false;
+			while(BeeM_Script.BeesAlive())
+			{
+				yield return new WaitForSeconds(0.1f);
+			}
 		}
 		bigQuestionBG.SetActive(true);
 		GetNextQuestion();
@@ -376,8 +377,10 @@ public class GM_1 : MonoBehaviour
 		yield return new WaitForSeconds(1.0f);
 
 		if(!SVM_Script.Instance.isBonus)
-		gunScript.shooterAnimator.speed = 0.1f;
-		
+		{
+			gunScript.shooterAnimator.speed = 0.1f;
+		}
+
 		for(int x=0; x<20; x++)
 		{
 			bigQuestionBG.GetComponent<RectTransform>().localScale -= new Vector3 (0.03f, 0.03f, 0.03f);
@@ -395,7 +398,7 @@ public class GM_1 : MonoBehaviour
 		{
 			Sprite smokeOnTheWater = Resources.Load<Sprite>("Sprites/Smoke/Smoke"+x);
 			smokeSpriteImageComponent.sprite = smokeOnTheWater;
-		//	smokeSpriteSmolImageComponent.sprite = smokeOnTheWater;
+			//smokeSpriteSmolImageComponent.sprite = smokeOnTheWater;
 			yield return new WaitForSeconds(0.04f);
 			if(x==4)
 			{
@@ -418,7 +421,8 @@ public class GM_1 : MonoBehaviour
 		StartCoroutine (QuestionMovingParticleAction());
 	}
 
-	IEnumerator QuestionMovingParticleAction(){
+	IEnumerator QuestionMovingParticleAction()
+	{
 
 		QuestionMovingPart_GameObject = Instantiate (QuestionMovingPart_Object, new Vector3(0,0,0), Quaternion.identity) as GameObject;
 		QuestionMovingPart_GameObject.transform.SetParent (canvas.transform);
@@ -439,15 +443,14 @@ public class GM_1 : MonoBehaviour
 			Sprite smokeOnTheWater = Resources.Load<Sprite>("Sprites/Smoke/Smoke"+x);
 			smokeSpriteSmolImageComponent.sprite = smokeOnTheWater;
 			yield return new WaitForSeconds(0.04f);
-		
 		}
 
 		smokeSpriteSmol.SetActive(false);
 		smallQuestionDisplay.SetActive(true);
 		smallQuestionDisplayImage.sprite = currentQuestion;
-		isShooting = false;
 		if(!SVM_Script.Instance.isBonus)
 		{
+			isShooting = false;
 			gunScript.canShoot = true;
 			gunScript.shooterAnimator.speed = 1; // shooter starts moving only once smoke appears.
 		}
@@ -522,6 +525,7 @@ public class GM_1 : MonoBehaviour
 		BeeM_Script.SwitchToBonusRound();
 		questionManagerScript.SwitchToBonusRound();
 		SM_Script.SwitchToBonusRound();
+		TM.SwitchToBonusRound();
 	}
 
 	/// <summary>
