@@ -159,8 +159,8 @@ public class TimeManagerScript : MonoBehaviour
 		{
 			BonusTime = 0;
 		}
-		int minutes = elapsedTime / 60;
-		int seconds = elapsedTime % 60;
+		int minutes = BonusTime / 60;
+		int seconds = BonusTime % 60;
 
 		DisplayTime (listDisplayImages, minutes, seconds);
 		if(BonusTime < 1)
@@ -179,8 +179,6 @@ public class TimeManagerScript : MonoBehaviour
 		seconds = tempTargetTime % 60;
 
 		DisplayTime(listDisplayImagesTargetTime, minutes, seconds);
-
-
 	}
 
     /// <summary>
@@ -190,10 +188,7 @@ public class TimeManagerScript : MonoBehaviour
     /// <param name="min">Minutes.</param>
     /// <param name="sec">Seconds.</param>
 	public void DisplayTime(List<Image> targetImageList, int min, int sec)
-	{ //Function to call on any part of Game that wants to display time
-	    // targetImageList is a List of GameObject Images to Display Time
-	    // min is minutes and sec is seconds 
-	
+	{	
 		if (sec > 9)
 		{
 

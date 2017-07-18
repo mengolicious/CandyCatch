@@ -282,7 +282,7 @@ public class ScoreManagerScript : MonoBehaviour
 
 			if(score>=targetScore)
 			{
-				if(TM_Script.elapsedTime < SVM_Script.Instance.targetTime)
+				if(SVM_Script.Instance.targetTime - TM_Script.elapsedTime > 5)
 				{
 					bonusScreen.SetActive(true);
 					gM_1.PauseGame();
@@ -324,7 +324,7 @@ public class ScoreManagerScript : MonoBehaviour
 						tempString="Expert";
 					}
 
-					ComputeTotalScore(); //this is for saving highscores
+					ComputeTotalScore();	//this is for saving highscores
 					//print (totalScore);
 					//Debug.Log ("itsGoingHere");
 
