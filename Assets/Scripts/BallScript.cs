@@ -24,7 +24,7 @@ public class BallScript : MonoBehaviour {
 		SoundManager_Script.Play_SFX("CorrectAnswer");
 		tempParticle = Instantiate (winParticle, this.transform.position, Quaternion.identity) as GameObject;
 		tempParticle = Instantiate(scoreUpParticle, scoreChangeSpritePos, Quaternion.identity) as GameObject;
-		tempParticle.GetComponent<ScoreModifierSprite>().SetNumber(scoreValue, true, false);
+		tempParticle.GetComponent<ScoreModifierSprite>().SetNumber(scoreValue, true, false, false);
 		Invoke ("DestroyInstantiate",0.1f);
 	}
 

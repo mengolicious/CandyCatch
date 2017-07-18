@@ -63,7 +63,7 @@ public class TumbleweedScript : MonoBehaviour {
 				if(ScoreManager_Script.EditScore(tempValue, ScoreManagerScript.ScoreSource.BackGroundObj))
 				{
 					GameObject tempScoreParticle = GameObject.Instantiate(scoreChangePrefab, this.transform.position, Quaternion.identity) as GameObject;
-					tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(tempValue, true, true);
+					tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(tempValue, true, true, false);
 				}
 				Destroy(this.gameObject);
 			}

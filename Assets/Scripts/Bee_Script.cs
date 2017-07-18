@@ -133,7 +133,7 @@ public class Bee_Script : MonoBehaviour {
 			{
 				GameObject.Instantiate(particlePrefab, this.transform.position, this.transform.rotation);
 				GameObject tempScoreParticle = GameObject.Instantiate(ScoreNumberPrefab, this.transform.position, Quaternion.identity) as GameObject;
-				tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, true, true);
+				tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, true, true, false);
 			}
 			Kill();
 		//}
@@ -149,7 +149,7 @@ public class Bee_Script : MonoBehaviour {
 			other.gameObject.transform.localScale -= new Vector3(0.1f,0.1f,0.1f);
 
 			GameObject tempScoreParticle = GameObject.Instantiate(ScoreNumberPrefab, this.transform.position, Quaternion.identity) as GameObject;
-			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, false, false);
+			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, false, false, false);
 			//Debug.Log ("Lose some points you scrub");
 			isAttacking = false;
 			isGoingToHive = true;

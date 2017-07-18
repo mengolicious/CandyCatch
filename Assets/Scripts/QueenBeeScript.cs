@@ -174,7 +174,7 @@ public class QueenBeeScript : Bee_Script {
 
 
 			GameObject tempScoreParticle = GameObject.Instantiate(ScoreNumberPrefab, this.transform.position, Quaternion.identity) as GameObject;
-			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, false, false);
+			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, false, false, false);
 			//Debug.Log ("Lose some points you scrub");
 			isAttacking = false;
 			isGoingToHive = true;

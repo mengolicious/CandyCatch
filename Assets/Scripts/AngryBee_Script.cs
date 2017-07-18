@@ -55,7 +55,7 @@ public class AngryBee_Script : MonoBehaviour
 	public void SpawnScoreSprite()
 	{
 		GameObject tempParticle = Instantiate(ScoreChangeSpritePrefab, scoreChangeSpritePos, Quaternion.identity) as GameObject;
-		tempParticle.GetComponent<ScoreModifierSprite>().SetNumber(5, false, false);
+		tempParticle.GetComponent<ScoreModifierSprite>().SetNumber(5, false, false, false);
 	}
 
 	public void DestroySelf()

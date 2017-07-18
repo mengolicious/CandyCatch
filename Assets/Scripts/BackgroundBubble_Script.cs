@@ -74,7 +74,7 @@ public class BackgroundBubble_Script : MonoBehaviour
 				if(SM.EditScore(1, ScoreManagerScript.ScoreSource.BackGroundObj))
 				{
 					GameObject scoreSprite = Instantiate(ScoreModifierPrefab, transform.position, Quaternion.identity) as GameObject;
-					scoreSprite.GetComponent<ScoreModifierSprite>().SetNumber(1, true, true);
+					scoreSprite.GetComponent<ScoreModifierSprite>().SetNumber(1, true, true, false);
 				}
 				StartCoroutine(SelfDestroy());
 				//JUST DO IT, DON'T LET YOUR DREAMS JUST BE DREAMS - SHIA LABEOUF

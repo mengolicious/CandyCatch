@@ -12,9 +12,13 @@ public class ScoreModifierSprite : MonoBehaviour {
 		speed = 10f;
 	}
 
-	public void SetNumber(int aValue, bool positiveVal, bool isMoving)
+	public void SetNumber(int aValue, bool positiveVal, bool isMoving, bool minusTime)
 	{
-		if(positiveVal)
+		if(minusTime)
+		{
+			spriteRend.sprite = Resources.Load<Sprite>("Sprites/GamePlayNum/MINUS1SEC");
+		}
+		else if(positiveVal)
 		{
 			spriteRend.sprite = Resources.Load<Sprite>("Sprites/GamePlayNum/" + aValue + "plus");
 		}

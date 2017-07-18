@@ -65,7 +65,7 @@ public class BunnyScript : MonoBehaviour
 			if(SM.EditScore(2,ScoreManagerScript.ScoreSource.BackGroundObj))
 			{
 				tempPart = Instantiate(scoreChangePrefab, transform.position, Quaternion.identity) as GameObject;
-				tempPart.GetComponent<ScoreModifierSprite>().SetNumber(2, true, true);
+				tempPart.GetComponent<ScoreModifierSprite>().SetNumber(2, true, true, false);
 			}
 			currentState = States.Dissapearing;
 			Dissapear();
