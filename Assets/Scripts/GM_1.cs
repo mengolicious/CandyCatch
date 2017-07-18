@@ -315,7 +315,7 @@ public class GM_1 : MonoBehaviour
 		SoundManager_Script.Stop_BG_SFX();
 		//LoadingScreen.SetActive(true);
 		Time.timeScale = 1f;
-		SVM_Script.Instance.LoadLevel("ShapesLV1");
+		SVM_Script.Instance.LoadLevel("Enticing Equations");
 	}
 
 	public void NextDiff()
