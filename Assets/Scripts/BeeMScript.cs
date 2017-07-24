@@ -155,6 +155,7 @@ public class BeeMScript : MonoBehaviour
 			tI = Random.Range(0, SpawnIndices.Count);
 			//Vector3 shiftPos = new Vector3(0f, Random.Range (-2.5f,2.5f), 0f);
 			tempBee = Instantiate(BeePrefab, SpawnPoints[SpawnIndices[tI]], Quaternion.identity) as GameObject;
+			tempBee.name = "Bee";
 			tempBee.GetComponent<Bee_Script>().InitialiseVariables(tempBall, beeSpeed, beeValue, BeeBurstPrefab, ScoreChangeSpritePrefab, Hive.transform.position, this);
 			//tempBee.GetComponent<Bee_Script>().value = tempValue;
 			beeList.Add(tempBee);
@@ -169,6 +170,7 @@ public class BeeMScript : MonoBehaviour
 			tI = Random.Range(0, SpawnPoints.Count);
 			//Vector3 shiftPos = new Vector3(0f, Random.Range (-2.5f,2.5f), 0f);
 			tempQueenBee = Instantiate(QueenBeePrefab, SpawnPoints[SpawnIndices[tI]], Quaternion.identity) as GameObject;
+			tempQueenBee.name = "Queen Bee";
 			tempQueenBee.transform.GetChild(0).GetComponent<QueenBeeScript>().InitialiseVariables(tempBall, queenBeeSpeed, beeValue, BeeBurstPrefab, ScoreChangeSpritePrefab, Hive.transform.position, this);
 			//tempBee.GetComponent<Bee_Script>().value = tempValue;
 			beeList.Add(tempQueenBee);
@@ -260,6 +262,7 @@ public class BeeMScript : MonoBehaviour
 			if(!tempAngryBee)
 			{
 				tempAngryBee = Instantiate(AngryBeePrefab, AngryBeeSpawnPoint, Quaternion.identity) as GameObject;
+				tempAngryBee.name = "Angry Bee";
 				tempAngryBee.GetComponent<AngryBee_Script>().isExpert = isExpert;
 				tempAngryBee.GetComponent<AngryBee_Script>().scoreChangeSpritePos = transform.position;
 				tempAngryBee.GetComponent<AngryBee_Script>().ScoreChangeSpritePrefab = Resources.Load("Prefabs/ScoreChangeSprite");

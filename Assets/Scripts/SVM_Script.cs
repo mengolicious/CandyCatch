@@ -68,6 +68,7 @@ public class SVM_Script : MonoBehaviour
 	{
 		canvas = GameObject.FindGameObjectWithTag("Canvas");
 		loadingScreen = Instantiate(Resources.Load("prefabs/LoadingScreen"))as GameObject;
+		loadingScreen.name = "Loading Screen";
 		loadingScreen.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0.5f);
 		loadingScreen.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.5f);
 		loadingScreen.GetComponent<RectTransform>().sizeDelta = new Vector2(800, 450);
