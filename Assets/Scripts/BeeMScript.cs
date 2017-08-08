@@ -29,6 +29,9 @@ public class BeeMScript : MonoBehaviour
 	private List<Material> bonusBallMattList;
 	private int waveCount;
 	private bool isSpawningWave;
+	public GameObject tapBees;
+	public GameObject tapQueenBee;
+	public GameObject avoidSoldierBee;
 	// Use this for initialization
 	void Start ()
 	{
@@ -89,6 +92,7 @@ public class BeeMScript : MonoBehaviour
 	public void SpawnBees(GameObject targetBall)
 	{
 		tempBall = targetBall;
+		tapBees.SetActive(true);
 		StartCoroutine(ReleaseTheBees());
 	}
 
@@ -256,6 +260,7 @@ public class BeeMScript : MonoBehaviour
 
 	IEnumerator AngryBeeSpawner()
 	{
+		bool notPopped = true;
 		GameObject tempAngryBee = null;
 		while(!SVM_Script.Instance.isBonus)
 		{
@@ -270,6 +275,11 @@ public class BeeMScript : MonoBehaviour
 				tempAngryBee.GetComponent<AngryBee_Script>().DirChangeRight = DirChangeRight;
 			}
 			yield return new WaitForSeconds(1.0f);
+			if(notPopped)
+			{
+				avoidSoldierBee.SetActive(true);
+				notPopped = false;
+			}
 		}
 		if(tempAngryBee)
 		{
