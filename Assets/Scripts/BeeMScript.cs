@@ -206,7 +206,8 @@ public class BeeMScript : MonoBehaviour
 			tempBee.GetComponent<BonusBeeScript>().InitialiseVariables(beeSpeed, tV+1, BeeBurstPrefab, ScoreChangeSpritePrefab, this, bonusBallMattList[tV]);
 			//tempBee.GetComponent<Bee_Script>().value = tempValue;
 			beeList.Add(tempBee);
-			yield return new WaitForSeconds(0.3f);
+			//yield return new WaitForSeconds(0.3f);
+			yield return new WaitForSeconds(0.6f);
 		}
 		isSpawningWave = false;
 	}

@@ -8,7 +8,7 @@ public class BeePopups : MonoBehaviour {
 	IEnumerator FlashingAnim()
 	{
 		float countDown = 0.5f;
-		Vector3 sizeChange = Vector3.one * 0.1f;
+		Vector3 sizeChange = Vector3.one * 0.01f;
 		while(countDown > 0f)
 		{
 			transform.localScale += sizeChange;
