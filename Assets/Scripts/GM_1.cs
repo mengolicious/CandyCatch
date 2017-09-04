@@ -533,6 +533,7 @@ public class GM_1 : MonoBehaviour
 	/// </summary>
 	IEnumerator BonusStageSwitch()
 	{
+		Time.timeScale = 1f;
 		BeeM_Script.SwitchToBonusRound();
 		yield return null;
 		questionManagerScript.SwitchToBonusRound();
@@ -540,6 +541,7 @@ public class GM_1 : MonoBehaviour
 		SM_Script.SwitchToBonusRound();
 		yield return null;
 		TM.SwitchToBonusRound();
+		Time.timeScale = 0f;
 		isSwitching = false;
 	}
 
