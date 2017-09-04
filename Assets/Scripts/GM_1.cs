@@ -74,7 +74,8 @@ public class GM_1 : MonoBehaviour
 	public Material matBall9;*/
 	public List<Material> matBallList; 
 
-	public GameObject pauseMenu; 
+	public GameObject pauseMenu;
+	public GameObject pauseButton;
 
 	public List<Vector3> listPosition;
 	public Vector3 firstLayer;
@@ -92,6 +93,7 @@ public class GM_1 : MonoBehaviour
 	//public float shooterSpeed;
 	//public float animSpeed;
 	public TimeManagerScript TM;
+	bool isSwitching;
 	//public GameObject LoadingScreen;
 	// Use this for initialization
 	void Start()
@@ -105,7 +107,7 @@ public class GM_1 : MonoBehaviour
 
 		tempX = -8.2f;
 		matBallList = new List<Material>();
-
+		isSwitching = false;
 		/*matBallList.Add (matBall0);
 		matBallList.Add (matBall1);
 		matBallList.Add (matBall2);
@@ -515,32 +517,44 @@ public class GM_1 : MonoBehaviour
 	/// </summary>
 	public void SwitchToBonusStage()
 	{
+		isSwitching = true;
 		StopAllCoroutines();
 		if(QuestionMovingPart_GameObject)
 		{
 			Destroy(QuestionMovingPart_GameObject);
 		}
 		gunScript.DestroyGunObject();
-		DestroyInstatiatedBalls ("balls");
+		DestroyInstatiatedBalls("balls");
+		StartCoroutine(BonusStageSwitch());
+	}
+
+	/// <summary>
+	/// Switches to the bonus stage over a number of frames.
+	/// </summary>
+	IEnumerator BonusStageSwitch()
+	{
 		BeeM_Script.SwitchToBonusRound();
+		yield return null;
 		questionManagerScript.SwitchToBonusRound();
+		yield return null;
 		SM_Script.SwitchToBonusRound();
+		yield return null;
 		TM.SwitchToBonusRound();
+		isSwitching = false;
 	}
 
 	/// <summary>
 	/// Starts the game into the bonus stage
 	/// </summary>
-	public void StartBonusStage()
+	public void StartBonusStage(GameObject BonusPanel)
 	{
-		//Start Disabling Objects
-
-		//tempDestroyObject = gameObject.Get
-		//Start Reset Questions and Change it to Bonus Question
-		
-		//End Reset Questions and Change it to Bonus Question
-		ResumeGame();
-		ResetQuestion();
+		if(!isSwitching)
+		{
+			BonusPanel.SetActive(false);
+			pauseButton.SetActive(true);
+			ResumeGame();
+			ResetQuestion();
+		}
 	}
 
 	/// <summary>

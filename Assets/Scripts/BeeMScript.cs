@@ -306,19 +306,6 @@ public class BeeMScript : MonoBehaviour
 		}
 	}
 
-	IEnumerator ClearBonusListCoRoutine()
-	{
-		yield return null;
-		/*for (int x = 0; x < beeList.Count; x++)
-		{
-			if (!beeList[x])
-				beeList.RemoveAt(x);
-			else
-				beeList[x].GetComponent<Bee_Script>().ClearTarget();
-			yield return null;
-		}// */
-	}
-
 	public void ReduceTime()
 	{
 		gm.TM.ReduceTime();
