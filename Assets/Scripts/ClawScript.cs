@@ -23,7 +23,8 @@ public class ClawScript : MonoBehaviour {
 	public bool hitBall;
 	public bool hitCollectibles;
 	public bool hitAngryBee;
-	public bool retracting; 
+	public bool retracting;
+	public bool queenGotBall;
 	public GameObject fishingRod;
 
 	public float retractingSpeed;
@@ -36,6 +37,7 @@ public class ClawScript : MonoBehaviour {
 		originalClawPos = transform.localPosition;
 		hitCollectibles = false;
 		hitAngryBee = false;
+		queenGotBall = false;
 
 		lineRenderer = GetComponent<LineRenderer>();
 	}
@@ -87,9 +89,9 @@ public class ClawScript : MonoBehaviour {
 		//if (transform.position == retractrigin && retracting) 
 		if(transform.position == origin.position && retracting) 
 		{
-			SoundManager_Script.BG_FX_Player.Stop();	//stop the reeling back sound
+			SoundManager_Script.BG_FX_Player.Stop();    //stop the reeling back sound
 
-			if(hitBall) // this if is for when the claw hits a ball that needs to be destroyed
+			if (hitBall) // this if is for when the claw hits a ball that needs to be destroyed
 			{
 				//Debug.Log("collectedOBJ");
 				//	scoreManager.AddPoints (ballValue);
@@ -97,11 +99,14 @@ public class ClawScript : MonoBehaviour {
 				//Debug.Log("booo");
 				//Debug.Log("booo2");
 				rightAnswer = SM_Script.CheckScore(childObject.GetComponent<BallScript>().scoreValue);
-				if(rightAnswer)
+				if (rightAnswer)
 				{   //to instantiate particle for win 
-					if(!SVM_Script.Instance.isBonus)
+					if (!SVM_Script.Instance.isBonus)
 					{
-						childObject.GetComponent<BallScript>().InstantiateParticleWin();
+						if (childObject)
+						{   //Check first whether the Queen bee got the Ball
+							childObject.GetComponent<BallScript>().InstantiateParticleWin();
+						}
 
 						///////////////////////////////////////////////
 
@@ -114,10 +119,15 @@ public class ClawScript : MonoBehaviour {
 				else
 				{
 					//to instantiate particle for lose
-					childObject.GetComponent<BallScript>().InstantiateParticleLose();
+					if (childObject)
+					{   //Check first whether the Queen bee got the Ball
+						childObject.GetComponent<BallScript>().InstantiateParticleLose();
+					}
+
+	
 				}
 			}
-			else if(hitCollectibles)
+			else if (hitCollectibles)
 			{
 				hitCollectibles = false;
 
@@ -134,7 +144,13 @@ public class ClawScript : MonoBehaviour {
 				childObject.GetComponent<AngryBee_Script>().DestroySelf();
 				SM_Script.EditScore(-5, ScoreManagerScript.ScoreSource.AngryBee);
 			}
-
+			else if(queenGotBall) {
+				queenGotBall = false;
+				GM_Script.DestroyInstatiatedBalls("balls"); // new
+				GM_Script.SpawnBalls();                     // new
+				BeeM_Script.ClearBees();                    // new
+				GM_Script.ResetQuestion();                  // new
+			}
 			this.transform.localPosition = new Vector3(0,-1.888f,-2.77f);
 			//Debug.Log("retracingSpeed");
 

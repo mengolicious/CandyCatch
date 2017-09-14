@@ -171,7 +171,7 @@ public class QueenBeeScript : Bee_Script {
 
 			Debug.Log ("QueenBee IF");
 
-
+			Claw_Script.queenGotBall = true;
 
 			GameObject tempScoreParticle = GameObject.Instantiate(ScoreNumberPrefab, this.transform.position, Quaternion.identity) as GameObject;
 			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, false, false, false);
@@ -214,9 +214,9 @@ public class QueenBeeScript : Bee_Script {
 		//Start for Restarting Balls and Questions
 		if(hasBall){
 			Debug.Log ("The Queen lost the ball");
-			GM_1Script.DestroyInstatiatedBalls("balls");
-			GM_1Script.SpawnBalls();
-			GM_1Script.ResetQuestion();
+			//GM_1Script.DestroyInstatiatedBalls("balls");	
+			//GM_1Script.SpawnBalls();
+			//GM_1Script.ResetQuestion();
 		}
 		//END for Restarting Balls and Questions
 
