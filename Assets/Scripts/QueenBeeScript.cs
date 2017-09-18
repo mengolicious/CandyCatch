@@ -142,9 +142,8 @@ public class QueenBeeScript : Bee_Script {
 		//}*/
 	}
 
-	public void ReduceHealth(){
-
-
+	public void ReduceHealth()
+	{
 		numberOfHit--;
 		if(numberOfHit < 1)
 		{
@@ -167,13 +166,11 @@ public class QueenBeeScript : Bee_Script {
 	public override void OnTriggerEnter(Collider other)
 	{
 
-		if (other.gameObject == answerBall) {
-
-			Debug.Log ("QueenBee IF");
-
+		if (other.gameObject == answerBall)
+		{
 			Claw_Script.queenGotBall = true;
 
-			GameObject tempScoreParticle = GameObject.Instantiate(ScoreNumberPrefab, this.transform.position, Quaternion.identity) as GameObject;
+			GameObject tempScoreParticle = Instantiate(ScoreNumberPrefab, this.transform.position, Quaternion.identity) as GameObject;
 			tempScoreParticle.GetComponent<ScoreModifierSprite>().SetNumber(value, false, false, false);
 			//Debug.Log ("Lose some points you scrub");
 			isAttacking = false;
@@ -183,47 +180,31 @@ public class QueenBeeScript : Bee_Script {
 
 			//----Start Bee Getting the Actual Ball------//
 
-
 			QueenAnimation.Play ("FlyingCarryAnim");
-			other.gameObject.transform.SetParent(this.transform);
-			other.gameObject.transform.localScale = new Vector3(1.0f,1.0f,1.0f);
-			other.gameObject.transform.localPosition = new Vector3(-1.2f,-2.3f,0);
-			other.gameObject.transform.localEulerAngles = new Vector3(270,0,0);
-
+			//other.gameObject.transform.SetParent(this.transform);
+			other.gameObject.transform.localScale = new Vector3(0f,0f,0f);
+			//other.gameObject.transform.localPosition = new Vector3(-1.2f,-2.3f,0);
+			//other.gameObject.transform.localEulerAngles = new Vector3(270,0,0);
+			transform.GetChild(0).gameObject.SetActive(true);
 
 			BeeM_Script.ClearBees();
 
 			hasBall=true;
-			Claw_Script.hitBall=false;
-
-
-
-
+			//Claw_Script.hitBall=false;
 
 			//----END Bee Getting the Actual Ball------//
 
 
 			answerBall = null;
-			other.gameObject.tag = "QueenTag";
+			//other.gameObject.tag = "QueenTag";
 		}
 	}
 	
 	public override void Kill()
 	{
 
-		//Start for Restarting Balls and Questions
-		if(hasBall){
-			Debug.Log ("The Queen lost the ball");
-			//GM_1Script.DestroyInstatiatedBalls("balls");	
-			//GM_1Script.SpawnBalls();
-			//GM_1Script.ResetQuestion();
-		}
-		//END for Restarting Balls and Questions
-
-
-		//Debug.Log ("Bee Dead");
 		BeeM.RemoveBee(gameObject);
-		Destroy(transform.parent.gameObject);
+		Destroy(QBParent.gameObject);
 	}
 	
 	public override void ClearTarget()
@@ -235,8 +216,6 @@ public class QueenBeeScript : Bee_Script {
 			isAttacking = false;
 		}
 		isGoingToHive = true;
-
-
 	}
 }
 

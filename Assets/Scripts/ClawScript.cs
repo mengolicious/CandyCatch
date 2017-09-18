@@ -98,33 +98,43 @@ public class ClawScript : MonoBehaviour {
 				hitBall = false;
 				//Debug.Log("booo");
 				//Debug.Log("booo2");
-				rightAnswer = SM_Script.CheckScore(childObject.GetComponent<BallScript>().scoreValue);
-				if (rightAnswer)
-				{   //to instantiate particle for win 
-					if (!SVM_Script.Instance.isBonus)
-					{
-						if (childObject)
-						{   //Check first whether the Queen bee got the Ball
-							childObject.GetComponent<BallScript>().InstantiateParticleWin();
-						}
-
-						///////////////////////////////////////////////
-
-						GM_Script.DestroyInstatiatedBalls("balls");
-						GM_Script.SpawnBalls();
-						BeeM_Script.ClearBees();
-						GM_Script.ResetQuestion();
-					}
+				if(queenGotBall)
+				{
+					queenGotBall = false;
+					GM_Script.DestroyInstatiatedBalls("balls");
+					GM_Script.SpawnBalls();
+					BeeM_Script.ClearBees();
+					GM_Script.ResetQuestion();
+					rightAnswer = true;
 				}
 				else
 				{
-					//to instantiate particle for lose
-					if (childObject)
-					{   //Check first whether the Queen bee got the Ball
-						childObject.GetComponent<BallScript>().InstantiateParticleLose();
-					}
+					rightAnswer = SM_Script.CheckScore(childObject.GetComponent<BallScript>().scoreValue);
+					if(rightAnswer)
+					{   //to instantiate particle for win 
+						if(!SVM_Script.Instance.isBonus)
+						{
+							if(childObject)
+							{   //Check first whether the Queen bee got the Ball
+								childObject.GetComponent<BallScript>().InstantiateParticleWin();
+							}
 
-	
+							///////////////////////////////////////////////
+
+							GM_Script.DestroyInstatiatedBalls("balls");
+							GM_Script.SpawnBalls();
+							BeeM_Script.ClearBees();
+							GM_Script.ResetQuestion();
+						}
+					}
+					else
+					{
+						//to instantiate particle for lose
+						if(childObject)
+						{
+							childObject.GetComponent<BallScript>().InstantiateParticleLose();
+						}
+					}
 				}
 			}
 			else if (hitCollectibles)
@@ -144,14 +154,7 @@ public class ClawScript : MonoBehaviour {
 				childObject.GetComponent<AngryBee_Script>().DestroySelf();
 				SM_Script.EditScore(-5, ScoreManagerScript.ScoreSource.AngryBee);
 			}
-			else if(queenGotBall) {
-				queenGotBall = false;
-				GM_Script.DestroyInstatiatedBalls("balls"); // new
-				GM_Script.SpawnBalls();                     // new
-				BeeM_Script.ClearBees();                    // new
-				GM_Script.ResetQuestion();                  // new
-			}
-			this.transform.localPosition = new Vector3(0,-1.888f,-2.77f);
+			transform.localPosition = new Vector3(0,-1.888f,-2.77f);
 			//Debug.Log("retracingSpeed");
 
 			//this.transform.localRotation = Quaternion.Euler (270,0,0); 

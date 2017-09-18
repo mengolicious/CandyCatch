@@ -61,14 +61,12 @@ public class BeeMScript : MonoBehaviour
 		if(SVM_Script.gameDifficulty == "easy")
 		{
 			numberOfBEES = 2;
-			//maxBeeValue = 1;
 			beeSpeed = 6.0f;
 			isExpert = false;
 		}
 		else if(SVM_Script.gameDifficulty == "advance")
 		{
 			numberOfBEES = 3;
-			//maxBeeValue = 2;
 			beeSpeed = 6.5f;
 			isExpert = false;
 			StartCoroutine(AngryBeeSpawner());
@@ -76,7 +74,6 @@ public class BeeMScript : MonoBehaviour
 		else if(SVM_Script.gameDifficulty == "expert")
 		{
 			numberOfBEES = 2;
-			//maxBeeValue = 3;
 			beeSpeed = 7f;
 			queenBeeSpeed = 5.5f;
 
@@ -177,7 +174,7 @@ public class BeeMScript : MonoBehaviour
 			tempQueenBee.name = "Queen Bee";
 			tempQueenBee.transform.GetChild(0).GetComponent<QueenBeeScript>().InitialiseVariables(tempBall, queenBeeSpeed, beeValue, BeeBurstPrefab, ScoreChangeSpritePrefab, Hive.transform.position, this);
 			//tempBee.GetComponent<Bee_Script>().value = tempValue;
-			beeList.Add(tempQueenBee);
+			beeList.Add(tempQueenBee.transform.GetChild(0).gameObject);
 			SpawnIndices.RemoveAt(tI);
 		}
 		//---------------------------END of Queen Bee--------------------------//
