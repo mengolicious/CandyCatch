@@ -186,7 +186,7 @@ public class QueenBeeScript : Bee_Script {
 			//other.gameObject.transform.localPosition = new Vector3(-1.2f,-2.3f,0);
 			//other.gameObject.transform.localEulerAngles = new Vector3(270,0,0);
 			transform.GetChild(0).gameObject.SetActive(true);
-
+			transform.GetChild(0).GetComponent<Renderer>().material = answerBall.GetComponent<Renderer>().material;
 			BeeM_Script.ClearBees();
 
 			hasBall=true;
