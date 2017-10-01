@@ -187,7 +187,7 @@ public class QueenBeeScript : Bee_Script {
 			//other.gameObject.transform.localEulerAngles = new Vector3(270,0,0);
 			transform.GetChild(0).gameObject.SetActive(true);
 			transform.GetChild(0).GetComponent<Renderer>().material = answerBall.GetComponent<Renderer>().material;
-			BeeM_Script.ClearBees();
+			//BeeM_Script.ClearBees();
 
 			hasBall=true;
 			//Claw_Script.hitBall=false;
@@ -212,10 +212,9 @@ public class QueenBeeScript : Bee_Script {
 		answerBall = null;
 		if(isAttacking)
 		{
-			//Destroy(this.GetComponent<Collider>());
 			isAttacking = false;
+			isGoingToHive = true;
 		}
-		isGoingToHive = true;
 	}
 }
 
