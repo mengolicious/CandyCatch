@@ -417,7 +417,10 @@
 			{
 				listQuestions.Add(listQuestionsAdd[x]);
 			}
-
+			for(int x=0; x<listAnswersAdd.Count; x++)
+			{
+				listAnswers.Add(listAnswersAdd[x]);
+			}
 		}
 
 		else if(SVM_Script.gameDifficulty=="advance")
@@ -425,6 +428,10 @@
 			for(int x=0; x<listQuestionsMul.Count; x++)
 			{
 				listQuestions.Add(listQuestionsMul[x]);
+			}
+			for(int x=0; x<listAnswersMul.Count; x++)
+			{
+				listAnswers.Add(listAnswersMul[x]);
 			}
 		}
 
@@ -434,24 +441,6 @@
 			{
 				listQuestions.Add(listQuestionsDiv[x]);
 			}
-		}
-
-		if(SVM_Script.gameDifficulty=="easy")
-		{
-			for(int x=0; x<listAnswersAdd.Count; x++)
-			{
-				listAnswers.Add(listAnswersAdd[x]);
-			}
-		}
-		else if(SVM_Script.gameDifficulty=="advance")
-		{
-			for(int x=0; x<listAnswersMul.Count; x++)
-			{
-				listAnswers.Add(listAnswersMul[x]);
-			}
-		}
-		else if(SVM_Script.gameDifficulty=="expert")
-		{
 			for(int x=0; x<listAnswersDiv.Count; x++)
 			{
 				listAnswers.Add(listAnswersDiv[x]);
