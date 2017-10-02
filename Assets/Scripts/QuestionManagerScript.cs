@@ -250,31 +250,6 @@
 			//END questions for Division
 		};
 
-		if (SVM_Script.gameDifficulty=="easy"){
-			for(int x=0; x<listQuestionsAdd.Count; x++)
-			{
-				listQuestions.Add(listQuestionsAdd[x]);
-			}
-
-		}
-
-		else if(SVM_Script.gameDifficulty=="advance")
-		{
-			for(int x=0; x<listQuestionsMul.Count; x++)
-			{
-				listQuestions.Add(listQuestionsMul[x]);
-			}
-		}
-
-		else if(SVM_Script.gameDifficulty=="expert")
-		{
-			for(int x=0; x<listQuestionsDiv.Count; x++)
-			{
-				listQuestions.Add(listQuestionsDiv[x]);
-			}
-		}
-
-
 		listBonusQuestionsAddSub = new List<Sprite>
 		{
 			BQ1,
@@ -431,7 +406,36 @@
 			//END of answers for Subtration
 		};
 
-		listAnswers = new List<int>();	//List of questions new
+		listAnswers = new List<int>();  //List of questions new
+		RepopulateQuestions();
+	}
+
+	void RepopulateQuestions()
+	{
+		if (SVM_Script.gameDifficulty=="easy"){
+			for(int x=0; x<listQuestionsAdd.Count; x++)
+			{
+				listQuestions.Add(listQuestionsAdd[x]);
+			}
+
+		}
+
+		else if(SVM_Script.gameDifficulty=="advance")
+		{
+			for(int x=0; x<listQuestionsMul.Count; x++)
+			{
+				listQuestions.Add(listQuestionsMul[x]);
+			}
+		}
+
+		else if(SVM_Script.gameDifficulty=="expert")
+		{
+			for(int x=0; x<listQuestionsDiv.Count; x++)
+			{
+				listQuestions.Add(listQuestionsDiv[x]);
+			}
+		}
+
 		if(SVM_Script.gameDifficulty=="easy")
 		{
 			for(int x=0; x<listAnswersAdd.Count; x++)
@@ -457,6 +461,10 @@
 
 	public Sprite GetQuestion()
 	{
+		if(listQuestions.Count < 1)
+		{
+			RepopulateQuestions();
+		}
 		tempRandNum = Random.Range(0,listQuestions.Count);
 		
 		//Debug.Log (tempRandNum);
